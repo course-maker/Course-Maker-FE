@@ -1,0 +1,46 @@
+@charset " utf-8";
+@import url("./reset.scss");
+@import url("./font.scss");
+
+:root {
+  --Invalid: #cb0000;
+  --Gray: #8c8c8c;
+  --Black: #252525;
+  --Accent_Navy: #004572;
+  --Primary_Emerald: #01937f;
+}
+
+// body {
+//   font-family: "NanumGeumEunBoHwa";
+// }
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  font-family: inherit;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--black);
+}
