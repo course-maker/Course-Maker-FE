@@ -2,8 +2,21 @@ $White: #ffffff;
 
 $Invalid: #cb0000;
 
-$Gray: #8c8c8c;
+$Background_Gray: #eeeeee;
+$Light_Gray: #a1a1a1;
+$Primary_Gray: #8c8c8c;
+$Dark_Gray: #7d7d7d;
 
 $Black: #252525;
 
+$Light_Emerald: #d8f5f1;
 $Primary_Emerald: #01937f;
+$Dark_Emerald: #006f5f;
+
+$Light_Navy: #e0f0fb;
+$Primary_Navy: #004572;
+$Dark_Navy: #003151;
+
+// 기존 코드 에러 방지용(나중에 위의 변수로 모두 교체해야함)
+$Gray: #8c8c8c;
+$emerald: #01937f;
