@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Button, { ButtonProps } from "@/components/commons/button";
+import Button, { ButtonProps } from "@/components/commons/Button";
 import { vi } from "vitest";
 
 describe("Button Component", () => {
