@@ -11,7 +11,7 @@ export type ButtonColor = "emerald" | "navy";
 export type ButtonVariant = "primary" | "secondary" | "third";
 export type ButtonSize = "small" | "medium" | "large";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   type?: ButtonType;
   color: ButtonColor;
