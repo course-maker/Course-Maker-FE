@@ -1,0 +1,6 @@
+.nav {
+  @include flexbox(between, center);
+  background-color: $White;
+  max-width: 110rem;
+  width: 100%;
+}

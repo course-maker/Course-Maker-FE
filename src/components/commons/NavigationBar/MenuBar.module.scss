@@ -1,0 +1,18 @@
+.menu {
+  @include flexbox(between, center);
+  @include text-style(2, 700, $Black);
+  gap: 4rem;
+  padding: 0 2rem;
+
+  &-item {
+    transition: all ease-in-out 0.2s;
+
+    &:hover {
+      color: $Primary_Emerald;
+    }
+
+    &-active {
+      color: $Primary_Emerald;
+    }
+  }
+}

@@ -1,12 +1,22 @@
-import { IMAGES } from "@/constants/images";
+import { Link } from "react-router-dom";
+import styles from "./NavigationBar.module.scss";
+import classNames from "classnames/bind";
 import Image from "../Image";
+import MenuBar from "./MenuBar";
+import { IMAGES } from "@/constants/images";
+import { PAGE_PATH } from "@/constants/pagePath";
+
+const cx = classNames.bind(styles);
 
 const NavigationBar = () => {
   return (
-    <>
-      <Image imageInfo={IMAGES.courseMakerLogo} />
-      //여기 컴포넌트 만들어야 할 수도 (클릭 버튼?) Link 태그 쓰기!!
-    </>
+    <nav className={cx("nav")}>
+      <Link to={PAGE_PATH.home}>
+        <Image imageInfo={IMAGES.courseMakerLogo} />
+      </Link>
+      <MenuBar />
+      <div>버튼 자리</div>
+    </nav>
   );
 };
 
