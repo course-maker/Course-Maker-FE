@@ -15,7 +15,7 @@ interface ImageProps {
 }
 
 const Image = ({ imageInfo, objectFit = "fill" }: ImageProps) => {
-  return <img className={cx("img")} src={imageInfo.src} alt={imageInfo.alt} style={{ objectFit: objectFit }} />;
+  return <img className={cx("img", objectFit)} src={imageInfo.src} alt={imageInfo.alt} />;
 };
 
 export default Image;
