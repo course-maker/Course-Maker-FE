@@ -10,13 +10,13 @@ const cx = classNames.bind(styles);
 
 const NavigationBar = () => {
   return (
-    <nav className={cx("nav")}>
-      <Link to={PAGE_PATH.home}>
+    <div className={cx("nav")}>
+      <Link className={cx("nav-logo")} to={PAGE_PATH.home}>
         <Image imageInfo={IMAGES.courseMakerLogo} />
       </Link>
       <MenuBar />
       <div>버튼 자리</div>
-    </nav>
+    </div>
   );
 };
 
