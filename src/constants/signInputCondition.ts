@@ -5,6 +5,7 @@ interface SignInConditionType {
     placeholder: string;
     rules: {
       required: string;
+      pattern?: { value: RegExp; message: string };
       maxLength?: { value: number; message: string };
     };
     helperText: string;
@@ -15,10 +16,11 @@ interface SignInConditionType {
 export const SIGN_IN_CONDITION: SignInConditionType = {
   id: {
     label: "",
-    type: "email",
-    placeholder: "아이디를 입력하세요.",
+    type: "text",
+    placeholder: "이메일을 입력하세요.",
     rules: {
-      required: "아이디를 입력해주세요.",
+      required: "이메일을 입력해주세요.",
+      pattern: { value: /\S+@\S+\.\S+/, message: "올바른 이메일 주소가 아닙니다." },
     },
     helperText: "",
   },
