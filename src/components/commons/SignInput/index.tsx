@@ -13,26 +13,18 @@ interface SignInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const SignInput = forwardRef<HTMLInputElement, SignInputProps>(
-  ({ label, value, placeholder, type = "text", isError = false, isVerified = false, helperText, ...props }, ref) => {
+  ({ id, label, type = "text", isError = false, isVerified = false, helperText, ...props }, ref) => {
     return (
       <div className={cx("container")}>
         <div className={cx("input")}>
           {label && (
-            <label className={cx("input-label")} htmlFor={label}>
+            <label className={cx("input-label")} htmlFor={id}>
               {label}
             </label>
           )}
-          <input
-            className={cx("input-field", { isLabelExist: label })}
-            ref={ref}
-            id={label}
-            type={type}
-            value={value}
-            placeholder={placeholder}
-            {...props}
-          />
+          <input className={cx("input-field", { isLabelExist: !!label })} ref={ref} id={id} type={type} {...props} />
         </div>
-        <p className={cx("helper-text", { error: isError }, { verified: isVerified })}>{helperText}</p>
+        <p className={cx("helper-text", { error: isError, verified: isVerified })}>{helperText}</p>
       </div>
     );
   },
