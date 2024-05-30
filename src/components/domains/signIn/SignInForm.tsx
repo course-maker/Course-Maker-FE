@@ -21,6 +21,7 @@ const SignInForm = () => {
   const onSubmit: SubmitHandler<SignInFormInputs> = () => {
     // console.log(data);
   };
+
   return (
     <div className={cx("container")}>
       <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
@@ -30,7 +31,7 @@ const SignInForm = () => {
             <SignInputController name="password" control={control} />
           </div>
           {/*fix: 고도화 부분. 나중에 링크 달기*/}
-          <p className={cx("form-input-forgot")}>아이디 | 비밀번호 찾기</p>
+          <p className={cx("form-input-forgot")}>이메일 | 비밀번호 찾기</p>
         </div>
         {/*fix: Button 컴포넌트로 교체 예정*/}
         <button type="submit">로그인</button>
