@@ -1,0 +1,33 @@
+.container {
+  @include column-flexbox();
+  gap: 3.9rem;
+  width: 100%;
+}
+
+.divider {
+  @include text-style(1.6, 400, #401e20); // fix: 색 변수로 변경하기
+  @include flexbox();
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: "";
+    flex-grow: 1;
+    background: #776f6f; // fix: 색 변수로 변경하기
+    height: 1px;
+  }
+
+  &::before {
+    margin-right: 1.3rem;
+  }
+
+  &::after {
+    margin-left: 1.3rem;
+  }
+}
+
+.btn {
+  width: 6.1rem;
+  height: 6.1rem;
+  cursor: pointer;
+}

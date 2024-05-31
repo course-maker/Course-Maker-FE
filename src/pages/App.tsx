@@ -3,9 +3,10 @@ import { PAGE_PATH } from "@/constants/pagePath";
 import AppLayout from "../layout/AppLayout";
 import HomePage from "./HomePage";
 import SearchPage from "./SearchPage";
+import SignInPage from "./SignInPage";
 import ScssExample from "./scss-example"; // fix: 나중에 지울것!
 
-const { search } = PAGE_PATH;
+const { search, signIn } = PAGE_PATH;
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/" element={<AppLayout />}>
         <Route index element={<HomePage />} />
         <Route path={search} element={<SearchPage />} />
+        <Route path={signIn} element={<SignInPage />} />
         <Route path="scss-example" element={<ScssExample />} />
       </Route>
     </Routes>

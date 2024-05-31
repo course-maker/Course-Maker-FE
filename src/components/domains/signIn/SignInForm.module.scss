@@ -1,0 +1,27 @@
+.container {
+  @include column-flexbox();
+  width: 100%;
+}
+
+.form {
+  @include column-flexbox(center, center);
+  gap: 4rem;
+  padding-bottom: 2.2rem;
+  width: 100%;
+
+  &-input {
+    width: 100%;
+
+    &-field {
+      @include column-flexbox();
+      gap: 0.6rem;
+      width: 100%;
+    }
+
+    &-forgot {
+      @include text-style(1.4, 500);
+      text-align: center;
+      padding-top: 2rem;
+    }
+  }
+}
