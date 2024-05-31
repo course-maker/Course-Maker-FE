@@ -14,7 +14,7 @@ const SignLayout = ({ header, form, oauth }: SignLayoutProps) => {
   return (
     <div className={cx("container")}>
       <div className={cx("items")}>
-        <h1>{header}</h1>
+        <h1 className={cx("header")}>{header}</h1>
         {form}
         {oauth}
       </div>
