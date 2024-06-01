@@ -105,3 +105,25 @@
     }
   }
 }
+
+.btn-gray {
+  &-primary {
+    color: $White;
+    background-color: $Dark_Gray;
+
+    &:hover {
+      background-color: $Light_Gray;
+    }
+
+    &:disabled {
+      background-color: $Dark_Gray;
+    }
+  }
+}
+
+.btn-none {
+  &-primary {
+    width: 3rem;
+    height: 3rem;
+  }
+}
