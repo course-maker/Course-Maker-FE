@@ -1,0 +1,109 @@
+// TitleBox.module.scss
+
+.card {
+  @include column-flexbox();
+  width: 49.6rem;
+  height: 57.1rem;
+  border-radius: 3rem;
+  border: 3px solid $Dark_Navy;
+  background: $Dark_Navy;
+  color: $White;
+}
+
+h1 {
+  width: 29rem;
+  font-size: 3rem;
+  font-weight: 700;
+}
+p {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.spot-detail {
+  background: $White;
+  color: $Black;
+}
+
+.spot-detail .tag-item {
+  color: $White;
+}
+
+.spot-detail .rating {
+  color: $Black;
+}
+
+.image {
+  width: 44.3rem;
+  height: 25.5rem;
+  right: 2.6rem;
+  top: 2.6rem;
+  margin-bottom: 1.9rem;
+  border-radius: 3rem;
+  background: lightgray 50% / cover no-repeat;
+}
+
+.title-box {
+  @include flexbox();
+  gap: 6rem;
+}
+
+.rating {
+  @include flexbox();
+  gap: 0.4rem;
+}
+
+.name {
+  padding-left: 2.2rem;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  padding-left: 4.4rem;
+  width: 100%;
+  padding-top: 2.6rem;
+}
+.tag-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 3rem;
+  padding-top: 2.3rem;
+  gap: 0.6rem;
+}
+
+.tag-item {
+  display: inline-flex;
+  font-size: 1.6rem;
+  padding: 0.8rem 1.6rem;
+  gap: 1rem;
+  border-radius: 99.9rem;
+  border: 0.1rem solid $Primary_Emerald;
+  background: $Primary_Emerald;
+  color: $White;
+}
+
+.icon-btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  flex-shrink: 0;
+  padding-top: 2.7rem;
+  padding-right: 1.7rem;
+  gap: 1.6rem;
+  width: 100%;
+  background: cover no-repeat;
+}
+
+.btn-group {
+  display: flex;
+  gap: 0.8rem;
+  width: 24rem;
+  height: 4.8rem;
+  margin-top: 1.6rem;
+}
