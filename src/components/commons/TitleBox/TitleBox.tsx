@@ -2,8 +2,7 @@ import React, { ReactNode } from "react";
 import styles from "./TitleBox.module.scss";
 import classNames from "classnames/bind";
 import Button from "../Button";
-import { PAGE_PATH } from "@/constants/pagePath";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IMAGES } from "@/constants/images";
 import Image from "../Image";
 
@@ -25,13 +24,12 @@ interface CardProps {
   image: ImageProps;
 }
 
-const { courseEdit } = PAGE_PATH;
-
 const TitleBox: React.FC<CardProps> = ({ image, title, name, rating, travelCount, duration, tags, type }) => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const handleEditClick = () => {
-    navigate(courseEdit);
+    navigate(`/course/${id}/edit`);
   };
 
   const isSpotDetail = type === "spot-detail";
