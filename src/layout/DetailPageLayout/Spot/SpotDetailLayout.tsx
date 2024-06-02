@@ -48,7 +48,7 @@ const SpotDetailLayout = () => {
         </div>
         <div>
           <Map
-            center={{ lat: 35.1594965345398, lng: 129.162576586723 }} // 지도의 중심 좌표 lat/lng 위도/경도
+            center={{ lat: mockdata[0].latitude, lng: mockdata[0].longitude }} // 지도의 중심 좌표 lat/lng 위도/경도
             className={cx("kakao-map")} // 지도 크기
             style={{ width: "62.5rem", height: "45.7rem" }}
             level={3} // 지도 확대 레벨
