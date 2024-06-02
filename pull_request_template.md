@@ -29,7 +29,7 @@
 ### 이슈 번호
 
 > 예시) https://github.com/course-maker/Course-Maker-FE/issues/[이슈번호]
-> https://github.com/course-maker/Course-Maker-FEissues/
+> https://github.com/course-maker/Course-Maker-FE/issues/
 
 ### To Reviewers
 
