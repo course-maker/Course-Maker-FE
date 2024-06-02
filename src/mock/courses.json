@@ -23,8 +23,8 @@
       }
     ],
     "location": "부산 기장군 기장읍 용궁길 86 해동용궁사",
-    "latitude": 35.1594965345398,
-    "longitude": 129.162576586723,
+    "latitude": 35.188283368,
+    "longitude": 129.2235599308,
     "pictureLink": "/src/assets/images/course_maker_logo.svg",
     "content": "해동용궁사는 바다를 배경으로 한 아름다운 사찰로, 조용한 자연 속에서 휴식을 취할 수 있습니다. 특히 일출 명소로 유명하여 많은 이들이 찾는 곳입니다.",
     "heart": 320,
@@ -123,6 +123,126 @@
   },
   {
     "id": 4,
+    "name": "uvwxy",
+    "title": "해운대 달맞이길",
+    "tags": [
+      {
+        "id": 0,
+        "name": "uvwxy",
+        "description": "산책"
+      },
+      {
+        "id": 1,
+        "name": "uvwxy",
+        "description": "자연"
+      },
+      {
+        "id": 2,
+        "name": "uvwxy",
+        "description": "관광"
+      }
+    ],
+    "location": "부산 해운대구 달맞이길 190",
+    "latitude": 35.158297,
+    "longitude": 129.174825,
+    "pictureLink": "/src/assets/images/course_maker_logo.svg",
+    "content": "해운대 달맞이길은 아름다운 해안 절경과 함께 산책하기 좋은 길로 유명합니다. 특히 봄에는 벚꽃이 만개하여 많은 이들이 찾는 명소입니다.",
+    "heart": 320,
+    "thumbsUp": 121,
+    "rating": 4.2
+  },
+  {
+    "id": 5,
+    "name": "uvwxy",
+    "title": "해운대 달맞이길",
+    "tags": [
+      {
+        "id": 0,
+        "name": "uvwxy",
+        "description": "산책"
+      },
+      {
+        "id": 1,
+        "name": "uvwxy",
+        "description": "자연"
+      },
+      {
+        "id": 2,
+        "name": "uvwxy",
+        "description": "관광"
+      }
+    ],
+    "location": "부산 해운대구 달맞이길 190",
+    "latitude": 35.158297,
+    "longitude": 129.174825,
+    "pictureLink": "/src/assets/images/course_maker_logo.svg",
+    "content": "해운대 달맞이길은 아름다운 해안 절경과 함께 산책하기 좋은 길로 유명합니다. 특히 봄에는 벚꽃이 만개하여 많은 이들이 찾는 명소입니다.",
+    "heart": 320,
+    "thumbsUp": 121,
+    "rating": 4.2
+  },
+  {
+    "id": 6,
+    "name": "uvwxy",
+    "title": "해운대 달맞이길",
+    "tags": [
+      {
+        "id": 0,
+        "name": "uvwxy",
+        "description": "산책"
+      },
+      {
+        "id": 1,
+        "name": "uvwxy",
+        "description": "자연"
+      },
+      {
+        "id": 2,
+        "name": "uvwxy",
+        "description": "관광"
+      }
+    ],
+    "location": "부산 해운대구 달맞이길 190",
+    "latitude": 35.158297,
+    "longitude": 129.174825,
+    "pictureLink": "/src/assets/images/course_maker_logo.svg",
+    "content": "해운대 달맞이길은 아름다운 해안 절경과 함께 산책하기 좋은 길로 유명합니다. 특히 봄에는 벚꽃이 만개하여 많은 이들이 찾는 명소입니다.",
+    "heart": 320,
+    "thumbsUp": 121,
+    "rating": 4.2
+  },
+  {
+    "id": 7,
+    "name": "uvwxy",
+    "title": "해운대 달맞이길",
+    "tags": [
+      {
+        "id": 0,
+        "name": "uvwxy",
+        "description": "산책"
+      },
+      {
+        "id": 1,
+        "name": "uvwxy",
+        "description": "자연"
+      },
+      {
+        "id": 2,
+        "name": "uvwxy",
+        "description": "관광"
+      }
+    ],
+    "location": "부산 해운대구 달맞이길 190",
+    "latitude": 35.158297,
+    "longitude": 129.174825,
+    "pictureLink": "/src/assets/images/course_maker_logo.svg",
+    "content": "해운대 달맞이길은 아름다운 해안 절경과 함께 산책하기 좋은 길로 유명합니다. 특히 봄에는 벚꽃이 만개하여 많은 이들이 찾는 명소입니다.",
+    "heart": 320,
+    "thumbsUp": 121,
+    "rating": 4.2
+  },
+  {
+    "id": 8,
     "name": "uvwxy",
     "title": "해운대 달맞이길",
     "tags": [
