@@ -16,20 +16,16 @@
 }
 .kakao-map {
   border-radius: 1rem;
+  z-index: -1;
 }
 
 .location {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexbox();
   gap: 1rem;
   padding-top: 4.4rem;
 }
 .content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include column-flexbox();
   width: 100%;
   height: 78.1rem;
   flex-shrink: 0;
