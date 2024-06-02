@@ -7,6 +7,7 @@ import blackHeartIcon from "@/assets/images/black_heart.svg";
 import blackThumbsUpIcon from "@/assets/images/black_thumbs_up.svg";
 import blackStarIcon from "@/assets/images/black_star.svg";
 import linkCopyIcon from "@/assets/images/link_copy.svg";
+import locationIcon from "@/assets/images/location.svg";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -44,5 +45,9 @@ export const IMAGES = {
   linkCopyIcon: {
     src: linkCopyIcon,
     alt: "링크 복사 아이콘",
+  },
+  locationIcon: {
+    src: locationIcon,
+    alt: "위치 아이콘",
   },
 };
