@@ -12,6 +12,7 @@ const AppLayout = () => {
         <NavigationBar />
       </nav>
       <main className={cx("main")}>
+        <div className={cx("empty")}></div>
         <Outlet />
       </main>
     </>
