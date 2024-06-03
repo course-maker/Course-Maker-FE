@@ -6,7 +6,7 @@
 .form {
   @include column-flexbox(center, center);
   gap: 4rem;
-  padding-bottom: 2.2rem;
+  padding-bottom: 2rem;
   width: 100%;
 
   &-input {
