@@ -1,21 +1,19 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
 import styles from "./SignInForm.module.scss";
 import classNames from "classnames/bind";
 import SignInputController from "@/components/commons/SignInputController";
 import Button from "@/components/commons/Button";
 import { PAGE_PATH } from "@/constants/pagePath";
+import { SignInFormInputs, signInSchema } from "@/schemas/signInSchema";
 
 const cx = classNames.bind(styles);
-
-export interface SignInFormInputs {
-  id: string;
-  password: string;
-}
 
 const SignInForm = () => {
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm<SignInFormInputs>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       id: "",
       password: "",

@@ -1,7 +1,7 @@
-import { SignInFormInputs } from "@/components/domains/signIn/SignInForm";
-import { SIGN_IN_CONDITION } from "@/constants/signInputCondition";
-import { Control, Controller } from "react-hook-form";
+import { Controller, Control } from "react-hook-form";
 import SignInput from "../SignInput";
+import { SignInFormInputs } from "@/schemas/signInSchema";
+import { signInCondition } from "@/constants/signInputCondition";
 
 interface SignInputControllerProps {
   name: "id" | "password";
@@ -9,13 +9,12 @@ interface SignInputControllerProps {
 }
 
 const SignInputController = ({ name, control }: SignInputControllerProps) => {
-  const { type, label, placeholder, rules, maxLength } = SIGN_IN_CONDITION[name];
+  const { type, label, placeholder, maxLength } = signInCondition[name];
 
   return (
     <Controller
       name={name}
       control={control}
-      rules={rules}
       render={({ field, fieldState }) => (
         <SignInput
           id={name}
@@ -23,7 +22,6 @@ const SignInputController = ({ name, control }: SignInputControllerProps) => {
           type={type}
           placeholder={placeholder}
           isError={!!fieldState.error}
-          // isVerified={}
           helperText={fieldState.error?.message}
           maxLength={maxLength}
           {...field}
@@ -36,5 +34,4 @@ const SignInputController = ({ name, control }: SignInputControllerProps) => {
     />
   );
 };
-
 export default SignInputController;
