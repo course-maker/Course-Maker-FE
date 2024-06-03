@@ -57,7 +57,7 @@ const SpotDetailLayout = () => {
             <div>
               <Image imageInfo={IMAGES.locationIcon} />
             </div>
-            <p>{mockdata[0].location}</p>
+            <p className={cx("location-text")}>{mockdata[0].location}</p>
           </div>
         </div>
       </article>
