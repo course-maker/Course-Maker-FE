@@ -1,0 +1,27 @@
+.card-container {
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow */
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.card-image {
+  height: 22rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  background-color: white;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .card-content {
+    padding: 1.5rem;
+  }
+}
