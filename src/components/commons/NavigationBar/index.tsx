@@ -5,6 +5,7 @@ import Image from "../Image";
 import MenuBar from "./MenuBar";
 import { IMAGES } from "@/constants/images";
 import { PAGE_PATH } from "@/constants/pagePath";
+import RightButtons from "./RightButtons";
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +16,7 @@ const NavigationBar = () => {
         <Image imageInfo={IMAGES.courseMakerLogo} />
       </Link>
       <MenuBar />
-      <div>버튼 자리</div>
+      <RightButtons />
     </div>
   );
 };
