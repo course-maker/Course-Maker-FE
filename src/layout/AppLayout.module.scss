@@ -9,4 +9,12 @@
 
 .main {
   padding-top: 9.7rem;
+  position: relative;
+  margin: 0 auto;
+  background: rgba(135, 206, 235, 0.3);
+  max-width: 110rem;
+}
+
+.empty {
+  margin-top: 40px;
 }
