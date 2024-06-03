@@ -34,7 +34,7 @@ const TitleBox: React.FC<CardProps> = ({ image, title, name, rating, travelCount
       <div>
         <img src={image.src} alt={image.alt} className={cx("image")} />
         <div className={cx("title-box")}>
-          <h1>{title}</h1>
+          <h1 className={cx("title")}>{title}</h1>
           <div className={cx("rating", { [styles["spot-detail"]]: isSpotDetail })}>
             <Button type="button" variant="third" color={"navy"}>
               <Image imageInfo={isSpotDetail ? IMAGES.blackStarIcon : IMAGES.starIcon} />
@@ -43,12 +43,12 @@ const TitleBox: React.FC<CardProps> = ({ image, title, name, rating, travelCount
           </div>
         </div>
         <div className={cx("name")}>
-          <p>작성자 {name}</p>
+          <p className={cx("text")}>작성자 {name}</p>
         </div>
       </div>
       <div className={cx("option", { [styles["hidden"]]: travelCount === null })}>
-        <p>여행추천인원 {travelCount}</p>
-        <p>여행기간 {duration}</p>
+        <p className={cx("text")}>여행추천인원 {travelCount}</p>
+        <p className={cx("text")}>여행기간 {duration}</p>
       </div>
       <div className={cx("tag-box")}>
         {tags?.map((tag, id) => (
