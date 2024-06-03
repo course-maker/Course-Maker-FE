@@ -1,0 +1,45 @@
+.item-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.04rem;
+}
+
+.title-group {
+  display: flex;
+  gap: 1rem;
+  @include column-flexbox($ai: start);
+  width: 26.1156rem;
+  height: 5.4311rem;
+  flex-shrink: 0;
+}
+
+.item-title {
+  color: $Black;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.item-location {
+  color: $Black;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.score-group {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.score-item {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 0.23rem;
+  width: 2.8889rem;
+  height: 1.8489rem;
+  flex-shrink: 0;
+  color: $Black;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
