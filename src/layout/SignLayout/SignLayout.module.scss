@@ -1,5 +1,5 @@
 .container {
-  @include flexbox();
+  @include flexbox(center, start);
   min-height: calc(100vh - 9.7rem);
   padding: calc(120 / 844 * (100vh - 9.7rem)) 3.2rem 5rem;
   background-color: $White;
@@ -8,7 +8,7 @@
 .items {
   @include column-flexbox();
   gap: 4rem;
-  max-width: 45rem;
+  max-width: 42rem;
   width: 100%;
 }
 
