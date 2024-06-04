@@ -1,7 +1,9 @@
 import Card from "@/components/commons/Card/Card";
 import Section from "@/components/commons/Section/Section";
+import Banner from "@/components/commons/Banner/Banner";
 import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
+import data from "./data.json";
 
 const cx = classNames.bind(styles);
 
@@ -15,62 +17,43 @@ interface MockData {
   location: string;
   icons: Icons;
 }
-
-const mockData: MockData[] = [
-  {
-    id: 0,
-    title: "부산 아쿠아리움",
-    location: "부산 해운대구 해운대해변로 266",
-    icons: {
-      blackHeart: 2,
-      heart: 2,
-    },
-  },
-  {
-    id: 1,
-    title: "해운대",
-    location: "부산 해운대구 해운대해변로 280",
-    icons: {
-      thumbsUp: 102,
-      heart: 21,
-      star: 222,
-    },
-  },
-  {
-    id: 2,
-    title: "부산 영도",
-    location: "부산 해운대구 해운대해변로 299",
-    icons: {
-      heart: 22,
-      location: 27,
-      star: 12,
-    },
-  },
-  {
-    id: 3,
-    title: "부산 광안리",
-    location: "부산 해운대구 해운대해변로 388",
-    icons: {
-      thumbsUp: 72,
-      heart: 827,
-      star: 1332,
-    },
-  },
-];
+const mockData: MockData[] = data.mockData;
+const bannerItems = data.bannerItems;
 
 const HomePage = () => {
   return (
     <div data-testid="home-page">
-      <div>banner</div>
+      <Section title="" className={cx("container")}>
+        <div className={cx("banner-container", "banner-top")}>
+          <button className={cx("arrow-button", "left")}>{"<"}</button>
+          <Banner item={bannerItems[0]} />
+          <button className={cx("arrow-button", "right")}>{">"}</button>
+        </div>
+      </Section>
+      <Section title="어떤 여행을 할까요?">
+        <div className={cx("banner-container")}>
+          <button className={cx("arrow-button", "left")}>{"<"}</button>
+          {bannerItems.small.map((item) => (
+            <Banner key={item.id} image={item.image} title={item.title} subtitle={item.subtitle} size="small" />
+          ))}
+          <button className={cx("arrow-button", "right")}>{">"}</button>
+        </div>
+        <div className={cx("banner-container")}>
+          {bannerItems.large.map((item) => (
+            <Banner key={item.id} image={item.image} title={item.title} subtitle={item.subtitle} size={item.size} />
+          ))}
+        </div>
+      </Section>
+
       <Section title="코스메이커’S PICK">
-        <div className={cx("container")}>
+        <div className={cx("card_container")}>
           {mockData.map((item) => (
             <Card key={item.id} item={item} />
           ))}
         </div>
       </Section>
       <Section title="요즘 인기있는 코스">
-        <div className={cx("container")}>
+        <div className={cx("card_container")}>
           {mockData.map((item) => (
             <Card key={item.id} item={item} />
           ))}
