@@ -44,7 +44,7 @@ const HomePage = () => {
         </div>
         <div className={cx("banner-container")}>
           {bannerItems.large.map((item) => (
-            <Banner key={item.id} image={item.image} title={item.title} subtitle={item.subtitle} size={item.size} />
+            <Banner key={item.id} image={item.image} title={item.title} subtitle={item.subtitle} size="large" />
           ))}
         </div>
       </Section>
