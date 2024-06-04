@@ -26,11 +26,7 @@ const HomePage = () => {
       <Section title="" className={cx("container")}>
         <div className={cx("banner-container", "banner-top")}>
           <button className={cx("arrow-button", "left")}>{"<"}</button>
-          <Banner
-            image={bannerItems.small[0].image}
-            title={bannerItems.small[0].title}
-            size={bannerItems.small[0].size}
-          />
+          <Banner image={bannerItems.small[0].image} title={bannerItems.small[0].title} size="large" />
           <button className={cx("arrow-button", "right")}>{">"}</button>
         </div>
       </Section>
@@ -38,7 +34,7 @@ const HomePage = () => {
         <div className={cx("banner-container")}>
           <button className={cx("arrow-button", "left")}>{"<"}</button>
           {bannerItems.small.map((item) => (
-            <Banner key={item.id} image={item.image} title={item.title} subtitle={item.subtitle} size="small" />
+            <Banner key={item.id} image={item.image} title={item.title} size="small" />
           ))}
           <button className={cx("arrow-button", "right")}>{">"}</button>
         </div>
