@@ -26,7 +26,11 @@ const HomePage = () => {
       <Section title="" className={cx("container")}>
         <div className={cx("banner-container", "banner-top")}>
           <button className={cx("arrow-button", "left")}>{"<"}</button>
-          <Banner item={bannerItems[0]} />
+          <Banner
+            image={bannerItems.small[0].image}
+            title={bannerItems.small[0].title}
+            size={bannerItems.small[0].size}
+          />
           <button className={cx("arrow-button", "right")}>{">"}</button>
         </div>
       </Section>
