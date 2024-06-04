@@ -3,17 +3,9 @@ import styles from "./Section.module.scss";
 
 const cx = classNames.bind(styles);
 
-function Section({
-  children,
-  className = "",
-  title,
-}: {
-  children: React.ReactNode;
-  className: string;
-  title?: string;
-}) {
+function Section({ children, className, title }: { children: React.ReactNode; className?: string; title?: string }) {
   return (
-    <section className={cx(["container", className])}>
+    <section className={cx("container", className)}>
       {title != null ? <div className={cx("txt-title")}>{title}</div> : null}
       {children}
     </section>
