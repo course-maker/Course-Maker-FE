@@ -6,9 +6,7 @@ import { IMAGES } from "@/constants/images";
 const cx = classNames.bind(styles);
 
 interface Icons {
-  date: number;
-  member: number;
-  star: number;
+  [key: string]: number;
 }
 
 interface ItemBoxProps {
@@ -16,6 +14,18 @@ interface ItemBoxProps {
   title?: string;
   icons: Icons;
 }
+
+const iconMapping: { [key: string]: any } = {
+  blackHeart: IMAGES.blackHeartIcon,
+  thumbsUp: IMAGES.blackThumbsUpIcon,
+  blackStar: IMAGES.blackStarIcon,
+  blackStar: IMAGES.blackStarIcon,
+  heart: IMAGES.heartIcon,
+  thumbsUp: IMAGES.thumbsUpIcon,
+  star: IMAGES.starIcon,
+  location: IMAGES.locationIcon,
+  linkCopy: IMAGES.linkCopyIcon,
+};
 
 const ItemBox = ({ location, title, icons }: ItemBoxProps) => {
   return (
@@ -25,18 +35,12 @@ const ItemBox = ({ location, title, icons }: ItemBoxProps) => {
         <p className={cx("item-location")}>{location}</p>
       </div>
       <div className={cx("score-group")}>
-        <span className={cx("score-item")}>
-          <Image imageInfo={IMAGES.blackHeartIcon} />
-          {icons.date}
-        </span>
-        <span className={cx("score-item")}>
-          <Image imageInfo={IMAGES.blackThumbsUpIcon} />
-          {icons.member}
-        </span>
-        <span className={cx("score-item")}>
-          <Image imageInfo={IMAGES.blackStarIcon} />
-          {icons.star}
-        </span>
+        {Object.entries(icons).map(([key, value]) => (
+          <span key={key} className={cx("score-item")}>
+            <Image imageInfo={iconMapping[key]} />
+            {value}
+          </span>
+        ))}
       </div>
     </div>
   );
