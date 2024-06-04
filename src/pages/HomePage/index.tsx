@@ -60,7 +60,7 @@ const mockData: MockData[] = [
 
 const HomePage = () => {
   return (
-    <div>
+    <div data-testid="home-page">
       <div>banner</div>
       <Section title="코스메이커’S PICK">
         <div className={cx("container")}>
