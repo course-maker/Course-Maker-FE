@@ -1310,6 +1310,10 @@ const RAW_RUNTIME_STATE =
       "npm:1.3.1"\
     ],\
     [\
+      "kakao.maps.d.ts",\
+      "npm:0.1.39"\
+    ],\
+    [\
       "keyv",\
       "npm:4.5.4"\
     ],\
@@ -1658,8 +1662,16 @@ const RAW_RUNTIME_STATE =
       "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:18.3.1"\
     ],\
     [\
+      "react-hook-form",\
+      "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:7.51.5"\
+    ],\
+    [\
       "react-is",\
       "npm:17.0.2"\
+    ],\
+    [\
+      "react-kakao-maps-sdk",\
+      "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:1.1.27"\
     ],\
     [\
       "react-refresh",\
@@ -2096,10 +2108,13 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-react-refresh", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:0.4.7"],\
           ["husky", "npm:9.0.11"],\
           ["jsdom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:24.0.0"],\
+          ["kakao.maps.d.ts", "npm:0.1.39"],\
           ["lint-staged", "npm:15.2.4"],\
           ["prettier", "npm:3.2.5"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:18.3.1"],\
+          ["react-hook-form", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:7.51.5"],\
+          ["react-kakao-maps-sdk", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:1.1.27"],\
           ["react-router-dom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:6.23.1"],\
           ["sass", "npm:1.77.2"],\
           ["supports-color", "npm:9.4.0"],\
@@ -2437,6 +2452,14 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/@babel-runtime-npm-7.24.5-e4447a1e48-10c0.zip/node_modules/@babel/runtime/",\
         "packageDependencies": [\
           ["@babel/runtime", "npm:7.24.5"],\
+          ["regenerator-runtime", "npm:0.14.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:7.24.6", {\
+        "packageLocation": "../../.yarn/berry/cache/@babel-runtime-npm-7.24.6-3acd4a9fd9-10c0.zip/node_modules/@babel/runtime/",\
+        "packageDependencies": [\
+          ["@babel/runtime", "npm:7.24.6"],\
           ["regenerator-runtime", "npm:0.14.1"]\
         ],\
         "linkType": "HARD"\
@@ -4656,10 +4679,13 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-react-refresh", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:0.4.7"],\
           ["husky", "npm:9.0.11"],\
           ["jsdom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:24.0.0"],\
+          ["kakao.maps.d.ts", "npm:0.1.39"],\
           ["lint-staged", "npm:15.2.4"],\
           ["prettier", "npm:3.2.5"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:18.3.1"],\
+          ["react-hook-form", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:7.51.5"],\
+          ["react-kakao-maps-sdk", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:1.1.27"],\
           ["react-router-dom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:6.23.1"],\
           ["sass", "npm:1.77.2"],\
           ["supports-color", "npm:9.4.0"],\
@@ -6184,6 +6210,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["kakao.maps.d.ts", [\
+      ["npm:0.1.39", {\
+        "packageLocation": "../../.yarn/berry/cache/kakao.maps.d.ts-npm-0.1.39-333b43bbc2-10c0.zip/node_modules/kakao.maps.d.ts/",\
+        "packageDependencies": [\
+          ["kakao.maps.d.ts", "npm:0.1.39"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["keyv", [\
       ["npm:4.5.4", {\
         "packageLocation": "../../.yarn/berry/cache/keyv-npm-4.5.4-4c8e2cf7f7-10c0.zip/node_modules/keyv/",\
@@ -7211,6 +7246,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-hook-form", [\
+      ["npm:7.51.5", {\
+        "packageLocation": "../../.yarn/berry/cache/react-hook-form-npm-7.51.5-1449dfc378-10c0.zip/node_modules/react-hook-form/",\
+        "packageDependencies": [\
+          ["react-hook-form", "npm:7.51.5"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:7.51.5", {\
+        "packageLocation": "./.yarn/__virtual__/react-hook-form-virtual-bb82563d51/3/.yarn/berry/cache/react-hook-form-npm-7.51.5-1449dfc378-10c0.zip/node_modules/react-hook-form/",\
+        "packageDependencies": [\
+          ["react-hook-form", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:7.51.5"],\
+          ["@types/react", "npm:18.3.3"],\
+          ["react", "npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-is", [\
       ["npm:17.0.2", {\
         "packageLocation": "../../.yarn/berry/cache/react-is-npm-17.0.2-091bbb8db6-10c0.zip/node_modules/react-is/",\
@@ -7223,6 +7280,34 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/react-is-npm-18.3.1-370a81e1e9-10c0.zip/node_modules/react-is/",\
         "packageDependencies": [\
           ["react-is", "npm:18.3.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-kakao-maps-sdk", [\
+      ["npm:1.1.27", {\
+        "packageLocation": "../../.yarn/berry/cache/react-kakao-maps-sdk-npm-1.1.27-ecc5e96aad-10c0.zip/node_modules/react-kakao-maps-sdk/",\
+        "packageDependencies": [\
+          ["react-kakao-maps-sdk", "npm:1.1.27"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:1.1.27", {\
+        "packageLocation": "./.yarn/__virtual__/react-kakao-maps-sdk-virtual-07f9ed2078/3/.yarn/berry/cache/react-kakao-maps-sdk-npm-1.1.27-ecc5e96aad-10c0.zip/node_modules/react-kakao-maps-sdk/",\
+        "packageDependencies": [\
+          ["react-kakao-maps-sdk", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:1.1.27"],\
+          ["@babel/runtime", "npm:7.24.6"],\
+          ["@types/react", "npm:18.3.3"],\
+          ["@types/react-dom", "npm:18.3.0"],\
+          ["kakao.maps.d.ts", "npm:0.1.39"],\
+          ["react", "npm:18.3.1"],\
+          ["react-dom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\
