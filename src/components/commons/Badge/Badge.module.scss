@@ -1,0 +1,150 @@
+%btn-base {
+  @include text-style(1.6, 700);
+  @include flexbox();
+  border-radius: 99.9rem;
+  transition: all ease-in-out 0.3s;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.btn-size {
+  &-xsmall,
+  &-small,
+  &-medium,
+  &-large,
+  &-default {
+    @extend %btn-base;
+  }
+
+  &-xsmall {
+    height: 3.2rem;
+    padding: 1rem 2rem;
+    font-size: 1.24rem;
+    line-height: 1.25rem;
+  }
+
+  &-small {
+    height: 4.2rem;
+    padding: 1.2rem 2.4rem;
+  }
+
+  &-medium {
+    height: 4.2rem;
+    width: 20rem;
+  }
+
+  &-large {
+    height: 4.8rem;
+    width: 42rem;
+  }
+
+  &-default {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.btn-emerald {
+  &-primary {
+    color: $White;
+    background-color: $Primary_Emerald;
+
+    &:hover {
+      background-color: $Dark_Emerald;
+    }
+
+    &:disabled {
+      background-color: $Dark_Gray;
+    }
+  }
+
+  &-secondary {
+    color: $emerald;
+    background-color: $White;
+    border: 1px solid $Primary_Emerald;
+
+    &:hover {
+      background-color: $Light_Emerald;
+    }
+
+    &:disabled {
+      color: $Dark_Gray;
+      background-color: $Background_Gray;
+      border: 1px solid $Dark_Gray;
+    }
+  }
+
+  &-third {
+    color: $Black;
+    background-color: $White;
+    border: 1px solid $Light_Gray;
+
+    &:hover {
+      border: 1px solid $Black;
+    }
+
+    &:disabled {
+      color: $Dark_Gray;
+      border: 1px solid $Dark_Gray;
+    }
+  }
+}
+
+.btn-navy {
+  &-primary {
+    color: $White;
+    background-color: $Primary_Navy;
+
+    &:hover {
+      background-color: $Dark_Navy;
+    }
+  }
+
+  &-secondary {
+    color: $Primary_Navy;
+    background-color: $White;
+    border: 1px solid $Primary_Navy;
+
+    &:hover {
+      background-color: $Light_Navy;
+    }
+  }
+}
+
+.btn-gray {
+  &-primary {
+    color: $Dark_Gray;
+    background-color: $PreLight_Gray;
+    margin-right: 10px;
+
+    &:hover {
+      color: $White;
+      background-color: $Light_Gray;
+    }
+
+    &:disabled {
+      background-color: $Light_Gray;
+    }
+  }
+}
+
+.btn-none {
+  &-primary {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.btn-badge-selected {
+  color: $White;
+  background-color: $Primary_Emerald;
+}
+
+.btn-badge-selected {
+  color: $White;
+  background-color: $Primary_Emerald;
+}
