@@ -44,8 +44,9 @@
 }
 
 .title-box {
-  @include flexbox();
-  gap: 6rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2.2rem;
 }
 
 .rating {
