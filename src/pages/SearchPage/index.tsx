@@ -80,10 +80,10 @@ const SearchPage = () => {
         <span>전체 {"1개"}</span>
         <div>
           <select name="HeadlineAct" id="HeadlineAct" className={cx("select-box")}>
-            <option value="">최신순</option>
-            <option value="JM">인기순</option>
-            <option value="SRV">조회수순</option>
-            <option value="JH">별점순</option>
+            <option value="0">최신순</option>
+            <option value="1">인기순</option>
+            <option value="2">조회수순</option>
+            <option value="3">별점순</option>
           </select>
         </div>
       </div>
@@ -98,5 +98,4 @@ const SearchPage = () => {
     </div>
   );
 };
-
 export default SearchPage;
