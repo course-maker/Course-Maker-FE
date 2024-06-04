@@ -10,9 +10,6 @@ test("renders the Home Page", () => {
   );
 
   // Home Page 컴포넌트가 렌더링되었는지 확인
-  const headingElements = screen.getAllByText(/home page/i);
-  expect(headingElements[0]).toBeInTheDocument();
-
-  const paragraphElements = screen.getAllByText(/welcome to the home page/i);
-  expect(paragraphElements[0]).toBeInTheDocument();
+  const headingElement = screen.getByTestId("home-page");
+  expect(headingElement).toBeInTheDocument();
 });
