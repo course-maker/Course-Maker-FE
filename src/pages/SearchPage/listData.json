@@ -1,0 +1,82 @@
+[
+  {
+    "id": 0,
+    "title": "부산 아쿠아리움",
+    "location": "부산 해운대구 해운대해변로 266",
+    "icons": {
+      "calendar": 2,
+      "member": 2,
+      "blackStar": 2
+    }
+  },
+  {
+    "id": 1,
+    "title": "해운대",
+    "location": "부산 해운대구 해운대해변로 280",
+    "icons": {
+      "calendar": 102,
+      "member": 21,
+      "blackStar": 222
+    }
+  },
+  {
+    "id": 2,
+    "title": "부산 영도",
+    "location": "부산 해운대구 해운대해변로 299",
+    "icons": {
+      "calendar": 22,
+      "member": 27,
+      "blackStar": 12
+    }
+  },
+  {
+    "id": 3,
+    "title": "부산 광안리",
+    "location": "부산 해운대구 해운대해변로 388",
+    "icons": {
+      "calendar": 72,
+      "member": 827,
+      "blackStar": 1332
+    }
+  },
+  {
+    "id": 4,
+    "title": "부산 아쿠아리움",
+    "location": "부산 해운대구 해운대해변로 266",
+    "icons": {
+      "calendar": 2,
+      "member": 2,
+      "blackStar": 2
+    }
+  },
+  {
+    "id": 5,
+    "title": "해운대",
+    "location": "부산 해운대구 해운대해변로 280",
+    "icons": {
+      "calendar": 102,
+      "member": 21,
+      "blackStar": 222
+    }
+  },
+  {
+    "id": 6,
+    "title": "부산 영도",
+    "location": "부산 해운대구 해운대해변로 299",
+    "icons": {
+      "calendar": 22,
+      "member": 27,
+      "blackStar": 12
+    }
+  },
+  {
+    "id": 7,
+    "title": "부산 광안리",
+    "location": "부산 해운대구 해운대해변로 388",
+    "icons": {
+      "calendar": 72,
+      "member": 827,
+      "blackStar": 1332
+    }
+  }
+]

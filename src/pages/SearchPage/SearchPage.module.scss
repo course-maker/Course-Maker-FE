@@ -36,9 +36,38 @@
       }
     }
   }
-}
-.tab-container {
-  border-color: #01937f #01937f #ffffff #01937f;
-  border-radius: 0 0 8px 8px;
-  border: 2px solid #01937f;
+  .tab-container {
+    border-color: #01937f #01937f #ffffff #01937f;
+    border-radius: 0 0 8px 8px;
+    border: 2px solid #01937f;
+  }
+
+  .option-container {
+    @include flexbox(between, center);
+    padding: 2rem 0;
+    font-size: 1.4rem;
+    line-height: 1.25rem;
+  }
+
+  .card_container {
+    margin-top: 2rem; /* mt-8 */
+    display: grid;
+    gap: 1rem; /* gap-4 */
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .select-box {
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+  }
 }
