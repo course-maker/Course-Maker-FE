@@ -7,13 +7,13 @@ export interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
   image: string;
   title: string;
   subtitle?: string;
-  size?: "small" | "large";
+  size?: "small" | "large" | "x-large";
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 /**
  * Banner 컴포넌트
- * @property {string} size - 배너 사이즈."small" | "large". 입력하지 않을 경우 height: 100%, width:100% 로 설정
+ * @property {string} size - 배너 사이즈."small" | "large"|"x-large". 입력하지 않을 경우 height: 100%, width:100% 로 설정
  * */
 
 const Banner = ({ image, title, subtitle, size, onClick, ...props }: BannerProps) => {

@@ -1,6 +1,7 @@
 %btn-base {
   @include text-style(1.6, 700);
   @include flexbox();
+  gap: 16px;
   border-radius: 99.9rem;
   transition: all ease-in-out 0.3s;
   white-space: nowrap;
@@ -11,28 +12,31 @@
   }
 }
 
-.btn-size {
+.banner-size {
   &-small,
   &-large,
+  &-x-large,
   &-default {
     @extend %btn-base;
   }
 
   &-small {
-    height: 4.2rem;
     padding: 1.2rem 2.4rem;
+    width: 150px;
+    height: 90px;
   }
 
   &-large {
-    height: 4.8rem;
-    width: 42rem;
+    // width: 300px;
+    height: 150px;
+  }
+
+  &-x-large {
+    // width: 300px;
+    height: 25.75rem;
   }
 }
 .banner-content {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
   border-radius: 0.8rem;
   width: 100%;
   max-height: 100%;
@@ -50,20 +54,10 @@
   background-position: center;
 }
 
-.banner-item.small {
-  width: 150px;
-  height: 100px;
-}
-
-.banner-item.large {
-  width: 300px;
-  height: 150px;
-}
-
 .banner-text {
   padding: 8px;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  // background-color: rgba(0, 0, 0, 0.5);
   color: white;
   width: 100%;
 }

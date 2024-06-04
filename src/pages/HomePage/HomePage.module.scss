@@ -20,14 +20,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
+  gap: 16px;
   border-radius: 8px;
   margin-bottom: 24px;
-}
-
-.banner-top {
-  background-color: #e0e0e0;
-  height: 25.75rem;
 }
 
 .arrow-button {
