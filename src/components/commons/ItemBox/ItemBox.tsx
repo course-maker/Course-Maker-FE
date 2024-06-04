@@ -17,8 +17,7 @@ interface ItemBoxProps {
 
 const iconMapping: { [key: string]: any } = {
   blackHeart: IMAGES.blackHeartIcon,
-  thumbsUp: IMAGES.blackThumbsUpIcon,
-  blackStar: IMAGES.blackStarIcon,
+  blackThumbsUp: IMAGES.blackThumbsUpIcon,
   blackStar: IMAGES.blackStarIcon,
   heart: IMAGES.heartIcon,
   thumbsUp: IMAGES.thumbsUpIcon,

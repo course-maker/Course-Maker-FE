@@ -5,6 +5,10 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
+interface Icons {
+  [key: string]: number;
+}
+
 interface MockData {
   id: number;
   title: string;
