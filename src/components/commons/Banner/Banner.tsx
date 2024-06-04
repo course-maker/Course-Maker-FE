@@ -3,13 +3,12 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-export interface BannerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+export interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
   image: string;
   title: string;
   subtitle?: string;
   size?: "small" | "large";
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 /**
