@@ -24,6 +24,8 @@ const iconMapping: { [key: string]: any } = {
   star: IMAGES.starIcon,
   location: IMAGES.locationIcon,
   linkCopy: IMAGES.linkCopyIcon,
+  calendar: IMAGES.calendarIcon,
+  member: IMAGES.memberIcon,
 };
 
 const ItemBox = ({ location, title, icons }: ItemBoxProps) => {
