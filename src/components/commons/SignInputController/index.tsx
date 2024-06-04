@@ -1,15 +1,15 @@
-import { Controller, Control } from "react-hook-form";
+import { Controller, Control, FieldValues, Path } from "react-hook-form";
 import SignInput from "../SignInput";
-import { SignInFormInputs } from "@/schemas/signInSchema";
-import { signInCondition } from "@/constants/signInputCondition";
+import { SignField } from "@/constants/signInputCondition";
 
-interface SignInputControllerProps {
-  name: "id" | "password";
-  control: Control<SignInFormInputs>;
+interface SignInputControllerProps<T extends FieldValues> {
+  name: Path<T>;
+  control: Control<T>;
+  condition: SignField;
 }
 
-const SignInputController = ({ name, control }: SignInputControllerProps) => {
-  const { type, label, placeholder, maxLength } = signInCondition[name];
+const SignInputController = <T extends FieldValues>({ name, control, condition }: SignInputControllerProps<T>) => {
+  const { type, label, placeholder, maxLength, defaultMessage } = condition;
 
   return (
     <Controller
@@ -22,7 +22,7 @@ const SignInputController = ({ name, control }: SignInputControllerProps) => {
           type={type}
           placeholder={placeholder}
           isError={!!fieldState.error}
-          helperText={fieldState.error?.message}
+          helperText={fieldState.error?.message || defaultMessage}
           maxLength={maxLength}
           {...field}
           onChange={(e) => {
@@ -34,4 +34,5 @@ const SignInputController = ({ name, control }: SignInputControllerProps) => {
     />
   );
 };
+
 export default SignInputController;

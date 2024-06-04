@@ -7,6 +7,7 @@ import SignInputController from "@/components/commons/SignInputController";
 import Button from "@/components/commons/Button";
 import { PAGE_PATH } from "@/constants/pagePath";
 import { SignInFormInputs, signInSchema } from "@/schemas/signInSchema";
+import { SIGN_IN_CONDITION } from "@/constants/signInputCondition";
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +16,7 @@ const SignInForm = () => {
   const { control, handleSubmit } = useForm<SignInFormInputs>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      id: "",
+      email: "",
       password: "",
     },
   });
@@ -29,11 +30,11 @@ const SignInForm = () => {
       <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
         <div className={cx("form-input")}>
           <div className={cx("form-input-field")}>
-            <SignInputController name="id" control={control} />
-            <SignInputController name="password" control={control} />
+            <SignInputController name="email" control={control} condition={SIGN_IN_CONDITION.email} />
+            <SignInputController name="password" control={control} condition={SIGN_IN_CONDITION.password} />
           </div>
           {/*fix: 고도화 부분. 나중에 링크 달기*/}
-          <p className={cx("form-input-forgot")}>이메일 | 비밀번호 찾기</p>
+          {/* <p className={cx("form-input-forgot")}>이메일 | 비밀번호 찾기</p> */}
         </div>
         <Button type="submit" color="navy" variant="primary" size="large">
           로그인
