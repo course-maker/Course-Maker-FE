@@ -23,6 +23,16 @@ export const SIGN_IN_CONDITION = {
   },
 };
 
+export const SIGN_UP_EMAIL_CONDITION = {
+  email: {
+    label: "이메일",
+    type: "text",
+    placeholder: "이메일을 입력하세요.",
+    maxLength: undefined,
+    defaultMessage: undefined,
+  },
+};
+
 export const SIGN_UP_CONDITION = {
   password: {
     label: "비밀번호",

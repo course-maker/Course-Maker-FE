@@ -1,0 +1,63 @@
+.dropdown {
+  @include column-flexbox();
+  border: 0.1rem solid red; // fix: 변수로 바꾸기
+  position: relative;
+
+  &-header {
+    position: relative;
+
+    &-field {
+      @include text-style(1.6, 400);
+      width: 22rem;
+      border: 0.1rem solid #d9d9d9; // fix: 변수로 바꾸기
+      border-radius: 1rem;
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+      padding: 1.6rem 2rem;
+      transition: border-color 0.2s ease-in-out;
+      cursor: pointer;
+    }
+
+    &-input {
+      @include text-style(1.6, 400);
+      width: 22rem;
+      border: 0.1rem solid #d9d9d9; // fix: 변수로 바꾸기
+      border-radius: 1rem;
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+      padding: 1.6rem 2rem;
+      transition: border-color 0.2s ease-in-out;
+
+      &::placeholder {
+        color: $Gray;
+      }
+    }
+
+    &-btn {
+      @include pos-center-y(absolute);
+      width: 1.5rem;
+      right: 1.5rem;
+      cursor: pointer;
+    }
+  }
+
+  &-menu {
+    @include column-flexbox();
+    position: absolute;
+    border: 0.1rem solid #d9d9d9; // fix: 변수로 바꾸기
+    border-radius: 1rem;
+    overflow: hidden;
+
+    li {
+      @include text-style(1.6, 400);
+      width: 22rem;
+      background-color: $White;
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+      padding: 1.2rem 2rem;
+      transition: border-color 0.2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+    }
+  }
+}
