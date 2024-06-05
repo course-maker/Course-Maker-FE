@@ -1,0 +1,8 @@
+.section {
+  @include column-flexbox();
+  margin-top: 14.07rem;
+}
+
+.stepper-container {
+  width: 45.9rem;
+}

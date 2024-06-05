@@ -8,8 +8,9 @@ import SignUpPage from "./SignUpPage";
 import ScssExample from "./scss-example"; // fix: 나중에 지울것!
 import CourseDetailPage from "./CourseDetailPage";
 import SpotDetailPage from "./SpotDetailPage";
+import CourseRegisterPage from "./CourseRegisterPage";
 
-const { search, signIn, signUp, courseDetail, spotDetail } = PAGE_PATH;
+const { search, signIn, signUp, courseDetail, spotDetail, courseRegister } = PAGE_PATH;
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path={signUp} element={<SignUpPage />} />
         <Route path={courseDetail} element={<CourseDetailPage />} />
         <Route path={spotDetail} element={<SpotDetailPage />} />
+        <Route path={courseRegister} element={<CourseRegisterPage />} />
         <Route path="scss-example" element={<ScssExample />} />
       </Route>
     </Routes>
