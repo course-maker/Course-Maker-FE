@@ -5,25 +5,31 @@ import styles from "./BadgeList.module.scss";
 
 const cx = classNames.bind(styles);
 
+interface Tag {
+  id: number;
+  name: string;
+  description: string;
+}
+
 interface BadgeListProps {
   title: string;
-  badges: string[];
+  tags: Tag[];
   selectedBadges: string[];
   toggleBadge: (badge: string) => void;
 }
 
-const BadgeList: React.FC<BadgeListProps> = ({ title, badges, selectedBadges, toggleBadge }) => (
+const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges, toggleBadge }) => (
   <div className={cx("tab-content")}>
     <span className={cx("item-title")}>{title}</span>
-    {badges.map((badge) => (
+    {tags.map((tag) => (
       <Badge
-        key={badge}
+        key={tag.id}
         color="gray"
         variant="primary"
         size="xsmall"
-        badgeStyle={selectedBadges.includes(badge) ? "selected" : "default"}
-        onClick={() => toggleBadge(badge)}>
-        {badge}
+        badgeStyle={selectedBadges.includes(tag.name) ? "selected" : "default"}
+        onClick={() => toggleBadge(tag.name)}>
+        {tag.name}
       </Badge>
     ))}
   </div>
