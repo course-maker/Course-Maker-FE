@@ -20,6 +20,7 @@ import Rectangle_45 from "@/assets/images/Rectangle_45.svg";
 import Home_left_test from "@/assets/images/home_left_test.svg";
 import Home_right_test from "@/assets/images/home_right_test.svg";
 import Banner1 from "@/assets/images/banner1.png";
+import grayTriangle from "@/assets/images/gray_triangle.svg";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -109,5 +110,9 @@ export const IMAGES = {
   Banner1: {
     src: Banner1,
     alt: "배너 이미지",
+  },
+  grayTriangle: {
+    src: grayTriangle,
+    alt: "드롭다운 열기 아이콘",
   },
 };

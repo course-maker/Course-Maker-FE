@@ -1,0 +1,15 @@
+.form {
+  @include column-flexbox();
+  gap: 8.7rem;
+
+  &-input {
+    @include column-flexbox(center, start);
+    gap: 0.6rem;
+
+    &-except-email {
+      @include column-flexbox();
+      gap: 0.6rem;
+      width: 55.5rem;
+    }
+  }
+}
