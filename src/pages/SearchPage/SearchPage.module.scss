@@ -1,0 +1,73 @@
+.search-page {
+  .desktop-tab {
+    .tab-nav {
+      border-bottom: 1px solid #e5e7eb;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: -1px;
+      text-align: center;
+    }
+
+    .tab-button {
+      padding: 1.2rem;
+      font-size: 2rem;
+      font-weight: 500;
+      color: #6b7280;
+      border: 2px solid transparent;
+      border-color: #e5e7eb #e5e7eb #ffffff;
+      border-bottom: 2px solid transparent;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+
+      &.active {
+        color: $Primary_Emerald;
+        border-color: $Primary_Emerald $Primary_Emerald #ffffff;
+        // border-bottom: 2px solid $Primary_Emerald;
+        border-radius: 8px 8px 0 0;
+      }
+
+      &:hover {
+        color: $Dark_Emerald;
+      }
+
+      @media (min-width: 640px) {
+        /* sm:text-3xl */
+        font-size: 2.25rem;
+      }
+    }
+  }
+  .tab-container {
+    border-color: #01937f #01937f #ffffff #01937f;
+    border-radius: 0 0 8px 8px;
+    border: 2px solid #01937f;
+  }
+
+  .option-container {
+    @include flexbox(between, center);
+    padding: 2rem 0;
+    font-size: 1.4rem;
+    line-height: 1.25rem;
+  }
+
+  .card_container {
+    margin-top: 2rem; /* mt-8 */
+    display: grid;
+    gap: 1rem; /* gap-4 */
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .select-box {
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+  }
+}

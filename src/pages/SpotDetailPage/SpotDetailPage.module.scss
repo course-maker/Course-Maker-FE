@@ -1,8 +1,3 @@
-.section {
-  @include column-flexbox();
-  margin-top: 12.87rem;
-}
-
 .article {
   @include inline-flexbox();
   gap: 9.4rem;
@@ -29,4 +24,10 @@
   width: 100%;
   height: 78.1rem;
   flex-shrink: 0;
+}
+
+.location-text {
+  color: $Black;
+  font-size: 1.8rem;
+  font-weight: 700;
 }

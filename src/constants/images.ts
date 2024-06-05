@@ -8,6 +8,9 @@ import blackThumbsUpIcon from "@/assets/images/black_thumbs_up.svg";
 import blackStarIcon from "@/assets/images/black_star.svg";
 import linkCopyIcon from "@/assets/images/link_copy.svg";
 import locationIcon from "@/assets/images/location.svg";
+import testImage from "@/assets/images/test_img.png";
+import calendarIcon from "@/assets/images/calendar.svg";
+import memberIcon from "@/assets/images/member.svg";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -49,5 +52,17 @@ export const IMAGES = {
   locationIcon: {
     src: locationIcon,
     alt: "위치 아이콘",
+  },
+  testImage: {
+    src: testImage,
+    alt: "썸네일 이미지",
+  },
+  calendarIcon: {
+    src: calendarIcon,
+    alt: "달력 아이콘",
+  },
+  memberIcon: {
+    src: memberIcon,
+    alt: "멤버 아이콘",
   },
 };

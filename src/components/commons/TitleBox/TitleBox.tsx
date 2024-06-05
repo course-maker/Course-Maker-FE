@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 import styles from "./TitleBox.module.scss";
 import classNames from "classnames/bind";
-import Button from "../Button";
-import { IMAGES } from "@/constants/images";
-import Image from "../Image";
+// import Button from "../Button";
+// import { IMAGES } from "@/constants/images";
+// import Image from "../Image";
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +15,7 @@ interface ImageProps {
 interface CardProps {
   title: ReactNode;
   name: ReactNode;
-  rating: ReactNode;
+  // rating: ReactNode;
   travelCount?: ReactNode;
   duration?: ReactNode;
   tags: string[];
@@ -23,7 +23,7 @@ interface CardProps {
   image: ImageProps;
 }
 
-const TitleBox: React.FC<CardProps> = ({ image, title, name, rating, travelCount, duration, tags, type }) => {
+const TitleBox: React.FC<CardProps> = ({ image, title, name, travelCount, duration, tags, type }) => {
   const isSpotDetail = type === "spot-detail";
 
   return (
@@ -34,21 +34,21 @@ const TitleBox: React.FC<CardProps> = ({ image, title, name, rating, travelCount
       <div>
         <img src={image.src} alt={image.alt} className={cx("image")} />
         <div className={cx("title-box")}>
-          <h1>{title}</h1>
+          <h1 className={cx("title")}>{title}</h1>
           <div className={cx("rating", { [styles["spot-detail"]]: isSpotDetail })}>
-            <Button type="button" variant="third" color={"navy"}>
+            {/* <Button type="button" variant="third" color={"navy"}>
               <Image imageInfo={isSpotDetail ? IMAGES.blackStarIcon : IMAGES.starIcon} />
-            </Button>
-            <p className={cx("rating-text")}>{rating}</p>
+            </Button> */}
+            {/* <p className={cx("rating-text")}>{rating}</p> */}
           </div>
         </div>
         <div className={cx("name")}>
-          <p>작성자 {name}</p>
+          <p className={cx("text")}>작성자 {name}</p>
         </div>
       </div>
       <div className={cx("option", { [styles["hidden"]]: travelCount === null })}>
-        <p>여행추천인원 {travelCount}</p>
-        <p>여행기간 {duration}</p>
+        <p className={cx("text")}>여행추천인원 {travelCount}</p>
+        <p className={cx("text")}>여행기간 {duration}</p>
       </div>
       <div className={cx("tag-box")}>
         {tags?.map((tag, id) => (
@@ -57,7 +57,7 @@ const TitleBox: React.FC<CardProps> = ({ image, title, name, rating, travelCount
           </span>
         ))}
       </div>
-      <div className={cx("icon-btn-group")}>
+      {/* <div className={cx("icon-btn-group")}>
         <Button variant="primary" color="none">
           <Image imageInfo={isSpotDetail ? IMAGES.blackThumbsUpIcon : IMAGES.thumbsUpIcon} />
         </Button>
@@ -70,7 +70,7 @@ const TitleBox: React.FC<CardProps> = ({ image, title, name, rating, travelCount
         <Button variant="primary" color="none">
           <Image imageInfo={IMAGES.linkCopyIcon} />
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
