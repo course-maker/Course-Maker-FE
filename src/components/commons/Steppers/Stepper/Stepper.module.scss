@@ -1,0 +1,70 @@
+.stepIndicator {
+  @include flexbox(center);
+  margin-bottom: 2rem;
+
+  & > div {
+    text-align: center;
+    flex: 1;
+    position: relative;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.step-line {
+  position: absolute;
+  width: 75%;
+  height: 0.2rem;
+  background-color: $Primary_Emerald;
+  top: 25%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+.inactive-line {
+  position: absolute;
+  width: 75%;
+  height: 0.2rem;
+  top: 25%;
+  transform: translateX(-50%);
+  z-index: -1;
+  background-color: $Primary_Gray;
+}
+
+.stepCircle {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background-color: $Primary_Emerald;
+  margin: 0 auto 1rem auto;
+}
+
+.inactiveCircle {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background-color: $Primary_Emerald;
+  margin: 0 auto 1rem auto;
+  background-color: $Primary_Gray;
+}
+.check-icon {
+  position: absolute;
+  z-index: 1;
+  color: $White;
+  top: 0.7rem;
+  right: 6.8rem;
+}
+
+.stepLabel {
+  font-size: 1.4rem;
+  color: $Primary_Gray;
+}
+
+.stepTitle {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
