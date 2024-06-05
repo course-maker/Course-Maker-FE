@@ -7,12 +7,14 @@ import { SignUpFormInputs, signUpSchema } from "@/schemas/signUpSchema";
 import { SIGN_UP_CONDITION, SIGN_UP_EMAIL_CONDITION } from "@/constants/signInputCondition";
 import SignInputController from "@/components/commons/SignInputController";
 import EmailInputController from "./EmailInputController";
+import { useRef } from "react";
 
 const cx = classNames.bind(styles);
 
 const SignUpForm = () => {
   const { control, handleSubmit, setValue } = useForm<SignUpFormInputs>({
     resolver: zodResolver(signUpSchema),
+    mode: "onBlur",
     defaultValues: {
       email: "",
       password: "",
@@ -23,12 +25,22 @@ const SignUpForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<SignUpFormInputs> = () => {
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      submitButtonRef.current?.click();
+    }
+  };
+
+  const onSubmit: SubmitHandler<SignUpFormInputs> = async () => {
+    // 여기에서 유효성 검사에 통과한 데이터를 서버로 전송
     // console.log(data);
   };
 
   return (
-    <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
+    <form className={cx("form")} onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
       <div className={cx("form-input")}>
         <EmailInputController
           name="email"
@@ -42,7 +54,7 @@ const SignUpForm = () => {
           ))}
         </div>
       </div>
-      <Button type="submit" color="navy" variant="primary" size="large">
+      <Button type="submit" color="navy" variant="primary" size="large" ref={submitButtonRef}>
         회원가입
       </Button>
     </form>
