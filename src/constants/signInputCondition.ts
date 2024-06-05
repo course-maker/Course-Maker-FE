@@ -64,7 +64,7 @@ export const SIGN_UP_CONDITION = {
   },
   phoneNumber: {
     label: "휴대폰 번호",
-    type: "text",
+    type: "tel",
     placeholder: "휴대폰 번호를 입력하세요.",
     maxLength: 13,
     defaultMessage: "휴대폰 번호는 숫자만 입력 가능합니다.",
