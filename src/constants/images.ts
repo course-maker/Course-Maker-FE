@@ -11,6 +11,7 @@ import locationIcon from "@/assets/images/location.svg";
 import testImage from "@/assets/images/test_img.png";
 import calendarIcon from "@/assets/images/calendar.svg";
 import memberIcon from "@/assets/images/member.svg";
+import grayTriangle from "@/assets/images/gray_triangle.svg";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -64,5 +65,9 @@ export const IMAGES = {
   memberIcon: {
     src: memberIcon,
     alt: "멤버 아이콘",
+  },
+  grayTriangle: {
+    src: grayTriangle,
+    alt: "드롭다운 열기 아이콘",
   },
 };

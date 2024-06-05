@@ -8,6 +8,14 @@ import { z } from "zod";
 
 export const signUpSchema = z
   .object({
+    email: z.string().email({ message: "올바른 이메일 주소를 입력해주세요." }),
+    // .refine(
+    //   async (email) => {
+    //     const isAvailable = await checkEmailAvailability(email);
+    //     return isAvailable;
+    //   },
+    //   { message: "가입된 이메일 입니다. 다른 이메일을 입력해주세요." },
+    // ),
     password: z
       .string()
       .min(8, { message: "비밀번호는 최소 8자 이상이어야 합니다." })
