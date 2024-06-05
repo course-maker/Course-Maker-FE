@@ -12,6 +12,12 @@
   }
 }
 
+%banner-text-base {
+  padding: 8px;
+  color: white;
+  width: 100%;
+}
+
 .banner-size {
   &-small,
   &-large,
@@ -36,6 +42,35 @@
     height: 25.75rem;
   }
 }
+
+.banner-text {
+  padding: 8px;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+.banner-text {
+  &-small,
+  &-large,
+  &-x-large,
+  &-default {
+    @extend %banner-text-base;
+  }
+
+  &-small {
+    text-align: center;
+  }
+
+  &-large {
+    text-align: left;
+  }
+
+  &-x-large {
+    text-align: center;
+  }
+}
+
 .banner-content {
   border-radius: 0.8rem;
   width: 100%;
@@ -54,21 +89,14 @@
   background-position: center;
 }
 
-.banner-text {
-  padding: 8px;
-  text-align: center;
-  // background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  width: 100%;
-}
-
 .banner-title {
   font-size: 16px;
   font-weight: bold;
 }
 
 .banner-subtitle {
-  font-size: 14px;
+  margin-top: 8px;
+  font-size: 20px;
 }
 
 .banner-description {
