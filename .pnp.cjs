@@ -306,6 +306,10 @@ const RAW_RUNTIME_STATE =
       "npm:8.57.0"\
     ],\
     [\
+      "@hookform/resolvers",\
+      "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:3.4.2"\
+    ],\
+    [\
       "@humanwhocodes/config-array",\
       "npm:0.11.14"\
     ],\
@@ -1876,6 +1880,10 @@ const RAW_RUNTIME_STATE =
       "npm:9.4.0"\
     ],\
     [\
+      "swiper",\
+      "npm:11.1.4"\
+    ],\
+    [\
       "symbol-tree",\
       "npm:3.2.4"\
     ],\
@@ -2081,6 +2089,10 @@ const RAW_RUNTIME_STATE =
     [\
       "yocto-queue",\
       "npm:1.0.0"\
+    ],\
+    [\
+      "zod",\
+      "npm:3.23.8"\
     ]\
   ],\
   "packageRegistryData": [\
@@ -2090,6 +2102,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@commitlint/cli", "npm:19.3.0"],\
           ["@commitlint/config-conventional", "npm:19.2.2"],\
+          ["@hookform/resolvers", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:3.4.2"],\
           ["@tanstack/react-query", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:5.37.1"],\
           ["@testing-library/jest-dom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:6.4.5"],\
           ["@testing-library/react", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:15.0.7"],\
@@ -2118,9 +2131,11 @@ const RAW_RUNTIME_STATE =
           ["react-router-dom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:6.23.1"],\
           ["sass", "npm:1.77.2"],\
           ["supports-color", "npm:9.4.0"],\
+          ["swiper", "npm:11.1.4"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
           ["vite", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:5.2.11"],\
-          ["vitest", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:1.6.0"]\
+          ["vitest", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:1.6.0"],\
+          ["zod", "npm:3.23.8"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -2980,6 +2995,28 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/@eslint-js-npm-8.57.0-00ead3710a-10c0.zip/node_modules/@eslint/js/",\
         "packageDependencies": [\
           ["@eslint/js", "npm:8.57.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@hookform/resolvers", [\
+      ["npm:3.4.2", {\
+        "packageLocation": "../../.yarn/berry/cache/@hookform-resolvers-npm-3.4.2-4fe00fb172-10c0.zip/node_modules/@hookform/resolvers/",\
+        "packageDependencies": [\
+          ["@hookform/resolvers", "npm:3.4.2"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:3.4.2", {\
+        "packageLocation": "./.yarn/__virtual__/@hookform-resolvers-virtual-44b605c36a/3/.yarn/berry/cache/@hookform-resolvers-npm-3.4.2-4fe00fb172-10c0.zip/node_modules/@hookform/resolvers/",\
+        "packageDependencies": [\
+          ["@hookform/resolvers", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:3.4.2"],\
+          ["@types/react-hook-form", null],\
+          ["react-hook-form", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:7.51.5"]\
+        ],\
+        "packagePeers": [\
+          "@types/react-hook-form",\
+          "react-hook-form"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4661,6 +4698,7 @@ const RAW_RUNTIME_STATE =
           ["course-maker-fe", "workspace:."],\
           ["@commitlint/cli", "npm:19.3.0"],\
           ["@commitlint/config-conventional", "npm:19.2.2"],\
+          ["@hookform/resolvers", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:3.4.2"],\
           ["@tanstack/react-query", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:5.37.1"],\
           ["@testing-library/jest-dom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:6.4.5"],\
           ["@testing-library/react", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:15.0.7"],\
@@ -4689,9 +4727,11 @@ const RAW_RUNTIME_STATE =
           ["react-router-dom", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:6.23.1"],\
           ["sass", "npm:1.77.2"],\
           ["supports-color", "npm:9.4.0"],\
+          ["swiper", "npm:11.1.4"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
           ["vite", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:5.2.11"],\
-          ["vitest", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:1.6.0"]\
+          ["vitest", "virtual:3eb6ae639b3444ae0e45a0b75eae7571786d4314eb73164e305a87233a5f4567eeda161e7d12bd1823afa6dad6724119d8b35dfd5c0c5a7519b29f909e934be6#npm:1.6.0"],\
+          ["zod", "npm:3.23.8"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -7888,6 +7928,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["swiper", [\
+      ["npm:11.1.4", {\
+        "packageLocation": "../../.yarn/berry/cache/swiper-npm-11.1.4-d9e487eecf-10c0.zip/node_modules/swiper/",\
+        "packageDependencies": [\
+          ["swiper", "npm:11.1.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["symbol-tree", [\
       ["npm:3.2.4", {\
         "packageLocation": "../../.yarn/berry/cache/symbol-tree-npm-3.2.4-fe70cdb75b-10c0.zip/node_modules/symbol-tree/",\
@@ -8605,6 +8654,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/yocto-queue-npm-1.0.0-7b502f1987-10c0.zip/node_modules/yocto-queue/",\
         "packageDependencies": [\
           ["yocto-queue", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["zod", [\
+      ["npm:3.23.8", {\
+        "packageLocation": "../../.yarn/berry/cache/zod-npm-3.23.8-11c49c85b5-10c0.zip/node_modules/zod/",\
+        "packageDependencies": [\
+          ["zod", "npm:3.23.8"]\
         ],\
         "linkType": "HARD"\
       }]\

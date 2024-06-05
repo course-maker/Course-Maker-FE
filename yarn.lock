@@ -2088,6 +2088,7 @@ __metadata:
     react-router-dom: "npm:^6.23.1"
     sass: "npm:^1.77.2"
     supports-color: "npm:^9.4.0"
+    swiper: "npm:^11.1.4"
     typescript: "npm:^4.5.4"
     vite: "npm:^5.2.0"
     vitest: "npm:^1.6.0"
@@ -4922,6 +4923,13 @@ __metadata:
   version: 9.4.0
   resolution: "supports-color@npm:9.4.0"
   checksum: 10c0/6c24e6b2b64c6a60e5248490cfa50de5924da32cf09ae357ad8ebbf305cc5d2717ba705a9d4cb397d80bbf39417e8fdc8d7a0ce18bd0041bf7b5b456229164e4
+  languageName: node
+  linkType: hard
+
+"swiper@npm:^11.1.4":
+  version: 11.1.4
+  resolution: "swiper@npm:11.1.4"
+  checksum: 10c0/a1e4b87f414f67f5da6a07b33d5ee20e54062d21f8bed88195d5d56decff6afddf683e130118b7fa12668de221f794ae63f6c073761b683a4b90bbd5eb585202
   languageName: node
   linkType: hard
 
