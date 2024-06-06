@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RecoilRoot } from "recoil";
 import PageRouter from "./PageRouter";
 
 const queryClient = new QueryClient({
@@ -12,9 +13,11 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <PageRouter />
-      </QueryClientProvider>
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <PageRouter />
+        </QueryClientProvider>
+      </RecoilRoot>
     </>
   );
 }

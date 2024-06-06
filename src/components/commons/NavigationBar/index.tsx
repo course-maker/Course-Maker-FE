@@ -9,14 +9,14 @@ import RightButtons from "./RightButtons";
 
 const cx = classNames.bind(styles);
 
-const NavigationBar = () => {
+const NavigationBar = ({ isAuth }: { isAuth: boolean | null }) => {
   return (
     <div className={cx("nav")}>
       <Link className={cx("nav-logo")} to={PAGE_PATH.home}>
         <Image imageInfo={IMAGES.courseMakerLogo} />
       </Link>
       <MenuBar />
-      <RightButtons />
+      <RightButtons isAuth={isAuth} />
     </div>
   );
 };
