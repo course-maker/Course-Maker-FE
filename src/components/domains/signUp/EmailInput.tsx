@@ -1,50 +1,75 @@
-import { forwardRef, InputHTMLAttributes, useState } from "react";
-import { UseFormSetValue } from "react-hook-form";
+import { forwardRef, InputHTMLAttributes, useEffect, useState } from "react";
 import styles from "./EmailInput.module.scss";
 import classNames from "classnames/bind";
 import Button from "@/components/commons/Button";
 import Dropdown from "./Dropdown";
-import { z } from "zod"; // Zod import
+import { z } from "zod";
+import { useMutation } from "@tanstack/react-query";
+import { postEmail } from "@/api/member";
+import { validateEmailRequestDto } from "@/api/member/type";
 
 const cx = classNames.bind(styles);
-
-interface EmailInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface EmailInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   id: string;
   label?: string;
   isError?: boolean;
   helperText?: string;
-  setValue: UseFormSetValue<any>;
+  emailValue: string;
+  onChange: (fullEmail: string) => void;
 }
 
-const emailSchema = z.string().email("올바른 이메일 주소를 입력해주세요."); // Zod 스키마 정의
+const emailSchema = z.string().min(1, "이메일을 입력해주세요.").email("올바른 이메일 주소를 입력해주세요.");
 
 const EmailInput = forwardRef<HTMLInputElement, EmailInputProps>(
-  ({ id, label, type, isError = false, helperText, setValue, ...props }, ref) => {
+  ({ id, label, type, isError = false, helperText, emailValue, onChange, ...props }, ref) => {
     const [emailId, setEmailId] = useState<string>("");
     const [domainValue, setDomainValue] = useState<string>("");
-    const [emailError, setEmailError] = useState<string | null>(null); // 이메일 오류 메시지 상태
+    const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+    const [isApiError, setIsApiError] = useState<boolean>(false);
+    const [emailApiHelperText, setEmailApiHelperText] = useState<string>("");
 
     const handleEmailIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value.replace(/\s/g, "");
       setEmailId(newValue);
-      setEmailError(null); // 이메일을 수정할 때 오류 메시지 초기화
     };
 
-    const checkEmailDuplication = () => {
-      const fullEmail = `${emailId}@${domainValue}`;
+    const { mutateAsync: mutateAsyncForEmail } = useMutation({
+      mutationFn: (enteredEmailInInfo: validateEmailRequestDto) => postEmail(enteredEmailInInfo),
+    });
+
+    const validateEmail = async () => {
+      const emailForm = { email: emailValue };
       try {
-        emailSchema.parse(fullEmail); // Zod를 이용한 이메일 검증
-        setEmailError(null); // 이메일 양식이 유효한 경우 오류 메시지 초기화
-        // 중복 검사 로직 추가
-        // console.log(`Checking duplication for: ${fullEmail}`);
-        setValue("email", fullEmail);
-        // 여기서 중복 확인 후 결과에 따라 setEmailError를 업데이트 할 수 있습니다.
+        emailSchema.parse(emailValue);
+        const response = await mutateAsyncForEmail(emailForm);
+        const isDuplicate = response.isDuplicate;
+
+        if (isDuplicate) {
+          setIsApiError(true);
+          setEmailApiHelperText("가입된 이메일 입니다. 다른 이메일을 입력해주세요.");
+          setIsEmailValid(false);
+        } else {
+          setIsApiError(false);
+          setEmailApiHelperText("사용 가능한 이메일 입니다.");
+          setIsEmailValid(true);
+        }
       } catch (e) {
         if (e instanceof z.ZodError) {
-          setEmailError(e.errors[0].message); // Zod 오류 메시지 설정
+          setIsApiError(true);
+          setEmailApiHelperText(e.errors[0].message);
+          setIsEmailValid(false);
         }
       }
     };
+
+    useEffect(() => {
+      if (emailId || domainValue) {
+        setIsApiError(false);
+        setEmailApiHelperText("");
+        const fullEmail = `${emailId}@${domainValue}`;
+        onChange(fullEmail);
+      }
+    }, [domainValue, emailId, onChange]);
 
     return (
       <div className={cx("container")}>
@@ -61,17 +86,20 @@ const EmailInput = forwardRef<HTMLInputElement, EmailInputProps>(
                 ref={ref}
                 id={id}
                 type={type}
+                onChange={handleEmailIdChange}
                 {...props}
                 value={emailId}
-                onChange={handleEmailIdChange}
+                disabled={isEmailValid}
               />
               <span className={cx("input-group-address")}>@</span>
-              <Dropdown domainValue={domainValue} setDomainValue={setDomainValue} />
+              <Dropdown domainValue={domainValue} setDomainValue={setDomainValue} isDisabled={isEmailValid} />
             </div>
           </div>
-          <p className={cx("helper-text", { error: isError || emailError })}>{emailError || helperText}</p>
+          <p className={cx("helper-text", { error: isError || isApiError, verified: isEmailValid })}>
+            {emailApiHelperText || helperText}
+          </p>
         </div>
-        <Button color="emerald" variant="primary" size="small" onClick={checkEmailDuplication}>
+        <Button color="emerald" variant="primary" size="small" onClick={validateEmail}>
           중복확인
         </Button>
       </div>

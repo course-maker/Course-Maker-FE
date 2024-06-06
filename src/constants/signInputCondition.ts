@@ -7,7 +7,7 @@ export interface SignField {
 }
 
 export const SIGN_IN_CONDITION = {
-  email: {
+  loginEmail: {
     label: undefined,
     type: "text",
     placeholder: "이메일을 입력하세요.",
