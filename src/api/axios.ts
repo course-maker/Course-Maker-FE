@@ -21,26 +21,13 @@ export async function apiRequest<T, U>(
   params?: Record<string, unknown>,
   config?: AxiosRequestConfig,
 ): Promise<T> {
-  try {
-    const request: AxiosRequestConfig = {
-      url,
-      method,
-      data,
-      params,
-      ...config,
-    };
-    const response: AxiosResponse<T> = await axiosInstance(request);
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      const errorMessage = error.response.data.message;
-      const errorName = error.response.statusText;
-      const axiosError = new Error(errorMessage);
-      axiosError.name = errorName;
-      throw axiosError;
-    } else {
-      console.error(`${method} Error : `, error);
-      throw error;
-    }
-  }
+  const request: AxiosRequestConfig = {
+    url,
+    method,
+    data,
+    params,
+    ...config,
+  };
+  const response: AxiosResponse<T> = await axiosInstance(request);
+  return response.data;
 }

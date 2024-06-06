@@ -1,4 +1,3 @@
-import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,18 +8,16 @@ import Button from "@/components/commons/Button";
 import { PAGE_PATH } from "@/constants/pagePath";
 import { SignInFormInputs, signInSchema } from "@/schemas/signInSchema";
 import { SIGN_IN_CONDITION } from "@/constants/signInputCondition";
-import { loginRequestDto } from "@/api/member/type";
-import { postLogin } from "@/api/member";
-import { saveAccessToken, saveRefreshToken } from "@/utils/manageTokenInfo";
 import { AlertModal } from "./AlertModal";
 import { MODALS } from "@/constants/modals";
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent } from "react";
+import { useSignInMutation } from "@/hooks/useSignInMutation";
 
 const cx = classNames.bind(styles);
 
 const SignInForm = () => {
   const navigate = useNavigate();
-  const [currentModal, setCurrentModal] = useState<string | null>(null);
+  const { postSignIn, currentModal, setCurrentModal } = useSignInMutation();
 
   const { control, handleSubmit } = useForm<SignInFormInputs>({
     resolver: zodResolver(signInSchema),
@@ -30,24 +27,6 @@ const SignInForm = () => {
     },
     mode: "onBlur",
   });
-
-  const { mutateAsync: mutateAsyncForToken } = useMutation({
-    mutationFn: (enteredSignInInfo: loginRequestDto) => postLogin(enteredSignInInfo),
-  });
-
-  const postSignIn = async (enteredSignInInfo: loginRequestDto) => {
-    try {
-      const tokens = await mutateAsyncForToken(enteredSignInInfo);
-      if (tokens?.accessToken) {
-        saveAccessToken(tokens.accessToken);
-        saveRefreshToken(tokens.refreshToken);
-        alert("로그인 성공!");
-        navigate(PAGE_PATH.home);
-      }
-    } catch (error) {
-      console.error("Error while signing in:", error);
-    }
-  };
 
   const closeModal = () => setCurrentModal(null);
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -62,7 +41,7 @@ const SignInForm = () => {
   return (
     <>
       <div className={cx("container")}>
-        <form className={cx("form")} onSubmit={handleSubmit(postSignIn)}>
+        <form className={cx("form")} onSubmit={handleSubmit((data) => postSignIn(data))}>
           <div className={cx("form-input")}>
             <div className={cx("form-input-field")}>
               <SignInputController name="loginEmail" control={control} condition={SIGN_IN_CONDITION.loginEmail} />
