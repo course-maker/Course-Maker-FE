@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./SearchPage.module.scss";
+import axios from "axios";
 import classNames from "classnames/bind";
 import BadgeList from "@/components/commons/BadgeList/BadgeList";
 import Section from "@/components/commons/Section/Section";
 import Card from "@/components/commons/Card/Card";
-import data from "./data.json";
-import listData from "./listData.json";
+// import data from "./data.json";
+// import listData from "./listData.json";
+
+interface Tag {
+  id: number;
+  name: string;
+  description: string;
+}
 
 interface Icons {
   [key: string]: number;
@@ -19,19 +26,78 @@ interface MockData {
 }
 
 const cx = classNames.bind(styles);
-const courseData = data.courseData;
-const destinationData = data.destinationData;
-const lists: MockData[] = listData;
+// const courseData = data.courseData;
+// const destinationData = data.destinationData;
+// const lists: MockData[] = listData;
 
 const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("코스 찾기");
-  const [selectedBadges, setSelectedBadges] = useState<string[]>([]);
+  const [selectedCourseBadges, setSelectedCourseBadges] = useState<string[]>([]);
+  const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<string[]>([]);
+  const [lists, setLists] = useState<MockData[]>([]);
+  const [tagsData, setTagsData] = useState<Tag[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const toggleBadge = (badge: string) => {
-    setSelectedBadges((prevSelected) =>
+  const toggleCourseBadge = (badge: string) => {
+    setSelectedCourseBadges((prevSelected) =>
       prevSelected.includes(badge) ? prevSelected.filter((item) => item !== badge) : [...prevSelected, badge],
     );
   };
+
+  const toggleDestinationBadge = (badge: string) => {
+    setSelectedDestinationBadges((prevSelected) =>
+      prevSelected.includes(badge) ? prevSelected.filter((item) => item !== badge) : [...prevSelected, badge],
+    );
+  };
+
+  useEffect(() => {
+    const fetchLists = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://34.64.85.245/v1/destination?record=12&page=1");
+        setLists(response.data);
+        // console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLists();
+  }, []);
+
+  useEffect(() => {
+    const fetchLists = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://34.64.85.245/v1/tags");
+        setTagsData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLists();
+  }, []);
+
+  const groupTagsByDescription = (tags: Tag[]) => {
+    return tags.reduce(
+      (acc, tag) => {
+        if (!acc[tag.description]) {
+          acc[tag.description] = [];
+        }
+        acc[tag.description].push(tag);
+        return acc;
+      },
+      {} as Record<string, Tag[]>,
+    );
+  };
+
+  const groupedTags = groupTagsByDescription(tagsData);
 
   return (
     <div className={cx("search-page")}>
@@ -52,32 +118,32 @@ const SearchPage = () => {
 
       {activeTab === "코스 찾기" ? (
         <Section title="" className={cx("tab-container")}>
-          {Object.entries(courseData).map(([title, badges]) => (
+          {Object.entries(groupedTags).map(([description, tags]) => (
             <BadgeList
-              key={title}
-              title={title}
-              badges={badges}
-              selectedBadges={selectedBadges}
-              toggleBadge={toggleBadge}
+              key={description}
+              title={description}
+              tags={tags}
+              selectedBadges={selectedCourseBadges}
+              toggleBadge={toggleCourseBadge}
             />
           ))}
         </Section>
       ) : (
         <Section title="" className={cx("tab-container")}>
-          {Object.entries(destinationData).map(([title, badges]) => (
+          {Object.entries(groupedTags).map(([description, tags]) => (
             <BadgeList
-              key={title}
-              title={title}
-              badges={badges}
-              selectedBadges={selectedBadges}
-              toggleBadge={toggleBadge}
+              key={description}
+              title={description}
+              tags={tags}
+              selectedBadges={selectedDestinationBadges}
+              toggleBadge={toggleDestinationBadge}
             />
           ))}
         </Section>
       )}
 
       <div className={cx("option-container")}>
-        <span>전체 {"1개"}</span>
+        <span>전체 {lists.length}개</span>
         <div>
           <select name="HeadlineAct" id="HeadlineAct" className={cx("select-box")}>
             <option value="0">최신순</option>
@@ -90,9 +156,9 @@ const SearchPage = () => {
 
       <Section title="">
         <div className={cx("card_container")}>
-          {lists.map((item) => (
-            <Card key={item.id} item={item} />
-          ))}
+          {loading
+            ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} />)
+            : lists.map((item) => <Card key={item.id} item={item} loading={false} />)}
         </div>
       </Section>
     </div>

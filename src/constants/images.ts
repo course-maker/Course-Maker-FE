@@ -11,6 +11,15 @@ import locationIcon from "@/assets/images/location.svg";
 import testImage from "@/assets/images/test_img.png";
 import calendarIcon from "@/assets/images/calendar.svg";
 import memberIcon from "@/assets/images/member.svg";
+import Rectangle_40 from "@/assets/images/Rectangle_40.svg";
+import Rectangle_41 from "@/assets/images/Rectangle_41.svg";
+import Rectangle_42 from "@/assets/images/Rectangle_42.svg";
+import Rectangle_43 from "@/assets/images/Rectangle_43.svg";
+import Rectangle_44 from "@/assets/images/Rectangle_44.svg";
+import Rectangle_45 from "@/assets/images/Rectangle_45.svg";
+import Home_left_test from "@/assets/images/home_left_test.svg";
+import Home_right_test from "@/assets/images/home_right_test.svg";
+import Banner1 from "@/assets/images/banner1.png";
 import grayTriangle from "@/assets/images/gray_triangle.svg";
 
 export const IMAGES = {
@@ -65,6 +74,42 @@ export const IMAGES = {
   memberIcon: {
     src: memberIcon,
     alt: "멤버 아이콘",
+  },
+  Rectangle_40: {
+    src: Rectangle_40,
+    alt: "멤버 아이콘",
+  },
+  Rectangle_41: {
+    src: Rectangle_41,
+    alt: "멤버 아이콘",
+  },
+  Rectangle_42: {
+    src: Rectangle_42,
+    alt: "멤버 아이콘",
+  },
+  Rectangle_43: {
+    src: Rectangle_43,
+    alt: "멤버 아이콘",
+  },
+  Rectangle_44: {
+    src: Rectangle_44,
+    alt: "멤버 아이콘",
+  },
+  Rectangle_45: {
+    src: Rectangle_45,
+    alt: "멤버 아이콘",
+  },
+  Home_right_test: {
+    src: Home_right_test,
+    alt: "홈 여행지 추천 이미지",
+  },
+  Home_left_test: {
+    src: Home_left_test,
+    alt: "홈 여행지 추천 이미지",
+  },
+  Banner1: {
+    src: Banner1,
+    alt: "배너 이미지",
   },
   grayTriangle: {
     src: grayTriangle,

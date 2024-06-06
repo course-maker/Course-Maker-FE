@@ -2,14 +2,31 @@ import classNames from "classnames/bind";
 import styles from "./Card.module.scss";
 import ItemBox from "@/components/commons/ItemBox/ItemBox";
 import { IMAGES } from "@/constants/images";
+import Skeleton from "react-loading-skeleton";
+// import "react-loading-skeleton/dist/skeleton.css";
 const cx = classNames.bind(styles);
 
-const Card = ({ item }: { item: any }) => {
+const Card = ({ item, loading }: { item: any; loading: boolean }) => {
+  if (loading) {
+    return (
+      <div className={cx("card-container")}>
+        <Skeleton height={200} width={300} className={cx("card-image")} />
+        <div className={cx("card-content")}>
+          <Skeleton count={3} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={cx("card-container")}>
-      <img alt={IMAGES.testImage.alt} src={IMAGES.testImage.src} className={cx("card-image")} />
+      <img
+        alt={IMAGES.testImage.alt}
+        src={item.pictureLink ? item.pictureLink : IMAGES.testImage.src}
+        className={cx("card-image")}
+      />
       <div className={cx("card-content")}>
-        <ItemBox location={item.location} title={item.title} icons={item.icons} />
+        <ItemBox location={item.location} title={item.name} tags={item.tags} />
       </div>
     </div>
   );
