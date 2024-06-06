@@ -24,6 +24,7 @@
     "react-kakao-maps-sdk": "^1.1.27",
     "react-loading-skeleton": "2.2.0",
     "react-router-dom": "^6.23.1",
+    "recoil": "^0.7.7",
     "supports-color": "^9.4.0",
     "swiper": "^11.1.4",
     "zod": "^3.23.8"

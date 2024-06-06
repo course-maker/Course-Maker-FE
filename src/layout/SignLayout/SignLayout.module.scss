@@ -1,8 +1,7 @@
 .container {
   @include flexbox(center, start);
   min-height: calc(100vh - 9.7rem);
-  padding: calc(120 / 844 * (100vh - 9.7rem)) 3.2rem 5rem;
-  background-color: $White;
+  padding: calc(120 / 844 * (100vh - 30rem)) 3.2rem 5rem;
 }
 
 .items {
