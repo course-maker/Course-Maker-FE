@@ -6,6 +6,7 @@ import { saveAccessToken, saveRefreshToken } from "@/utils/manageTokenInfo";
 import { MODALS } from "@/constants/modals";
 import { useState } from "react";
 import { PAGE_PATH } from "@/constants/pagePath";
+import { AxiosError } from "axios";
 
 export const useSignInMutation = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export const useSignInMutation = () => {
 
   const { mutateAsync: mutateAsyncForToken } = useMutation({
     mutationFn: (enteredSignInInfo: loginRequestDto) => postLogin(enteredSignInInfo),
-    onError: (error: any) => {
+    onError: (error: AxiosError) => {
       const statusCode = error?.response?.status;
       switch (statusCode) {
         case 401:
@@ -33,7 +34,7 @@ export const useSignInMutation = () => {
     if (tokens?.accessToken) {
       saveAccessToken(tokens.accessToken);
       saveRefreshToken(tokens.refreshToken);
-      alert("로그인 성공!");
+      alert("안녕하세요, 오늘도 즐거운 여행되세요");
       navigate(PAGE_PATH.home);
     }
   };

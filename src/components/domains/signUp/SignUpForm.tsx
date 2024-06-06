@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import styles from "./SignUpForm.module.scss";
 import classNames from "classnames/bind";
@@ -7,11 +7,16 @@ import { SignUpFormInputs, signUpSchema } from "@/schemas/signUpSchema";
 import { SIGN_UP_CONDITION, SIGN_UP_EMAIL_CONDITION } from "@/constants/signInputCondition";
 import SignInputController from "@/components/commons/SignInputController";
 import EmailInputController from "./EmailInputController";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useSignUpMutation } from "@/hooks/useSignUpMutation";
 
 const cx = classNames.bind(styles);
 
 const SignUpForm = () => {
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+  const { postSignUp } = useSignUpMutation();
+
   const { control, handleSubmit, setValue } = useForm<SignUpFormInputs>({
     resolver: zodResolver(signUpSchema),
     mode: "onBlur",
@@ -25,8 +30,6 @@ const SignUpForm = () => {
     },
   });
 
-  const submitButtonRef = useRef<HTMLButtonElement>(null);
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -34,19 +37,23 @@ const SignUpForm = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<SignUpFormInputs> = async () => {
-    // 여기에서 유효성 검사에 통과한 데이터를 서버로 전송
-    // console.log(data);
-  };
-
   return (
-    <form className={cx("form")} onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
+    <form
+      className={cx("form")}
+      onSubmit={handleSubmit((data) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { confirmPassword, ...restData } = data;
+        postSignUp(restData);
+      })}
+      onKeyDown={handleKeyDown}>
       <div className={cx("form-input")}>
         <EmailInputController
           name="email"
           control={control}
           condition={SIGN_UP_EMAIL_CONDITION.email}
+          isEmailValid={isEmailValid}
           setValue={setValue}
+          setIsEmailValid={setIsEmailValid}
         />
         <div className={cx("form-input-except-email")}>
           {(Object.keys(SIGN_UP_CONDITION) as Array<keyof typeof SIGN_UP_CONDITION>).map((key) => (
