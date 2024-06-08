@@ -22,6 +22,7 @@ import Home_right_test from "@/assets/images/home_right_test.svg";
 import Banner1 from "@/assets/images/banner1.png";
 import grayTriangle from "@/assets/images/gray_triangle.svg";
 import modalClose from "@/assets/images/modal_close.svg";
+import rangeLine from "@/assets/images/range_line.svg";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -119,5 +120,9 @@ export const IMAGES = {
   modalClose: {
     src: modalClose,
     alt: "모달 닫기 아이콘",
+  },
+  rangeLine: {
+    src: rangeLine,
+    alt: "슬라이더바 라인 이미지",
   },
 };

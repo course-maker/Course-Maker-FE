@@ -1,6 +1,8 @@
 .stepIndicator {
   @include flexbox(center);
-  margin-bottom: 2rem;
+  padding-top: 14.57rem;
+  padding-bottom: 2rem;
+  width: 45.9rem;
 
   & > div {
     text-align: center;

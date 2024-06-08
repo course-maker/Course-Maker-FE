@@ -1,9 +1,9 @@
-import React from "react";
+import { ReactNode } from "react";
 import { useStepper } from "./StepperContext";
 
 interface StepProps {
   stepNumber: number;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const Step = ({ stepNumber, children }: StepProps) => {

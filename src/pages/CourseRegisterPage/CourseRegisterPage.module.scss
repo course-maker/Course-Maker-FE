@@ -1,8 +1,80 @@
 .section {
   @include column-flexbox();
-  margin-top: 14.07rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .stepper-container {
-  width: 45.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.BadgeList-box {
+  display: flex;
+  flex-direction: column;
+  width: 74.8rem;
+  padding-bottom: 14.7rem;
+}
+.BadgeList-title {
+  display: flex;
+  justify-content: center;
+  color: $Black;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.path-title {
+  color: $Black;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 700;
+  padding-top: 10.9rem;
+}
+
+.path-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.item-container {
+  display: flex;
+  align-items: center;
+  padding-left: 1.96rem;
+  gap: 0.69rem;
+  width: 50.3822rem;
+  height: 13.6356rem;
+  flex-shrink: 0;
+  background: #f3f3f3;
+  border-radius: 1rem;
+}
+.item-image {
+  width: 16.64rem;
+  height: 9.5911rem;
+  flex-shrink: 0;
+  border-radius: 1rem;
+  background: lightgray 50% / cover no-repeat;
+}
+
+.item-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.04rem;
+}
+
+.title-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.item-title {
+  color: $Black;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.item-location {
+  color: $Black;
+  font-size: 1.3rem;
+  font-weight: 500;
 }
