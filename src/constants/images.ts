@@ -23,6 +23,7 @@ import Banner1 from "@/assets/images/banner1.png";
 import grayTriangle from "@/assets/images/gray_triangle.svg";
 import modalClose from "@/assets/images/modal_close.svg";
 import rangeLine from "@/assets/images/range_line.svg";
+import plus from "@/assets/images/plus.svg";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -124,5 +125,9 @@ export const IMAGES = {
   rangeLine: {
     src: rangeLine,
     alt: "슬라이더바 라인 이미지",
+  },
+  plus: {
+    src: plus,
+    alt: "추가 버튼 이미지",
   },
 };

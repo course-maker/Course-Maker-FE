@@ -55,18 +55,23 @@ const CourseDetailPage = () => {
               </Button>
             </div> */}
         </div>
-        <AllCardList>
-          {mockdata.map((item, id) => (
-            <div className={cx("item-container")} key={id}>
-              <div>
-                <img className={cx("item-image")} src={item.pictureLink} alt={`${item.title} 이미지`} />
-              </div>
-              <div className={cx("item-box")}>
-                <div className={cx("title-group")}>
-                  <p className={cx("item-title")}>{item.title}</p>
-                  <p className={cx("item-location")}>{item.location}</p>
+        <div>
+          <div className={cx("list-title-group")}>
+            <p className={cx("list-title")}>전체 여행지</p>
+            <p className={cx("list-explanation")}>여행지를 클릭하면 여행지 상세페이지를 확인할 수 있습니다.</p>
+          </div>
+          <AllCardList>
+            {mockdata.map((item, id) => (
+              <div className={cx("item-container")} key={id}>
+                <div>
+                  <img className={cx("item-image")} src={item.pictureLink} alt={`${item.title} 이미지`} />
                 </div>
-                {/* <div className={cx("score-group")}>
+                <div className={cx("item-box")}>
+                  <div className={cx("title-group")}>
+                    <p className={cx("item-title")}>{item.title}</p>
+                    <p className={cx("item-location")}>{item.location}</p>
+                  </div>
+                  {/* <div className={cx("score-group")}>
                     <span className={cx("score-item")}>
                       <Image imageInfo={IMAGES.blackHeartIcon} />
                       {item.heart}
@@ -80,10 +85,11 @@ const CourseDetailPage = () => {
                       {item.rating}
                     </span>
                   </div> */}
+                </div>
               </div>
-            </div>
-          ))}
-        </AllCardList>
+            ))}
+          </AllCardList>
+        </div>
       </article>
       <article className={cx("schedule")}>
         <div className={cx("schedule-group")}>
