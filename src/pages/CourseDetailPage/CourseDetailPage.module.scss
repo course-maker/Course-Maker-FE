@@ -3,6 +3,25 @@
   gap: 18.9rem;
 }
 
+.list-title-group {
+  @include column-flexbox($ai: center);
+  gap: 1.2rem;
+  padding-bottom: 1.2rem;
+
+  .list-title {
+    color: $Black;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .list-explanation {
+    color: $Primary_Gray;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+}
+
 .btn-group {
   display: flex;
   gap: 0.8rem;
@@ -35,18 +54,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.04rem;
-}
-
-.number-circle {
-  @include flexbox();
-  width: 2.3rem;
-  height: 2.3rem;
-  flex-shrink: 0;
-  border: 0.2rem solid $Primary_Navy;
-  border-radius: 50%;
-  color: $Primary_Navy;
-  font-size: 1.6rem;
-  font-weight: 700;
 }
 
 .title-group {
@@ -100,6 +107,18 @@
 .schedule-group {
   @include column-flexbox($jc: start);
   gap: 3.4rem;
+}
+
+.number-circle {
+  @include flexbox();
+  width: 2.3rem;
+  height: 2.3rem;
+  flex-shrink: 0;
+  border: 0.2rem solid $Primary_Navy;
+  border-radius: 50%;
+  color: $Primary_Navy;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 
 .day-btn-group {
