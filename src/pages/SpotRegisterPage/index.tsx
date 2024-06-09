@@ -2,11 +2,12 @@ import { useState } from "react";
 import SpotRegisterLayout from "@/layout/SpotRegisterLayout";
 
 const SpotRegisterPage = () => {
-  const [formData, setFormData] = useState({ location: "", tags: [] });
-  const temp = () => {
-    setFormData({ location: "", tags: [] });
-  };
-  temp();
+  const [formData] = useState({
+    location: "",
+    tags: [],
+    address: { address: "", latitude: 0, longitude: 0 },
+  });
+
   return (
     <>
       <SpotRegisterLayout title="여행지 등록하기" formData={formData} />

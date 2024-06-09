@@ -6,6 +6,7 @@ import classNames from "classnames/bind";
 import TitleInputController from "@/components/domains/spotRegister/TitleInputController";
 import Button from "@/components/commons/Button";
 import BadgeListController from "@/components/domains/spotRegister/BadgeListsController";
+import AddressSearchController from "@/components/domains/spotRegister/AddressSearchController";
 
 const cx = classNames.bind(styles);
 
@@ -39,6 +40,7 @@ const SpotRegisterLayout = ({ formData, title }: SpotRegisterLayoutProps) => {
               <BadgeListController formFieldName="tags" control={control} />
             </div>
           </div>
+          <AddressSearchController formFieldName="address" control={control} />
         </div>
         <Button color="navy" variant="primary" size="large" type="submit">
           {title}

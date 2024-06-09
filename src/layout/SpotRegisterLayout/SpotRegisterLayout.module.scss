@@ -1,5 +1,5 @@
 .container {
-  padding-top: 15rem;
+  padding-top: 5rem;
   padding-left: 5.4rem;
 }
 
@@ -14,6 +14,8 @@
   }
 
   &-indent {
+    @include column-flexbox(center, start);
+    gap: 2.6rem;
     padding-left: 2.6rem;
   }
 
