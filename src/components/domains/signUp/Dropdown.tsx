@@ -10,10 +10,9 @@ const cx = classNames.bind(styles);
 interface DropdownProps {
   domainValue: string;
   setDomainValue: React.Dispatch<React.SetStateAction<string>>;
-  isDisabled?: boolean;
 }
 
-const Dropdown = ({ domainValue, setDomainValue, isDisabled = false }: DropdownProps) => {
+const Dropdown = ({ domainValue, setDomainValue }: DropdownProps) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownOption, setDropdownOption] = useState("직접입력");
@@ -64,7 +63,6 @@ const Dropdown = ({ domainValue, setDomainValue, isDisabled = false }: DropdownP
             }}
             onChange={handleInputChange}
             value={domainValue}
-            disabled={isDisabled}
           />
         )}
         <button
@@ -75,7 +73,7 @@ const Dropdown = ({ domainValue, setDomainValue, isDisabled = false }: DropdownP
           <Image imageInfo={IMAGES.grayTriangle} />
         </button>
       </div>
-      {isDropdownOpen && !isDisabled && (
+      {isDropdownOpen && (
         <ul className={cx("dropdown-menu")}>
           {Object.entries(EMAIL_DOMAIN_DROPDOWN).map(([key, { option, value }]) => (
             <li key={key} onClick={() => handleMenuClick(option, value)}>

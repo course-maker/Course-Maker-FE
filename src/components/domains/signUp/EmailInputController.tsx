@@ -1,15 +1,26 @@
-import { Controller, Control, FieldValues, Path } from "react-hook-form";
+import { Controller, Control, FieldValues, Path, UseFormSetError } from "react-hook-form";
 import { SignField } from "@/constants/signInputCondition";
 import EmailInput from "./EmailInput";
+import { SignUpFormInputs } from "@/schemas/signUpSchema";
 
 interface SignInputControllerProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;
   condition: SignField;
+  isEmailValid: boolean;
+  setError: UseFormSetError<SignUpFormInputs>;
+  setIsEmailValid: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const EmailInputController = <T extends FieldValues>({ name, control, condition }: SignInputControllerProps<T>) => {
-  const { type, label, placeholder, maxLength, defaultMessage } = condition;
+const EmailInputController = <T extends FieldValues>({
+  name,
+  control,
+  condition,
+  isEmailValid,
+  setError,
+  setIsEmailValid,
+}: SignInputControllerProps<T>) => {
+  const { defaultMessage, ...inputProps } = condition;
 
   return (
     <Controller
@@ -18,13 +29,13 @@ const EmailInputController = <T extends FieldValues>({ name, control, condition 
       render={({ field, fieldState }) => (
         <EmailInput
           id={name}
-          label={label}
-          type={type}
-          placeholder={placeholder}
           isError={!!fieldState.error}
           helperText={fieldState.error?.message || defaultMessage}
-          maxLength={maxLength}
           emailValue={field.value}
+          setError={setError}
+          isEmailValid={isEmailValid}
+          setIsEmailValid={setIsEmailValid}
+          {...inputProps}
           {...field}
           onChange={field.onChange}
         />
