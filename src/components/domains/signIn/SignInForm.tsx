@@ -25,7 +25,7 @@ const SignInForm = () => {
       loginEmail: "",
       password: "",
     },
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   const closeModal = () => setCurrentModal(null);
