@@ -1,4 +1,4 @@
-import SignLayout from "@/layout/SignLayout/SignLayout";
+import SignLayout from "@/layout/SignLayout";
 import SignUpForm from "@/components/domains/signUp/SignUpForm";
 
 const SignUpPage = () => {

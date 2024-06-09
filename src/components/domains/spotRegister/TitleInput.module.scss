@@ -1,0 +1,9 @@
+.input {
+  @include text-style(2.5, 500);
+  padding-bottom: 1rem;
+  border-bottom: 0.1rem solid black;
+
+  &::placeholder {
+    color: $Primary_Gray;
+  }
+}

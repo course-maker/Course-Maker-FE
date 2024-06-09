@@ -9,8 +9,9 @@ import ScssExample from "./scss-example"; // fix: 나중에 지울것!
 import CourseDetailPage from "./CourseDetailPage";
 import SpotDetailPage from "./SpotDetailPage";
 import CourseRegisterPage from "./CourseRegisterPage";
+import SpotRegisterPage from "./SpotRegisterPage";
 
-const { search, signIn, signUp, courseDetail, spotDetail, courseRegister } = PAGE_PATH;
+const { search, signIn, signUp, courseDetail, spotDetail, courseRegister, spotRegister } = PAGE_PATH;
 
 function PageRouter() {
   return (
@@ -23,6 +24,7 @@ function PageRouter() {
         <Route path={courseDetail} element={<CourseDetailPage />} />
         <Route path={spotDetail} element={<SpotDetailPage />} />
         <Route path={courseRegister} element={<CourseRegisterPage />} />
+        <Route path={spotRegister} element={<SpotRegisterPage />} />
         <Route path="scss-example" element={<ScssExample />} />
       </Route>
     </Routes>

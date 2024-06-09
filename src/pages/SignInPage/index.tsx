@@ -1,4 +1,4 @@
-import SignLayout from "@/layout/SignLayout/SignLayout";
+import SignLayout from "@/layout/SignLayout";
 import SignInForm from "@/components/domains/signIn/SignInForm";
 import Oauth from "@/components/domains/signIn/Oauth";
 
