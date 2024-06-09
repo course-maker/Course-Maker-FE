@@ -3,10 +3,12 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
 import styles from "./SpotRegisterLayout.module.scss";
 import classNames from "classnames/bind";
-import TitleInputController from "@/components/domains/spotRegister/TitleInputController";
+
 import Button from "@/components/commons/Button";
+import TitleInputController from "@/components/domains/spotRegister/TitleInputController";
 import BadgeListController from "@/components/domains/spotRegister/BadgeListsController";
-import AddressSearchController from "@/components/domains/spotRegister/AddressSearchController";
+import AddressSearchController from "@/components/domains/spotRegister/AddressSearchInputController";
+import MainImageInputController from "@/components/domains/spotRegister/MainImageInputController";
 
 const cx = classNames.bind(styles);
 
@@ -41,6 +43,7 @@ const SpotRegisterLayout = ({ formData, title }: SpotRegisterLayoutProps) => {
             </div>
           </div>
           <AddressSearchController formFieldName="address" control={control} />
+          <MainImageInputController formFieldName="pictureLink" control={control} />
         </div>
         <Button color="navy" variant="primary" size="large" type="submit">
           {title}

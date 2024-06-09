@@ -1,4 +1,3 @@
-// AddressSearchInput.js
 import DestinationDetailsInput from "./DestinationDetailsInput";
 import { useAddressSearch } from "@/hooks/useAddressSearch";
 
@@ -16,9 +15,9 @@ const AddressSearchInput = ({ selectedAddress, onChange }: AddressSearchInput) =
     <>
       <DestinationDetailsInput
         title="여행지 위치"
-        buttonName="주소 찾기"
+        buttonName="주소찾기"
         placeholder="주소를 입력해주세요."
-        selectedAddress={selectedAddress}
+        selectedOption={selectedAddress.address}
         onButtonClick={handleAddressSearch}
       />
     </>

@@ -8,3 +8,8 @@ export const memberAddress = {
   //post
   signUp: "/v1/member",
 };
+
+export const imageAddress = {
+  //post
+  uploadImage: "/upload",
+};
