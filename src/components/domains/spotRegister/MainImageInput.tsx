@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import DestinationDetailsInput from "./DestinationDetailsInput";
 import { useImageUpload } from "@/hooks/useImageUpload";
 
@@ -9,7 +9,7 @@ interface MainImageInputProps {
 const MainImageInput = ({ onChange }: MainImageInputProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { inputFileName, uploadImage } = useImageUpload(onChange);
+  const { imageUrl, inputFileName, uploadImage } = useImageUpload();
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -30,6 +30,10 @@ const MainImageInput = ({ onChange }: MainImageInputProps) => {
       }
     }
   };
+
+  useEffect(() => {
+    onChange(imageUrl);
+  }, [imageUrl, onChange]);
 
   return (
     <>
