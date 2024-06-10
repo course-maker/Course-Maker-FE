@@ -1,6 +1,7 @@
 .container {
   padding-top: 5rem;
   padding-left: 5.4rem;
+  padding-bottom: 16.5rem;
 }
 
 .title {
@@ -9,9 +10,8 @@
 }
 
 .form {
-  &-destination {
-    padding-bottom: 2.8rem;
-  }
+  @include column-flexbox(center, start);
+  gap: 7rem;
 
   &-indent {
     @include column-flexbox(center, start);
@@ -28,5 +28,9 @@
     &-content {
       padding-left: 1.7rem;
     }
+  }
+
+  &-btn {
+    align-self: center;
   }
 }

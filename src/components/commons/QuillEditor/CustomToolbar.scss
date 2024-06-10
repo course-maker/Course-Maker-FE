@@ -1,0 +1,18 @@
+#toolbar {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 2rem;
+  width: 99.1rem;
+  height: auto;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom: none;
+  background-color: #f6f6f6;
+  border: 0.1rem solid #dbdbdb;
+  padding: 1.5rem 2rem;
+
+  & button {
+    font-size: 14px;
+  }
+}

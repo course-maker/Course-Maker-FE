@@ -7,6 +7,7 @@ const SpotRegisterPage = () => {
     tags: [],
     address: { address: "", latitude: 0, longitude: 0 },
     pictureLink: "",
+    content: "",
   });
 
   return (

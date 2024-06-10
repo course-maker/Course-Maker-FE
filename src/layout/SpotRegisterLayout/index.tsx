@@ -9,6 +9,7 @@ import TitleInputController from "@/components/domains/spotRegister/TitleInputCo
 import BadgeListController from "@/components/domains/spotRegister/BadgeListsController";
 import AddressSearchController from "@/components/domains/spotRegister/AddressSearchInputController";
 import MainImageInputController from "@/components/domains/spotRegister/MainImageInputController";
+import QuillEditorController from "@/components/domains/spotRegister/QuillEditorController";
 
 const cx = classNames.bind(styles);
 
@@ -32,9 +33,7 @@ const SpotRegisterLayout = ({ formData, title }: SpotRegisterLayoutProps) => {
     <div className={cx("container")}>
       <h1 className={cx("title")}>{title}</h1>
       <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
-        <div className={cx("form-destination")}>
-          <TitleInputController formFieldName="location" control={control} />
-        </div>
+        <TitleInputController formFieldName="location" control={control} />
         <div className={cx("form-indent")}>
           <div className={cx("form-tag")}>
             <h2 className={cx("form-tag-title")}>태그</h2>
@@ -45,9 +44,12 @@ const SpotRegisterLayout = ({ formData, title }: SpotRegisterLayoutProps) => {
           <AddressSearchController formFieldName="address" control={control} />
           <MainImageInputController formFieldName="pictureLink" control={control} />
         </div>
-        <Button color="navy" variant="primary" size="large" type="submit">
-          {title}
-        </Button>
+        <QuillEditorController formFieldName="content" control={control} />
+        <div className={cx("form-btn")}>
+          <Button color="navy" variant="primary" size="large" type="submit">
+            {title}
+          </Button>
+        </div>
       </form>
     </div>
   );
