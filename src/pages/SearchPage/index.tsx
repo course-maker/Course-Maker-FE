@@ -8,7 +8,7 @@ import Section from "@/components/commons/Section/Section";
 import Card from "@/components/commons/Card/Card";
 import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
 import axios from "axios";
-import { getTag } from "@/api/tag";
+import { getTag, Tag } from "@/api/tag";
 
 interface Icons {
   [key: string]: number;
@@ -17,8 +17,15 @@ interface Icons {
 interface MockData {
   id: number;
   title: string;
-  location: string;
+  location: {
+    address: string;
+    longitude: number;
+    latitude: number;
+  };
   icons: Icons;
+  pictureLink: string;
+  content: string;
+  tags: Tag[];
 }
 
 const cx = classNames.bind(styles);
@@ -30,6 +37,7 @@ const SearchPage = () => {
   const [lists, setLists] = useState<MockData[]>([]);
   const [tagsData, setTagsData] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(true);
+  const [filteredLists, setFilteredLists] = useState<MockData[]>([]);
 
   const toggleCourseBadge = (badge: string) => {
     setSelectedCourseBadges((prevSelected) =>
@@ -47,9 +55,11 @@ const SearchPage = () => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://34.64.85.245/v1/destination?record=12&page=1");
+        const response = await axios.get(
+          "http://34.64.85.245/v1/destination?tagIds=1&tagIds=2&tagIds=3&record=20&page=1&orderBy=NEWEST",
+        );
         setLists(response.data.contents);
-        // console.log(response.data);
+        setFilteredLists(response.data.contents);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -61,20 +71,35 @@ const SearchPage = () => {
   }, []);
 
   useEffect(() => {
-    const fetchLists = async () => {
+    const fetchTags = async () => {
       setLoading(true);
       try {
         const response = await getTag();
         setTagsData(response);
-        // console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
-    fetchLists();
+    fetchTags();
   }, []);
+
+  useEffect(() => {
+    const filterLists = () => {
+      const selectedBadges = activeTab === "코스 찾기" ? selectedCourseBadges : selectedDestinationBadges;
+      if (selectedBadges.length === 0) {
+        setFilteredLists(lists);
+        return;
+      }
+
+      const filtered = lists.filter((item) => item.tags.some((tag) => selectedBadges.includes(tag.name)));
+
+      setFilteredLists(filtered);
+    };
+
+    filterLists();
+  }, [selectedCourseBadges, selectedDestinationBadges, activeTab, lists]);
 
   const groupTagsByDescription = (tags: Tag[]) => {
     return tags.reduce(
@@ -107,7 +132,7 @@ const SearchPage = () => {
       </Section>
 
       <div className={cx("option-container")}>
-        <span>전체 {lists.length}개</span>
+        <span>전체 {filteredLists.length}개</span>
         <div>
           <select name="HeadlineAct" id="HeadlineAct" className={cx("select-box")}>
             <option value="0">최신순</option>
@@ -121,11 +146,12 @@ const SearchPage = () => {
       <Section title="">
         <div className={cx("card_container")}>
           {loading
-            ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} />)
-            : lists.map((item) => <Card key={item.id} item={item} loading={false} />)}
+            ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} item={null} />)
+            : filteredLists.map((item) => <Card key={item.id} item={item} loading={false} />)}
         </div>
       </Section>
     </div>
   );
 };
+
 export default SearchPage;
