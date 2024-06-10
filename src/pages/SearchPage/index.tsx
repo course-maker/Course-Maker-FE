@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 import BadgeList from "@/components/commons/BadgeList/BadgeList";
 import Section from "@/components/commons/Section/Section";
 import Card from "@/components/commons/Card/Card";
-
+import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
 import axios from "axios";
 import { getTag } from "@/api/tag";
 
@@ -48,7 +48,7 @@ const SearchPage = () => {
       setLoading(true);
       try {
         const response = await axios.get("http://34.64.85.245/v1/destination?record=12&page=1");
-        setLists(response.data);
+        setLists(response.data.contents);
         // console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -66,7 +66,7 @@ const SearchPage = () => {
       try {
         const response = await getTag();
         setTagsData(response);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -93,46 +93,18 @@ const SearchPage = () => {
 
   return (
     <div className={cx("search-page")}>
-      <div className={cx("desktop-tab")}>
-        <div className={cx("tab-nav")}>
-          <button
-            className={cx("tab-button", { active: activeTab === "코스 찾기" })}
-            onClick={() => setActiveTab("코스 찾기")}>
-            코스 찾기
-          </button>
-          <button
-            className={cx("tab-button", { active: activeTab === "여행지 찾기" })}
-            onClick={() => setActiveTab("여행지 찾기")}>
-            여행지 찾기
-          </button>
-        </div>
-      </div>
-
-      {activeTab === "코스 찾기" ? (
-        <Section title="" className={cx("tab-container")}>
-          {Object.entries(groupedTags).map(([description, tags]) => (
-            <BadgeList
-              key={description}
-              title={description}
-              tags={tags}
-              selectedBadges={selectedCourseBadges}
-              toggleBadge={toggleCourseBadge}
-            />
-          ))}
-        </Section>
-      ) : (
-        <Section title="" className={cx("tab-container")}>
-          {Object.entries(groupedTags).map(([description, tags]) => (
-            <BadgeList
-              key={description}
-              title={description}
-              tags={tags}
-              selectedBadges={selectedDestinationBadges}
-              toggleBadge={toggleDestinationBadge}
-            />
-          ))}
-        </Section>
-      )}
+      <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Section title="" className={cx("tab-container")}>
+        {Object.entries(groupedTags).map(([description, tags]) => (
+          <BadgeList
+            key={description}
+            title={description}
+            tags={tags}
+            selectedBadges={activeTab === "코스 찾기" ? selectedCourseBadges : selectedDestinationBadges}
+            toggleBadge={activeTab === "코스 찾기" ? toggleCourseBadge : toggleDestinationBadge}
+          />
+        ))}
+      </Section>
 
       <div className={cx("option-container")}>
         <span>전체 {lists.length}개</span>

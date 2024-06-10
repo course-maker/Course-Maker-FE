@@ -16,8 +16,14 @@ interface Tag {
   description: string;
 }
 
+interface Location {
+  address: string;
+  longitude: number;
+  latitude: number;
+}
+
 interface ItemBoxProps {
-  location: string;
+  location: Location;
   title?: string;
   tags: Tag[];
 }
@@ -40,7 +46,7 @@ const ItemBox = ({ location, title, tags }: ItemBoxProps) => {
     <div className={cx("item-box")}>
       <div className={cx("title-group")}>
         <p className={cx("item-title")}>{title}</p>
-        <p className={cx("item-location")}>{location}</p>
+        <p className={cx("item-location")}>{location.address}</p>
       </div>
       <div className={cx("score-group")}>
         {tags.map((tag) => (

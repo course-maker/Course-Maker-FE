@@ -7,6 +7,7 @@ import Skeleton from "react-loading-skeleton";
 const cx = classNames.bind(styles);
 
 const Card = ({ item, loading }: { item: any; loading: boolean }) => {
+  console.log(item);
   if (loading) {
     return (
       <div className={cx("card-container")}>
