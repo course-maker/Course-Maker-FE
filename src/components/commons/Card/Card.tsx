@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./Card.module.scss";
+import { useNavigate } from "react-router-dom";
 import ItemBox from "@/components/commons/ItemBox/ItemBox";
 import { IMAGES } from "@/constants/images";
 import Skeleton from "react-loading-skeleton";
@@ -7,6 +8,7 @@ import Skeleton from "react-loading-skeleton";
 const cx = classNames.bind(styles);
 
 const Card = ({ item, loading }: { item: any; loading: boolean }) => {
+  const navigate = useNavigate();
   console.log(item);
   if (loading) {
     return (
@@ -20,7 +22,7 @@ const Card = ({ item, loading }: { item: any; loading: boolean }) => {
   }
 
   return (
-    <div className={cx("card-container")}>
+    <div className={cx("card-container")} onClick={() => navigate(`/course/${item.id}`)}>
       <img
         alt={IMAGES.testImage.alt}
         src={item.pictureLink ? item.pictureLink : IMAGES.testImage.src}
