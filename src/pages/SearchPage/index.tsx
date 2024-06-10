@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
+
 import styles from "./SearchPage.module.scss";
-import axios from "axios";
 import classNames from "classnames/bind";
+
 import BadgeList from "@/components/commons/BadgeList/BadgeList";
 import Section from "@/components/commons/Section/Section";
 import Card from "@/components/commons/Card/Card";
-// import data from "./data.json";
-// import listData from "./listData.json";
 
-interface Tag {
-  id: number;
-  name: string;
-  description: string;
-}
+import axios from "axios";
+import { getTag } from "@/api/tag";
 
 interface Icons {
   [key: string]: number;
@@ -26,9 +22,6 @@ interface MockData {
 }
 
 const cx = classNames.bind(styles);
-// const courseData = data.courseData;
-// const destinationData = data.destinationData;
-// const lists: MockData[] = listData;
 
 const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("코스 찾기");
@@ -71,16 +64,15 @@ const SearchPage = () => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://34.64.85.245/v1/tags");
-        setTagsData(response.data);
-        console.log(response.data);
+        const response = await getTag();
+        setTagsData(response);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchLists();
   }, []);
 

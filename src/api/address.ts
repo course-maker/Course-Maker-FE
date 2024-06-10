@@ -13,3 +13,8 @@ export const imageAddress = {
   //post
   uploadImage: "/upload",
 };
+
+export const tagAddress = {
+  //get
+  tag: "/v1/tags",
+};
