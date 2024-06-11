@@ -37,7 +37,6 @@ const SearchPage = () => {
   const [lists, setLists] = useState<MockData[]>([]);
   const [tagsData, setTagsData] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filteredLists, setFilteredLists] = useState<MockData[]>([]);
 
   const toggleCourseBadge = (badge: string) => {
     setSelectedCourseBadges((prevSelected) =>
@@ -55,18 +54,14 @@ const SearchPage = () => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          "http://34.64.85.245/v1/destination?tagIds=1&tagIds=2&tagIds=3&record=20&page=1&orderBy=NEWEST",
-        );
+        const response = await axios.get("http://34.64.85.245/v1/destination?tagIds=6&record=20&page=1&orderBy=NEWEST");
         setLists(response.data.contents);
-        setFilteredLists(response.data.contents);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchLists();
   }, []);
 
@@ -84,22 +79,6 @@ const SearchPage = () => {
     };
     fetchTags();
   }, []);
-
-  useEffect(() => {
-    const filterLists = () => {
-      const selectedBadges = activeTab === "코스 찾기" ? selectedCourseBadges : selectedDestinationBadges;
-      if (selectedBadges.length === 0) {
-        setFilteredLists(lists);
-        return;
-      }
-
-      const filtered = lists.filter((item) => item.tags.some((tag) => selectedBadges.includes(tag.name)));
-
-      setFilteredLists(filtered);
-    };
-
-    filterLists();
-  }, [selectedCourseBadges, selectedDestinationBadges, activeTab, lists]);
 
   const groupTagsByDescription = (tags: Tag[]) => {
     return tags.reduce(
@@ -132,7 +111,7 @@ const SearchPage = () => {
       </Section>
 
       <div className={cx("option-container")}>
-        <span>전체 {filteredLists.length}개</span>
+        <span>전체 {lists.length}개</span>
         <div>
           <select name="HeadlineAct" id="HeadlineAct" className={cx("select-box")}>
             <option value="0">최신순</option>
@@ -147,7 +126,7 @@ const SearchPage = () => {
         <div className={cx("card_container")}>
           {loading
             ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} item={null} />)
-            : filteredLists.map((item) => <Card key={item.id} item={item} loading={false} />)}
+            : lists.map((item) => <Card key={item.id} item={item} loading={false} />)}
         </div>
       </Section>
     </div>
