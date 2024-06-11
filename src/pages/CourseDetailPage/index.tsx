@@ -1,19 +1,24 @@
+import { useState, useEffect } from "react";
 import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
 import TitleBox from "@/components/commons/TitleBox/TitleBox";
 import Section from "@/components/commons/Section/Section";
 import styles from "./CourseDetailPage.module.scss";
 import classNames from "classnames/bind";
-// import Button from "@/components/commons/Button";
+
+import { getCourse } from "@/api/course";
+import { Courses } from "@/api/course/type";
 import { Map } from "react-kakao-maps-sdk";
 import Mock from "@/mock/courses.json";
+
+// import Button from "@/components/commons/Button";
 // import { IMAGES } from "@/constants/images";
 // import Image from "@/components/commons/Image";
 // import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
 
 const cx = classNames.bind(styles);
 
 const CourseDetailPage = () => {
+  const [course, setCourse] = useState<Courses>();
   const [activeDay, setActiveDay] = useState(1);
   // const { id } = useParams();
   // const navigate = useNavigate();
@@ -26,10 +31,29 @@ const CourseDetailPage = () => {
   //   // {delete data}
   // };
 
+  // 코스 정보
+  useEffect(() => {
+    const fetchLists = async () => {
+      // setLoading(true);
+      try {
+        const response = await getCourse("/3");
+        console.log(response);
+        setCourse(response);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+      // finally {
+      //   setLoading(false);
+      // }
+    };
+    fetchLists();
+  }, []);
+  console.log(course);
   const mockdata = Mock;
   const tagList = mockdata.map((item) => item.tags.map((item) => item.description));
 
   const filteredData = mockdata.filter((item) => {
+    console.log(item);
     return activeDay === 1 ? item.id % 2 === 0 : item.id % 2 !== 0;
   });
   return (

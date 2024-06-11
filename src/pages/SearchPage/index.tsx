@@ -61,7 +61,7 @@ const SearchPage = () => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await getCourse("tagIds=6&record=20&page=1&orderBy=NEWEST");
+        const response = await getCourse("?record=20&page=1&orderBy=NEWEST");
         setCourse(response.contents);
       } catch (error) {
         console.error("Error fetching data:", error);
