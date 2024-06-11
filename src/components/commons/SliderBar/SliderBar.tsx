@@ -1,8 +1,9 @@
 import classNames from "classnames/bind";
-import { useState } from "react";
 import styles from "./SliderBar.module.scss";
 import { IMAGES } from "@/constants/images";
 import Image from "@/components/commons/Image";
+import { useRecoilState } from "recoil";
+import { step1State } from "@/recoil/stepsAtom";
 
 const cx = classNames.bind(styles);
 
@@ -10,14 +11,16 @@ interface SliderBarProps {
   type: "TravelCount" | "Duration";
 }
 const Slider = ({ type }: SliderBarProps) => {
-  const [value, setValue] = useState(type === "Duration" ? 2 : 5);
+  const [step1, setStep1] = useRecoilState(step1State);
 
-  const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(event.target.value, 10);
-    setValue(newValue);
+  const handleSliderChange = (name: string, value: number) => {
+    setStep1({ ...step1, [name]: value });
+    console.log(step1.duration);
   };
 
   const marks = type === "Duration" ? ["1일", "2일", "3일"] : ["1인", "2인", "3인", "4인", "5인 이상"];
+  const maxValue = type === "Duration" ? 3 : 5;
+  const currentValue = type === "Duration" ? step1.duration : step1.travelCount;
 
   return (
     <div className={cx("slider-container")}>
@@ -37,9 +40,11 @@ const Slider = ({ type }: SliderBarProps) => {
           <input
             type="range"
             min="1"
-            max={type === "Duration" ? 3 : 5}
-            value={value}
-            onChange={handleSliderChange}
+            max={maxValue}
+            value={currentValue}
+            onChange={(event) =>
+              handleSliderChange(type === "Duration" ? "duration" : "travelCount", Number(event.target.value))
+            }
             className={cx("slider-input")}
           />
           <div className={cx("slider-thumb")} />

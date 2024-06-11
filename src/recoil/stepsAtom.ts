@@ -15,11 +15,16 @@ interface Step3State {
   content: string;
 }
 
+export const currentStepState = atom<number>({
+  key: "currentStepState",
+  default: 1,
+});
+
 export const step1State = atom<Step1State>({
   key: "step1State",
   default: {
-    duration: 0,
-    travelCount: 0,
+    duration: 1,
+    travelCount: 1,
     selectedBadges: [],
   },
 });

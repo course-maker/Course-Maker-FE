@@ -1,7 +1,86 @@
-.step-box {
+.schedule-container {
+  display: flex;
+  padding-top: 10.8rem;
+  gap: 18.1rem;
+}
+
+.scrollable-list2 {
   display: flex;
   flex-direction: column;
+  gap: 1.1rem;
+  max-height: 40.5rem;
+  overflow-y: scroll;
+  padding-right: 1rem;
+}
+
+.schedule-item-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6.9rem;
+}
+
+.schedule-item-tags {
+  padding-top: 18.1rem;
+}
+
+.tag-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 2.3rem;
+  gap: 0.6rem;
+}
+
+.tag-item {
+  display: inline-flex;
+  font-size: 1.6rem;
+  padding: 0.8rem 1.6rem;
+  gap: 1rem;
+  border-radius: 99.9rem;
+  border: 0.1rem solid $Primary_Emerald;
+  background: $Primary_Emerald;
+  color: $White;
+}
+
+.schedule-item-option {
+  display: flex;
+  gap: 6rem;
+}
+
+.schedule-item-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.schedule-item-title {
+  color: $Black;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.schedule-item-text {
+  color: #013252;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.course-input-group {
+  display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 9.3rem;
+  width: 97.2rem;
+  border-bottom: 0.2rem solid $Black;
+  margin-bottom: 3.9rem;
+}
+.course-title-input {
+  text-align: center;
+  padding-bottom: 1.8rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+  width: 100%;
+  height: 4rem;
+}
+.course-title-input::placeholder {
+  color: #8c8c8c;
+  font-size: 2.5rem;
+  font-weight: 500;
 }
