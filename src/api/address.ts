@@ -46,3 +46,8 @@ export const oauthAddress = {
     redirect: (code: string) => `/login/oauth2/code/kakao?code=${code}`,
   },
 };
+
+export const courseAddress = {
+  //post
+  courses: "/v1/courses",
+};
