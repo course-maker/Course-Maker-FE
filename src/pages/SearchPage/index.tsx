@@ -37,6 +37,7 @@ const SearchPage = () => {
   const [selectedCourseBadges, setSelectedCourseBadges] = useState<string[]>([]);
   const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<string[]>([]);
   const [lists, setLists] = useState<MockData[]>([]);
+  const [course, setCourse] = useState<MockData[]>([]);
   const [tagsData, setTagsData] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -52,6 +53,7 @@ const SearchPage = () => {
     );
   };
 
+  // 여행지 정보
   useEffect(() => {
     const fetchLists = async () => {
       setLoading(true);
@@ -67,7 +69,23 @@ const SearchPage = () => {
     fetchLists();
   }, []);
 
-  // 태그 Data
+  // 코스 정보
+  useEffect(() => {
+    const fetchLists = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://34.64.85.245/v1/courses?tagIds=4&record=10&page=1&orderBy=NEWEST");
+        setCourse(response.data.contents);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLists();
+  }, []);
+
+  // 태그 정보
   useEffect(() => {
     const fetchTags = async () => {
       setLoading(true);
@@ -101,7 +119,7 @@ const SearchPage = () => {
       </Section>
 
       <div className={cx("option-container")}>
-        <span>전체 {lists.length}개</span>
+        <span>전체 {activeTab === "코스 찾기" ? course.length : lists.length}개</span>
         <div>
           <select name="HeadlineAct" id="HeadlineAct" className={cx("select-box")}>
             <option value="0">최신순</option>
@@ -116,7 +134,9 @@ const SearchPage = () => {
         <div className={cx("card_container")}>
           {loading
             ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} item={null} />)
-            : lists.map((item) => <Card key={item.id} item={item} loading={false} />)}
+            : (activeTab === "코스 찾기" ? course : lists).map((item) => (
+                <Card key={item.id} item={item} loading={false} />
+              ))}
         </div>
       </Section>
     </div>
