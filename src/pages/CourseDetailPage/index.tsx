@@ -1,5 +1,6 @@
 import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
 import TitleBox from "@/components/commons/TitleBox/TitleBox";
+import Section from "@/components/commons/Section/Section";
 import styles from "./CourseDetailPage.module.scss";
 import classNames from "classnames/bind";
 // import Button from "@/components/commons/Button";
@@ -9,7 +10,6 @@ import Mock from "@/mock/courses.json";
 // import Image from "@/components/commons/Image";
 // import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import DetailLayout from "@/layout/DetailLayout/DetailLayout";
 
 const cx = classNames.bind(styles);
 
@@ -33,9 +33,9 @@ const CourseDetailPage = () => {
     return activeDay === 1 ? item.id % 2 === 0 : item.id % 2 !== 0;
   });
   return (
-    <DetailLayout>
-      <article className={cx("article")}>
-        <div>
+    <div>
+      <div className={cx("container")}>
+        <Section className={cx("section")}>
           <TitleBox
             image={{ src: "/src/assets/images/course_maker_logo.svg", alt: `${`데이터`}해당 이미지` }}
             title={mockdata[0].title}
@@ -54,8 +54,8 @@ const CourseDetailPage = () => {
                 삭제하기
               </Button>
             </div> */}
-        </div>
-        <div>
+        </Section>
+        <Section className={cx("section")}>
           <div className={cx("list-title-group")}>
             <p className={cx("list-title")}>전체 여행지</p>
             <p className={cx("list-explanation")}>여행지를 클릭하면 여행지 상세페이지를 확인할 수 있습니다.</p>
@@ -89,10 +89,10 @@ const CourseDetailPage = () => {
               </div>
             ))}
           </AllCardList>
-        </div>
-      </article>
-      <article className={cx("schedule")}>
-        <div className={cx("schedule-group")}>
+        </Section>
+      </div>
+      <div className={cx("container")}>
+        <Section className={cx("schedule-group")}>
           <div className={cx("day-btn-group")}>
             <button
               type="button"
@@ -139,19 +139,19 @@ const CourseDetailPage = () => {
               ))}
             </div>
           </FilterCardList>
-        </div>
+        </Section>
         <Map
           center={{ lat: mockdata[0].latitude, lng: mockdata[0].longitude }} // 지도의 중심 좌표 lat/lng 위도/경도
           className={cx("kakao-map")} // 지도 크기
-          style={{ width: "68.9rem", height: "50.4rem" }}
+          style={{ width: "48.9rem", height: "50.4rem" }}
           level={3} // 지도 확대 레벨
         />
-      </article>
-      <article className={cx("content")}>
+      </div>
+      <div className={cx("content")}>
         <img width={443} height={255} src={mockdata[0].pictureLink} alt={`${mockdata[0].title} 이미지`} />
         <p>{mockdata[0].content}</p>
-      </article>
-    </DetailLayout>
+      </div>
+    </div>
   );
 };
 
