@@ -37,20 +37,13 @@ export type signUpRequestDto = {
 };
 
 export type signUpResponseDto = {
-  createdAt: string;
-  updatedAt: string;
-  id: number;
-  loginType: string;
-  username: null;
-  name: string;
   email: string;
+  name: string;
   nickname: string;
-  phoneNumber: string;
   password: string;
-  roles: string;
+  phoneNumber: string;
   profileImgUrl: string;
   profileDescription: string;
-  deletedAt: string | null;
 };
 
 /** 로그아웃 요청 */
