@@ -24,6 +24,7 @@ export type loginRequestDto = {
 export type loginResponseDto = {
   accessToken: string;
   refreshToken: string;
+  nickname: string;
 };
 
 /** 회원가입 요청 */

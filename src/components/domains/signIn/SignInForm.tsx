@@ -17,7 +17,7 @@ const cx = classNames.bind(styles);
 
 const SignInForm = () => {
   const navigate = useNavigate();
-  const { postSignIn, currentModal, setCurrentModal } = useSignInMutation();
+  const { signIn, currentModal, setCurrentModal } = useSignInMutation();
 
   const { control, handleSubmit } = useForm<SignInFormInputs>({
     resolver: zodResolver(signInSchema),
@@ -41,7 +41,7 @@ const SignInForm = () => {
   return (
     <>
       <div className={cx("container")}>
-        <form className={cx("form")} onSubmit={handleSubmit((data) => postSignIn(data))}>
+        <form className={cx("form")} onSubmit={handleSubmit((data) => signIn(data))}>
           <div className={cx("form-input")}>
             <div className={cx("form-input-field")}>
               <SignInputController name="loginEmail" control={control} condition={SIGN_IN_CONDITION.loginEmail} />
