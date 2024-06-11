@@ -51,7 +51,7 @@ const ItemBox = ({ location, title, tags }: ItemBoxProps) => {
         <p className={cx("item-location")}>{location.address}</p>
       </div>
       <div className={cx("score-group")}>
-        {tags.map((tag) => (
+        {tags?.map((tag) => (
           <Badge key={tag.id} color="gray" variant="primary" size="xsmall">
             {tag.name}
           </Badge>
