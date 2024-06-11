@@ -1,18 +1,25 @@
+import React from "react";
+import { useRecoilState } from "recoil";
+import { step1State, step2State, step3State } from "@/recoil/stepsAtom";
 import { useStepper } from "../StepperContext";
-import styles from "./NavigationButtons.module.scss";
-import classNames from "classnames/bind";
+import { postCourses } from "@/api/course/index";
 import Button from "../../Button";
 
-const cx = classNames.bind(styles);
+const NavigationButtons: React.FC = () => {
+  const [step1] = useRecoilState(step1State);
+  const [step2] = useRecoilState(step2State);
+  const [step3] = useRecoilState(step3State);
 
-const NavigationButtons = () => {
   const { goToNextStep, goToPrevStep, currentStep } = useStepper();
 
   const handleCourseSubmit = () => {
+    const formData = { ...step1, ...step2, ...step3 };
     alert("코스가 등록되었습니다.");
+    postCourses(formData).then((response) => console.log(response));
   };
+
   return (
-    <div className={cx("buttonContainer")}>
+    <div className="buttonContainer">
       {currentStep > 1 && (
         <Button color="navy" variant="secondary" size="medium" onClick={goToPrevStep}>
           이전으로

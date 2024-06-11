@@ -1,5 +1,14 @@
-.step-box {
+.BadgeList-box {
   display: flex;
   flex-direction: column;
-  gap: 9.3rem;
+  padding-top: 11.9rem;
+  padding-bottom: 14.7rem;
+}
+.BadgeList-title {
+  display: flex;
+  justify-content: center;
+  color: $Black;
+  font-size: 3rem;
+  font-weight: 700;
+  padding-bottom: 7.6rem;
 }
