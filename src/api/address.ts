@@ -14,6 +14,13 @@ export const memberAddress = {
   signUp: "/v1/member",
 };
 
+export const destinationAddress = {
+  //post
+  postDestination: "/v1/destination",
+  //get
+  get: "/v1/destination",
+};
+
 export const imageAddress = {
   //post
   uploadImage: "/upload",
@@ -22,13 +29,6 @@ export const imageAddress = {
 export const tagAddress = {
   //get
   tag: "/v1/tags",
-};
-
-export const destinationAddress = {
-  //get
-  get: "/v1/destination",
-  //post
-  postDestination: "/v1/destination",
 };
 
 export const coursesAddress = {
