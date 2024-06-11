@@ -18,7 +18,7 @@ const SignUpForm = () => {
   const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
   const [isNicknameValid, setIsNicknameValid] = useState<boolean>(false);
 
-  const { postSignUp } = useSignUpMutation();
+  const { signUp } = useSignUpMutation();
 
   const { control, handleSubmit, setError, watch } = useForm<SignUpFormInputs>({
     resolver: zodResolver(signUpSchema),
@@ -46,7 +46,7 @@ const SignUpForm = () => {
     if (isEmailValid && isNicknameValid) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { confirmPassword, ...restData } = data;
-      postSignUp(restData);
+      signUp(restData);
     } else {
       if (!isEmailValid) {
         setError("email", {

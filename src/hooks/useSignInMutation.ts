@@ -12,8 +12,14 @@ export const useSignInMutation = () => {
   const navigate = useNavigate();
   const [currentModal, setCurrentModal] = useState<string | null>(null);
 
-  const { mutateAsync: mutateAsyncForToken } = useMutation({
+  const { mutate: signIn } = useMutation({
     mutationFn: (enteredSignInInfo: loginRequestDto) => postLogin(enteredSignInInfo),
+    onSuccess: (data) => {
+      saveAccessToken(data.accessToken);
+      saveRefreshToken(data.refreshToken);
+      alert(`안녕하세요, ${data.nickname}님. 오늘도 즐거운 여행되세요`);
+      navigate(PAGE_PATH.home);
+    },
     onError: (error: AxiosError) => {
       const statusCode = error?.response?.status;
       switch (statusCode) {
@@ -29,15 +35,5 @@ export const useSignInMutation = () => {
     },
   });
 
-  const postSignIn = async (enteredSignInInfo: loginRequestDto) => {
-    const tokens = await mutateAsyncForToken(enteredSignInInfo);
-    if (tokens?.accessToken) {
-      saveAccessToken(tokens.accessToken);
-      saveRefreshToken(tokens.refreshToken);
-      alert("안녕하세요, 오늘도 즐거운 여행되세요");
-      navigate(PAGE_PATH.home);
-    }
-  };
-
-  return { postSignIn, currentModal, setCurrentModal };
+  return { signIn, currentModal, setCurrentModal };
 };
