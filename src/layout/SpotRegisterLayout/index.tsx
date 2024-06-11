@@ -24,6 +24,7 @@ interface SpotRegisterLayoutProps {
 const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayoutProps) => {
   const { control, handleSubmit, setFocus } = useForm({
     defaultValues: formData,
+    values: formData,
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {

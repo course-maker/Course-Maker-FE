@@ -10,9 +10,11 @@ import CourseDetailPage from "./CourseDetailPage";
 import SpotDetailPage from "./SpotDetailPage";
 import CourseRegisterPage from "./CourseRegisterPage";
 import SpotRegisterPage from "./SpotRegisterPage";
+import SpotEditPage from "./spotEditPage";
 import AuthListener from "@/components/commons/AuthListener";
 
-const { search, signIn, signUp, courseDetail, spotDetail, courseRegister, spotRegister, authKakao } = PAGE_PATH;
+const { search, signIn, signUp, courseDetail, spotDetail, courseRegister, spotRegister, spotEdit, authKakao } =
+  PAGE_PATH;
 
 function PageRouter() {
   return (
@@ -26,6 +28,7 @@ function PageRouter() {
         <Route path={spotDetail} element={<SpotDetailPage />} />
         <Route path={courseRegister} element={<CourseRegisterPage />} />
         <Route path={spotRegister} element={<SpotRegisterPage />} />
+        <Route path={spotEdit} element={<SpotEditPage />} />
         <Route path="scss-example" element={<ScssExample />} />
       </Route>
       <Route path={authKakao} element={<AuthListener />} />
