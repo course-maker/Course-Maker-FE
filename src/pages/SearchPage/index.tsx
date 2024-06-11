@@ -45,7 +45,7 @@ const SearchPage = () => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await getDestination("tagIds=6&record=20&page=1&orderBy=NEWEST");
+        const response = await getDestination("record=20&page=1&orderBy=NEWEST");
         setLists(response.contents);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -62,7 +62,6 @@ const SearchPage = () => {
       setLoading(true);
       try {
         const response = await getCourse("tagIds=6&record=20&page=1&orderBy=NEWEST");
-        console.log(response);
         setCourse(response.contents);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -122,8 +121,9 @@ const SearchPage = () => {
         <div className={cx("card_container")}>
           {loading
             ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} item={null} />)
-            : // (activeTab === "코스 찾기" ? course : lists)
-              lists.map((item) => <Card key={item.id} name={activeTab} item={item} loading={false} />)}
+            : (activeTab === "코스 찾기" ? course : lists).map((item) => (
+                <Card key={item.id} name={activeTab} item={item} loading={false} />
+              ))}
         </div>
       </Section>
     </div>

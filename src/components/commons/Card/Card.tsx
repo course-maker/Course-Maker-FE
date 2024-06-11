@@ -4,12 +4,24 @@ import { useNavigate } from "react-router-dom";
 import ItemBox from "@/components/commons/ItemBox/ItemBox";
 import { IMAGES } from "@/constants/images";
 import Skeleton from "react-loading-skeleton";
-// import "react-loading-skeleton/dist/skeleton.css";
 const cx = classNames.bind(styles);
 
-const Card = ({ item, loading }: { item: any; loading: boolean }) => {
+import { List } from "@/api/destination/type";
+import { Course } from "@/api/course/type";
+
+//List | Course 타입가드
+const isCourse = (item: unknown): item is Course => {
+  return (item as Course).courseDestinations !== undefined;
+};
+
+const isList = (item: unknown): item is List => {
+  return (item as List).location !== undefined;
+};
+
+const Card = ({ item, name, loading }: { item: unknown; name: string; loading: boolean }) => {
   const navigate = useNavigate();
   console.log(item);
+  console.log(name);
   if (loading) {
     return (
       <div className={cx("card-container")}>
@@ -22,14 +34,21 @@ const Card = ({ item, loading }: { item: any; loading: boolean }) => {
   }
 
   return (
-    <div className={cx("card-container")} onClick={() => navigate(`/course/${item.id}`)}>
-      <img
-        alt={IMAGES.testImage.alt}
-        src={item.pictureLink ? item.pictureLink : IMAGES.testImage.src}
-        className={cx("card-image")}
-      />
+    <div
+      className={cx("card-container")}
+      onClick={() => navigate(`/${name === "코스 찾기" ? "course" : "destination"}/${item.id}`)}>
+      <img alt={IMAGES.testImage.alt} src={(item as Course | List).pictureLink} className={cx("card-image")} />
       <div className={cx("card-content")}>
-        <ItemBox location={item.location} title={item.name} tags={item.tags} />
+        {isCourse(item) && name === "코스 찾기" && (
+          <ItemBox
+            location={item.courseDestinations[0].destination.location}
+            title={item.title}
+            tags={item.courseTags}
+          />
+        )}
+        {isList(item) && name === "여행지 찾기" && (
+          <ItemBox location={item.location} title={item.name} tags={item.tags} />
+        )}
       </div>
     </div>
   );
