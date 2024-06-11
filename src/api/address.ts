@@ -1,3 +1,6 @@
+const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+const REDIRECT_URI = "http://localhost:5173/auth/kakao/callback";
+
 export const memberAddress = {
   //post
   validateNickname: "/v1/member/validate-nickname",
@@ -9,11 +12,6 @@ export const memberAddress = {
   logout: "/v1/member/logout",
   //post
   signUp: "/v1/member",
-};
-
-export const destinationAddress = {
-  //post
-  postDestination: "/v1/destination",
 };
 
 export const imageAddress = {
@@ -29,9 +27,19 @@ export const tagAddress = {
 export const destinationAddress = {
   //get
   get: "/v1/destination",
+  //post
+  postDestination: "/v1/destination",
 };
 
 export const coursesAddress = {
   //get
   get: "/v1/courses",
+};
+
+export const oauthAddress = {
+  //post
+  kakao: {
+    login: `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`,
+    redirect: (code: string) => `/login/oauth2/code/kakao?code=${code}`,
+  },
 };

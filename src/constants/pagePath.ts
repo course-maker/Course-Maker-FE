@@ -9,4 +9,5 @@ export const PAGE_PATH = {
   spotRegister: "/spot/register", // 여행지 등록하기
   courseEdit: "/course/:id/edit", // 코스 수정하기
   spotEdit: "/spot/:id/edit", // 여행지 수정하기
+  authKakao: "/auth/kakao/callback",
 };
