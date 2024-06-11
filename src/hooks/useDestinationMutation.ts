@@ -5,7 +5,7 @@ import { useMutation /*useQueryClient*/ } from "@tanstack/react-query";
 import { postDestinationApi } from "@/api/destination";
 import { postDestinationRequestDto } from "@/api/destination/type";
 
-export default function useDestinationMutation() {
+export const useDestinationMutation = () => {
   const navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const invalidateCardList = () => {
@@ -33,4 +33,4 @@ export default function useDestinationMutation() {
   });
 
   return { postDestination };
-}
+};

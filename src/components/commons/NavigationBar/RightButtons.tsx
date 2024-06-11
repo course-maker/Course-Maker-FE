@@ -3,11 +3,13 @@ import classNames from "classnames/bind";
 import Button from "@/components/commons/Button";
 import { useNavigate } from "react-router-dom";
 import { PAGE_PATH } from "@/constants/pagePath";
+import { useLogoutMutation } from "@/hooks/useLogoutMutation";
 
 const cx = classNames.bind(styles);
 
 const RightButtons = ({ isAuth }: { isAuth: boolean | null }) => {
   const navigate = useNavigate();
+  const { logout } = useLogoutMutation();
   const { signIn, signUp } = PAGE_PATH;
 
   return isAuth ? (
@@ -15,8 +17,8 @@ const RightButtons = ({ isAuth }: { isAuth: boolean | null }) => {
       <Button color="emerald" variant="primary" size="small">
         마이페이지
       </Button>
-      <Button color="emerald" variant="secondary" size="small">
-        내 등급/뱃지
+      <Button color="emerald" variant="secondary" size="small" onClick={() => logout()}>
+        로그아웃
       </Button>
     </div>
   ) : (

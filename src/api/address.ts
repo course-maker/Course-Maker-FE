@@ -6,6 +6,8 @@ export const memberAddress = {
   //post
   login: "/v1/member/login",
   //post
+  logout: "/v1/member/logout",
+  //post
   signUp: "/v1/member",
 };
 

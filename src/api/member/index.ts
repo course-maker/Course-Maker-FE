@@ -3,6 +3,7 @@ import { apiRequest } from "../axios";
 import {
   loginRequestDto,
   loginResponseDto,
+  logoutResponseDto,
   signUpRequestDto,
   signUpResponseDto,
   validateEmailRequestDto,
@@ -26,3 +27,6 @@ export const postLogin = (data: loginRequestDto): Promise<loginResponseDto> =>
 /** 회원가입 요청 */
 export const postRegister = (data: signUpRequestDto): Promise<signUpResponseDto> =>
   apiRequest("post", memberAddress.signUp, data);
+
+/** 로그아웃 요청 */
+export const postLogout = (): Promise<logoutResponseDto> => apiRequest("post", memberAddress.logout);

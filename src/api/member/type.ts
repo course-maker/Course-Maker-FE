@@ -51,3 +51,8 @@ export type signUpResponseDto = {
   profileDescription: string;
   deletedAt: string | null;
 };
+
+/** 로그아웃 요청 */
+export type logoutResponseDto = {
+  success: boolean;
+};
