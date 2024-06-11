@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useCallback } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import ImageResize from "quill-image-resize-module-react";
 
@@ -28,8 +28,8 @@ const QuillEditor = ({ onChange, value }: { onChange: (value: string) => void; v
   const quillRef = useRef<ReactQuill | null>(null);
   const { uploadImageAsync } = useImageUpload();
 
-  const imageHandler = () => {
-    const input = document.createElement("input");
+  const imageHandler = useCallback(() => {
+    const input = document.createElement("input") as HTMLInputElement;
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
     input.click();
@@ -38,21 +38,24 @@ const QuillEditor = ({ onChange, value }: { onChange: (value: string) => void; v
       if (input.files) {
         const file = input.files[0];
         const formData = new FormData();
-
         formData.append("images", file);
 
         const editor = quillRef.current?.getEditor();
         if (editor) {
           const range = editor.getSelection();
           if (range) {
-            const result = await uploadImageAsync({ formData });
-            const IMG_URL = result[0];
-            editor.insertEmbed(range.index, "image", IMG_URL);
+            try {
+              const result = await uploadImageAsync({ formData });
+              const IMG_URL = result[0];
+              editor.insertEmbed(range.index, "image", IMG_URL);
+            } catch (error) {
+              console.error("Image upload failed:", error);
+            }
           }
         }
       }
     });
-  };
+  }, [uploadImageAsync]);
 
   const modules = useMemo(() => {
     return {
@@ -67,21 +70,7 @@ const QuillEditor = ({ onChange, value }: { onChange: (value: string) => void; v
         modules: ["Resize", "DisplaySize", "Toolbar"],
       },
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // const modules = {
-  //   toolbar: {
-  //     container: "#toolbar",
-  //     handlers: {
-  //       image: imageHandler,
-  //     },
-  //   },
-  //   ImageResize: {
-  //     parchment: Quill.import("parchment"),
-  //     modules: ["Resize", "DisplaySize", "Toolbar"],
-  //   },
-  // };
+  }, [imageHandler]);
 
   return (
     <div>

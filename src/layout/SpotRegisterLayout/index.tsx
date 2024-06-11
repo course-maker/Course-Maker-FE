@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+// import { useMemo } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
 import styles from "./SpotRegisterLayout.module.scss";
@@ -11,29 +11,31 @@ import AddressSearchController from "@/components/domains/spotRegister/AddressSe
 import MainImageInputController from "@/components/domains/spotRegister/MainImageInputController";
 import QuillEditorController from "@/components/domains/spotRegister/QuillEditorController";
 
+import { validateFormData } from "@/utils/validateFormData";
+
 const cx = classNames.bind(styles);
 
 interface SpotRegisterLayoutProps {
-  formData: any; // Dto로 대체하기
+  formData: FieldValues;
   title: string;
+  onSubmitClick: (data: FieldValues) => void;
 }
 
-const SpotRegisterLayout = ({ formData, title }: SpotRegisterLayoutProps) => {
-  const { control, handleSubmit } = useForm({
-    defaultValues: useMemo(() => {
-      return formData;
-    }, [formData]),
+const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayoutProps) => {
+  const { control, handleSubmit, setFocus } = useForm({
+    defaultValues: formData,
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    if (!validateFormData(data, setFocus)) return;
+    onSubmitClick(data);
   };
 
   return (
     <div className={cx("container")}>
       <h1 className={cx("title")}>{title}</h1>
       <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
-        <TitleInputController formFieldName="location" control={control} />
+        <TitleInputController formFieldName="name" control={control} />
         <div className={cx("form-indent")}>
           <div className={cx("form-tag")}>
             <h2 className={cx("form-tag-title")}>태그</h2>
@@ -41,7 +43,7 @@ const SpotRegisterLayout = ({ formData, title }: SpotRegisterLayoutProps) => {
               <BadgeListController formFieldName="tags" control={control} />
             </div>
           </div>
-          <AddressSearchController formFieldName="address" control={control} />
+          <AddressSearchController formFieldName="location" control={control} />
           <MainImageInputController formFieldName="pictureLink" control={control} />
         </div>
         <QuillEditorController formFieldName="content" control={control} />

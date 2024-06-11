@@ -14,7 +14,7 @@ function MainImageInputController<ControlType extends FieldValues>({
     <Controller
       control={control}
       name={formFieldName}
-      render={({ field }) => <MainImageInput onChange={field.onChange} />}
+      render={({ field }) => <MainImageInput selectedImage={field.value} onChange={field.onChange} />}
     />
   );
 }

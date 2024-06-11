@@ -1,11 +1,10 @@
 import DestinationDetailsInput from "./DestinationDetailsInput";
 import { useAddressSearch } from "@/hooks/useAddressSearch";
-
-export type Address = { address: string; latitude: number; longitude: number };
+import { Location } from "@/api/destination/type";
 
 interface AddressSearchInput {
-  selectedAddress: Address;
-  onChange: (updatedAddress: Address) => void;
+  selectedAddress: Location;
+  onChange: (updatedAddress: Location) => void;
 }
 
 const AddressSearchInput = ({ selectedAddress, onChange }: AddressSearchInput) => {
