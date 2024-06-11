@@ -9,7 +9,11 @@ import Section from "@/components/commons/Section/Section";
 import Card from "@/components/commons/Card/Card";
 import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
 
-import { getTag, Tag } from "@/api/tag";
+import { getTag } from "@/api/tag";
+import { tagResponseDto } from "@/api/tag/type";
+import { getDestination } from "@/api/destination";
+import { Destination } from "@/api/destination/type";
+
 import groupTags from "@/utils/groupTags";
 
 interface Icons {
@@ -27,7 +31,7 @@ interface MockData {
   icons: Icons;
   pictureLink: string;
   content: string;
-  tags: Tag[];
+  tags: tagResponseDto[];
 }
 
 const cx = classNames.bind(styles);
@@ -36,9 +40,9 @@ const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("코스 찾기");
   const [selectedCourseBadges, setSelectedCourseBadges] = useState<string[]>([]);
   const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<string[]>([]);
-  const [lists, setLists] = useState<MockData[]>([]);
+  const [lists, setLists] = useState<Destination[]>([]);
   const [course, setCourse] = useState<MockData[]>([]);
-  const [tagsData, setTagsData] = useState<Tag[]>([]);
+  const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [loading, setLoading] = useState(true);
 
   const toggleCourseBadge = (badge: string) => {
@@ -56,14 +60,11 @@ const SearchPage = () => {
   // 여행지 정보
   useEffect(() => {
     const fetchLists = async () => {
-      setLoading(true);
       try {
-        const response = await axios.get("http://34.64.85.245/v1/destination?tagIds=6&record=20&page=1&orderBy=NEWEST");
-        setLists(response.data.contents);
+        const response = await getDestination("tagIds=6&record=20&page=1&orderBy=NEWEST");
+        setLists(response.contents);
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchLists();
@@ -74,7 +75,7 @@ const SearchPage = () => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://34.64.85.245/v1/courses?tagIds=4&record=10&page=1&orderBy=NEWEST");
+        const response = await axios.get("http://34.64.85.245/v1/courses?tagIds=6&record=10&page=1&orderBy=NEWEST");
         setCourse(response.data.contents);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -88,14 +89,11 @@ const SearchPage = () => {
   // 태그 정보
   useEffect(() => {
     const fetchTags = async () => {
-      setLoading(true);
       try {
         const response = await getTag();
         setTagsData(response);
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchTags();
@@ -134,9 +132,8 @@ const SearchPage = () => {
         <div className={cx("card_container")}>
           {loading
             ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} item={null} />)
-            : (activeTab === "코스 찾기" ? course : lists).map((item) => (
-                <Card key={item.id} item={item} loading={false} />
-              ))}
+            : // (activeTab === "코스 찾기" ? course : lists)
+              lists.map((item) => <Card key={item.id} name={activeTab} item={item} loading={false} />)}
         </div>
       </Section>
     </div>

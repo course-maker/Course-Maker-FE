@@ -18,3 +18,8 @@ export const tagAddress = {
   //get
   tag: "/v1/tags",
 };
+
+export const destinationAddress = {
+  //get
+  get: "/v1/destination",
+};

@@ -1,6 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "./ItemBox.module.scss";
 import Badge from "@/components/commons/Badge/Badge";
+
+import { tagResponseDto } from "@/api/tag/type";
 // import Image from "@/components/commons/Image";
 // import { IMAGES } from "@/constants/images";
 
@@ -10,11 +12,11 @@ const cx = classNames.bind(styles);
 //   [key: string]: number;
 // }
 
-interface Tag {
-  id: number;
-  name: string;
-  description: string;
-}
+// interface Tag {
+//   id: number;
+//   name: string;
+//   description: string;
+// }
 
 interface Location {
   address: string;
@@ -25,7 +27,7 @@ interface Location {
 interface ItemBoxProps {
   location: Location;
   title?: string;
-  tags: Tag[];
+  tags: tagResponseDto[];
 }
 
 // const iconMapping: { [key: string]: any } = {
