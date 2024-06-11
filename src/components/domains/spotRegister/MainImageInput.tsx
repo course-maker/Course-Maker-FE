@@ -3,10 +3,11 @@ import DestinationDetailsInput from "./DestinationDetailsInput";
 import { useImageUpload } from "@/hooks/useImageUpload";
 
 interface MainImageInputProps {
+  selectedImage: string;
   onChange: (updatedImage: string) => void;
 }
 
-const MainImageInput = ({ onChange }: MainImageInputProps) => {
+const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { imageUrl, inputFileName, uploadImage } = useImageUpload();
@@ -41,7 +42,7 @@ const MainImageInput = ({ onChange }: MainImageInputProps) => {
         title="대표 이미지"
         buttonName="파일첨부"
         placeholder="대표이미지를 첨부해주세요."
-        selectedOption={inputFileName}
+        selectedOption={inputFileName || selectedImage}
         onButtonClick={handleButtonClick}
       />
       <input type="file" accept="image/*" ref={fileInputRef} style={{ display: "none" }} onChange={handleImageAttach} />

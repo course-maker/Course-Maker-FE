@@ -1,5 +1,11 @@
 import { tagResponseDto } from "@/api/tag/type";
 
+export interface Tag {
+  id: number;
+  name: string;
+  description: string;
+}
+
 export interface Location {
   address: string;
   longitude: number;
@@ -21,4 +27,14 @@ export interface Destination {
   totalPage: number;
   pagingSlice: number;
   contents: List[];
+}
+
+export interface postDestinationResponseDto {
+  id: number;
+  nickname: string;
+  name: string;
+  tags: Tag[];
+  location: Location;
+  pictureLink: string;
+  content: string;
 }
