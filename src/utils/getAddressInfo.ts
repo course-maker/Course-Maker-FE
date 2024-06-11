@@ -1,12 +1,14 @@
+import { loadKakaoScript } from "./loadKakaoScript";
+
 export const scriptUrl = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
 
-export const geoCoder = new kakao.maps.services.Geocoder();
-
-export const getAddressCoords = (address: string): Promise<kakao.maps.LatLng> => {
+export const getAddressCoords = async (address: string): Promise<kakao.maps.LatLng> => {
+  await loadKakaoScript();
+  const geoCoder = new window.kakao.maps.services.Geocoder();
   return new Promise((resolve, reject) => {
     geoCoder.addressSearch(address, (result: any, status: any) => {
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].x, result[0].y);
+      if (status === window.kakao.maps.services.Status.OK) {
+        const coords = new window.kakao.maps.LatLng(result[0].x, result[0].y);
         resolve(coords);
       } else {
         reject(status);
