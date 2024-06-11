@@ -17,6 +17,10 @@ export interface List {
   nickname: string;
   name: string;
   tags: tagResponseDto[];
+}
+export interface postDestinationRequestDto {
+  name: string;
+  tags: Tag[];
   location: Location;
   pictureLink: string;
   content: string;
