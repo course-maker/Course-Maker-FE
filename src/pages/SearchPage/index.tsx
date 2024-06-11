@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import styles from "./SearchPage.module.scss";
 import classNames from "classnames/bind";
@@ -7,8 +8,9 @@ import BadgeList from "@/components/commons/BadgeList/BadgeList";
 import Section from "@/components/commons/Section/Section";
 import Card from "@/components/commons/Card/Card";
 import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
-import axios from "axios";
+
 import { getTag, Tag } from "@/api/tag";
+import groupTags from "@/utils/groupTags";
 
 interface Icons {
   [key: string]: number;
@@ -65,6 +67,7 @@ const SearchPage = () => {
     fetchLists();
   }, []);
 
+  // 태그 Data
   useEffect(() => {
     const fetchTags = async () => {
       setLoading(true);
@@ -80,20 +83,7 @@ const SearchPage = () => {
     fetchTags();
   }, []);
 
-  const groupTagsByDescription = (tags: Tag[]) => {
-    return tags.reduce(
-      (acc, tag) => {
-        if (!acc[tag.description]) {
-          acc[tag.description] = [];
-        }
-        acc[tag.description].push(tag);
-        return acc;
-      },
-      {} as Record<string, Tag[]>,
-    );
-  };
-
-  const groupedTags = groupTagsByDescription(tagsData);
+  const groupedTags = groupTags(tagsData);
 
   return (
     <div className={cx("search-page")}>
