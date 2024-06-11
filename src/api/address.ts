@@ -23,3 +23,8 @@ export const destinationAddress = {
   //get
   get: "/v1/destination",
 };
+
+export const coursesAddress = {
+  //get
+  get: "/v1/courses",
+};

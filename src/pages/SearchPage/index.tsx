@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 import styles from "./SearchPage.module.scss";
 import classNames from "classnames/bind";
@@ -13,26 +12,10 @@ import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
 import { getDestination } from "@/api/destination";
 import { Destination } from "@/api/destination/type";
+import { getCourse } from "@/api/course";
+import { Courses } from "@/api/course/type";
 
 import groupTags from "@/utils/groupTags";
-
-interface Icons {
-  [key: string]: number;
-}
-
-interface MockData {
-  id: number;
-  title: string;
-  location: {
-    address: string;
-    longitude: number;
-    latitude: number;
-  };
-  icons: Icons;
-  pictureLink: string;
-  content: string;
-  tags: tagResponseDto[];
-}
 
 const cx = classNames.bind(styles);
 
@@ -41,7 +24,7 @@ const SearchPage = () => {
   const [selectedCourseBadges, setSelectedCourseBadges] = useState<string[]>([]);
   const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<string[]>([]);
   const [lists, setLists] = useState<Destination[]>([]);
-  const [course, setCourse] = useState<MockData[]>([]);
+  const [course, setCourse] = useState<Courses[]>([]);
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -60,11 +43,14 @@ const SearchPage = () => {
   // 여행지 정보
   useEffect(() => {
     const fetchLists = async () => {
+      setLoading(true);
       try {
         const response = await getDestination("tagIds=6&record=20&page=1&orderBy=NEWEST");
         setLists(response.contents);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchLists();
@@ -75,8 +61,9 @@ const SearchPage = () => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://34.64.85.245/v1/courses?tagIds=6&record=10&page=1&orderBy=NEWEST");
-        setCourse(response.data.contents);
+        const response = await getCourse("tagIds=6&record=20&page=1&orderBy=NEWEST");
+        console.log(response);
+        setCourse(response.contents);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -89,11 +76,14 @@ const SearchPage = () => {
   // 태그 정보
   useEffect(() => {
     const fetchTags = async () => {
+      setLoading(true);
       try {
         const response = await getTag();
         setTagsData(response);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchTags();
