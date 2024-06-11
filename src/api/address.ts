@@ -11,7 +11,7 @@ export const memberAddress = {
   //post
   logout: "/v1/member/logout",
   //post
-  signUp: "/v1/member",
+  signUp: "/v1/member/signup",
 };
 
 export const destinationAddress = {
@@ -19,6 +19,10 @@ export const destinationAddress = {
   postDestination: "/v1/destination",
   //get
   get: "/v1/destination",
+  //get
+  getDestination: (postId: number) => `/v1/destination/${postId}`,
+  //patch
+  patchDestination: (postId: number) => `/v1/destination/${postId}`,
 };
 
 export const imageAddress = {

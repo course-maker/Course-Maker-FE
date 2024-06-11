@@ -18,6 +18,7 @@ export interface List {
   name: string;
   tags: tagResponseDto[];
 }
+/**여행지 등록하기*/
 export interface postDestinationRequestDto {
   name: string;
   tags: Tag[];
@@ -34,6 +35,17 @@ export interface Destination {
 }
 
 export interface postDestinationResponseDto {
+  id: number;
+  nickname: string;
+  name: string;
+  tags: Tag[];
+  location: Location;
+  pictureLink: string;
+  content: string;
+}
+
+/**여행지 상세정보 조회하기*/
+export interface getDestinationResponseDto {
   id: number;
   nickname: string;
   name: string;
