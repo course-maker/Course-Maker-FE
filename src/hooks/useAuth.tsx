@@ -9,15 +9,19 @@ const useAuth = () => {
   const [isAuth, setIsAuth] = useRecoilState(authState);
   const location = useLocation();
   const navigate = useNavigate();
-  const { signIn, signUp } = PAGE_PATH;
+  const { signIn, signUp, courseRegister, spotRegister } = PAGE_PATH;
 
   useEffect(() => {
     const accessToken = getAccessToken();
     setIsAuth(!!accessToken);
 
     const authPages = [signIn, signUp];
+    const registerPages = [courseRegister, spotRegister];
+
     if (!!accessToken && authPages.includes(location.pathname)) {
       navigate("/");
+    } else if (!accessToken && registerPages.includes(location.pathname)) {
+      navigate(signIn);
     }
   }, [location.pathname, setIsAuth, navigate]);
 
