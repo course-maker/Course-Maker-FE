@@ -1,5 +1,5 @@
 import axios, { isAxiosError, HttpStatusCode, AxiosRequestConfig, AxiosResponse } from "axios";
-import { getAccessToken } from "@/utils/manageTokenInfo";
+import { getAccessToken, retryWithNewAccessToken } from "@/utils/manageTokenInfo";
 
 export type HttpMethod = "get" | "post" | "put" | "patch" | "delete";
 
@@ -54,27 +54,7 @@ api.interceptors.response.use(
           break;
         case HttpStatusCode.Unauthorized:
           console.error("401 Error: Unauthorized.");
-          // try {
-          //   // Refresh 토큰을 이용해 새로운 액세스 토큰을 요청
-          //   const refreshToken = getRefreshToken();
-          //   if (refreshToken) {
-          //     const response = await axios.post(`${BASE_URL}/auth/refresh-token`, {
-          //       token: refreshToken,
-          //     });
-          //     const newAccessToken = response.data.accessToken;
-          //     setAccessToken(newAccessToken);
-
-          //     // 원래의 요청을 새로운 액세스 토큰으로 다시 시도
-          //     error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
-          //     return axios.request(error.config);
-          //   } else {
-          //     console.error("No refresh token available.");
-          //     // 로그아웃 또는 로그인 페이지로 리다이렉트 등 추가 처리
-          //   }
-          // } catch (refreshError) {
-          //   console.error("Error refreshing token:", refreshError);
-          //   // 로그아웃 또는 로그인 페이지로 리다이렉트 등 추가 처리
-          // }
+          return retryWithNewAccessToken(error);
           break;
         case HttpStatusCode.Forbidden:
           console.error("403 Error: Forbidden.");
