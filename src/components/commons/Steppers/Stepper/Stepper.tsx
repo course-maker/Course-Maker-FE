@@ -2,7 +2,6 @@ import { useStepper } from "../StepperContext";
 import { FaCheck } from "react-icons/fa6";
 import styles from "./Stepper.module.scss";
 import classNames from "classnames/bind";
-import NavigationButtons from "../NavigationButtons/NavigationButtons";
 
 const cx = classNames.bind(styles);
 
@@ -35,7 +34,6 @@ const Stepper = ({ children }: StepperProps) => {
         </div>
       </div>
       {children}
-      <NavigationButtons />
     </>
   );
 };

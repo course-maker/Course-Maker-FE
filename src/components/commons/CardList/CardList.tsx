@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 interface AllCardListProps {
-  children: ReactNode[];
+  children: ReactNode;
 }
 
 interface FilterCardListProps {
