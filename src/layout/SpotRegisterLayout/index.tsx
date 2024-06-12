@@ -12,6 +12,7 @@ import MainImageInputController from "@/components/domains/spotRegister/MainImag
 import QuillEditorController from "@/components/domains/spotRegister/QuillEditorController";
 
 import { validateFormData } from "@/utils/validateFormData";
+import { useImageUpload } from "@/hooks/useImageUpload";
 
 const cx = classNames.bind(styles);
 
@@ -22,13 +23,21 @@ interface SpotRegisterLayoutProps {
 }
 
 const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayoutProps) => {
+  const { uploadImageAsync } = useImageUpload();
   const { control, handleSubmit, setFocus } = useForm({
     defaultValues: formData,
     values: formData,
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!validateFormData(data, setFocus)) return;
+
+    if (data.pictureLink instanceof File) {
+      const formData = new FormData();
+      formData.append("images", data.pictureLink);
+      const imageUrlArray = await uploadImageAsync(formData);
+      data.pictureLink = imageUrlArray[0];
+    }
     onSubmitClick(data);
   };
 

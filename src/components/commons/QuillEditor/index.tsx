@@ -4,10 +4,12 @@ import ImageResize from "quill-image-resize-module-react";
 
 import CustomToolbar from "./CustomToolbar";
 import { useImageUpload } from "@/hooks/useImageUpload";
+import CustomImage from "@/utils/CustomImageBlot";
 
 import "react-quill/dist/quill.snow.css";
 import "./QuillEditor.scss";
 
+Quill.register("formats/customImage", CustomImage);
 Quill.register("modules/ImageResize", ImageResize);
 
 const formats = [
@@ -21,7 +23,7 @@ const formats = [
   "align",
   "color",
   "background",
-  "image",
+  "customImage",
 ];
 
 const QuillEditor = ({ onChange, value }: { onChange: (value: string) => void; value: string }) => {
@@ -45,9 +47,9 @@ const QuillEditor = ({ onChange, value }: { onChange: (value: string) => void; v
           const range = editor.getSelection();
           if (range) {
             try {
-              const result = await uploadImageAsync({ formData });
+              const result = await uploadImageAsync(formData);
               const IMG_URL = result[0];
-              editor.insertEmbed(range.index, "image", IMG_URL);
+              editor.insertEmbed(range.index, "customImage", { url: IMG_URL });
             } catch (error) {
               console.error("Image upload failed:", error);
             }
