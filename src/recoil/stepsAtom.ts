@@ -1,38 +1,56 @@
 import { atom } from "recoil";
 
+interface Tag {
+  id: number;
+  name: string;
+  description: string;
+}
+
+interface Location {
+  address: string;
+  longitude: number;
+  latitude: number;
+}
+
+interface Destination {
+  id: number;
+  nickname: string;
+  name: string;
+  tags: Tag[];
+  location: Location;
+  pictureLink: string;
+  content: string;
+}
+
 interface Step1State {
   duration: number;
   travelCount: number;
-  selectedBadges: string[];
+  tags: string[];
 }
 
 interface Step2State {
-  selectedDestinations: string[];
+  courseDestinations: Record<number, Destination[]>;
 }
 
 interface Step3State {
   title: string;
   content: string;
+  pictureLink: string;
 }
-
-export const currentStepState = atom<number>({
-  key: "currentStepState",
-  default: 1,
-});
 
 export const step1State = atom<Step1State>({
   key: "step1State",
   default: {
     duration: 1,
     travelCount: 1,
-    selectedBadges: [],
+    tags: [],
   },
 });
 
 export const step2State = atom<Step2State>({
   key: "step2State",
   default: {
-    selectedDestinations: [],
+    courseDestinations: {},
   },
 });
 
@@ -41,5 +59,6 @@ export const step3State = atom<Step3State>({
   default: {
     title: "",
     content: "",
+    pictureLink: "",
   },
 });
