@@ -27,7 +27,7 @@ export const useDestinationMutation = () => {
           alert("이미 존재하는 여행지 이름입니다. 다른 이름으로 변경해 주세요.");
           break;
         default:
-          alert("이미지 업로드 중 오류가 발생했습니다. 다시 시도해주세요.");
+          alert("여행지 등록 중 오류가 발생했습니다. 다시 시도해주세요.");
       }
     },
   });
@@ -47,7 +47,7 @@ export const useDestinationMutation = () => {
           alert("이미 존재하는 여행지 이름입니다. 다른 이름으로 변경해 주세요.");
           break;
         default:
-          alert("이미지 업로드 중 오류가 발생했습니다. 다시 시도해주세요.");
+          alert("여행지 등록 중 오류가 발생했습니다. 다시 시도해주세요.");
       }
     },
   });
