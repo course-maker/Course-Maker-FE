@@ -11,16 +11,21 @@ const useAuth = () => {
   const navigate = useNavigate();
   const { signIn, signUp, courseRegister, spotRegister } = PAGE_PATH;
 
+  const authPages = [signIn, signUp];
+  const registerPages = [courseRegister, spotRegister];
+  const dynamicPages = [/\/course\/[^/]+\/edit/, /\/spot\/[^/]+\/edit/];
+
+  const isAuthPage = (path: string) => authPages.includes(path);
+  const isRegisterPage = (path: string) =>
+    registerPages.includes(path) || dynamicPages.some((regex) => regex.test(path));
+
   useEffect(() => {
     const accessToken = getAccessToken();
     setIsAuth(!!accessToken);
 
-    const authPages = [signIn, signUp];
-    const registerPages = [courseRegister, spotRegister];
-
-    if (!!accessToken && authPages.includes(location.pathname)) {
+    if (accessToken && isAuthPage(location.pathname)) {
       navigate("/");
-    } else if (!accessToken && registerPages.includes(location.pathname)) {
+    } else if (!accessToken && isRegisterPage(location.pathname)) {
       navigate(signIn);
     }
   }, [location.pathname, setIsAuth, navigate]);
