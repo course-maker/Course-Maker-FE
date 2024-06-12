@@ -106,7 +106,7 @@ const SearchPage = () => {
       </Section>
 
       <div className={cx("option-container")}>
-        <span>전체 {activeTab === "코스 찾기" ? course.contents.length : lists.contents.length}개</span>
+        <span>전체 {activeTab === "코스 찾기" ? course?.contents?.length : lists?.contents?.length}개</span>
         <div>
           <select name="HeadlineAct" id="HeadlineAct" className={cx("select-box")}>
             <option value="0">최신순</option>
@@ -121,7 +121,7 @@ const SearchPage = () => {
         <div className={cx("card_container")}>
           {loading
             ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} item={null} />)
-            : (activeTab === "코스 찾기" ? course.contents : lists.contents).map((item) => (
+            : (activeTab === "코스 찾기" ? course.contents : lists.contents)?.map((item) => (
                 <Card key={item.id} name={activeTab} item={item} loading={false} />
               ))}
         </div>
