@@ -4,23 +4,14 @@ import { useMutation } from "@tanstack/react-query";
 import { postImage } from "@/api/image";
 
 export const useImageUpload = () => {
-  const [inputFileName, setInputFileName] = useState<string>("");
   const [imageUrl, setImageUrl] = useState<string>("");
 
-  const {
-    mutate: uploadImage,
-    mutateAsync: uploadImageAsync,
-    ...rest
-  } = useMutation({
-    mutationFn: (data: { formData: FormData; fileName?: string }) => postImage(data.formData),
-    onSuccess: (imageUrlArray, data) => {
-      setImageUrl(imageUrlArray[0]);
-      if (data.fileName) setInputFileName(data.fileName);
+  const { mutateAsync: uploadImageAsync, ...rest } = useMutation({
+    mutationFn: (formData: FormData) => postImage(formData),
+    onSuccess: () => {
+      setImageUrl("");
     },
     onError: (error: AxiosError) => {
-      setImageUrl("");
-      setInputFileName("");
-
       const statusCode = error?.response?.status;
       switch (statusCode) {
         case 413:
@@ -32,5 +23,5 @@ export const useImageUpload = () => {
     },
   });
 
-  return { imageUrl, inputFileName, uploadImage, uploadImageAsync, ...rest };
+  return { imageUrl, uploadImageAsync, ...rest };
 };

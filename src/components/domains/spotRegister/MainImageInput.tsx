@@ -1,16 +1,14 @@
-import { useRef, useEffect } from "react";
+import { useRef, useState } from "react";
 import DestinationDetailsInput from "./DestinationDetailsInput";
-import { useImageUpload } from "@/hooks/useImageUpload";
 
 interface MainImageInputProps {
   selectedImage: string;
-  onChange: (updatedImage: string) => void;
+  onChange: (updatedImage: File | null) => void;
 }
 
 const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const { imageUrl, inputFileName, uploadImage } = useImageUpload();
+  const [inputFileName, setInputFileName] = useState<string>("");
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -18,13 +16,16 @@ const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
     }
   };
 
-  const handleImageAttach = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      const formData = new FormData();
 
-      formData.append("images", file);
-      await uploadImage({ formData, fileName: file.name });
+      if (file.size > 15 * 1024 * 1024) {
+        alert("파일 크기가 너무 커서 업로드할 수 없습니다. 15MB 이하의 이미지로 다시 시도해주세요.");
+      } else {
+        setInputFileName(file.name);
+        onChange(file);
+      }
 
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -32,16 +33,12 @@ const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
     }
   };
 
-  useEffect(() => {
-    onChange(imageUrl);
-  }, [imageUrl, onChange]);
-
   return (
     <>
       <DestinationDetailsInput
         title="대표 이미지"
         buttonName="파일첨부"
-        placeholder="대표이미지를 첨부해주세요."
+        placeholder="대표 이미지를 첨부해주세요."
         selectedOption={inputFileName || selectedImage}
         onButtonClick={handleButtonClick}
       />
