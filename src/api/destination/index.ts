@@ -1,10 +1,15 @@
-import { Destination, postDestinationRequestDto, postDestinationResponseDto, getDestinationResponseDto } from "./type";
+import {
+  GetDestinationsResponseDto,
+  postDestinationRequestDto,
+  postDestinationResponseDto,
+  getDestinationResponseDto,
+} from "./type";
 import { destinationAddress } from "../address";
 import { apiRequest } from "../axios";
 
 // 여행지 정보
-export const getDestination = (params: string): Promise<Destination> =>
-  apiRequest("get", `${destinationAddress.get}?${params}`);
+export const getDestination = (qs: GetDestinationsResponseDto): Promise<GetDestinationsResponseDto> =>
+  apiRequest("get", destinationAddress.get, null, qs);
 
 /**여행지 등록하기*/
 export const postDestinationApi = (data: postDestinationRequestDto): Promise<postDestinationResponseDto> =>

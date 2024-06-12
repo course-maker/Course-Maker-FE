@@ -54,3 +54,33 @@ export interface getDestinationResponseDto {
   pictureLink: string;
   content: string;
 }
+
+/**여행지 전체 목록 조회*/
+export interface GetTagResponseDto {
+  id: number;
+  name: string;
+  description: string;
+}
+
+export interface GetLocationDto {
+  address: string;
+  longitude: number;
+  latitude: number;
+}
+
+export interface GetDestinationDto {
+  id: number;
+  nickname: string;
+  name: string;
+  tags: GetTagResponseDto[];
+  location: GetLocationDto;
+  pictureLink: string;
+  content: string;
+}
+
+export type GetDestinationsResponseDto = {
+  currentPage: number;
+  totalPage: number;
+  pagingSlice: number;
+  contents: GetDestinationDto[];
+};
