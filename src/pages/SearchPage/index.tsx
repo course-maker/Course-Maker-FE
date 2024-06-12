@@ -23,8 +23,8 @@ const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("코스 찾기");
   const [selectedCourseBadges, setSelectedCourseBadges] = useState<string[]>([]);
   const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<string[]>([]);
-  const [lists, setLists] = useState<Destination[]>([]);
-  const [course, setCourse] = useState<Courses[]>([]);
+  const [lists, setLists] = useState<Destination>({});
+  const [course, setCourse] = useState<Courses>({});
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -46,7 +46,7 @@ const SearchPage = () => {
       setLoading(true);
       try {
         const response = await getDestination("record=20&page=1&orderBy=NEWEST");
-        setLists(response.contents);
+        setLists(response);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -62,7 +62,7 @@ const SearchPage = () => {
       setLoading(true);
       try {
         const response = await getCourse("?record=20&page=1&orderBy=NEWEST");
-        setCourse(response.contents);
+        setCourse(response);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -106,7 +106,7 @@ const SearchPage = () => {
       </Section>
 
       <div className={cx("option-container")}>
-        <span>전체 {activeTab === "코스 찾기" ? course.length : lists.length}개</span>
+        <span>전체 {activeTab === "코스 찾기" ? course.contents.length : lists.contents.length}개</span>
         <div>
           <select name="HeadlineAct" id="HeadlineAct" className={cx("select-box")}>
             <option value="0">최신순</option>
@@ -121,7 +121,7 @@ const SearchPage = () => {
         <div className={cx("card_container")}>
           {loading
             ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} item={null} />)
-            : (activeTab === "코스 찾기" ? course : lists).map((item) => (
+            : (activeTab === "코스 찾기" ? course.contents : lists.contents).map((item) => (
                 <Card key={item.id} name={activeTab} item={item} loading={false} />
               ))}
         </div>
