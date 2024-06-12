@@ -1,75 +1,101 @@
-// Step2.tsx
-import React, { useEffect, useState } from "react";
-import RegisterBadgeList from "@/components/commons/BadgeList/RegisterBadgeList/RegisterBadgeList";
-import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
-import { step2State, step1State } from "@/recoil/stepsAtom";
-import classNames from "classnames/bind";
-import { Map, CustomOverlayMap, Polyline } from "react-kakao-maps-sdk";
+import React, { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { step1State, step2State } from "@/recoil/stepsAtom";
+import classNames from "classnames/bind";
 import styles from "./Step2.module.scss";
-import { IMAGES } from "@/constants/images";
-import Image from "@/components/commons/Image/index";
+import { Map, CustomOverlayMap, Polyline } from "react-kakao-maps-sdk";
+import { Destination } from "@/api/course/type";
 import { useQuery } from "@tanstack/react-query";
-import { getDestination } from "@/api/destination";
-import { Content, Root } from "@/api/destination/type";
-
+import RegisterBadgeList from "@/components/commons/BadgeList/RegisterBadgeList/RegisterBadgeList";
+import Image from "@/components/commons/Image";
+import { IMAGES } from "@/constants/images";
+import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
+import NavigationButtons from "../../NavigationButtons/NavigationButtons";
+import { getDestinationApi } from "@/api/destination";
+import data from "../../../../../pages/SearchPage/data.json";
 const cx = classNames.bind(styles);
 
 const Step2: React.FC = () => {
   const step1 = useRecoilValue(step1State);
   const [step2, setStep2] = useRecoilState(step2State);
-  const [activeDay, setActiveDay] = useState(1);
-  const [filteredData, setFilteredData] = useState<Content[]>([]);
+  const [activeDay, setActiveDay] = useState<number>(1);
+  const [allDestinations, setAllDestinations] = useState<Destination[]>([]);
+  const [filteredData, setFilteredData] = useState<Destination[]>([]);
 
-  const { data: destinationData, refetch } = useQuery<Root>({
+  const courseData = data.courseData;
+
+  const { data: destinationData, isSuccess } = useQuery({
     queryKey: ["destinationData"],
-    queryFn: () => getDestination({ currentPage: 1, totalPage: 1, pagingSlice: 1, contents: [] }),
+    queryFn: () => getDestinationApi({ currentPage: 1, totalPage: 1, pagingSlice: 1, contents: [] }),
   });
 
   useEffect(() => {
-    refetch();
-  }, []);
+    if (isSuccess && destinationData) {
+      setAllDestinations(destinationData.contents);
+    }
+  }, [isSuccess, destinationData]);
 
   useEffect(() => {
-    if (destinationData) {
-      const selectedDestinations = destinationData.contents.filter((content) =>
-        content.tags.some((tag) => step1.selectedBadges.includes(tag.name)),
-      );
-      setFilteredData(selectedDestinations);
-    }
-  }, [destinationData, step1.selectedBadges]);
+    const tags = step1.tags;
+    const filtered = allDestinations.filter((destination) => destination.tags.some((tag) => tags.includes(tag.name)));
+    setFilteredData(filtered);
+  }, [allDestinations, step1.tags]);
 
-  const handleDestinationToggle = (destination: string) => {
-    const destinations = step2.selectedDestinations.includes(destination)
-      ? step2.selectedDestinations.filter((d) => d !== destination)
-      : [...step2.selectedDestinations, destination];
-    setStep2({ ...step2, selectedDestinations: destinations });
+  const handleDestinationToggle = (destinationName: string) => {
+    const destination = allDestinations.find((d) => d.name === destinationName);
+    if (!destination) return;
+    const updatedDestinations = step2.courseDestinations[activeDay] ? [...step2.courseDestinations[activeDay]] : [];
+    const destinationIndex = updatedDestinations.findIndex((d) => d.id === destination.id);
+
+    if (destinationIndex === -1) {
+      updatedDestinations.push(destination);
+      console.log(filteredData);
+    } else {
+      updatedDestinations.splice(destinationIndex, 1);
+    }
+
+    setStep2({
+      ...step2,
+      courseDestinations: {
+        ...step2.courseDestinations,
+        [activeDay]: updatedDestinations,
+      },
+    });
   };
 
   const mapCenter =
-    filteredData.length > 0
-      ? { lat: filteredData[0].location.latitude, lng: filteredData[0].location.longitude }
+    step2.courseDestinations[activeDay] && step2.courseDestinations[activeDay].length > 0
+      ? {
+          lat: step2.courseDestinations[activeDay][0].location.latitude,
+          lng: step2.courseDestinations[activeDay][0].location.longitude,
+        }
       : { lat: 37.5665, lng: 126.978 };
+
+  const polylinePath =
+    step2.courseDestinations[activeDay]?.map((item) => ({
+      lat: item.location.latitude,
+      lng: item.location.longitude,
+    })) || [];
 
   return (
     <>
       <div>
-        <p className={cx("path-title")}>경로설정</p>
+        <p className={cx("path-title")}>경로 설정</p>
       </div>
       <div className={cx("path-box")}>
         <div className={cx("BadgeList-box")}>
-          {Object.entries(destinationData ?? {}).map(([title, badges]) => (
+          {Object.entries(courseData).map(([title, badges]) => (
             <RegisterBadgeList
               key={title}
               title={title}
               badges={badges}
-              selectedBadges={step2.selectedDestinations}
+              selectedBadges={step1.tags}
               toggleBadge={handleDestinationToggle}
             />
           ))}
         </div>
         <AllCardList>
-          {filteredData.map((item, id) => (
+          {destinationData?.contents.map((item, id) => (
             <div className={cx("item-container")} key={id}>
               <button type="button" className={cx("plus-btn")} onClick={() => handleDestinationToggle(item.name)}>
                 <Image imageInfo={IMAGES.plus} />
@@ -102,7 +128,7 @@ const Step2: React.FC = () => {
           </div>
           <FilterCardList>
             <div className={cx("scrollable-list")}>
-              {step2.selectedDestinations.map((item, id) => (
+              {step2.courseDestinations[activeDay]?.map((item, id) => (
                 <div className={cx("item-container")} key={id}>
                   <div className={cx("number-circle")}>{id + 1}</div>
                   <div>
@@ -120,22 +146,23 @@ const Step2: React.FC = () => {
           </FilterCardList>
         </div>
         <Map center={mapCenter} className={cx("kakao-map")} style={{ width: "68.9rem", height: "100%" }} level={8}>
-          {filteredData.map((item, id) => (
-            <div key={id}>
-              <CustomOverlayMap position={{ lat: item.location.latitude, lng: item.location.longitude }}>
-                <div className={cx("marker-label")}>{id + 1}</div>
-              </CustomOverlayMap>
-            </div>
+          {step2.courseDestinations[activeDay]?.map((item, id) => (
+            <CustomOverlayMap key={id} position={{ lat: item.location.latitude, lng: item.location.longitude }}>
+              <div className={cx("marker-label")}>{id + 1}</div>
+            </CustomOverlayMap>
           ))}
-          <Polyline
-            path={filteredData.map((item) => ({ lat: item.location.latitude, lng: item.location.longitude }))}
-            strokeWeight={5}
-            strokeColor="#FF0000"
-            strokeOpacity={0.8}
-            strokeStyle="dash"
-          />
+          {polylinePath.length > 0 && (
+            <Polyline
+              path={polylinePath}
+              strokeWeight={5}
+              strokeColor="#FF0000"
+              strokeOpacity={0.8}
+              strokeStyle="dash"
+            />
+          )}
         </Map>
       </div>
+      <NavigationButtons />
     </>
   );
 };
