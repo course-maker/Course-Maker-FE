@@ -1,6 +1,6 @@
-import { Tag } from "@/api/tag";
+import { tagResponseDto } from "@/api/tag";
 
-const groupTags = (tags: Tag[]): Record<string, Tag[]> => {
+const groupTags = (tags: tagResponseDto[]): Record<string, tagResponseDto[]> => {
   return tags.reduce(
     (acc, tag) => {
       if (!acc[tag.description]) {
@@ -9,7 +9,7 @@ const groupTags = (tags: Tag[]): Record<string, Tag[]> => {
       acc[tag.description].push(tag);
       return acc;
     },
-    {} as Record<string, Tag[]>,
+    {} as Record<string, tagResponseDto[]>,
   );
 };
 
