@@ -16,6 +16,7 @@ import { getCourse } from "@/api/course";
 import { Courses } from "@/api/course/type";
 
 import groupTags from "@/utils/groupTags";
+import { initialDestination, initialCourse } from "@/constants/initialValues";
 
 const cx = classNames.bind(styles);
 
@@ -23,8 +24,8 @@ const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("코스 찾기");
   const [selectedCourseBadges, setSelectedCourseBadges] = useState<string[]>([]);
   const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<string[]>([]);
-  const [lists, setLists] = useState<Destination>({});
-  const [course, setCourse] = useState<Courses>({});
+  const [lists, setLists] = useState<Destination>(initialDestination);
+  const [course, setCourse] = useState<Courses>(initialCourse);
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -120,7 +121,9 @@ const SearchPage = () => {
       <Section title="">
         <div className={cx("card_container")}>
           {loading
-            ? Array.from({ length: 12 }).map((_, index) => <Card key={index} loading={true} item={null} />)
+            ? Array.from({ length: 12 }).map((_, index) => (
+                <Card key={index} name={activeTab} loading={true} item={null} />
+              ))
             : (activeTab === "코스 찾기" ? course.contents : lists.contents)?.map((item) => (
                 <Card key={item.id} name={activeTab} item={item} loading={false} />
               ))}

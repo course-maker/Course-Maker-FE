@@ -10,15 +10,15 @@ import { getDestinationResponseDto } from "@/api/destination/type";
 import { Course } from "@/api/course/type";
 
 //getDestinationResponseDto | Course 타입가드
-const isCourse = (item: unknown): item is Course => {
+const isCourse = (item: any): item is Course => {
   return (item as Course).courseDestinations !== undefined;
 };
 
-const isList = (item: unknown): item is getDestinationResponseDto => {
+const isList = (item: any): item is getDestinationResponseDto => {
   return (item as getDestinationResponseDto).location !== undefined;
 };
 
-const Card = ({ item, name, loading }: { item: unknown; name: string; loading: boolean }) => {
+const Card = ({ item, name, loading }: { item: any; name: string; loading: boolean }) => {
   const navigate = useNavigate();
   console.log(item);
   console.log(name);
