@@ -10,7 +10,7 @@ import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
 
 import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
-import { getDestination } from "@/api/destination";
+import { getDestinations } from "@/api/destination";
 import { Destination } from "@/api/destination/type";
 import { getCourse } from "@/api/course";
 import { Courses } from "@/api/course/type";
@@ -95,7 +95,7 @@ const SearchPage = () => {
       saveScrollPosition();
       setLoading(true);
       try {
-        const response = await getDestination(
+        const response = await getDestinations(
           `record=2&page=${page.destination}&orderBy=${sortOrder.destination}${tags}`,
         );
 
