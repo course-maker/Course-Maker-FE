@@ -1,4 +1,4 @@
-import { tagResponseDto } from "@/api/tag";
+import { tagResponseDto } from "@/api/tag/type";
 
 const groupTags = (tags: tagResponseDto[]): Record<string, tagResponseDto[]> => {
   return tags.reduce(

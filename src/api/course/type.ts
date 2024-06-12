@@ -1,10 +1,10 @@
 import { tagResponseDto } from "@/api/tag/type";
-import { List } from "@/api/destination/type";
+import { getDestinationResponseDto } from "@/api/destination/type";
 
 export interface CourseDestination {
   visitOrder: number;
   date: number;
-  destination: List;
+  destination: getDestinationResponseDto;
 }
 
 export interface Course {
