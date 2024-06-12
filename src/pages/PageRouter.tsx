@@ -5,7 +5,6 @@ import HomePage from "./HomePage";
 import SearchPage from "./SearchPage";
 import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage";
-import ScssExample from "./scss-example"; // fix: 나중에 지울것!
 import CourseDetailPage from "./CourseDetailPage";
 import SpotDetailPage from "./SpotDetailPage";
 import CourseRegisterPage from "./CourseRegisterPage";
@@ -29,7 +28,6 @@ function PageRouter() {
         <Route path={courseRegister} element={<CourseRegisterPage />} />
         <Route path={spotRegister} element={<SpotRegisterPage />} />
         <Route path={spotEdit} element={<SpotEditPage />} />
-        <Route path="scss-example" element={<ScssExample />} />
       </Route>
       <Route path={authKakao} element={<AuthListener />} />
     </Routes>
