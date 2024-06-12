@@ -1,5 +1,4 @@
-const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
-const REDIRECT_URI = "http://localhost:5173/auth/kakao/callback";
+import { BASE_URL } from "./axios";
 
 export const memberAddress = {
   //post
@@ -43,7 +42,7 @@ export const coursesAddress = {
 export const oauthAddress = {
   //post
   kakao: {
-    login: `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`,
+    login: `${BASE_URL}/auth/kakao/login`,
     redirect: (code: string) => `/login/oauth2/code/kakao?code=${code}`,
   },
 };
