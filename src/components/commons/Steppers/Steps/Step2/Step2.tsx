@@ -35,7 +35,7 @@ const Step2: React.FC = () => {
   const [allDestinations, setAllDestinations] = useState<GetDestinationDto[]>([]);
   const [filteredData, setFilteredData] = useState<GetDestinationDto[]>([]);
   const [step1Data, setStep1Data] = useState<any>(null);
-  const [step2Data, setStep2Data] = useState<Step2Data>({ courseDestinations: {}, tags: [] });
+  const [step2Data, setStep2Data] = useState<Step2Data>({ courseDestinations: {} });
 
   const { data: destinationData, isSuccess } = useQuery({
     queryKey: ["destinationData"],
@@ -50,7 +50,7 @@ const Step2: React.FC = () => {
     }
     if (savedStep2) {
       setStep2Data(savedStep2);
-      setValue("tags", savedStep2.tags);
+      setValue("tags", savedStep2.tags || []);
     }
     if (isSuccess && destinationData) {
       setAllDestinations(destinationData.contents);
@@ -65,10 +65,10 @@ const Step2: React.FC = () => {
   }, [tags, allDestinations]);
 
   const filterDestinationsByTags = (tags: { id: number; name: string; description: string }[]) => {
-    const tagNames = tags.map((tag) => tag.name);
-    if (tagNames.length === 0) {
+    if (!tags || tags.length === 0) {
       setFilteredData(allDestinations);
     } else {
+      const tagNames = tags.map((tag) => tag.name);
       const filtered = allDestinations.filter((destination) =>
         destination.tags.some((tag) => tagNames.includes(tag.name)),
       );
@@ -130,8 +130,11 @@ const Step2: React.FC = () => {
 
     const updatedStep2Data: Step2Data = {
       ...step2Data,
-      tags: tags.length > 0 ? tags : undefined,
     };
+
+    if (tags.length > 0) {
+      updatedStep2Data.tags = tags;
+    }
 
     setStep2Data(updatedStep2Data);
     saveToLocalStorage("step2", updatedStep2Data);
@@ -142,6 +145,7 @@ const Step2: React.FC = () => {
     const savedStep2 = getFromLocalStorage("step2");
     if (savedStep2) {
       setStep2Data(savedStep2);
+      setValue("tags", savedStep2.tags || []);
     }
     goToPrevStep();
   };
