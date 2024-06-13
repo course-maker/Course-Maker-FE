@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import Badge from "@/components/commons/Badge/Badge";
 import classNames from "classnames/bind";
 import styles from "./BadgeList.module.scss";
@@ -25,10 +24,6 @@ const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges, setS
       prevSelected.includes(badge) ? prevSelected.filter((item) => item !== badge) : [...prevSelected, badge],
     );
   };
-
-  useEffect(() => {
-    console.log("Selected Badges:", selectedBadges);
-  }, [selectedBadges]);
 
   return (
     <div className={cx("tab-content")}>

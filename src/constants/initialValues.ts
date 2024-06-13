@@ -5,7 +5,7 @@ import { Courses } from "@/api/course/type";
 export const initialDestination: Destination = {
   currentPage: 1,
   totalPage: 1,
-  pagingSlice: 12,
+  pagingSlice: 8,
   contents: [],
 };
 
@@ -13,7 +13,7 @@ export const initialDestination: Destination = {
 export const initialCourse: Courses = {
   currentPage: 1,
   totalPage: 1,
-  pagingSlice: 12,
+  pagingSlice: 8,
   contents: [],
 };
 

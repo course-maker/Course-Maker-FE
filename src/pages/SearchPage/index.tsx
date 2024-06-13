@@ -86,25 +86,44 @@ const SearchPage = () => {
   const saveScrollPosition = () => {
     scrollPositionRef.current = window.scrollY;
   };
+  console.log(scrollPositionRef.current);
 
   // 여행지 정보
   useEffect(() => {
     const tags = selectedTagsInfo(selectedDestinationBadges);
     const fetchLists = async () => {
+      saveScrollPosition();
       setLoading(true);
       try {
-        const response = await getDestination(`record=12&page=1&orderBy=${sortOrder.destination}${tags}`);
-        setLists(response);
+        const response = await getDestination(
+          `record=2&page=${page.destination}&orderBy=${sortOrder.destination}${tags}`,
+        );
+
+        setLists((prev) => ({
+          ...response,
+          contents: page.destination === 1 ? response.contents : [...prev.contents, ...response.contents],
+        }));
+        if (response.contents.length < 2) {
+          setHasMore(false);
+          if (observerRef.current) {
+            observerRef.current.disconnect();
+          }
+        } else {
+          // window.scrollTo(0, scrollPositionRef.current);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
+        if (hasMore) {
+          window.scrollTo(0, scrollPositionRef.current); // 스크롤 위치 복원
+        }
       }
     };
     if (activeTab === "여행지 찾기") {
       fetchLists();
     }
-  }, [selectedDestinationBadges, sortOrder.destination, activeTab]);
+  }, [selectedDestinationBadges, sortOrder.destination, page.destination, activeTab, hasMore]);
 
   // 코스 정보
   useEffect(() => {
@@ -141,6 +160,7 @@ const SearchPage = () => {
   useEffect(() => {
     setPage(initialPage);
     setHasMore(true);
+    scrollPositionRef.current = 0;
   }, [activeTab, selectedCourseBadges, selectedDestinationBadges, sortOrder]);
 
   // 태그 정보
@@ -160,7 +180,6 @@ const SearchPage = () => {
   }, []);
 
   const groupedTags = groupTags(tagsData);
-  console.log(groupedTags);
 
   return (
     <div className={cx("search-page")}>
