@@ -12,9 +12,17 @@ type ModalProps = {
   hideBackdrop?: boolean;
   onBackdropClick?: MouseEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  onConfirmClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-const Modal = ({ children, isOpen = false, hideBackdrop = false, onBackdropClick, onKeyDown }: ModalProps) => {
+const Modal = ({
+  children,
+  isOpen = false,
+  hideBackdrop = false,
+  onBackdropClick,
+  onKeyDown,
+  onConfirmClick,
+}: ModalProps) => {
   const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) {
       return;
@@ -26,6 +34,10 @@ const Modal = ({ children, isOpen = false, hideBackdrop = false, onBackdropClick
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" && onConfirmClick) {
+      onConfirmClick(event as unknown as MouseEvent<HTMLButtonElement>);
+    }
+
     if (onKeyDown) {
       onKeyDown(event);
     }
@@ -42,6 +54,20 @@ const Modal = ({ children, isOpen = false, hideBackdrop = false, onBackdropClick
       document.body.style.overflow = "unset";
     };
   }, [isOpen, hideBackdrop]);
+
+  useEffect(() => {
+    const handleKeyDownListener = handleKeyDown as unknown as EventListener;
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDownListener);
+    } else {
+      document.removeEventListener("keydown", handleKeyDownListener);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDownListener);
+    };
+  }, [isOpen]);
 
   if (!isOpen) {
     return null;

@@ -29,19 +29,27 @@ const SignInForm = () => {
   });
 
   const closeModal = () => setCurrentModal(null);
+
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Escape") {
       closeModal();
     }
   };
+
   const handleClickRedirect = () => {
     navigate(PAGE_PATH.signUp);
+  };
+
+  const handleFormKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
+    if (currentModal) {
+      e.preventDefault();
+    }
   };
 
   return (
     <>
       <div className={cx("container")}>
-        <form className={cx("form")} onSubmit={handleSubmit((data) => signIn(data))}>
+        <form className={cx("form")} onSubmit={handleSubmit((data) => signIn(data))} onKeyDown={handleFormKeyDown}>
           <div className={cx("form-input")}>
             <div className={cx("form-input-field")}>
               <SignInputController name="loginEmail" control={control} condition={SIGN_IN_CONDITION.loginEmail} />

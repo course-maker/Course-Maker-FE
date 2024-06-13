@@ -20,7 +20,7 @@ export const AlertModal = ({
   onKeyDown,
 }: AlertModalProps) => {
   return (
-    <Modal isOpen={isOpen} onBackdropClick={onCloseClick} onKeyDown={onKeyDown}>
+    <Modal isOpen={isOpen} onBackdropClick={onCloseClick} onKeyDown={onKeyDown} onConfirmClick={onConfirmClick}>
       <ModalContentBox
         message={message}
         hasCloseBtn={hasCloseBtn}
