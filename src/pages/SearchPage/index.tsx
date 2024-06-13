@@ -30,6 +30,7 @@ const SearchPage = () => {
   const [sortOrder, setSortOrder] = useState(initialSortOrder);
   const [page, setPage] = useState(initialPage);
   const [loading, setLoading] = useState(true);
+  const [hasMore, setHasMore] = useState(true);
 
   const observerRef = useRef<HTMLDivElement | null>(null);
   const scrollPositionRef = useRef(0);
@@ -69,7 +70,7 @@ const SearchPage = () => {
 
   const loadMoreObserver = useCallback(
     (node) => {
-      if (loading) return;
+      if (loading || !hasMore) return;
       if (observerRef.current) observerRef.current.disconnect();
       observerRef.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
@@ -78,7 +79,7 @@ const SearchPage = () => {
       });
       if (node) observerRef.current.observe(node);
     },
-    [loading, fetchMoreData],
+    [loading, fetchMoreData, hasMore],
   );
 
   // 스크롤 위치 저장
@@ -103,7 +104,7 @@ const SearchPage = () => {
     if (activeTab === "여행지 찾기") {
       fetchLists();
     }
-  }, [selectedDestinationBadges, sortOrder.destination]);
+  }, [selectedDestinationBadges, sortOrder.destination, activeTab]);
 
   // 코스 정보
   useEffect(() => {
@@ -117,20 +118,29 @@ const SearchPage = () => {
           ...response,
           contents: page.course === 1 ? response.contents : [...prev.contents, ...response.contents],
         }));
+        if (response.contents.length < 2) {
+          setHasMore(false);
+          if (observerRef.current) {
+            observerRef.current.disconnect();
+          }
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
-        window.scrollTo(0, scrollPositionRef.current); // 스크롤 위치 복원
+        if (hasMore) {
+          window.scrollTo(0, scrollPositionRef.current); // 스크롤 위치 복원
+        }
       }
     };
     if (activeTab === "코스 찾기") {
       fetchLists();
     }
-  }, [selectedCourseBadges, sortOrder.course, page.course, activeTab]);
+  }, [selectedCourseBadges, sortOrder.course, page.course, activeTab, hasMore]);
 
   useEffect(() => {
     setPage(initialPage);
+    setHasMore(true);
   }, [activeTab, selectedCourseBadges, selectedDestinationBadges, sortOrder]);
 
   // 태그 정보
