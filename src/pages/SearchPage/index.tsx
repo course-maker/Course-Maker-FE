@@ -16,7 +16,7 @@ import { getCourse } from "@/api/course";
 import { Courses } from "@/api/course/type";
 
 import groupTags from "@/utils/groupTags";
-import { initialDestination, initialCourse } from "@/constants/initialValues";
+import { initialDestination, initialCourse, initialSortOrder } from "@/constants/initialValues";
 
 const cx = classNames.bind(styles);
 
@@ -27,6 +27,7 @@ const SearchPage = () => {
   const [lists, setLists] = useState<Destination>(initialDestination);
   const [course, setCourse] = useState<Courses>(initialCourse);
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
+  const [sortOrder, setSortOrder] = useState(initialSortOrder);
   const [loading, setLoading] = useState(true);
 
   const selectedTagsInfo = (params) => {
@@ -41,13 +42,24 @@ const SearchPage = () => {
     return "";
   };
 
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+
+    setSortOrder((prev) => {
+      return {
+        ...prev,
+        ...(activeTab === "코스 찾기" ? { course: value } : { destination: value }),
+      };
+    });
+  };
+
   // 여행지 정보
   useEffect(() => {
     const tags = selectedTagsInfo(selectedDestinationBadges);
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await getDestination(`record=12&page=1&orderBy=NEWEST${tags}`);
+        const response = await getDestination(`record=12&page=1&orderBy=${sortOrder.destination}${tags}`);
         setLists(response);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -56,7 +68,7 @@ const SearchPage = () => {
       }
     };
     fetchLists();
-  }, [selectedDestinationBadges]);
+  }, [selectedDestinationBadges, sortOrder.destination]);
 
   // 코스 정보
   useEffect(() => {
@@ -64,7 +76,7 @@ const SearchPage = () => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await getCourse(`record=12&page=1&orderBy=NEWEST${tags}`);
+        const response = await getCourse(`record=12&page=1&orderBy=${sortOrder.course}${tags}`);
         setCourse(response);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -73,7 +85,7 @@ const SearchPage = () => {
       }
     };
     fetchLists();
-  }, [selectedCourseBadges]);
+  }, [selectedCourseBadges, sortOrder.course]);
 
   // 태그 정보
   useEffect(() => {
@@ -113,11 +125,16 @@ const SearchPage = () => {
       <div className={cx("option-container")}>
         <span>전체 {activeTab === "코스 찾기" ? course?.contents?.length : lists?.contents?.length}개</span>
         <div>
-          <select name="HeadlineAct" id="HeadlineAct" className={cx("select-box")}>
-            <option value="0">최신순</option>
-            <option value="1">인기순</option>
-            <option value="2">조회수순</option>
-            <option value="3">별점순</option>
+          <select
+            name="HeadlineAct"
+            id="HeadlineAct"
+            className={cx("select-box")}
+            onChange={handleSortChange}
+            value={sortOrder[activeTab === "코스 찾기" ? "course" : "destination"]}>
+            <option value="NEWEST">최신순</option>
+            <option value="POPULAR">인기순</option>
+            <option value="VIEWS">조회수순</option>
+            <option value="RATING">별점순</option>
           </select>
         </div>
       </div>
