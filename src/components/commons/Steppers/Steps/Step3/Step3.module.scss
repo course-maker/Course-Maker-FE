@@ -1,7 +1,7 @@
 .schedule-container {
   display: flex;
   justify-content: center;
-  padding: 10.8rem 0 9rem 0;
+  padding: 10.8rem 0 9rem 4rem;
   gap: 15rem;
 }
 .schedule-group {
@@ -197,4 +197,8 @@
   border: 1px solid #d9d9d9;
   background: #fff;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.quill-box {
+  padding-bottom: 9rem;
 }
