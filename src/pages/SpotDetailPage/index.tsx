@@ -1,19 +1,37 @@
-import styles from "./SpotDetailPage.module.scss";
-import classNames from "classnames/bind";
-import TitleBox from "@/components/commons/TitleBox/TitleBox";
-// import Button from "@/components/commons/Button";
+import { useQuery } from "@tanstack/react-query";
+import DOMPurify from "dompurify";
 import { Map } from "react-kakao-maps-sdk";
-import Mock from "@/mock/courses.json";
-import { IMAGES } from "@/constants/images";
+import { useParams } from "react-router-dom";
+
+import classNames from "classnames/bind";
+import styles from "./SpotDetailPage.module.scss";
+
+import { getDestinationApi } from "@/api/destination";
 import Image from "@/components/commons/Image";
+import TitleBox from "@/components/commons/TitleBox/TitleBox";
+import { IMAGES } from "@/constants/images";
 import DetailLayout from "@/layout/DetailLayout/DetailLayout";
 // import { useNavigate, useParams } from "react-router-dom";
+// import Button from "@/components/commons/Button";
 
 const cx = classNames.bind(styles);
 
 const SpotDetailPage = () => {
-  const mockdata = Mock;
-  const tagList = mockdata.map((item) => item.tags.map((item) => item.description));
+  const { id } = useParams();
+  const postId = Number(id);
+
+  const { data: spotDetailData } = useQuery({
+    queryKey: ["spotEdit", postId],
+    queryFn: () => getDestinationApi(postId),
+    enabled: !!postId,
+  });
+
+  if (!spotDetailData) {
+    return <div>Loading...</div>;
+  }
+
+  const { nickname, name, tags, location, pictureLink, content } = spotDetailData;
+  const sanitizedContent = { __html: DOMPurify.sanitize(content) };
 
   // const { id } = useParams();
   // const navigate = useNavigate();
@@ -31,13 +49,13 @@ const SpotDetailPage = () => {
         <article className={cx("article")}>
           <div>
             <TitleBox
-              image={{ src: "/src/assets/images/course_maker_logo.svg", alt: `${`데이터`}해당 이미지` }}
-              title={mockdata[0].title}
+              image={{ src: `${pictureLink}`, alt: `${`데이터`}해당 이미지` }}
+              title={name}
               // rating={mockdata[0].rating}
-              name={mockdata[0].name}
+              name={nickname}
               travelCount={null}
               duration={null}
-              tags={tagList[0]}
+              tags={tags}
               type="spot-detail"
             />
             {/* <div className={cx("btn-group")}>
@@ -49,24 +67,23 @@ const SpotDetailPage = () => {
               </Button>
             </div> */}
           </div>
-          <div>
+          <div className={cx("kakao-map")}>
             <Map
-              center={{ lat: mockdata[0].latitude, lng: mockdata[0].longitude }} // 지도의 중심 좌표 lat/lng 위도/경도
+              center={{ lat: location.latitude, lng: location.longitude }} // 지도의 중심 좌표 lat/lng 위도/경도
               className={cx("kakao-map")} // 지도 크기
-              style={{ width: "62.5rem", height: "45.7rem" }}
+              style={{ width: "50rem", height: "45.7rem" }}
               level={3} // 지도 확대 레벨
             />
             <div className={cx("location")}>
               <div>
                 <Image imageInfo={IMAGES.locationIcon} />
               </div>
-              <p className={cx("location-text")}>{mockdata[0].location}</p>
+              <p className={cx("location-text")}>{location.address}</p>
             </div>
           </div>
         </article>
         <article className={cx("content")}>
-          <img width={443} height={255} src={mockdata[0].pictureLink} alt={`${mockdata[0].title} 이미지`} />
-          <p>{mockdata[0].content}</p>
+          <p className={cx("content-text-editor")} dangerouslySetInnerHTML={sanitizedContent} />
         </article>
       </section>
     </DetailLayout>
