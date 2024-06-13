@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import classNames from "classnames/bind";
 import styles from "./Step3.module.scss";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import NavigationButtons from "../../NavigationButtons/NavigationButtons";
 import { getFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from "@/utils/localStorage";
 import { postCourses } from "@/api/course";
 import { Tag, DestinationDto, CourseDestination, postCourse } from "@/api/course/register";
 import MainImageInputController from "@/components/domains/courseRegister/MainImageInputController";
+import QuillEditorController from "@/components/domains/courseRegister/QuillEditorController";
 
 const cx = classNames.bind(styles);
 
@@ -27,7 +27,7 @@ const Step3: React.FC = () => {
   const [activeDay, setActiveDay] = useState(1);
   const [step1Data, setStep1Data] = useState<postCourse | null>(null);
   const [step2Data, setStep2Data] = useState<Step2Data | null>(null);
-  const { register, handleSubmit, setValue, watch, control } = useForm<Step3FormValues>({
+  const { register, handleSubmit, setValue, control } = useForm<Step3FormValues>({
     defaultValues: {
       title: "",
       content: "",
@@ -51,10 +51,6 @@ const Step3: React.FC = () => {
       setValue("pictureLink", savedStep3.pictureLink);
     }
   }, [setValue]);
-
-  const handleQuillChange = (content: string) => {
-    setValue("content", content);
-  };
 
   const getDestinationsForActiveDay = (): DestinationDto[] => {
     if (!step2Data || !step2Data.courseDestinations) {
@@ -213,7 +209,9 @@ const Step3: React.FC = () => {
         <div className={cx("image-upload")}>
           <MainImageInputController formFieldName="pictureLink" control={control} />
         </div>
-        <ReactQuill value={watch("content")} onChange={handleQuillChange} className={cx("editor")} />
+        <div className={cx("quill-box")}>
+          <QuillEditorController formFieldName="content" control={control} />
+        </div>
         <NavigationButtons />
       </form>
     </>
