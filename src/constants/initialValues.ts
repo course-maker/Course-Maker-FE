@@ -16,3 +16,9 @@ export const initialCourse: Courses = {
   pagingSlice: 12,
   contents: [],
 };
+
+//정렬 기준
+export const initialSortOrder = {
+  course: "NEWEST",
+  destination: "NEWEST",
+};
