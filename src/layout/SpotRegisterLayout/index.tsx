@@ -32,7 +32,7 @@ const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayo
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       e.preventDefault();
-      e.returnValue = ""; // 대부분의 브라우저에서 필요한 설정
+      e.returnValue = "";
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
