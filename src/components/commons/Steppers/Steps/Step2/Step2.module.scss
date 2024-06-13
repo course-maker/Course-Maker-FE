@@ -12,9 +12,11 @@
 .path-box {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
-  padding-bottom: 10.6rem;
-  gap: 5.5rem;
+  padding-left: 10rem;
+  padding-bottom: 5rem;
+  gap: 15rem;
 }
 
 .item-container {
@@ -67,8 +69,6 @@
 
 .schedule {
   display: flex;
-  width: 117.8rem;
-  height: 91.5rem;
   gap: 3rem;
   flex-shrink: 0;
   padding-bottom: 6.8rem;
