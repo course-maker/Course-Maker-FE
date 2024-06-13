@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   gap: 4rem;
   margin: 2rem 0;
 }
@@ -74,17 +75,34 @@
   }
 }
 
-.slider-marks {
+.slider-marks-duration {
   display: flex;
+  margin-top: 1rem;
+  flex-shrink: 0;
   justify-content: space-between;
+}
+.slider-marks-traveler {
+  display: flex;
+  width: 55rem;
+  gap: 8.4rem;
   margin-top: 1rem;
   flex-shrink: 0;
 }
 
-.mark {
+.marks-duration {
   display: flex;
   flex-direction: column;
   justify-self: center;
+  color: $Black;
+  gap: 2.08rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.marks-traveler {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: $Black;
   gap: 2.08rem;
   font-size: 2rem;
