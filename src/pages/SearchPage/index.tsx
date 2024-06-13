@@ -29,24 +29,12 @@ const SearchPage = () => {
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const toggleCourseBadge = (badge: string) => {
-    setSelectedCourseBadges((prevSelected) =>
-      prevSelected.includes(badge) ? prevSelected.filter((item) => item !== badge) : [...prevSelected, badge],
-    );
-  };
-
-  const toggleDestinationBadge = (badge: string) => {
-    setSelectedDestinationBadges((prevSelected) =>
-      prevSelected.includes(badge) ? prevSelected.filter((item) => item !== badge) : [...prevSelected, badge],
-    );
-  };
-
   // 여행지 정보
   useEffect(() => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await getDestination("record=20&page=1&orderBy=NEWEST");
+        const response = await getDestination("record=12&page=1&orderBy=NEWEST");
         setLists(response);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -90,6 +78,7 @@ const SearchPage = () => {
   }, []);
 
   const groupedTags = groupTags(tagsData);
+  console.log(groupedTags);
 
   return (
     <div className={cx("search-page")}>
@@ -100,8 +89,9 @@ const SearchPage = () => {
             key={description}
             title={description}
             tags={tags}
+            activeTab={activeTab}
             selectedBadges={activeTab === "코스 찾기" ? selectedCourseBadges : selectedDestinationBadges}
-            toggleBadge={activeTab === "코스 찾기" ? toggleCourseBadge : toggleDestinationBadge}
+            setSelectedBadges={activeTab === "코스 찾기" ? setSelectedCourseBadges : setSelectedDestinationBadges}
           />
         ))}
       </Section>
