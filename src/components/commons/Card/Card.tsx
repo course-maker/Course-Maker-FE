@@ -20,8 +20,8 @@ const isList = (item: any): item is getDestinationResponseDto => {
 
 const Card = ({ item, name, loading }: { item: any; name: string; loading: boolean }) => {
   const navigate = useNavigate();
-  console.log(item);
-  console.log(name);
+  // console.log(item);
+  // console.log(name);
   if (loading) {
     return (
       <div className={cx("card-container")}>
