@@ -1,5 +1,5 @@
-// import { useMemo } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useEffect } from "react";
 
 import styles from "./SpotRegisterLayout.module.scss";
 import classNames from "classnames/bind";
@@ -28,6 +28,19 @@ const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayo
     defaultValues: formData,
     values: formData,
   });
+
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = ""; // 대부분의 브라우저에서 필요한 설정
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!validateFormData(data, setFocus)) return;
