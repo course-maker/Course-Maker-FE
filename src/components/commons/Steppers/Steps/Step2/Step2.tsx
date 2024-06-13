@@ -1,101 +1,167 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { step1State, step2State } from "@/recoil/stepsAtom";
+import { useForm, SubmitHandler } from "react-hook-form";
 import classNames from "classnames/bind";
 import styles from "./Step2.module.scss";
 import { Map, CustomOverlayMap, Polyline } from "react-kakao-maps-sdk";
-import { Destination } from "@/api/course/type";
 import { useQuery } from "@tanstack/react-query";
-import RegisterBadgeList from "@/components/commons/BadgeList/RegisterBadgeList/RegisterBadgeList";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
 import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
 import NavigationButtons from "../../NavigationButtons/NavigationButtons";
-import { getDestinationApi } from "@/api/destination";
-import data from "../../../../../pages/SearchPage/data.json";
+import { getDestination } from "@/api/destination";
+import { GetDestinationDto } from "@/api/destination/type";
+import { getFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
+import { useStepper } from "../../StepperContext";
+import BadgeListsController from "@/components/domains/spotRegister/BadgeListsController";
+
 const cx = classNames.bind(styles);
 
-const Step2: React.FC = () => {
-  const step1 = useRecoilValue(step1State);
-  const [step2, setStep2] = useRecoilState(step2State);
-  const [activeDay, setActiveDay] = useState<number>(1);
-  const [allDestinations, setAllDestinations] = useState<Destination[]>([]);
-  const [filteredData, setFilteredData] = useState<Destination[]>([]);
+interface Step2Form {
+  tags: { id: number; name: string; description: string }[];
+}
 
-  const courseData = data.courseData;
+interface Step2Data {
+  courseDestinations: Record<number, GetDestinationDto[]>;
+  tags: { id: number; name: string; description: string }[];
+}
+
+const Step2: React.FC = () => {
+  const { control, handleSubmit, setValue, watch } = useForm<Step2Form>({
+    defaultValues: {
+      tags: [],
+    },
+  });
+  const [activeDay, setActiveDay] = useState<number>(1);
+  const [allDestinations, setAllDestinations] = useState<GetDestinationDto[]>([]);
+  const [filteredData, setFilteredData] = useState<GetDestinationDto[]>([]);
+  const [step1Data, setStep1Data] = useState<any>(null);
+  const [step2Data, setStep2Data] = useState<Step2Data>({ courseDestinations: {}, tags: [] });
 
   const { data: destinationData, isSuccess } = useQuery({
     queryKey: ["destinationData"],
-    queryFn: () => getDestinationApi({ currentPage: 1, totalPage: 1, pagingSlice: 1, contents: [] }),
+    queryFn: () => getDestination({ pagingSlice: 20, totalPage: 1, currentPage: 1, contents: [] }),
   });
 
   useEffect(() => {
+    const savedStep1 = getFromLocalStorage("step1");
+    const savedStep2 = getFromLocalStorage("step2");
+    if (savedStep1) {
+      setStep1Data(savedStep1);
+    }
+    if (savedStep2) {
+      setStep2Data(savedStep2);
+      setValue("tags", savedStep2.tags); // set saved tags
+    }
     if (isSuccess && destinationData) {
       setAllDestinations(destinationData.contents);
+      setFilteredData(destinationData.contents); // 초기 필터링 데이터 설정
     }
-  }, [isSuccess, destinationData]);
+  }, [isSuccess, destinationData, setValue]);
+
+  const tags = watch("tags");
 
   useEffect(() => {
-    const tags = step1.tags;
-    const filtered = allDestinations.filter((destination) => destination.tags.some((tag) => tags.includes(tag.name)));
-    setFilteredData(filtered);
-  }, [allDestinations, step1.tags]);
+    console.log("Selected tags:", tags); // tags 배열의 내용을 콘솔에 출력하여 확인
+    filterDestinationsByTags(tags);
+  }, [tags, allDestinations]);
+
+  const filterDestinationsByTags = (tags: { id: number; name: string; description: string }[]) => {
+    const tagNames = tags.map((tag) => tag.name);
+    console.log("Filtering destinations with tags:", tagNames); // 선택된 태그 이름 로그 출력
+    if (tagNames.length === 0) {
+      setFilteredData(allDestinations);
+    } else {
+      const filtered = allDestinations.filter((destination) =>
+        destination.tags.some((tag) => tagNames.includes(tag.name)),
+      );
+      console.log("Filtered destinations:", filtered); // 필터링된 목적지 로그 출력
+      setFilteredData(filtered);
+    }
+  };
 
   const handleDestinationToggle = (destinationName: string) => {
     const destination = allDestinations.find((d) => d.name === destinationName);
     if (!destination) return;
-    const updatedDestinations = step2.courseDestinations[activeDay] ? [...step2.courseDestinations[activeDay]] : [];
+    const updatedDestinations = step2Data.courseDestinations[activeDay]
+      ? [...step2Data.courseDestinations[activeDay]]
+      : [];
     const destinationIndex = updatedDestinations.findIndex((d) => d.id === destination.id);
 
     if (destinationIndex === -1) {
       updatedDestinations.push(destination);
-      console.log(filteredData);
     } else {
       updatedDestinations.splice(destinationIndex, 1);
     }
 
-    setStep2({
-      ...step2,
+    const updatedStep2Data = {
+      ...step2Data,
       courseDestinations: {
-        ...step2.courseDestinations,
+        ...step2Data.courseDestinations,
         [activeDay]: updatedDestinations,
       },
-    });
+      tags,
+    };
+
+    setStep2Data(updatedStep2Data);
+    saveToLocalStorage("step2", updatedStep2Data);
   };
 
   const mapCenter =
-    step2.courseDestinations[activeDay] && step2.courseDestinations[activeDay].length > 0
+    step2Data.courseDestinations[activeDay] && step2Data.courseDestinations[activeDay].length > 0
       ? {
-          lat: step2.courseDestinations[activeDay][0].location.latitude,
-          lng: step2.courseDestinations[activeDay][0].location.longitude,
+          lat: step2Data.courseDestinations[activeDay][0].location.latitude,
+          lng: step2Data.courseDestinations[activeDay][0].location.longitude,
         }
-      : { lat: 37.5665, lng: 126.978 };
+      : { lat: 35.1795543, lng: 129.0756416 };
 
   const polylinePath =
-    step2.courseDestinations[activeDay]?.map((item) => ({
+    step2Data.courseDestinations[activeDay]?.map((item) => ({
       lat: item.location.latitude,
       lng: item.location.longitude,
     })) || [];
 
+  const { goToNextStep, goToPrevStep } = useStepper();
+
+  const handleNext: SubmitHandler<Step2Form> = () => {
+    const allDaysHaveDestinations = Array.from(
+      { length: step1Data?.duration || 0 },
+      (_, index) => step2Data.courseDestinations[index + 1],
+    ).every((destinations) => destinations && destinations.length > 0);
+
+    if (!allDaysHaveDestinations) {
+      alert("모든 DAY에 최소 한 개의 여행지를 추가해주세요.");
+      return;
+    }
+
+    const updatedStep2Data = {
+      ...step2Data,
+      tags,
+    };
+
+    setStep2Data(updatedStep2Data);
+    saveToLocalStorage("step2", updatedStep2Data);
+    goToNextStep();
+  };
+
+  const handlePrev = () => {
+    const savedStep2 = getFromLocalStorage("step2");
+    if (savedStep2) {
+      setStep2Data(savedStep2);
+    }
+    goToPrevStep();
+  };
+
   return (
-    <>
-      <div>
+    <form onSubmit={handleSubmit(handleNext)}>
+      <div className={cx("path-title-box")}>
         <p className={cx("path-title")}>경로 설정</p>
       </div>
       <div className={cx("path-box")}>
         <div className={cx("BadgeList-box")}>
-          {Object.entries(courseData).map(([title, badges]) => (
-            <RegisterBadgeList
-              key={title}
-              title={title}
-              badges={badges}
-              selectedBadges={step1.tags}
-              toggleBadge={handleDestinationToggle}
-            />
-          ))}
+          <BadgeListsController formFieldName="tags" control={control} />
         </div>
         <AllCardList>
-          {destinationData?.contents.map((item, id) => (
+          {filteredData.map((item, id) => (
             <div className={cx("item-container")} key={id}>
               <button type="button" className={cx("plus-btn")} onClick={() => handleDestinationToggle(item.name)}>
                 <Image imageInfo={IMAGES.plus} />
@@ -116,7 +182,7 @@ const Step2: React.FC = () => {
       <div className={cx("schedule")}>
         <div className={cx("schedule-group")}>
           <div className={cx("day-btn-group")}>
-            {[...Array(step1.duration)].map((_, index) => (
+            {[...Array(step1Data?.duration || 0)].map((_, index) => (
               <button
                 type="button"
                 className={cx("day-btn", { active: activeDay === index + 1 })}
@@ -128,7 +194,7 @@ const Step2: React.FC = () => {
           </div>
           <FilterCardList>
             <div className={cx("scrollable-list")}>
-              {step2.courseDestinations[activeDay]?.map((item, id) => (
+              {step2Data.courseDestinations[activeDay]?.map((item, id) => (
                 <div className={cx("item-container")} key={id}>
                   <div className={cx("number-circle")}>{id + 1}</div>
                   <div>
@@ -146,7 +212,7 @@ const Step2: React.FC = () => {
           </FilterCardList>
         </div>
         <Map center={mapCenter} className={cx("kakao-map")} style={{ width: "68.9rem", height: "100%" }} level={8}>
-          {step2.courseDestinations[activeDay]?.map((item, id) => (
+          {step2Data.courseDestinations[activeDay]?.map((item, id) => (
             <CustomOverlayMap key={id} position={{ lat: item.location.latitude, lng: item.location.longitude }}>
               <div className={cx("marker-label")}>{id + 1}</div>
             </CustomOverlayMap>
@@ -162,8 +228,10 @@ const Step2: React.FC = () => {
           )}
         </Map>
       </div>
-      <NavigationButtons />
-    </>
+      <div className={cx("btn-group")}>
+        <NavigationButtons onClickNext={handleSubmit(handleNext)} onClickPrev={handlePrev} />
+      </div>
+    </form>
   );
 };
 

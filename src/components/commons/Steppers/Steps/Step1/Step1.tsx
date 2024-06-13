@@ -1,53 +1,67 @@
-import React from "react";
-import { useRecoilState } from "recoil";
-import { step1State } from "@/recoil/stepsAtom";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import Slider from "@/components/commons/SliderBar/SliderBar";
-import RegisterBadgeList from "@/components/commons/BadgeList/RegisterBadgeList/RegisterBadgeList";
-import data from "../../../../../pages/SearchPage/data.json";
 import styles from "./Step1.module.scss";
 import classNames from "classnames/bind";
 import { useStepper } from "../../StepperContext";
 import NavigationButtons from "../../NavigationButtons/NavigationButtons";
+import { saveToLocalStorage, getFromLocalStorage } from "@/utils/localStorage";
+import BadgeListController from "@/components/domains/spotRegister/BadgeListsController";
 
 const cx = classNames.bind(styles);
 
-const courseData = data.courseData;
-
 const Step1: React.FC = () => {
-  const [step1, setStep1] = useRecoilState(step1State);
-  const { goToNextStep } = useStepper();
+  const { goToNextStep, goToPrevStep } = useStepper();
+  const { control, handleSubmit, setValue, reset, watch } = useForm({
+    defaultValues: {
+      duration: 1,
+      travelerCount: 1,
+      tags: [],
+    },
+  });
 
-  const handleBadgeToggle = (badge: string) => {
-    const badges = step1.tags.includes(badge) ? step1.tags.filter((b) => b !== badge) : [...step1.tags, badge];
-    setStep1({ ...step1, tags: badges });
-  };
+  useEffect(() => {
+    const savedStep1 = getFromLocalStorage("step1");
+    if (savedStep1) {
+      reset(savedStep1);
+    }
+  }, [reset]);
 
-  const handleNext = () => {
-    if (step1.tags.length === 0) {
+  const handleNext = (data: any) => {
+    if (data.tags.length === 0) {
       alert("태그를 1개 이상 선택해주세요.");
       return;
     }
+    saveToLocalStorage("step1", data);
     goToNextStep();
   };
 
+  const handlePrev = () => {
+    const savedStep1 = getFromLocalStorage("step1");
+    if (savedStep1) {
+      reset(savedStep1);
+    }
+    goToPrevStep();
+  };
+
+  const handleDurationChange = (value: number) => {
+    setValue("duration", value);
+  };
+
+  const handleTravelCountChange = (value: number) => {
+    setValue("travelerCount", value);
+  };
+
   return (
-    <>
-      <Slider type="Duration" />
-      <Slider type="TravelCount" />
+    <form onSubmit={handleSubmit(handleNext)}>
+      <Slider type="Duration" value={watch("duration")} onChange={handleDurationChange} />
+      <Slider type="TravelCount" value={watch("travelerCount")} onChange={handleTravelCountChange} />
       <div className={cx("BadgeList-box")}>
         <p className={cx("BadgeList-title")}>태그 선택</p>
-        {Object.entries(courseData).map(([title, badges]) => (
-          <RegisterBadgeList
-            key={title}
-            title={title}
-            badges={badges}
-            selectedBadges={step1.tags}
-            toggleBadge={handleBadgeToggle}
-          />
-        ))}
+        <BadgeListController formFieldName="tags" control={control} />
       </div>
-      <NavigationButtons onClickNext={handleNext} />
-    </>
+      <NavigationButtons onClickNext={handleSubmit(handleNext)} onClickPrev={handlePrev} />
+    </form>
   );
 };
 

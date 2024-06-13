@@ -1,15 +1,15 @@
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import BadgeLists from "./BadgeLists";
+import BadgeLists from "../courseRegister/BadgeLists";
 
-interface BadgeListControllerProps<ControlType extends FieldValues> {
+interface BadgeListsControllerProps<ControlType extends FieldValues> {
   formFieldName: Path<ControlType>;
   control: Control<ControlType>;
 }
 
-const BadgeListController = <ControlType extends FieldValues>({
+const BadgeListsController = <ControlType extends FieldValues>({
   formFieldName,
   control,
-}: BadgeListControllerProps<ControlType>) => {
+}: BadgeListsControllerProps<ControlType>) => {
   return (
     <Controller
       control={control}
@@ -21,4 +21,4 @@ const BadgeListController = <ControlType extends FieldValues>({
   );
 };
 
-export default BadgeListController;
+export default BadgeListsController;
