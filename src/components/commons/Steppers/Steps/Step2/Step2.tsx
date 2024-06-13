@@ -22,7 +22,7 @@ interface Step2Form {
 
 interface Step2Data {
   courseDestinations: Record<number, GetDestinationDto[]>;
-  tags: { id: number; name: string; description: string }[];
+  tags?: { id: number; name: string; description: string }[];
 }
 
 const Step2: React.FC = () => {
@@ -50,31 +50,28 @@ const Step2: React.FC = () => {
     }
     if (savedStep2) {
       setStep2Data(savedStep2);
-      setValue("tags", savedStep2.tags); // set saved tags
+      setValue("tags", savedStep2.tags);
     }
     if (isSuccess && destinationData) {
       setAllDestinations(destinationData.contents);
-      setFilteredData(destinationData.contents); // 초기 필터링 데이터 설정
+      setFilteredData(destinationData.contents);
     }
   }, [isSuccess, destinationData, setValue]);
 
   const tags = watch("tags");
 
   useEffect(() => {
-    console.log("Selected tags:", tags); // tags 배열의 내용을 콘솔에 출력하여 확인
     filterDestinationsByTags(tags);
   }, [tags, allDestinations]);
 
   const filterDestinationsByTags = (tags: { id: number; name: string; description: string }[]) => {
     const tagNames = tags.map((tag) => tag.name);
-    console.log("Filtering destinations with tags:", tagNames); // 선택된 태그 이름 로그 출력
     if (tagNames.length === 0) {
       setFilteredData(allDestinations);
     } else {
       const filtered = allDestinations.filter((destination) =>
         destination.tags.some((tag) => tagNames.includes(tag.name)),
       );
-      console.log("Filtered destinations:", filtered); // 필터링된 목적지 로그 출력
       setFilteredData(filtered);
     }
   };
@@ -99,11 +96,9 @@ const Step2: React.FC = () => {
         ...step2Data.courseDestinations,
         [activeDay]: updatedDestinations,
       },
-      tags,
     };
 
     setStep2Data(updatedStep2Data);
-    saveToLocalStorage("step2", updatedStep2Data);
   };
 
   const mapCenter =
@@ -133,9 +128,9 @@ const Step2: React.FC = () => {
       return;
     }
 
-    const updatedStep2Data = {
+    const updatedStep2Data: Step2Data = {
       ...step2Data,
-      tags,
+      tags: tags.length > 0 ? tags : undefined,
     };
 
     setStep2Data(updatedStep2Data);
@@ -211,7 +206,7 @@ const Step2: React.FC = () => {
             </div>
           </FilterCardList>
         </div>
-        <Map center={mapCenter} className={cx("kakao-map")} style={{ width: "60rem", height: "70rem" }} level={6}>
+        <Map center={mapCenter} className={cx("kakao-map")} style={{ width: "60rem", height: "80rem" }} level={6}>
           {step2Data.courseDestinations[activeDay]?.map((item, id) => (
             <CustomOverlayMap key={id} position={{ lat: item.location.latitude, lng: item.location.longitude }}>
               <div className={cx("marker-label")}>{id + 1}</div>
