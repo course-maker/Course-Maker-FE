@@ -1,7 +1,7 @@
 import { useSetRecoilState } from "recoil";
 import { authState } from "@/recoil/authAtom";
 import { postLogout } from "@/api/member";
-import { removeTokens } from "@/utils/manageTokenInfo";
+import { removeSteps, removeTokens } from "@/utils/manageTokenInfo";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
@@ -12,6 +12,7 @@ export const useLogoutMutation = () => {
     mutationFn: () => postLogout(),
     onSuccess: () => {
       removeTokens();
+      removeSteps();
       setIsAuth(false);
       alert("성공적으로 로그아웃 되었습니다.");
     },
