@@ -1,15 +1,20 @@
+.path-title-box {
+  padding: 10.9rem 0 8.4rem 0;
+}
+
 .path-title {
   color: $Black;
   text-align: center;
   font-size: 4rem;
   font-weight: 700;
-  padding-top: 10.9rem;
 }
 
 .path-box {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-bottom: 10.6rem;
+  gap: 5.5rem;
 }
 
 .item-container {
