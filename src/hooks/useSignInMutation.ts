@@ -23,7 +23,7 @@ export const useSignInMutation = () => {
     onError: (error: AxiosError) => {
       const statusCode = error?.response?.status;
       switch (statusCode) {
-        case 401:
+        case 409:
           setCurrentModal(MODALS.invalidPassword.id);
           break;
         case 404:
