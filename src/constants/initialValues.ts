@@ -22,3 +22,9 @@ export const initialSortOrder = {
   course: "NEWEST",
   destination: "NEWEST",
 };
+
+//페이지
+export const initialPage = {
+  course: 1,
+  destination: 1,
+};
