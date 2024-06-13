@@ -9,12 +9,14 @@ import { postCourses } from "@/api/course";
 import { Tag, DestinationDto, CourseDestination, postCourse } from "@/api/course/register";
 import MainImageInputController from "@/components/domains/courseRegister/MainImageInputController";
 import QuillEditorController from "@/components/domains/courseRegister/QuillEditorController";
+import { useImageUpload } from "@/hooks/useImageUpload";
 
 const cx = classNames.bind(styles);
 
 interface Step3FormValues {
   title: string;
   content: string;
+  pictureFile: File | null;
   pictureLink: string;
 }
 
@@ -31,9 +33,12 @@ const Step3: React.FC = () => {
     defaultValues: {
       title: "",
       content: "",
+      pictureFile: null,
       pictureLink: "",
     },
   });
+
+  const { uploadImageAsync } = useImageUpload();
 
   useEffect(() => {
     const savedStep1 = getFromLocalStorage("step1");
@@ -60,11 +65,47 @@ const Step3: React.FC = () => {
     return step2Data.courseDestinations[activeDay] || [];
   };
 
+  const cleanContent = (content: string) => {
+    return content.replace(/<p><br><\/p>/g, "").trim();
+  };
+
   const onSubmit: SubmitHandler<Step3FormValues> = async (data) => {
+    if (!data.title) {
+      alert("코스 제목을 입력해주세요.");
+      return;
+    }
+
+    if (!data.pictureFile) {
+      alert("대표 이미지를 첨부해주세요.");
+      return;
+    }
+
+    if (data.pictureFile.size > 15 * 1024 * 1024) {
+      alert("파일 크기가 너무 커서 업로드할 수 없습니다. 15MB 이하의 이미지로 다시 시도해주세요.");
+      return;
+    }
+
+    let pictureLink = "";
+    try {
+      const formData = new FormData();
+      formData.append("images", data.pictureFile, data.pictureFile.name);
+      const uploadResponse = await uploadImageAsync(formData);
+      pictureLink = uploadResponse[0];
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      return;
+    }
+
+    const cleanedContent = cleanContent(data.content);
+    if (!cleanedContent) {
+      alert("코스를 소개해주세요.");
+      return;
+    }
+
     const step3Data: Partial<postCourse> = {
       title: data.title,
-      content: data.content,
-      pictureLink: data.pictureLink,
+      content: cleanedContent,
+      pictureLink,
     };
 
     saveToLocalStorage("step3", step3Data);
@@ -136,9 +177,8 @@ const Step3: React.FC = () => {
       removeFromLocalStorage("combinedStepData");
       window.location.href = "/search";
     } catch (error) {
-      if (error) {
-        console.error(` Error : `, error);
-      }
+      console.error("Error posting course:", error);
+      alert("코스 등록에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -207,7 +247,7 @@ const Step3: React.FC = () => {
           {...register("title", { required: true })}
         />
         <div className={cx("image-upload")}>
-          <MainImageInputController formFieldName="pictureLink" control={control} />
+          <MainImageInputController formFieldName="pictureFile" control={control} />
         </div>
         <div className={cx("quill-box")}>
           <QuillEditorController formFieldName="content" control={control} />
