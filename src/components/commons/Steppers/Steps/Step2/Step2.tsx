@@ -211,7 +211,7 @@ const Step2: React.FC = () => {
             </div>
           </FilterCardList>
         </div>
-        <Map center={mapCenter} className={cx("kakao-map")} style={{ width: "68.9rem", height: "100%" }} level={8}>
+        <Map center={mapCenter} className={cx("kakao-map")} style={{ width: "60rem", height: "70rem" }} level={6}>
           {step2Data.courseDestinations[activeDay]?.map((item, id) => (
             <CustomOverlayMap key={id} position={{ lat: item.location.latitude, lng: item.location.longitude }}>
               <div className={cx("marker-label")}>{id + 1}</div>
