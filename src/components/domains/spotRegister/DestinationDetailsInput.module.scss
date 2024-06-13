@@ -1,26 +1,35 @@
 .container {
-  @include flexbox(start, center);
-  gap: 1.4rem;
-}
-
-.title {
-  @include text-style(2.5, 700);
-  padding-right: 2rem;
+  @include column-flexbox(center, end);
+  gap: 0.5rem;
 }
 
 .input {
-  @include text-style(1.5, 400);
-  background-color: $White;
-  border: 0.1rem solid #d9d9d9;
-  border-radius: 1rem;
-  padding: 1.1rem 1.3rem;
-  width: 27.6rem;
+  @include flexbox(start, center);
+  gap: 1.4rem;
 
-  &.isAddress {
-    width: 51.4rem;
+  &-title {
+    @include text-style(2.5, 700);
+    padding-right: 2rem;
   }
 
-  &::placeholder {
-    color: $Primary_Gray;
+  &-field {
+    @include text-style(1.5, 400);
+    background-color: $White;
+    border: 0.1rem solid #d9d9d9;
+    border-radius: 1rem;
+    padding: 1.1rem 1.3rem;
+    width: 27.6rem;
+
+    &.isAddress {
+      width: 51.4rem;
+    }
+
+    &::placeholder {
+      color: $Primary_Gray;
+    }
   }
+}
+
+.helper-text {
+  @include text-style(1.3, 400, $Primary_Gray);
 }
