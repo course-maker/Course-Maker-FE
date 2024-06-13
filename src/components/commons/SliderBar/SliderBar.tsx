@@ -20,9 +20,9 @@ const Slider: React.FC<SliderBarProps> = ({ type, value, onChange }) => {
     <div className={cx("slider-container")}>
       <div className={cx("slider-box")}>
         <div className={cx("slider-title")}>{type === "Duration" ? "여행기간" : "여행추천인원"}</div>
-        <div className={cx("slider-marks")}>
+        <div className={type === "Duration" ? styles["slider-marks-duration"] : styles["slider-marks-traveler"]}>
           {marks.map((mark, index) => (
-            <div key={index} className={cx("mark")}>
+            <div key={index} className={type === "Duration" ? styles["marks-duration"] : styles["marks-traveler"]}>
               {mark}
               <div className={cx("range-line")}>
                 <Image imageInfo={IMAGES.rangeLine} />
