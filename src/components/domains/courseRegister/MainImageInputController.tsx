@@ -1,4 +1,4 @@
-import { Controller, Control, FieldValues, Path } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import MainImageInput from "./MainImageInput";
 
 interface MainImageInputControllerProps<ControlType extends FieldValues> {
@@ -6,17 +6,28 @@ interface MainImageInputControllerProps<ControlType extends FieldValues> {
   control: Control<ControlType>;
 }
 
-function MainImageInputController<ControlType extends FieldValues>({
+const MainImageInputController = <ControlType extends FieldValues>({
   formFieldName,
   control,
-}: MainImageInputControllerProps<ControlType>) {
+}: MainImageInputControllerProps<ControlType>) => {
   return (
     <Controller
-      control={control}
       name={formFieldName}
-      render={({ field }) => <MainImageInput selectedImage={field.value} onChange={field.onChange} />}
+      control={control}
+      render={({ field }) => (
+        <MainImageInput
+          selectedImage={field.value}
+          onChange={(file: File | null) => {
+            if (file) {
+              field.onChange(file);
+            } else {
+              field.onChange(null);
+            }
+          }}
+        />
+      )}
     />
   );
-}
+};
 
 export default MainImageInputController;

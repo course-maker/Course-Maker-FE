@@ -1,15 +1,13 @@
-import React, { useRef, useEffect } from "react";
-import { useImageUpload } from "@/hooks/useImageUpload";
+import React, { useRef } from "react";
 import DestinationDetailsInput from "../spotRegister/DestinationDetailsInput";
 
 interface MainImageInputProps {
-  selectedImage: string;
-  onChange: (updatedImage: string) => void;
+  selectedImage: File | null;
+  onChange: (updatedImage: File | null) => void;
 }
 
 const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { imageUrl, inputFileName, uploadImage } = useImageUpload();
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -17,12 +15,10 @@ const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
     }
   };
 
-  const handleImageAttach = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      const formData = new FormData();
-      formData.append("images", file);
-      await uploadImage({ formData, fileName: file.name });
+      onChange(file);
 
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -30,17 +26,14 @@ const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
     }
   };
 
-  useEffect(() => {
-    onChange(imageUrl);
-  }, [imageUrl, onChange]);
-
   return (
     <>
       <DestinationDetailsInput
         title="대표 이미지"
         buttonName="파일첨부"
-        placeholder="대표이미지를 첨부해주세요."
-        selectedOption={inputFileName || selectedImage}
+        placeholder="대표 이미지를 첨부해주세요."
+        helperText="대표 이미지는 1개, 15MB 이하입니다."
+        selectedOption={selectedImage ? selectedImage.name : ""}
         onButtonClick={handleButtonClick}
       />
       <input type="file" accept="image/*" ref={fileInputRef} style={{ display: "none" }} onChange={handleImageAttach} />
