@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { useQuery } from "@tanstack/react-query";
 
+import { getDestinationApi } from "@/api/destination";
+import { postDestinationRequestDto } from "@/api/destination/type";
+import { useDestinationMutation } from "@/hooks/useDestinationMutation";
 import SpotRegisterLayout from "@/layout/SpotRegisterLayout";
 import { authState } from "@/recoil/authAtom";
-import { useDestinationMutation } from "@/hooks/useDestinationMutation";
-import { postDestinationRequestDto } from "@/api/destination/type";
-import { getDestinationApi } from "@/api/destination";
 
 const SpotEditPage = () => {
   const [formData, setFormData] = useState<postDestinationRequestDto>({

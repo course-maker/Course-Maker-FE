@@ -36,7 +36,7 @@ const Card = ({ item, name, loading }: { item: any; name: string; loading: boole
   return (
     <div
       className={cx("card-container")}
-      onClick={() => navigate(`/${name === "코스 찾기" ? "course" : "destination"}/${item.id}`)}>
+      onClick={() => navigate(`/${name === "코스 찾기" ? "course" : "spot"}/${item.id}`)}>
       <img
         alt={IMAGES.testImage.alt}
         src={(item as Course | getDestinationResponseDto).pictureLink}

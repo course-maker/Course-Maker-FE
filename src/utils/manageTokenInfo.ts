@@ -1,4 +1,5 @@
 // import { postLogout } from "@/api/member";
+import { PAGE_PATH } from "@/constants/pagePath";
 import axios, { AxiosError } from "axios";
 
 const ACCESS_TOKEN_KEY = "accessToken";
@@ -53,6 +54,7 @@ export const handleSessionExpired = async () => {
   // await postLogout();
   removeTokens();
   alert("세션이 만료되어 다시 로그인 해주세요.");
+  window.location.href = PAGE_PATH.signIn;
 };
 
 export const retryWithNewAccessToken = async (error: AxiosError) => {

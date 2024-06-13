@@ -1,6 +1,7 @@
+import { Tag } from "@/api/destination/type";
+import classNames from "classnames/bind";
 import React, { ReactNode } from "react";
 import styles from "./TitleBox.module.scss";
-import classNames from "classnames/bind";
 // import Button from "../Button";
 // import { IMAGES } from "@/constants/images";
 // import Image from "../Image";
@@ -18,7 +19,7 @@ interface CardProps {
   // rating: ReactNode;
   travelCount?: ReactNode;
   duration?: ReactNode;
-  tags: string[];
+  tags: Tag[];
   type: "course-detail" | "spot-detail";
   image: ImageProps;
 }
@@ -53,7 +54,7 @@ const TitleBox: React.FC<CardProps> = ({ image, title, name, travelCount, durati
       <div className={cx("tag-box")}>
         {tags?.map((tag, id) => (
           <span key={id} className={cx("tag-item", { [styles["spot-detail"]]: isSpotDetail })}>
-            {tag}
+            {tag.name}
           </span>
         ))}
       </div>
