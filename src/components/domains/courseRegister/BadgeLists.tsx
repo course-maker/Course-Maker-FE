@@ -40,7 +40,7 @@ const BadgeLists = ({ selectedDestinationBadges, onChange }: BadgeListsProps) =>
   useEffect(() => {
     const fetchLists = async () => {
       try {
-        const response = await axios.get("http://34.64.85.245/v1/tags");
+        const response = await axios.get("http://api.course-maker.net:8080/v1/tags");
         setTagsData(response.data);
         // console.log(response.data);
       } catch (error) {

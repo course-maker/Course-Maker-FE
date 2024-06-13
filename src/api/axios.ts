@@ -8,7 +8,7 @@ export interface ApiRequestResponse<T> {
   errorMessage?: string | null;
 }
 
-export const BASE_URL = import.meta.env.VITE_APP_BASE_URL || "http://34.64.85.245";
+export const BASE_URL = import.meta.env.VITE_APP_BASE_URL || "http://api.course-maker.net:8080";
 
 // 기본 Axios 설정
 export const api = axios.create({
