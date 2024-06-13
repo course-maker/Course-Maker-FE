@@ -24,7 +24,6 @@ const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges, setS
     setSelectedBadges((prevSelected) =>
       prevSelected.includes(badge) ? prevSelected.filter((item) => item !== badge) : [...prevSelected, badge],
     );
-    f;
   };
 
   useEffect(() => {

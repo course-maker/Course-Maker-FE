@@ -29,12 +29,25 @@ const SearchPage = () => {
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const selectedTagsInfo = (params) => {
+    if (tagsData.length > 0 && params.length > 0) {
+      const tagIds = tagsData
+        .filter((tag) => params.includes(tag.name))
+        .map((tag) => tag.id)
+        .map((id) => `tagIds=${id}`)
+        .join("&");
+      return tagIds ? `&${tagIds}` : "";
+    }
+    return "";
+  };
+
   // 여행지 정보
   useEffect(() => {
+    const tags = selectedTagsInfo(selectedDestinationBadges);
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await getDestination("record=12&page=1&orderBy=NEWEST");
+        const response = await getDestination(`record=12&page=1&orderBy=NEWEST${tags}`);
         setLists(response);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -43,14 +56,15 @@ const SearchPage = () => {
       }
     };
     fetchLists();
-  }, []);
+  }, [selectedDestinationBadges]);
 
   // 코스 정보
   useEffect(() => {
+    const tags = selectedTagsInfo(selectedCourseBadges);
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await getCourse("?record=20&page=1&orderBy=NEWEST");
+        const response = await getCourse(`record=12&page=1&orderBy=NEWEST${tags}`);
         setCourse(response);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -59,7 +73,7 @@ const SearchPage = () => {
       }
     };
     fetchLists();
-  }, []);
+  }, [selectedCourseBadges]);
 
   // 태그 정보
   useEffect(() => {
