@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import styles from "./SearchPage.module.scss";
 import classNames from "classnames/bind";
@@ -16,7 +16,7 @@ import { getCourse } from "@/api/course";
 import { Courses } from "@/api/course/type";
 
 import groupTags from "@/utils/groupTags";
-import { initialDestination, initialCourse, initialSortOrder } from "@/constants/initialValues";
+import { initialDestination, initialCourse, initialSortOrder, initialPage } from "@/constants/initialValues";
 
 const cx = classNames.bind(styles);
 
@@ -28,8 +28,12 @@ const SearchPage = () => {
   const [course, setCourse] = useState<Courses>(initialCourse);
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [sortOrder, setSortOrder] = useState(initialSortOrder);
+  const [page, setPage] = useState(initialPage);
   const [loading, setLoading] = useState(true);
 
+  const observerRef = useRef<HTMLDivElement | null>(null);
+
+  //선택한 태그 정보와 일치하는 TagData id값 추출
   const selectedTagsInfo = (params) => {
     if (tagsData.length > 0 && params.length > 0) {
       const tagIds = tagsData
@@ -53,6 +57,31 @@ const SearchPage = () => {
     });
   };
 
+  const fetchMoreData = useCallback(() => {
+    setPage((prevPage) => {
+      return {
+        ...prevPage,
+        ...(activeTab === "코스 찾기" ? { course: prevPage.course + 1 } : { destination: prevPage.destination + 1 }),
+      };
+    });
+  }, [activeTab]);
+  console.log("이거ㅓ====================");
+  console.log(page);
+
+  const loadMoreObserver = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observerRef.current) observerRef.current.disconnect();
+      observerRef.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          fetchMoreData();
+        }
+      });
+      if (node) observerRef.current.observe(node);
+    },
+    [loading, fetchMoreData],
+  );
+
   // 여행지 정보
   useEffect(() => {
     const tags = selectedTagsInfo(selectedDestinationBadges);
@@ -67,7 +96,9 @@ const SearchPage = () => {
         setLoading(false);
       }
     };
-    fetchLists();
+    if (activeTab === "여행지 찾기") {
+      fetchLists();
+    }
   }, [selectedDestinationBadges, sortOrder.destination]);
 
   // 코스 정보
@@ -76,16 +107,25 @@ const SearchPage = () => {
     const fetchLists = async () => {
       setLoading(true);
       try {
-        const response = await getCourse(`record=12&page=1&orderBy=${sortOrder.course}${tags}`);
-        setCourse(response);
+        const response = await getCourse(`record=2&page=${page.course}&orderBy=${sortOrder.course}${tags}`);
+        setCourse((prev) => ({
+          ...response,
+          contents: page.course === 1 ? response.contents : [...prev.contents, ...response.contents],
+        }));
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
-    fetchLists();
-  }, [selectedCourseBadges, sortOrder.course]);
+    if (activeTab === "코스 찾기") {
+      fetchLists();
+    }
+  }, [selectedCourseBadges, sortOrder.course, page.course, activeTab]);
+
+  useEffect(() => {
+    setPage(initialPage);
+  }, [activeTab, selectedCourseBadges, selectedDestinationBadges, sortOrder]);
 
   // 태그 정보
   useEffect(() => {
@@ -149,6 +189,7 @@ const SearchPage = () => {
                 <Card key={item.id} name={activeTab} item={item} loading={false} />
               ))}
         </div>
+        <div ref={loadMoreObserver} style={{ height: 20 }}></div>
       </Section>
     </div>
   );
