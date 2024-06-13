@@ -32,6 +32,7 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(true);
 
   const observerRef = useRef<HTMLDivElement | null>(null);
+  const scrollPositionRef = useRef(0);
 
   //선택한 태그 정보와 일치하는 TagData id값 추출
   const selectedTagsInfo = (params) => {
@@ -65,8 +66,6 @@ const SearchPage = () => {
       };
     });
   }, [activeTab]);
-  console.log("이거ㅓ====================");
-  console.log(page);
 
   const loadMoreObserver = useCallback(
     (node) => {
@@ -81,6 +80,11 @@ const SearchPage = () => {
     },
     [loading, fetchMoreData],
   );
+
+  // 스크롤 위치 저장
+  const saveScrollPosition = () => {
+    scrollPositionRef.current = window.scrollY;
+  };
 
   // 여행지 정보
   useEffect(() => {
@@ -105,6 +109,7 @@ const SearchPage = () => {
   useEffect(() => {
     const tags = selectedTagsInfo(selectedCourseBadges);
     const fetchLists = async () => {
+      saveScrollPosition();
       setLoading(true);
       try {
         const response = await getCourse(`record=2&page=${page.course}&orderBy=${sortOrder.course}${tags}`);
@@ -116,6 +121,7 @@ const SearchPage = () => {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
+        window.scrollTo(0, scrollPositionRef.current); // 스크롤 위치 복원
       }
     };
     if (activeTab === "코스 찾기") {
