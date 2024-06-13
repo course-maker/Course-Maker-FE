@@ -3,6 +3,7 @@ import axios, { AxiosError } from "axios";
 
 const ACCESS_TOKEN_KEY = "accessToken";
 const REFRESH_TOKEN_KEY = "refreshToken";
+const STEPS_STORAGE = ["step1", "step2", "step3", "combinedStepData"];
 
 export const saveAccessToken = (accessToken: string) => {
   localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
@@ -25,6 +26,12 @@ export const removeTokens = () => {
   localStorage.removeItem(REFRESH_TOKEN_KEY);
 };
 
+export const removeSteps = () => {
+  localStorage.removeItem(STEPS_STORAGE[0]);
+  localStorage.removeItem(STEPS_STORAGE[1]);
+  localStorage.removeItem(STEPS_STORAGE[2]);
+  localStorage.removeItem(STEPS_STORAGE[3]);
+};
 export const refreshAccessToken = async () => {
   const refreshToken = getRefreshToken();
   if (refreshToken) {
