@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import DOMPurify from "dompurify";
-import { Map } from "react-kakao-maps-sdk";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { useParams } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./SpotDetailPage.module.scss";
@@ -70,8 +70,12 @@ const SpotDetailPage = () => {
               center={{ lat: location.latitude, lng: location.longitude }} // 지도의 중심 좌표 lat/lng 위도/경도
               className={cx("kakao-map")} // 지도 크기
               style={{ width: "50rem", height: "45.7rem" }}
-              level={3} // 지도 확대 레벨
-            />
+              level={3}>
+              <MapMarker // 마커를 생성합니다
+                position={{ lat: location.latitude, lng: location.longitude }}
+              />
+            </Map>
+
             <div className={cx("location")}>
               <div>
                 <Image imageInfo={IMAGES.locationIcon} />
