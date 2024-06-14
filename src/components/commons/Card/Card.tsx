@@ -1,13 +1,13 @@
-import classNames from "classnames/bind";
-import styles from "./Card.module.scss";
-import { useNavigate } from "react-router-dom";
 import ItemBox from "@/components/commons/ItemBox/ItemBox";
 import { IMAGES } from "@/constants/images";
+import classNames from "classnames/bind";
 import Skeleton from "react-loading-skeleton";
+import { useNavigate } from "react-router-dom";
+import styles from "./Card.module.scss";
 const cx = classNames.bind(styles);
 
-import { getDestinationResponseDto } from "@/api/destination/type";
 import { Course } from "@/api/course/type";
+import { getDestinationResponseDto } from "@/api/destination/type";
 
 const isCourse = (item: any): item is Course => {
   return (item as Course).courseDestinations !== undefined;
@@ -40,11 +40,13 @@ const Card: React.FC<CardProps> = ({ item, name, loading }) => {
     <div
       className={cx("card-container")}
       onClick={() => navigate(`/${name === "코스 찾기" ? "course" : "spot"}/${item.id}`)}>
-      <img
-        alt={IMAGES.testImage.alt}
-        src={(item as Course | getDestinationResponseDto).pictureLink}
-        className={cx("card-image")}
-      />
+      <div className={cx("card-image-container")}>
+        <img
+          alt={IMAGES.testImage.alt}
+          src={(item as Course | getDestinationResponseDto).pictureLink}
+          className={cx("card-image")}
+        />
+      </div>
       <div className={cx("card-content")}>
         {isCourse(item) && name === "코스 찾기" && (
           <ItemBox

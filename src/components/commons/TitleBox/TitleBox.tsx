@@ -33,7 +33,9 @@ const TitleBox: React.FC<CardProps> = ({ image, title, name, travelCount, durati
         [styles["spot-detail"]]: isSpotDetail,
       })}>
       <div>
-        <img src={image.src} alt={image.alt} className={cx("image")} />
+        <div className={cx("image-container")}>
+          <img src={image.src} alt={image.alt} className={cx("image")} />
+        </div>
         <div className={cx("title-box")}>
           <h1 className={cx("title")}>{title}</h1>
           <div className={cx("rating", { [styles["spot-detail"]]: isSpotDetail })}>
