@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-
+import { useLocation } from "react-router-dom";
 import styles from "./SearchPage.module.scss";
 import classNames from "classnames/bind";
 
@@ -21,7 +21,7 @@ import { initialDestination, initialCourse, initialSortOrder, initialPage } from
 const cx = classNames.bind(styles);
 
 const SearchPage = () => {
-  const [activeTab, setActiveTab] = useState("코스 찾기");
+  const [activeTab, setActiveTab] = useState("여행지 찾기");
   const [selectedCourseBadges, setSelectedCourseBadges] = useState<tagResponseDto[]>([]);
   const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<tagResponseDto[]>([]);
   const [lists, setLists] = useState<Destination>(initialDestination);
@@ -34,6 +34,8 @@ const SearchPage = () => {
 
   const observerRef = useRef<IntersectionObserver | null>(null);
   const scrollPositionRef = useRef(0);
+  const location = useLocation();
+  const { propsTagName } = location.state || {};
 
   const selectedTagsInfo = (params: tagResponseDto[]) => {
     if (tagsData.length > 0 && params.length > 0) {
@@ -85,6 +87,7 @@ const SearchPage = () => {
     scrollPositionRef.current = window.scrollY;
   };
 
+  //여행지 찾기
   useEffect(() => {
     const tags = selectedTagsInfo(selectedDestinationBadges);
     const fetchLists = async () => {
@@ -119,6 +122,7 @@ const SearchPage = () => {
     }
   }, [selectedDestinationBadges, sortOrder.destination, page.destination, activeTab, hasMore]);
 
+  //코스 찾기
   useEffect(() => {
     const tags = selectedTagsInfo(selectedCourseBadges);
     const fetchLists = async () => {
@@ -170,6 +174,15 @@ const SearchPage = () => {
     };
     fetchTags();
   }, []);
+
+  useEffect(() => {
+    if (propsTagName && tagsData.length > 0) {
+      const matchedTag = tagsData.find((tag) => tag.name === propsTagName);
+      if (matchedTag) {
+        setSelectedDestinationBadges([matchedTag]);
+      }
+    }
+  }, [propsTagName, tagsData]);
 
   const groupedTags = groupTags(tagsData);
 

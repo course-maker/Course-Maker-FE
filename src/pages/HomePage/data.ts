@@ -3,22 +3,17 @@ import { IMAGES } from "@/constants/images";
 export const bannerData = [
   {
     id: 0,
-    image: IMAGES.Banner1.src,
+    image: IMAGES.Banner2.src,
     size: "x-large",
     title: "null",
   },
   {
     id: 1,
-    image: IMAGES.Banner2.src,
-    size: "x-large",
-  },
-  {
-    id: 2,
     image: IMAGES.Banner3.src,
     size: "x-large",
   },
   {
-    id: 3,
+    id: 2,
     image: IMAGES.Banner4.src,
     size: "x-large",
   },

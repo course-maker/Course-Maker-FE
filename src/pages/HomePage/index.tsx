@@ -81,7 +81,7 @@ const HomePage = () => {
               key={item.id}
               image={bannerItems.small[item.id - 1]?.image}
               title={item.name}
-              onClick={() => navigate(`course/${item.id}`)}
+              onClick={() => navigate(`search`, { state: { propsTagName: item.name } })}
               size="small"
             />
           ))}
