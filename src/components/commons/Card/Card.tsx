@@ -54,6 +54,7 @@ const Card: React.FC<CardProps> = ({ item, name, loading }) => {
       onClick={() => navigate(`/${name === "코스 찾기" ? "course" : "spot"}/${item.id}`)}>
       <div className={cx("card-image-container")}>
         <img
+          loading="lazy"
           alt={IMAGES.testImage.alt}
           src={(item as Course | getDestinationResponseDto)?.pictureLink}
           className={cx("card-image")}
