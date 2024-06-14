@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 import { useStepper } from "../../StepperContext";
 import NavigationButtons from "../../NavigationButtons/NavigationButtons";
 import { saveToLocalStorage, getFromLocalStorage } from "@/utils/localStorage";
-import BadgeListController from "@/components/domains/spotRegister/BadgeListsController";
+import BadgeListController from "@/components/domains/courseRegister/BadgeListsController";
 
 const cx = classNames.bind(styles);
 

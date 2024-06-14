@@ -12,7 +12,7 @@ import { getDestination } from "@/api/destination";
 import { GetDestinationDto } from "@/api/destination/type";
 import { getFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
 import { useStepper } from "../../StepperContext";
-import BadgeListsController from "@/components/domains/spotRegister/BadgeListsController";
+import BadgeListsController from "@/components/domains/courseRegister/BadgeListsController";
 import { FaMinusCircle } from "react-icons/fa";
 
 const cx = classNames.bind(styles);
