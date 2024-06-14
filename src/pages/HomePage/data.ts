@@ -8,7 +8,17 @@ export const bannerData = [
   },
   {
     id: 1,
-    image: IMAGES.Banner1.src,
+    image: IMAGES.Banner2.src,
+    size: "x-large",
+  },
+  {
+    id: 2,
+    image: IMAGES.Banner3.src,
+    size: "x-large",
+  },
+  {
+    id: 3,
+    image: IMAGES.Banner4.src,
     size: "x-large",
   },
 ];

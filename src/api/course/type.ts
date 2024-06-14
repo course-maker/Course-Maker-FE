@@ -17,7 +17,8 @@ export interface Course {
   travelType: number;
   pictureLink: string;
   courseDestinations: CourseDestination[];
-  courseTags: tagResponseDto[];
+  tags?: tagResponseDto[];
+  courseTags?: tagResponseDto[];
   member: {
     nickname: string;
   };

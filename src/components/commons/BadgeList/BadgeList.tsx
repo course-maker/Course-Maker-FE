@@ -2,20 +2,20 @@ import React from "react";
 import Badge from "@/components/commons/Badge/Badge";
 import classNames from "classnames/bind";
 import styles from "./BadgeList.module.scss";
-
+import { tagResponseDto } from "@/api/tag/type";
 const cx = classNames.bind(styles);
 
-interface Tag {
-  id: number;
-  name: string;
-  description: string;
-}
+// interface Tag {
+//   id: number;
+//   name: string;
+//   description: string;
+// }
 
 interface BadgeListProps {
   title: string;
-  tags: Tag[];
-  selectedBadges?: string[];
-  setSelectedBadges?: string[];
+  tags: tagResponseDto[];
+  selectedBadges?: tagResponseDto[];
+  setSelectedBadges?: tagResponseDto[];
 }
 
 const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges, setSelectedBadges }) => {

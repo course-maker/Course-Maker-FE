@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Card from "@/components/commons/Card/Card";
 import Section from "@/components/commons/Section/Section";
 import Banner from "@/components/commons/Banner/Banner";
@@ -5,27 +7,63 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import SwiperCore, { Navigation, Autoplay } from "swiper";
 import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
-import { bannerData, busanData, bannerItemsData } from "./data.js";
+import { bannerData, bannerItemsData } from "./data.js";
 import "swiper/css";
 // import "swiper/css/navigation";
 
+import { getTag } from "@/api/tag";
+import { tagResponseDto } from "@/api/tag/type";
+// import { getDestinations } from "@/api/destination";
+// import { Destination } from "@/api/destination/type";
+import { getCourse } from "@/api/course";
+import { Course } from "@/api/course/type";
+// import { initialDestination } from "@/constants/initialValues";
 // SwiperCore.use([Navigation, Autoplay]);
+
 const cx = classNames.bind(styles);
 
-interface Icons {
-  [key: string]: number;
-}
-
-interface MockData {
-  id: number;
-  title: string;
-  location: string;
-  icons: Icons;
-}
-const mockData: MockData[] = busanData;
 const bannerItems = bannerItemsData;
 
 const HomePage = () => {
+  const [loading, setLoading] = useState(true);
+  const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
+  const [course, setCourse] = useState<Course[]>([]);
+
+  const navigate = useNavigate();
+  // 태그 정보
+  useEffect(() => {
+    const fetchTags = async () => {
+      setLoading(true);
+      try {
+        const response = await getTag();
+        setTagsData(response);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTags();
+  }, []);
+
+  //코스 정보
+  useEffect(() => {
+    const fetchLists = async () => {
+      setLoading(true);
+      try {
+        const response = await getCourse(`record=8&page=1&orderBy=NEWEST`);
+        setCourse(response.contents);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLists();
+  }, []);
+
+  console.log(tagsData);
+
   return (
     <div data-testid="home-page">
       <Section title="" className={cx("container")}>
@@ -34,7 +72,6 @@ const HomePage = () => {
             spaceBetween={20}
             slidesPerView={1}
             loop={true}
-            // navigation
             autoplay={{ delay: 1000 }}
             className={cx("swiper-container")}>
             {bannerData.map((item) => (
@@ -53,8 +90,14 @@ const HomePage = () => {
       <Section title="어떤 여행을 할까요?">
         <div className={cx("banner-container")}>
           <button className={cx("arrow-button", "left")}>{"<"}</button>
-          {bannerItems.small.map((item) => (
-            <Banner key={item.id} image={item.image} title={item.title} size="small" />
+          {tagsData.map((item) => (
+            <Banner
+              key={item.id}
+              image={bannerItems.small[item.id].image}
+              title={item.name}
+              onClick={() => navigate(`course/${item.id}`)}
+              size="small"
+            />
           ))}
           <button className={cx("arrow-button", "right")}>{">"}</button>
         </div>
@@ -67,16 +110,15 @@ const HomePage = () => {
 
       <Section title="코스메이커’S PICK">
         <div className={cx("card_container")}>
-          {mockData.map((item) => (
-            <Card key={item.id} item={item} />
-          ))}
+          {!loading &&
+            course &&
+            course.slice(0, 4)?.map((item) => <Card key={item.id} name={"코스 찾기"} item={item} loading={false} />)}
         </div>
       </Section>
       <Section title="요즘 인기있는 코스">
         <div className={cx("card_container")}>
-          {mockData.map((item) => (
-            <Card key={item.id} item={item} />
-          ))}
+          {course &&
+            course.slice(0, 4)?.map((item) => <Card key={item.id} name={"코스 찾기"} item={item} loading={false} />)}
         </div>
       </Section>
     </div>
