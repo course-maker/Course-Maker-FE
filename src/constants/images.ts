@@ -19,7 +19,6 @@ import Rectangle_44 from "@/assets/images/Rectangle_44.svg";
 import Rectangle_45 from "@/assets/images/Rectangle_45.svg";
 import Home_left_test from "@/assets/images/home_left_test.svg";
 import Home_right_test from "@/assets/images/home_right_test.svg";
-import Banner1 from "@/assets/images/banner1.png";
 import Banner2 from "@/assets/images/banner2.png";
 import Banner3 from "@/assets/images/banner3.png";
 import Banner4 from "@/assets/images/banner4.png";
@@ -112,10 +111,6 @@ export const IMAGES = {
   Home_left_test: {
     src: Home_left_test,
     alt: "홈 여행지 추천 이미지",
-  },
-  Banner1: {
-    src: Banner1,
-    alt: "배너 이미지",
   },
   Banner2: {
     src: Banner2,
