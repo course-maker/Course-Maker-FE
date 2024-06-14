@@ -80,8 +80,8 @@ const HomePage = () => {
             <Banner
               key={item.id}
               image={item.image}
-              title={item.name}
-              onClick={() => navigate(`search`, { state: { propsTagName: item.name } })}
+              title={item.title}
+              onClick={() => navigate(`search`, { state: { propsTagName: item.title } })}
               size="small"
             />
           ))}
