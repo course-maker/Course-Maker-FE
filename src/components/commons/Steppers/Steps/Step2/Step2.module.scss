@@ -109,13 +109,13 @@
   font-size: 2rem;
   font-weight: 700;
   border: 0.1rem solid #8c8c8c;
-  background-color: $White;
+  background-color: #d1d1d1;
   border-radius: 0.8rem;
   cursor: pointer;
 }
 
 .day-btn.active {
-  background-color: #d1d1d1;
+  background-color: $White;
 }
 
 .scrollable-list {
