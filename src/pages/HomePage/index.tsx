@@ -95,6 +95,7 @@ const HomePage = () => {
               title={item.title ?? "Default Title"}
               subtitle={item.subtitle}
               size="large"
+              onClick={() => navigate(item.url)}
             />
           ))}
         </div>
