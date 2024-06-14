@@ -121,6 +121,12 @@ export const bannerItemsData = {
       title: "식도락",
       size: "small",
     },
+    {
+      id: 6,
+      image: IMAGES.Rectangle_40.src,
+      title: "식도락",
+      size: "small",
+    },
   ],
   large: [
     {

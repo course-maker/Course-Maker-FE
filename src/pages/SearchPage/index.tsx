@@ -92,14 +92,14 @@ const SearchPage = () => {
       setLoading(true);
       try {
         const response = await getDestinations(
-          `record=2&page=${page.destination}&orderBy=${sortOrder.destination}${tags}`,
+          `record=8&page=${page.destination}&orderBy=${sortOrder.destination}${tags}`,
         );
 
         setLists((prev) => ({
           ...response,
           contents: page.destination === 1 ? response.contents : [...prev.contents, ...response.contents],
         }));
-        if (response.contents.length < 2) {
+        if (response.contents.length < 8) {
           setHasMore(false);
           if (observerRef.current) {
             observerRef.current.disconnect();
@@ -125,12 +125,12 @@ const SearchPage = () => {
       saveScrollPosition();
       setLoading(true);
       try {
-        const response = await getCourse(`record=2&page=${page.course}&orderBy=${sortOrder.course}${tags}`);
+        const response = await getCourse(`record=8&page=${page.course}&orderBy=${sortOrder.course}${tags}`);
         setCourse((prev) => ({
           ...response,
           contents: page.course === 1 ? response.contents : [...prev.contents, ...response.contents],
         }));
-        if (response.contents.length < 2) {
+        if (response.contents.length < 8) {
           setHasMore(false);
           if (observerRef.current) {
             observerRef.current.disconnect();

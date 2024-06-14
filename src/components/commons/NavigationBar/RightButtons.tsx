@@ -14,9 +14,9 @@ const RightButtons = ({ isAuth }: { isAuth: boolean | null }) => {
 
   return isAuth ? (
     <div className={cx("container")}>
-      <Button color="emerald" variant="primary" size="small">
+      {/* <Button color="emerald" variant="primary" size="small">
         마이페이지
-      </Button>
+      </Button> */}
       <Button color="emerald" variant="secondary" size="small" onClick={() => logout()}>
         로그아웃
       </Button>

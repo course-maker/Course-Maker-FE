@@ -67,7 +67,7 @@ const HomePage = () => {
             className={cx("swiper-container")}>
             {bannerData.map((item) => (
               <SwiperSlide key={item.id}>
-                <Banner image={item.image} title={item.title ?? "Default Title"} size="x-large" />
+                <Banner image={item.image} size="x-large" />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -76,10 +76,10 @@ const HomePage = () => {
       <Section title="어떤 여행을 할까요?">
         <div className={cx("banner-container")}>
           <button className={cx("arrow-button", "left")}>{"<"}</button>
-          {tagsData.map((item) => (
+          {tagsData.slice(0, 6).map((item) => (
             <Banner
               key={item.id}
-              image={bannerItems.small[item.id]?.image}
+              image={bannerItems.small[item.id - 1]?.image}
               title={item.name}
               onClick={() => navigate(`course/${item.id}`)}
               size="small"

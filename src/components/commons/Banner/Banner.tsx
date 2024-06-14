@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 export interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
   image: string;
-  title: string;
+  title?: string;
   subtitle?: string;
   size?: "small" | "large" | "x-large";
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;

@@ -26,7 +26,7 @@ const ItemBox: React.FC<ItemBoxProps> = ({ location, title, tags }) => {
         <p className={cx("item-location")}>{location.address}</p>
       </div>
       <div className={cx("score-group")}>
-        {tags?.map((tag) => (
+        {tags?.slice(0, 3).map((tag) => (
           <Badge key={tag.id} color="gray" variant="primary" size="xsmall">
             {tag.name}
           </Badge>

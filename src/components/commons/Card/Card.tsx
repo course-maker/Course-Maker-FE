@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import ItemBox from "@/components/commons/ItemBox/ItemBox";
 import { IMAGES } from "@/constants/images";
 import classNames from "classnames/bind";
@@ -10,11 +11,11 @@ import { Course } from "@/api/course/type";
 import { getDestinationResponseDto } from "@/api/destination/type";
 
 const isCourse = (item: any): item is Course => {
-  return (item as Course).courseDestinations !== undefined;
+  return (item as Course)?.courseDestinations !== undefined;
 };
 
 const isList = (item: any): item is getDestinationResponseDto => {
-  return (item as getDestinationResponseDto).location !== undefined;
+  return (item as getDestinationResponseDto)?.location !== undefined;
 };
 
 interface CardProps {
@@ -25,7 +26,18 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ item, name, loading }) => {
   const navigate = useNavigate();
-  if (loading) {
+  const [isLoading, setIsLoading] = useState(loading);
+
+  useEffect(() => {
+    setIsLoading(loading);
+    if (loading) {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+  if (isLoading) {
     return (
       <div className={cx("card-container")}>
         <Skeleton height={200} width={300} className={cx("card-image")} />
@@ -43,7 +55,7 @@ const Card: React.FC<CardProps> = ({ item, name, loading }) => {
       <div className={cx("card-image-container")}>
         <img
           alt={IMAGES.testImage.alt}
-          src={(item as Course | getDestinationResponseDto).pictureLink}
+          src={(item as Course | getDestinationResponseDto)?.pictureLink}
           className={cx("card-image")}
         />
       </div>
@@ -52,7 +64,7 @@ const Card: React.FC<CardProps> = ({ item, name, loading }) => {
           <ItemBox
             location={item.courseDestinations[0].destination.location}
             title={item.title}
-            tags={item.courseTags || []} // Default value
+            tags={item.courseTags || []}
           />
         )}
         {isList(item) && name === "여행지 찾기" && (
