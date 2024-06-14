@@ -5,7 +5,7 @@ import TitleBox from "@/components/commons/TitleBox/TitleBox";
 import Section from "@/components/commons/Section/Section";
 import styles from "./CourseDetailPage.module.scss";
 import classNames from "classnames/bind";
-
+import DOMPurify from "dompurify";
 import { getCourseDetail } from "@/api/course";
 import { Course } from "@/api/course/type";
 import { Tag } from "@/api/destination/type"; // Make sure to import the Tag type
@@ -41,6 +41,8 @@ const CourseDetailPage = () => {
       description: tag.description,
     })),
   );
+
+  const sanitizedContent = { __html: DOMPurify.sanitize(course?.content as string) };
 
   return (
     <div>
@@ -131,7 +133,7 @@ const CourseDetailPage = () => {
       </div>
       <div className={cx("content")}>
         <img width={443} src={course?.pictureLink} alt={`${course?.title} 이미지`} />
-        <p>{course?.content}</p>
+        <p className={cx("content-text-editor")} dangerouslySetInnerHTML={sanitizedContent} />
       </div>
     </div>
   );

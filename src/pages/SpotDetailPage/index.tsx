@@ -2,10 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import DOMPurify from "dompurify";
 import { Map } from "react-kakao-maps-sdk";
 import { useParams } from "react-router-dom";
-
 import classNames from "classnames/bind";
 import styles from "./SpotDetailPage.module.scss";
-
 import { getDestinationApi } from "@/api/destination";
 import Image from "@/components/commons/Image";
 import TitleBox from "@/components/commons/TitleBox/TitleBox";
