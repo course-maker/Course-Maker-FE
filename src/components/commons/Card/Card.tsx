@@ -62,9 +62,13 @@ const Card: React.FC<CardProps> = ({ item, name, loading }) => {
       <div className={cx("card-content")}>
         {isCourse(item) && name === "코스 찾기" && (
           <ItemBox
+            name={name}
             location={item.courseDestinations[0].destination.location}
             title={item.title}
             tags={item.courseTags || []}
+            travelerCount={item.travelerCount}
+            views={item.views}
+            duration={item.duration}
           />
         )}
         {isList(item) && name === "여행지 찾기" && (
