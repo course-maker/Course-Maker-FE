@@ -114,6 +114,13 @@
   cursor: pointer;
 }
 
+.minus-btn {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  color: $Primary_Navy;
+  cursor: pointer;
+}
 .day-btn.active {
   background-color: $White;
 }

@@ -13,6 +13,7 @@ import { GetDestinationDto } from "@/api/destination/type";
 import { getFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
 import { useStepper } from "../../StepperContext";
 import BadgeListsController from "@/components/domains/spotRegister/BadgeListsController";
+import { FaMinusCircle } from "react-icons/fa";
 
 const cx = classNames.bind(styles);
 
@@ -163,7 +164,11 @@ const Step2: React.FC = () => {
           {filteredData.map((item, id) => (
             <div className={cx("item-container")} key={id}>
               <button type="button" className={cx("plus-btn")} onClick={() => handleDestinationToggle(item.name)}>
-                <Image imageInfo={IMAGES.plus} />
+                {step2Data.courseDestinations[activeDay]?.some((d) => d.name === item.name) ? (
+                  <FaMinusCircle className={cx("minus-btn")} />
+                ) : (
+                  <Image imageInfo={IMAGES.plus} />
+                )}
               </button>
               <div>
                 <img className={cx("item-image")} src={item.pictureLink} alt={`${item.name} 이미지`} />
