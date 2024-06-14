@@ -26,6 +26,7 @@ import grayTriangle from "@/assets/images/gray_triangle.svg";
 import modalClose from "@/assets/images/modal_close.svg";
 import rangeLine from "@/assets/images/range_line.svg";
 import plus from "@/assets/images/plus.svg";
+import Down_arrow from "@/assets/images/down_arrow.svg";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -139,5 +140,9 @@ export const IMAGES = {
   plus: {
     src: plus,
     alt: "추가 버튼 이미지",
+  },
+  Down_arrow: {
+    src: Down_arrow,
+    alt: "아래버튼",
   },
 };
