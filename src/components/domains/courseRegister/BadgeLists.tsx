@@ -1,22 +1,17 @@
 import { useState, useEffect } from "react";
 import BadgeListTemp from "../spotRegister/BadgeListTemp";
-import axios from "axios";
-
-interface Tag {
-  id: number;
-  name: string;
-  description: string;
-}
+import { getTag } from "@/api/tag";
+import { tagResponseDto } from "@/api/tag/type";
 
 interface BadgeListsProps {
-  selectedDestinationBadges: Tag[];
-  onChange: (updatedDestinationBadges: Tag[]) => void;
+  selectedDestinationBadges: tagResponseDto[];
+  onChange: (updatedDestinationBadges: tagResponseDto[]) => void;
 }
 
 const BadgeLists = ({ selectedDestinationBadges, onChange }: BadgeListsProps) => {
-  const [tagsData, setTagsData] = useState<Tag[]>([]);
+  const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
 
-  const toggleDestinationBadge = (selectedTag: Tag) => {
+  const toggleDestinationBadge = (selectedTag: tagResponseDto) => {
     const isTagSelected = selectedDestinationBadges.find((tag) => tag.id === selectedTag.id);
     const updatedDestinationBadges = isTagSelected
       ? selectedDestinationBadges.filter((tag) => tag.id !== selectedTag.id)
@@ -24,7 +19,7 @@ const BadgeLists = ({ selectedDestinationBadges, onChange }: BadgeListsProps) =>
     onChange(updatedDestinationBadges);
   };
 
-  const groupTagsByDescription = (tags: Tag[]) => {
+  const groupTagsByDescription = (tags: tagResponseDto[]) => {
     return tags.reduce(
       (acc, tag) => {
         if (!acc[tag.description]) {
@@ -33,14 +28,14 @@ const BadgeLists = ({ selectedDestinationBadges, onChange }: BadgeListsProps) =>
         acc[tag.description].push(tag);
         return acc;
       },
-      {} as Record<string, Tag[]>,
+      {} as Record<string, tagResponseDto[]>,
     );
   };
 
   useEffect(() => {
     const fetchLists = async () => {
       try {
-        const response = await axios.get("http://api.course-maker.net:8080/v1/tags");
+        const response = await getTag();
         setTagsData(response.data);
         // console.log(response.data);
       } catch (error) {
