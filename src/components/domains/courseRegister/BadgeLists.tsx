@@ -36,7 +36,7 @@ const BadgeLists = ({ selectedDestinationBadges, onChange }: BadgeListsProps) =>
     const fetchLists = async () => {
       try {
         const response = await getTag();
-        setTagsData(response.data);
+        setTagsData(response);
         // console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
