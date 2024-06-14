@@ -1,6 +1,7 @@
 .section {
   @include column-flexbox();
   gap: 16.3rem;
+  padding-bottom: 15rem;
 }
 
 .article {

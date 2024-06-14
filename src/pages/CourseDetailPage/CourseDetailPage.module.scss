@@ -200,6 +200,8 @@
   width: 100%;
   // height: 78.1rem;
   flex-shrink: 0;
+  padding-top: 16.3rem;
+  padding-bottom: 15rem;
 
   &-text-editor {
     @include text-style(1.8, 400);
