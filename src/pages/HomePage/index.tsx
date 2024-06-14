@@ -24,7 +24,7 @@ const HomePage = () => {
   const [course, setCourse] = useState<Course[]>([]);
 
   const navigate = useNavigate();
-
+  console.log(tagsData);
   useEffect(() => {
     const fetchTags = async () => {
       setLoading(true);
@@ -76,10 +76,10 @@ const HomePage = () => {
       <Section title="어떤 여행을 할까요?">
         <div className={cx("banner-container")}>
           <button className={cx("arrow-button", "left")}>{"<"}</button>
-          {tagsData.slice(0, 6).map((item) => (
+          {bannerItems.small.slice(0, 6).map((item) => (
             <Banner
               key={item.id}
-              image={bannerItems.small[item.id - 1]?.image}
+              image={item.image}
               title={item.name}
               onClick={() => navigate(`search`, { state: { propsTagName: item.name } })}
               size="small"
@@ -109,8 +109,11 @@ const HomePage = () => {
       </Section>
       <Section title="요즘 인기있는 코스">
         <div className={cx("card_container")}>
-          {course &&
-            course.slice(0, 4)?.map((item) => <Card key={item.id} name={"코스 찾기"} item={item} loading={false} />)}
+          {loading
+            ? Array.from({ length: 4 }).map((_, index) => (
+                <Card key={index} name={"코스 찾기"} loading={true} item={null} />
+              ))
+            : course.slice(0, 4)?.map((item) => <Card key={item.id} name={"코스 찾기"} item={item} loading={false} />)}
         </div>
       </Section>
     </div>

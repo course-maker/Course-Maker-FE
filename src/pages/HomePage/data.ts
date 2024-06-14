@@ -95,7 +95,7 @@ export const bannerItemsData = {
     {
       id: 2,
       image: IMAGES.Rectangle_42.src,
-      title: "무장해여행",
+      title: "장애인",
       size: "small",
     },
     {
@@ -113,12 +113,6 @@ export const bannerItemsData = {
     {
       id: 5,
       image: IMAGES.Rectangle_45.src,
-      title: "식도락",
-      size: "small",
-    },
-    {
-      id: 6,
-      image: IMAGES.Rectangle_40.src,
       title: "식도락",
       size: "small",
     },
