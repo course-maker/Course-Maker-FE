@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
 import TitleBox from "@/components/commons/TitleBox/TitleBox";
 import Section from "@/components/commons/Section/Section";
@@ -8,9 +8,7 @@ import classNames from "classnames/bind";
 import DOMPurify from "dompurify";
 import { getCourseDetail } from "@/api/course";
 import { Course } from "@/api/course/type";
-import { Tag } from "@/api/destination/type"; // Make sure to import the Tag type
-import { Map } from "react-kakao-maps-sdk";
-import Mock from "@/mock/courses.json";
+import { Map, CustomOverlayMap, Polyline } from "react-kakao-maps-sdk";
 
 const cx = classNames.bind(styles);
 
@@ -33,28 +31,31 @@ const CourseDetailPage = () => {
     fetchLists();
   }, [id]);
 
-  const mockdata = Mock;
-  const tagList: Tag[][] = mockdata.map((item) =>
-    item.tags.map((tag) => ({
-      id: tag.id,
-      name: tag.description,
-      description: tag.description,
-    })),
-  );
-
   const sanitizedContent = { __html: DOMPurify.sanitize(course?.content as string) };
+
+  const filteredDestinations = course?.courseDestinations.filter((item) => item.date === activeDay) || [];
+
+  const mapCenter = {
+    lat: filteredDestinations[0]?.destination.location.latitude ?? 37.5665,
+    lng: filteredDestinations[0]?.destination.location.longitude ?? 126.978,
+  };
+
+  const polylinePath = filteredDestinations.map((item) => ({
+    lat: item.destination.location.latitude,
+    lng: item.destination.location.longitude,
+  }));
 
   return (
     <div>
       <div className={cx("container")}>
         <Section className={cx("section")}>
           <TitleBox
-            image={{ src: "/src/assets/images/course_maker_logo.svg", alt: `${course?.title} 이미지` }}
+            image={{ src: `${course?.pictureLink}`, alt: `${course?.title} 이미지` }}
             title={course?.title}
             name={course?.member?.nickname}
             travelCount={`${course?.travelerCount}인`}
             duration={`${course?.duration}일`}
-            tags={tagList[0]} // Ensuring correct type
+            tags={course?.tags || []} // Ensuring correct type
             type="course-detail"
           />
         </Section>
@@ -66,21 +67,23 @@ const CourseDetailPage = () => {
           <AllCardList>
             {course &&
               course.courseDestinations.map((item, id) => (
-                <div className={cx("item-container")} key={id}>
-                  <div>
-                    <img
-                      className={cx("item-image")}
-                      src={item?.destination?.pictureLink}
-                      alt={`${item?.destination?.name} 이미지`}
-                    />
-                  </div>
-                  <div className={cx("item-box")}>
-                    <div className={cx("title-group")}>
-                      <p className={cx("item-title")}>{item?.destination?.name}</p>
-                      <p className={cx("item-location")}>{item?.destination?.location?.address}</p>
+                <Link to={`/spot/${item.destination.id}`} key={id}>
+                  <div className={cx("item-container")}>
+                    <div>
+                      <img
+                        className={cx("item-image")}
+                        src={item?.destination?.pictureLink}
+                        alt={`${item?.destination?.name} 이미지`}
+                      />
+                    </div>
+                    <div className={cx("item-box")}>
+                      <div className={cx("title-group")}>
+                        <p className={cx("item-title")}>{item?.destination?.name}</p>
+                        <p className={cx("item-location")}>{item?.destination?.location?.address}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
           </AllCardList>
         </Section>
@@ -100,39 +103,54 @@ const CourseDetailPage = () => {
           </div>
           <FilterCardList>
             <div className={cx("scrollable-list")}>
-              {course &&
-                course.courseDestinations
-                  .filter((item) => item.date === activeDay)
-                  .map((item) => (
-                    <div className={cx("item-container")} key={item.visitOrder}>
-                      <div className={cx("number-circle")}>{item.visitOrder}</div>
-                      <div>
-                        <img
-                          className={cx("item-image")}
-                          src={item.destination.pictureLink}
-                          alt={`${item.destination.name} 이미지`}
-                        />
-                      </div>
-                      <div className={cx("item-box")}>
-                        <div className={cx("title-group")}>
-                          <p className={cx("item-title")}>{item.destination.name}</p>
-                          <p className={cx("item-location")}>{item.destination.location.address}</p>
-                        </div>
-                      </div>
+              {filteredDestinations.map((item, id) => (
+                <div className={cx("filter-container")} key={id}>
+                  <div className={cx("number-circle")}>{item.visitOrder}</div>
+                  <div>
+                    <img
+                      className={cx("item-image")}
+                      src={item.destination.pictureLink}
+                      alt={`${item.destination.name} 이미지`}
+                    />
+                  </div>
+                  <div className={cx("item-box")}>
+                    <div className={cx("title-group")}>
+                      <p className={cx("item-title")}>{item.destination.name}</p>
+                      <p className={cx("item-location")}>{item.destination.location.address}</p>
                     </div>
-                  ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </FilterCardList>
         </Section>
-        <Map
-          center={{ lat: mockdata[0].latitude, lng: mockdata[0].longitude }} // 지도 중심 좌표
-          className={cx("kakao-map")} // 지도 크기
-          style={{ width: "48.9rem", height: "50.4rem" }}
-          level={3} // 지도 확대 레벨
-        />
+        <div>
+          <Map
+            center={mapCenter}
+            className={cx("kakao-map")} // 지도 크기
+            style={{ width: "48.9rem", height: "50.4rem" }}
+            level={3} // 지도 확대 레벨
+          >
+            {filteredDestinations.map((item, id) => (
+              <CustomOverlayMap
+                key={id}
+                position={{ lat: item.destination.location.latitude, lng: item.destination.location.longitude }}>
+                <div className={cx("marker-label")}>{item.visitOrder}</div>
+              </CustomOverlayMap>
+            ))}
+            {polylinePath.length > 0 && (
+              <Polyline
+                path={polylinePath}
+                strokeWeight={5}
+                strokeColor="#FF0000"
+                strokeOpacity={0.8}
+                strokeStyle="dash"
+              />
+            )}
+          </Map>
+        </div>
       </div>
       <div className={cx("content")}>
-        <img width={443} src={course?.pictureLink} alt={`${course?.title} 이미지`} />
         <p className={cx("content-text-editor")} dangerouslySetInnerHTML={sanitizedContent} />
       </div>
     </div>
