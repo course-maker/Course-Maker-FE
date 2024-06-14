@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import BadgeListTemp from "../spotRegister/BadgeListTemp";
+import BadgeListTemp from "./BadgeListTemp/BadgeListTemp";
 import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
 
