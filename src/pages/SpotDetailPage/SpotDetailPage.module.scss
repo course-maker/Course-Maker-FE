@@ -1,3 +1,8 @@
+.section {
+  @include column-flexbox();
+  gap: 16.3rem;
+}
+
 .article {
   @include inline-flexbox(center, end);
   gap: 3rem;
@@ -23,7 +28,6 @@
 .content {
   @include column-flexbox();
   width: 100%;
-  height: 78.1rem;
   flex-shrink: 0;
 
   &-text-editor {
