@@ -28,7 +28,12 @@
 .score-group {
   display: flex;
   align-items: center;
-  // gap: 2rem;
+}
+
+.score-group-course {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .score-item {
@@ -42,4 +47,21 @@
   color: $Black;
   font-size: 1.3rem;
   font-weight: 500;
+}
+
+.score-item-course {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 0.23rem;
+  width: 4.8889rem;
+  height: 1.8489rem;
+  flex-shrink: 0;
+  color: $Black;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.score-text {
+  width: 100%;
 }
