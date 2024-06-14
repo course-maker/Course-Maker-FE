@@ -22,8 +22,8 @@ const cx = classNames.bind(styles);
 
 const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("코스 찾기");
-  const [selectedCourseBadges, setSelectedCourseBadges] = useState<string[]>([]);
-  const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<string[]>([]);
+  const [selectedCourseBadges, setSelectedCourseBadges] = useState<tagResponseDto[]>([]);
+  const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<tagResponseDto[]>([]);
   const [lists, setLists] = useState<Destination>(initialDestination);
   const [course, setCourse] = useState<Courses>(initialCourse);
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
@@ -32,14 +32,13 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
 
-  const observerRef = useRef<HTMLDivElement | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
   const scrollPositionRef = useRef(0);
 
-  //선택한 태그 정보와 일치하는 TagData id값 추출
-  const selectedTagsInfo = (params) => {
+  const selectedTagsInfo = (params: tagResponseDto[]) => {
     if (tagsData.length > 0 && params.length > 0) {
       const tagIds = tagsData
-        .filter((tag) => params.includes(tag.name))
+        .filter((tag) => params.includes(tag))
         .map((tag) => tag.id)
         .map((id) => `tagIds=${id}`)
         .join("&");
@@ -69,7 +68,7 @@ const SearchPage = () => {
   }, [activeTab]);
 
   const loadMoreObserver = useCallback(
-    (node) => {
+    (node: HTMLDivElement) => {
       if (loading || !hasMore) return;
       if (observerRef.current) observerRef.current.disconnect();
       observerRef.current = new IntersectionObserver((entries) => {
@@ -82,13 +81,10 @@ const SearchPage = () => {
     [loading, fetchMoreData, hasMore],
   );
 
-  // 스크롤 위치 저장
   const saveScrollPosition = () => {
     scrollPositionRef.current = window.scrollY;
   };
-  console.log(scrollPositionRef.current);
 
-  // 여행지 정보
   useEffect(() => {
     const tags = selectedTagsInfo(selectedDestinationBadges);
     const fetchLists = async () => {
@@ -108,15 +104,13 @@ const SearchPage = () => {
           if (observerRef.current) {
             observerRef.current.disconnect();
           }
-        } else {
-          // window.scrollTo(0, scrollPositionRef.current);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
         if (hasMore) {
-          window.scrollTo(0, scrollPositionRef.current); // 스크롤 위치 복원
+          window.scrollTo(0, scrollPositionRef.current);
         }
       }
     };
@@ -125,7 +119,6 @@ const SearchPage = () => {
     }
   }, [selectedDestinationBadges, sortOrder.destination, page.destination, activeTab, hasMore]);
 
-  // 코스 정보
   useEffect(() => {
     const tags = selectedTagsInfo(selectedCourseBadges);
     const fetchLists = async () => {
@@ -148,7 +141,7 @@ const SearchPage = () => {
       } finally {
         setLoading(false);
         if (hasMore) {
-          window.scrollTo(0, scrollPositionRef.current); // 스크롤 위치 복원
+          window.scrollTo(0, scrollPositionRef.current);
         }
       }
     };
@@ -163,7 +156,6 @@ const SearchPage = () => {
     scrollPositionRef.current = 0;
   }, [activeTab, selectedCourseBadges, selectedDestinationBadges, sortOrder]);
 
-  // 태그 정보
   useEffect(() => {
     const fetchTags = async () => {
       setLoading(true);
@@ -190,7 +182,6 @@ const SearchPage = () => {
             key={description}
             title={description}
             tags={tags}
-            activeTab={activeTab}
             selectedBadges={activeTab === "코스 찾기" ? selectedCourseBadges : selectedDestinationBadges}
             setSelectedBadges={activeTab === "코스 찾기" ? setSelectedCourseBadges : setSelectedDestinationBadges}
           />

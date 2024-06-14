@@ -8,75 +8,53 @@ import classNames from "classnames/bind";
 
 import { getCourseDetail } from "@/api/course";
 import { Course } from "@/api/course/type";
+import { Tag } from "@/api/destination/type"; // Make sure to import the Tag type
 import { Map } from "react-kakao-maps-sdk";
 import Mock from "@/mock/courses.json";
-
-// import Button from "@/components/commons/Button";
-// import { IMAGES } from "@/constants/images";
-// import Image from "@/components/commons/Image";
 
 const cx = classNames.bind(styles);
 
 const CourseDetailPage = () => {
   const [course, setCourse] = useState<Course>();
   const [activeDay, setActiveDay] = useState(1);
-  const { id } = useParams();
-  // const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
 
-  // const handleEditClick = () => {
-  //   navigate(`/course/${id}/edit`);
-  // };
-
-  // const handleDeleteClick = () => {
-  //   // {delete data}
-  // };
-
-  // 코스 정보
   useEffect(() => {
     const fetchLists = async () => {
-      // setLoading(true);
       try {
-        const response = await getCourseDetail(id);
+        if (!id) return;
+        const response = await getCourseDetail(Number(id));
         console.log(response);
         setCourse(response);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-      // finally {
-      //   setLoading(false);
-      // }
     };
     fetchLists();
   }, [id]);
-  const mockdata = Mock;
-  const tagList = mockdata.map((item) => item.tags.map((item) => item.description));
 
-  // const filteredData = mockdata.filter((item) => {
-  //   console.log(item);
-  //   return activeDay === 1 ? item.id % 2 === 0 : item.id % 2 !== 0;
-  // });
+  const mockdata = Mock;
+  const tagList: Tag[][] = mockdata.map((item) =>
+    item.tags.map((tag) => ({
+      id: tag.id,
+      name: tag.description,
+      description: tag.description,
+    })),
+  );
+
   return (
     <div>
       <div className={cx("container")}>
         <Section className={cx("section")}>
           <TitleBox
-            image={{ src: "/src/assets/images/course_maker_logo.svg", alt: `${`데이터`}해당 이미지` }}
+            image={{ src: "/src/assets/images/course_maker_logo.svg", alt: `${course?.title} 이미지` }}
             title={course?.title}
-            // rating={mockdata[0].rating}
             name={course?.member?.nickname}
             travelCount={`${course?.travelerCount}인`}
             duration={`${course?.duration}일`}
-            tags={tagList[0]}
+            tags={tagList[0]} // Ensuring correct type
             type="course-detail"
           />
-          {/* <div className={cx("btn-group")}>
-              <Button onClick={handleEditClick} variant="secondary" color="navy">
-                수정하기
-              </Button>
-              <Button onClick={handleDeleteClick} variant="primary" color="gray">
-                삭제하기
-              </Button>
-            </div> */}
         </Section>
         <Section className={cx("section")}>
           <div className={cx("list-title-group")}>
@@ -99,20 +77,6 @@ const CourseDetailPage = () => {
                       <p className={cx("item-title")}>{item?.destination?.name}</p>
                       <p className={cx("item-location")}>{item?.destination?.location?.address}</p>
                     </div>
-                    {/* <div className={cx("score-group")}>
-                    <span className={cx("score-item")}>
-                      <Image imageInfo={IMAGES.blackHeartIcon} />
-                      {item.heart}
-                    </span>
-                    <span className={cx("score-item")}>
-                      <Image imageInfo={IMAGES.blackThumbsUpIcon} />
-                      {item.thumbsUp}
-                    </span>
-                    <span className={cx("score-item")}>
-                      <Image imageInfo={IMAGES.blackStarIcon} />
-                      {item.rating}
-                    </span>
-                  </div> */}
                   </div>
                 </div>
               ))}
@@ -122,7 +86,7 @@ const CourseDetailPage = () => {
       <div className={cx("container")}>
         <Section className={cx("schedule-group")}>
           <div className={cx("day-btn-group")}>
-            {Array.from({ length: course?.duration }, (_, index) => (
+            {Array.from({ length: course?.duration || 0 }, (_, index) => (
               <button
                 key={index + 1}
                 type="button"
@@ -135,7 +99,7 @@ const CourseDetailPage = () => {
           <FilterCardList>
             <div className={cx("scrollable-list")}>
               {course &&
-                course?.courseDestinations
+                course.courseDestinations
                   .filter((item) => item.date === activeDay)
                   .map((item) => (
                     <div className={cx("item-container")} key={item.visitOrder}>
@@ -152,20 +116,6 @@ const CourseDetailPage = () => {
                           <p className={cx("item-title")}>{item.destination.name}</p>
                           <p className={cx("item-location")}>{item.destination.location.address}</p>
                         </div>
-                        {/* <div className={cx("score-group")}>
-                        <span className={cx("score-item")}>
-                          <Image imageInfo={IMAGES.blackHeartIcon} />
-                          {item.heart}
-                        </span>
-                        <span className={cx("score-item")}>
-                          <Image imageInfo={IMAGES.blackThumbsUpIcon} />
-                          {item.thumbsUp}
-                        </span>
-                        <span className={cx("score-item")}>
-                          <Image imageInfo={IMAGES.blackStarIcon} />
-                          {item.rating}
-                        </span>
-                      </div> */}
                       </div>
                     </div>
                   ))}
@@ -173,11 +123,7 @@ const CourseDetailPage = () => {
           </FilterCardList>
         </Section>
         <Map
-          // center={{
-          //   lat: course?.courseDestinations[0]?.destination?.location?.latitude,
-          //   lng: course?.courseDestinations[0]?.destination?.location?.longitude,
-          // }} // 지도의 중심 좌표 lat/lng 위도/경도
-          center={{ lat: mockdata[0].latitude, lng: mockdata[0].longitude }} // 지도의 중심 좌표 lat/lng 위도/경도
+          center={{ lat: mockdata[0].latitude, lng: mockdata[0].longitude }} // 지도 중심 좌표
           className={cx("kakao-map")} // 지도 크기
           style={{ width: "48.9rem", height: "50.4rem" }}
           level={3} // 지도 확대 레벨

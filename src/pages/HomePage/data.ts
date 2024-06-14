@@ -5,6 +5,7 @@ export const bannerData = [
     id: 0,
     image: IMAGES.Banner1.src,
     size: "x-large",
+    title: "null",
   },
   {
     id: 1,

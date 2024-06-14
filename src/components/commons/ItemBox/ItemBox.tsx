@@ -3,20 +3,8 @@ import styles from "./ItemBox.module.scss";
 import Badge from "@/components/commons/Badge/Badge";
 
 import { tagResponseDto } from "@/api/tag/type";
-// import Image from "@/components/commons/Image";
-// import { IMAGES } from "@/constants/images";
 
 const cx = classNames.bind(styles);
-
-// interface Icons {
-//   [key: string]: number;
-// }
-
-// interface Tag {
-//   id: number;
-//   name: string;
-//   description: string;
-// }
 
 interface Location {
   address: string;
@@ -30,20 +18,7 @@ interface ItemBoxProps {
   tags: tagResponseDto[];
 }
 
-// const iconMapping: { [key: string]: any } = {
-//   blackHeart: IMAGES.blackHeartIcon,
-//   blackThumbsUp: IMAGES.blackThumbsUpIcon,
-//   blackStar: IMAGES.blackStarIcon,
-//   heart: IMAGES.heartIcon,
-//   thumbsUp: IMAGES.thumbsUpIcon,
-//   star: IMAGES.starIcon,
-//   location: IMAGES.locationIcon,
-//   linkCopy: IMAGES.linkCopyIcon,
-//   calendar: IMAGES.calendarIcon,
-//   member: IMAGES.memberIcon,
-// };
-
-const ItemBox = ({ location, title, tags }: ItemBoxProps) => {
+const ItemBox: React.FC<ItemBoxProps> = ({ location, title, tags }) => {
   return (
     <div className={cx("item-box")}>
       <div className={cx("title-group")}>
@@ -56,13 +31,6 @@ const ItemBox = ({ location, title, tags }: ItemBoxProps) => {
             {tag.name}
           </Badge>
         ))}
-        {/* 아이콘 고도화때 작업 예정 
-        {Object.entries(tags).map(([key, value]) => (
-          <span key={key} className={cx("score-item")}>
-            <Image imageInfo={iconMapping[key]} />
-            {value}
-          </span>
-        ))} */}
       </div>
     </div>
   );
