@@ -9,7 +9,6 @@ const cx = classNames.bind(styles);
 import { getDestinationResponseDto } from "@/api/destination/type";
 import { Course } from "@/api/course/type";
 
-//getDestinationResponseDto | Course 타입가드
 const isCourse = (item: any): item is Course => {
   return (item as Course).courseDestinations !== undefined;
 };
@@ -18,10 +17,14 @@ const isList = (item: any): item is getDestinationResponseDto => {
   return (item as getDestinationResponseDto).location !== undefined;
 };
 
-const Card = ({ item, name, loading }: { item: any; name: string; loading: boolean }) => {
+interface CardProps {
+  item: any;
+  name: string;
+  loading: boolean;
+}
+
+const Card: React.FC<CardProps> = ({ item, name, loading }) => {
   const navigate = useNavigate();
-  // console.log(item);
-  // console.log(name);
   if (loading) {
     return (
       <div className={cx("card-container")}>
@@ -47,7 +50,7 @@ const Card = ({ item, name, loading }: { item: any; name: string; loading: boole
           <ItemBox
             location={item.courseDestinations[0].destination.location}
             title={item.title}
-            tags={item.courseTags}
+            tags={item.courseTags || []} // Default value
           />
         )}
         {isList(item) && name === "여행지 찾기" && (

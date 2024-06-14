@@ -5,21 +5,16 @@ import styles from "./BadgeList.module.scss";
 import { tagResponseDto } from "@/api/tag/type";
 const cx = classNames.bind(styles);
 
-// interface Tag {
-//   id: number;
-//   name: string;
-//   description: string;
-// }
-
 interface BadgeListProps {
   title: string;
   tags: tagResponseDto[];
   selectedBadges?: tagResponseDto[];
-  setSelectedBadges?: tagResponseDto[];
+  setSelectedBadges?: React.Dispatch<React.SetStateAction<tagResponseDto[]>>; // Updated type
 }
 
-const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges, setSelectedBadges }) => {
-  const toggleBadge = (badge: string) => {
+const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges = [], setSelectedBadges }) => {
+  const toggleBadge = (badge: tagResponseDto) => {
+    if (!setSelectedBadges) return;
     setSelectedBadges((prevSelected) =>
       prevSelected.includes(badge) ? prevSelected.filter((item) => item !== badge) : [...prevSelected, badge],
     );
@@ -34,8 +29,8 @@ const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges, setS
           color="gray"
           variant="primary"
           size="xsmall"
-          badgeStyle={selectedBadges.includes(tag.name) ? "selected" : "default"}
-          onClick={() => toggleBadge(tag.name)}>
+          badgeStyle={selectedBadges.includes(tag) ? "selected" : "default"} // Corrected argument type
+          onClick={() => toggleBadge(tag)}>
           {tag.name}
         </Badge>
       ))}

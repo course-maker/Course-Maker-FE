@@ -2,23 +2,17 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "@/components/commons/Card/Card";
 import Section from "@/components/commons/Section/Section";
-import Banner from "@/components/commons/Banner/Banner";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import SwiperCore, { Navigation, Autoplay } from "swiper";
 import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
-import { bannerData, bannerItemsData } from "./data.js";
+import { bannerData, bannerItemsData } from "./data.js"; // Ensure this data includes 'title'
 import "swiper/css";
-// import "swiper/css/navigation";
 
 import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
-// import { getDestinations } from "@/api/destination";
-// import { Destination } from "@/api/destination/type";
 import { getCourse } from "@/api/course";
 import { Course } from "@/api/course/type";
-// import { initialDestination } from "@/constants/initialValues";
-// SwiperCore.use([Navigation, Autoplay]);
+import Banner from "@/components/commons/Banner/Banner";
 
 const cx = classNames.bind(styles);
 
@@ -30,7 +24,7 @@ const HomePage = () => {
   const [course, setCourse] = useState<Course[]>([]);
 
   const navigate = useNavigate();
-  // 태그 정보
+
   useEffect(() => {
     const fetchTags = async () => {
       setLoading(true);
@@ -46,7 +40,6 @@ const HomePage = () => {
     fetchTags();
   }, []);
 
-  //코스 정보
   useEffect(() => {
     const fetchLists = async () => {
       setLoading(true);
@@ -62,8 +55,6 @@ const HomePage = () => {
     fetchLists();
   }, []);
 
-  console.log(tagsData);
-
   return (
     <div data-testid="home-page">
       <Section title="" className={cx("container")}>
@@ -76,16 +67,11 @@ const HomePage = () => {
             className={cx("swiper-container")}>
             {bannerData.map((item) => (
               <SwiperSlide key={item.id}>
-                <Banner image={item.image} size="x-large" />
+                <Banner image={item.image} title={item.title ?? "Default Title"} size="x-large" />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-        {/* <div className={cx("banner-container")}>
-          <button className={cx("arrow-button", "left")}>{"<"}</button>
-          <Banner image={bannerItems.small[0].image} title={bannerItems.small[0].title} size="x-large" />
-          <button className={cx("arrow-button", "right")}>{">"}</button>
-        </div> */}
       </Section>
       <Section title="어떤 여행을 할까요?">
         <div className={cx("banner-container")}>
@@ -93,7 +79,7 @@ const HomePage = () => {
           {tagsData.map((item) => (
             <Banner
               key={item.id}
-              image={bannerItems.small[item.id].image}
+              image={bannerItems.small[item.id]?.image}
               title={item.name}
               onClick={() => navigate(`course/${item.id}`)}
               size="small"
@@ -103,7 +89,13 @@ const HomePage = () => {
         </div>
         <div className={cx("banner-container")}>
           {bannerItems.large.map((item) => (
-            <Banner key={item.id} image={item.image} title={item.title} subtitle={item.subtitle} size="large" />
+            <Banner
+              key={item.id}
+              image={item.image}
+              title={item.title ?? "Default Title"}
+              subtitle={item.subtitle}
+              size="large"
+            />
           ))}
         </div>
       </Section>
