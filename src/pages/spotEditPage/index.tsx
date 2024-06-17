@@ -21,6 +21,7 @@ const SpotEditPage = () => {
 
   const [isAuth] = useRecoilState(authState);
   const { patchDestination } = useDestinationMutation();
+
   const { id } = useParams();
   const postId = Number(id);
 

@@ -1,16 +1,16 @@
-import { Route, Routes } from "react-router-dom";
+import AuthListener from "@/components/commons/AuthListener";
 import { PAGE_PATH } from "@/constants/pagePath";
+import { Route, Routes } from "react-router-dom";
 import AppLayout from "../layout/AppLayout";
+import CourseDetailPage from "./CourseDetailPage";
+import CourseRegisterPage from "./CourseRegisterPage";
 import HomePage from "./HomePage";
 import SearchPage from "./SearchPage";
 import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage";
-import CourseDetailPage from "./CourseDetailPage";
 import SpotDetailPage from "./SpotDetailPage";
-import CourseRegisterPage from "./CourseRegisterPage";
+import SpotEditPage from "./SpotEditPage";
 import SpotRegisterPage from "./SpotRegisterPage";
-import SpotEditPage from "./spotEditPage";
-import AuthListener from "@/components/commons/AuthListener";
 
 const { search, signIn, signUp, courseDetail, spotDetail, courseRegister, spotRegister, spotEdit, authKakao } =
   PAGE_PATH;
