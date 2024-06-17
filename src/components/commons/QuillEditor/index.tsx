@@ -1,10 +1,10 @@
-import { useMemo, useRef, useCallback } from "react";
-import ReactQuill, { Quill } from "react-quill";
 import ImageResize from "quill-image-resize-module-react";
+import { useCallback, useMemo, useRef } from "react";
+import ReactQuill, { Quill } from "react-quill";
 
-import CustomToolbar from "./CustomToolbar";
 import { useImageUpload } from "@/hooks/useImageUpload";
 import CustomImage from "@/utils/CustomImageBlot";
+import CustomToolbar from "./CustomToolbar";
 
 import "react-quill/dist/quill.snow.css";
 import "./QuillEditor.scss";
@@ -26,7 +26,13 @@ const formats = [
   "customImage",
 ];
 
-const QuillEditor = ({ onChange, value }: { onChange: (value: string) => void; value: string }) => {
+interface QuillEditorProps {
+  value: string;
+  placeholder: string;
+  onChange: (value: string) => void;
+}
+
+const QuillEditor = ({ value, placeholder, onChange }: QuillEditorProps) => {
   const quillRef = useRef<ReactQuill | null>(null);
   const { uploadImageAsync } = useImageUpload();
 
@@ -85,7 +91,7 @@ const QuillEditor = ({ onChange, value }: { onChange: (value: string) => void; v
           modules={modules}
           formats={formats}
           onChange={onChange}
-          placeholder="여행지를 소개해주세요!"
+          placeholder={placeholder}
         />
       </div>
     </div>

@@ -1,18 +1,18 @@
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { useEffect } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-import styles from "./SpotRegisterLayout.module.scss";
 import classNames from "classnames/bind";
+import styles from "./SpotRegisterLayout.module.scss";
 
 import Button from "@/components/commons/Button";
-import TitleInputController from "@/components/domains/spotRegister/TitleInputController";
-import BadgeListController from "@/components/domains/spotRegister/BadgeListsController";
+import QuillEditorController from "@/components/commons/QuillEditorController";
 import AddressSearchController from "@/components/domains/spotRegister/AddressSearchInputController";
+import BadgeListController from "@/components/domains/spotRegister/BadgeListsController";
 import MainImageInputController from "@/components/domains/spotRegister/MainImageInputController";
-import QuillEditorController from "@/components/domains/spotRegister/QuillEditorController";
+import TitleInputController from "@/components/domains/spotRegister/TitleInputController";
 
-import { validateFormData } from "@/utils/validateFormData";
 import { useImageUpload } from "@/hooks/useImageUpload";
+import { validateFormData } from "@/utils/validateFormData";
 
 const cx = classNames.bind(styles);
 
@@ -69,7 +69,7 @@ const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayo
           <AddressSearchController formFieldName="location" control={control} />
           <MainImageInputController formFieldName="pictureLink" control={control} />
         </div>
-        <QuillEditorController formFieldName="content" control={control} />
+        <QuillEditorController formFieldName="content" control={control} placeholder="여행지를 소개해주세요!" />
         <div className={cx("form-btn")}>
           <Button color="navy" variant="primary" size="large" type="submit">
             {title}

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { postCourses } from "@/api/course";
+import { CourseDestination, DestinationDto, postCourse, Tag } from "@/api/course/register";
+import QuillEditorController from "@/components/commons/QuillEditorController";
+import MainImageInputController from "@/components/domains/courseRegister/MainImageInputController";
+import { useImageUpload } from "@/hooks/useImageUpload";
+import { getFromLocalStorage, removeFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
 import classNames from "classnames/bind";
-import styles from "./Step3.module.scss";
+import React, { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
 import NavigationButtons from "../../NavigationButtons/NavigationButtons";
-import { getFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from "@/utils/localStorage";
-import { postCourses } from "@/api/course";
-import { Tag, DestinationDto, CourseDestination, postCourse } from "@/api/course/register";
-import MainImageInputController from "@/components/domains/courseRegister/MainImageInputController";
-import QuillEditorController from "@/components/domains/courseRegister/QuillEditorController";
-import { useImageUpload } from "@/hooks/useImageUpload";
+import styles from "./Step3.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -250,7 +250,7 @@ const Step3: React.FC = () => {
           <MainImageInputController formFieldName="pictureFile" control={control} />
         </div>
         <div className={cx("quill-box")}>
-          <QuillEditorController formFieldName="content" control={control} />
+          <QuillEditorController formFieldName="content" control={control} placeholder="코스를 소개해주세요!" />
         </div>
         <NavigationButtons />
       </form>
