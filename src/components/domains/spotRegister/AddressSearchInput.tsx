@@ -1,6 +1,6 @@
-import DestinationDetailsInput from "./DestinationDetailsInput";
-import { useAddressSearch } from "@/hooks/useAddressSearch";
 import { Location } from "@/api/destination/type";
+import { useAddressSearch } from "@/hooks/useAddressSearch";
+import DestinationDetailsInput from "./DestinationDetailsInput";
 
 interface AddressSearchInput {
   selectedAddress: Location;
