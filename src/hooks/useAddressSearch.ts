@@ -1,33 +1,42 @@
-import { useDaumPostcodePopup } from "react-daum-postcode";
-import { scriptUrl } from "@/utils/getAddressInfo";
-import { getAddressCoords, getFullAddress } from "@/utils/getAddressInfo";
 import { Location } from "@/api/destination/type";
+import { KAKAO_ADDRESS_URL, KAKAO_MAP_SDK_URL_COORDS } from "@/constants/kakaoMapScriptSrc";
+import { getAddressCoords, getFullAddress } from "@/utils/getAddressInfo";
+import { useCallback } from "react";
+import { useDaumPostcodePopup } from "react-daum-postcode";
+import { useKakaoMapScript } from "./useKakaoMapScript";
 
 export const useAddressSearch = (onChange: (updatedAddress: Location) => void) => {
-  const open = useDaumPostcodePopup(scriptUrl);
+  const scriptLoaded = useKakaoMapScript(KAKAO_MAP_SDK_URL_COORDS);
+  const open = useDaumPostcodePopup(KAKAO_ADDRESS_URL);
 
-  const handleComplete = async (data: any) => {
-    // fix: type 명시하기
-    const mainAddress = data.roadAddress || data.jibunAddress;
-    try {
-      const coords = await getAddressCoords(mainAddress);
+  const handleComplete = useCallback(
+    async (data: any) => {
+      const mainAddress = data.roadAddress || data.jibunAddress;
+      try {
+        const coords = await getAddressCoords(mainAddress);
 
-      const updatedAddress = {
-        address: getFullAddress(data),
-        latitude: coords.getLng(),
-        longitude: coords.getLat(),
-      };
+        const updatedAddress = {
+          address: getFullAddress(data),
+          latitude: coords.getLat(),
+          longitude: coords.getLng(),
+        };
 
-      onChange(updatedAddress);
-    } catch (error) {
-      console.error("Kakao address error:", error);
-      alert("주소 정보를 가져오는 데 실패했습니다. 다시 시도해 주세요.");
+        onChange(updatedAddress);
+      } catch (error) {
+        console.error("Kakao address error:", error);
+        alert("주소 정보를 가져오는 데 실패했습니다. 다시 시도해 주세요.");
+      }
+    },
+    [onChange],
+  );
+
+  const handleAddressSearch = useCallback(() => {
+    if (scriptLoaded) {
+      open({ onComplete: handleComplete });
+    } else {
+      alert("지도 스크립트를 로딩 중입니다. 잠시 후 다시 시도해 주세요.");
     }
-  };
-
-  const handleAddressSearch = () => {
-    open({ onComplete: handleComplete });
-  };
+  }, [scriptLoaded, open, handleComplete]);
 
   return { handleAddressSearch };
 };

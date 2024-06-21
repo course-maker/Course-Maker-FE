@@ -1,14 +1,10 @@
-import { loadKakaoScript } from "./loadKakaoScript";
-
-export const scriptUrl = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
-
 export const getAddressCoords = async (address: string): Promise<kakao.maps.LatLng> => {
-  await loadKakaoScript();
+  // await loadKakaoScript(); fix: 지홍님께 물어보고 해당 코드 지우기
   const geoCoder = new window.kakao.maps.services.Geocoder();
   return new Promise((resolve, reject) => {
     geoCoder.addressSearch(address, (result: any, status: any) => {
       if (status === window.kakao.maps.services.Status.OK) {
-        const coords = new window.kakao.maps.LatLng(result[0].x, result[0].y);
+        const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
         resolve(coords);
       } else {
         reject(status);

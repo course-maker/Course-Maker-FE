@@ -1,3 +1,4 @@
+// fix: 이 코드 지워도 되냐고 지홍님께 여쭤보기
 const KAKAOMAP_JAVASCRIPT_APP_KEY = import.meta.env.VITE_KAKAOMAP_JAVASCRIPT_APP_KEY;
 
 export const loadKakaoScript = (): Promise<void> => {
