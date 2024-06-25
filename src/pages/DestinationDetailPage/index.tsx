@@ -2,13 +2,7 @@ import { getDestinationApi } from "@/api/destination";
 import Image from "@/components/commons/Image";
 import TitleBox from "@/components/commons/TitleBox/TitleBox";
 import { IMAGES } from "@/constants/images";
-import DetailLayout from "@/layout/DetailLayout/DetailLayout";
-import { useQuery } from "@tanstack/react-query";
-import classNames from "classnames/bind";
-import DOMPurify from "dompurify";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
-import { useParams } from "react-router-dom";
-import styles from "./DestinationDetailPage.module.scss";
+import Section from "@/components/commons/Section/Section";
 // import { useNavigate, useParams } from "react-router-dom";
 // import Button from "@/components/commons/Button";
 
@@ -42,7 +36,7 @@ const SpotDetailPage = () => {
   //   // {delete data}
   // };
   return (
-    <DetailLayout>
+    <Section>
       <section className={cx("section")}>
         <article className={cx("article")}>
           <div>
@@ -88,7 +82,7 @@ const SpotDetailPage = () => {
           <p className={cx("content-text-editor")} dangerouslySetInnerHTML={sanitizedContent} />
         </article>
       </section>
-    </DetailLayout>
+    </Section>
   );
 };
 
