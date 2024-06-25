@@ -1,39 +1,42 @@
-import { getCourseDetail } from "@/api/course";
-import { Course } from "@/api/course/type";
+import { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
-import Section from "@/components/commons/Section/Section";
 import TitleBox from "@/components/commons/TitleBox/TitleBox";
+import Section from "@/components/commons/Section/Section";
+import styles from "./CourseDetailPage.module.scss";
 import classNames from "classnames/bind";
 import DOMPurify from "dompurify";
-import { useEffect, useState } from "react";
-import { CustomOverlayMap, Map, Polyline } from "react-kakao-maps-sdk";
-import { Link, useParams } from "react-router-dom";
-import styles from "./CourseDetailPage.module.scss";
+import { getCourseDetail } from "@/api/course";
+import { Map, CustomOverlayMap, Polyline } from "react-kakao-maps-sdk";
+import { useQuery } from "@tanstack/react-query";
 
 const cx = classNames.bind(styles);
 
 const CourseDetailPage = () => {
-  const [course, setCourse] = useState<Course>();
   const [activeDay, setActiveDay] = useState(1);
   const { id } = useParams<{ id: string }>();
 
-  useEffect(() => {
-    const fetchLists = async () => {
-      try {
-        if (!id) return;
-        const response = await getCourseDetail(Number(id));
-        console.log(response);
-        setCourse(response);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchLists();
-  }, [id]);
+  const {
+    data: courseDetailData,
+    isError,
+    isSuccess,
+  } = useQuery({
+    queryKey: ["courseDetailData"],
+    queryFn: () => getCourseDetail(Number(id)),
+    retry: 0,
+  });
 
-  const sanitizedContent = { __html: DOMPurify.sanitize(course?.content as string) };
+  if (isSuccess) {
+    courseDetailData;
+  } else {
+    if (isError) {
+      isError;
+    }
+  }
 
-  const filteredDestinations = course?.courseDestinations.filter((item) => item.date === activeDay) || [];
+  const sanitizedContent = { __html: DOMPurify.sanitize(courseDetailData?.content as string) };
+
+  const filteredDestinations = courseDetailData?.courseDestinations.filter((item) => item.date === activeDay) || [];
 
   const mapCenter = {
     lat: filteredDestinations[0]?.destination.location.latitude ?? 37.5665,
@@ -50,12 +53,12 @@ const CourseDetailPage = () => {
       <div className={cx("container")}>
         <Section className={cx("section")}>
           <TitleBox
-            image={{ src: `${course?.pictureLink}`, alt: `${course?.title} 이미지` }}
-            title={course?.title}
-            name={course?.member?.nickname}
-            travelCount={`${course?.travelerCount}인`}
-            duration={`${course?.duration}일`}
-            tags={course?.tags || []} // Ensuring correct type
+            image={{ src: `${courseDetailData?.pictureLink}`, alt: `${courseDetailData?.title} 이미지` }}
+            title={courseDetailData?.title}
+            name={courseDetailData?.member?.nickname}
+            travelCount={`${courseDetailData?.travelerCount}인`}
+            duration={`${courseDetailData?.duration}일`}
+            tags={courseDetailData?.tags || []} // Ensuring correct type
             type="course-detail"
           />
         </Section>
@@ -65,9 +68,9 @@ const CourseDetailPage = () => {
             <p className={cx("list-explanation")}>여행지를 클릭하면 여행지 상세페이지를 확인할 수 있습니다.</p>
           </div>
           <AllCardList>
-            {course &&
-              course.courseDestinations.map((item, id) => (
-                <Link to={`/destination/${item.destination.id}`} key={id}>
+            {courseDetailData &&
+              courseDetailData.courseDestinations.map((item, id) => (
+                <Link to={`/spot/${item.destination.id}`} key={id}>
                   <div className={cx("item-container")}>
                     <div>
                       <img
@@ -91,7 +94,7 @@ const CourseDetailPage = () => {
       <div className={cx("container")}>
         <Section className={cx("schedule-group")}>
           <div className={cx("day-btn-group")}>
-            {Array.from({ length: course?.duration || 0 }, (_, index) => (
+            {Array.from({ length: courseDetailData?.duration || 0 }, (_, index) => (
               <button
                 key={index + 1}
                 type="button"
