@@ -1,18 +1,25 @@
-import React from "react";
+import { tagResponseDto } from "@/api/tag/type";
 import Badge from "@/components/commons/Badge/Badge";
 import classNames from "classnames/bind";
+import React from "react";
 import styles from "./BadgeList.module.scss";
-import { tagResponseDto } from "@/api/tag/type";
 const cx = classNames.bind(styles);
 
 interface BadgeListProps {
+  type?: string;
   title: string;
   tags: tagResponseDto[];
   selectedBadges?: tagResponseDto[];
   setSelectedBadges?: React.Dispatch<React.SetStateAction<tagResponseDto[]>>; // Updated type
 }
 
-const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges = [], setSelectedBadges }) => {
+const BadgeList: React.FC<BadgeListProps> = ({
+  type = "destination",
+  title,
+  tags,
+  selectedBadges = [],
+  setSelectedBadges,
+}) => {
   const toggleBadge = (badge: tagResponseDto) => {
     if (!setSelectedBadges) return;
     setSelectedBadges((prevSelected) =>
@@ -21,19 +28,21 @@ const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges = [],
   };
 
   return (
-    <div className={cx("tab-content")}>
+    <div className={cx("tab-content", type)}>
       <span className={cx("item-title")}>{title}</span>
-      {tags.map((tag) => (
-        <Badge
-          key={tag.id}
-          color="gray"
-          variant="primary"
-          size="xsmall"
-          badgeStyle={selectedBadges.includes(tag) ? "selected" : "default"} // Corrected argument type
-          onClick={() => toggleBadge(tag)}>
-          {tag.name}
-        </Badge>
-      ))}
+      <div className={cx("btn-group")}>
+        {tags.map((tag) => (
+          <Badge
+            key={tag.id}
+            color="gray"
+            variant="primary"
+            size="xsmall"
+            badgeStyle={selectedBadges.includes(tag) ? "selected" : "default"} // Corrected argument type
+            onClick={() => toggleBadge(tag)}>
+            {tag.name}
+          </Badge>
+        ))}
+      </div>
     </div>
   );
 };

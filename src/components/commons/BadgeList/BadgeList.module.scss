@@ -1,11 +1,43 @@
-.tab-content {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+.destination {
+  &.tab-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    white-space: nowrap;
+  }
+
+  .item-title {
+    font-size: 1.64rem;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    row-gap: 0.5rem;
+  }
 }
 
-.item-title {
-  font-size: 1.64rem;
-  font-weight: bold;
-  margin-right: 20px;
+.course {
+  &.tab-content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    gap: 1.9rem;
+  }
+
+  .item-title {
+    font-size: 1.64rem;
+    font-weight: bold;
+    margin-right: 2rem;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+  }
 }
