@@ -124,7 +124,7 @@ export const bannerItemsData = {
       subtitle: "스카이캡슐",
       title: "바다를 따라 다니며\n육지와는 다른 풍경을 즐기세요",
       size: "large",
-      url: "spot/27",
+      url: "destination/27",
     },
     {
       id: 1,

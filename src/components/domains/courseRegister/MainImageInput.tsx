@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import DestinationDetailsInput from "../spotRegister/DestinationDetailsInput";
+import DestinationDetailsInput from "../destinationRegister/DestinationDetailsInput";
 
 interface MainImageInputProps {
   selectedImage: File | null;

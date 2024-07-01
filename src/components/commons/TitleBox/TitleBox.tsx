@@ -20,17 +20,17 @@ interface CardProps {
   travelCount?: ReactNode;
   duration?: ReactNode;
   tags: Tag[];
-  type: "course-detail" | "spot-detail";
+  type: "course-detail" | "destination-detail";
   image: ImageProps;
 }
 
 const TitleBox: React.FC<CardProps> = ({ image, title, name, travelCount, duration, tags, type }) => {
-  const isSpotDetail = type === "spot-detail";
+  const isDestinationDetail = type === "destination-detail";
 
   return (
     <div
       className={cx(styles.card, {
-        [styles["spot-detail"]]: isSpotDetail,
+        [styles["destination-detail"]]: isDestinationDetail,
       })}>
       <div>
         <div className={cx("image-container")}>
@@ -38,7 +38,7 @@ const TitleBox: React.FC<CardProps> = ({ image, title, name, travelCount, durati
         </div>
         <div className={cx("title-box")}>
           <h1 className={cx("title")}>{title}</h1>
-          <div className={cx("rating", { [styles["spot-detail"]]: isSpotDetail })}>
+          <div className={cx("rating", { [styles["destination-detail"]]: isDestinationDetail })}>
             {/* <Button type="button" variant="third" color={"navy"}>
               <Image imageInfo={isSpotDetail ? IMAGES.blackStarIcon : IMAGES.starIcon} />
             </Button> */}
@@ -55,7 +55,7 @@ const TitleBox: React.FC<CardProps> = ({ image, title, name, travelCount, durati
       </div>
       <div className={cx("tag-box")}>
         {tags?.map((tag, id) => (
-          <span key={id} className={cx("tag-item", { [styles["spot-detail"]]: isSpotDetail })}>
+          <span key={id} className={cx("tag-item", { [styles["destination-detail"]]: isDestinationDetail })}>
             {tag.name}
           </span>
         ))}
