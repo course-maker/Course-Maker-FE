@@ -4,10 +4,10 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import classNames from "classnames/bind";
 import styles from "./SpotRegisterLayout.module.scss";
 
+import BadgeListController from "@/components/commons/BadgeListsController";
 import Button from "@/components/commons/Button";
 import QuillEditorController from "@/components/commons/QuillEditorController";
 import AddressSearchController from "@/components/domains/spotRegister/AddressSearchInputController";
-import BadgeListController from "@/components/domains/spotRegister/BadgeListsController";
 import MainImageInputController from "@/components/domains/spotRegister/MainImageInputController";
 import TitleInputController from "@/components/domains/spotRegister/TitleInputController";
 
