@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import classNames from "classnames/bind";
-import styles from "./Step2.module.scss";
-import { Map, CustomOverlayMap, Polyline } from "react-kakao-maps-sdk";
-import { useQuery } from "@tanstack/react-query";
-import Image from "@/components/commons/Image";
-import { IMAGES } from "@/constants/images";
-import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
-import NavigationButtons from "../../NavigationButtons/NavigationButtons";
 import { getDestination } from "@/api/destination";
 import { GetDestinationDto } from "@/api/destination/type";
+import BadgeListsController from "@/components/commons/BadgeListsController";
+import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
+import Image from "@/components/commons/Image";
+import { IMAGES } from "@/constants/images";
 import { getFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
-import { useStepper } from "../../StepperContext";
-import BadgeListsController from "@/components/domains/courseRegister/BadgeListsController";
+import { useQuery } from "@tanstack/react-query";
+import classNames from "classnames/bind";
+import React, { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { FaMinusCircle } from "react-icons/fa";
+import { CustomOverlayMap, Map, Polyline } from "react-kakao-maps-sdk";
+import NavigationButtons from "../../NavigationButtons/NavigationButtons";
+import { useStepper } from "../../StepperContext";
+import styles from "./Step2.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -158,7 +158,7 @@ const Step2: React.FC = () => {
       </div>
       <div className={cx("path-box")}>
         <div className={cx("BadgeList-box")}>
-          <BadgeListsController formFieldName="tags" control={control} />
+          <BadgeListsController type="course" formFieldName="tags" control={control} />
         </div>
         <AllCardList>
           {filteredData.map((item, id) => (
