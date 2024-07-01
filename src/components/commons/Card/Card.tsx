@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
 import ItemBox from "@/components/commons/ItemBox/ItemBox";
 import { IMAGES } from "@/constants/images";
 import classNames from "classnames/bind";
+import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
 import styles from "./Card.module.scss";
@@ -51,7 +51,7 @@ const Card: React.FC<CardProps> = ({ item, name, loading }) => {
   return (
     <div
       className={cx("card-container")}
-      onClick={() => navigate(`/${name === "코스 찾기" ? "course" : "spot"}/${item.id}`)}>
+      onClick={() => navigate(`/${name === "코스 찾기" ? "course" : "destination"}/${item.id}`)}>
       <div className={cx("card-image-container")}>
         <img
           loading="lazy"

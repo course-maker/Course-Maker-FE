@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import { getDestinationApi } from "@/api/destination";
 import { postDestinationRequestDto } from "@/api/destination/type";
 import { useDestinationMutation } from "@/hooks/useDestinationMutation";
-import SpotRegisterLayout from "@/layout/SpotRegisterLayout";
+import SpotRegisterLayout from "@/layout/DestinationRegisterLayout";
 import { authState } from "@/recoil/authAtom";
 
 const SpotEditPage = () => {

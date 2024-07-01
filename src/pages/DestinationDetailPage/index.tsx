@@ -1,14 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import DOMPurify from "dompurify";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
-import { useParams } from "react-router-dom";
-import classNames from "classnames/bind";
-import styles from "./SpotDetailPage.module.scss";
 import { getDestinationApi } from "@/api/destination";
 import Image from "@/components/commons/Image";
 import TitleBox from "@/components/commons/TitleBox/TitleBox";
 import { IMAGES } from "@/constants/images";
 import DetailLayout from "@/layout/DetailLayout/DetailLayout";
+import { useQuery } from "@tanstack/react-query";
+import classNames from "classnames/bind";
+import DOMPurify from "dompurify";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { useParams } from "react-router-dom";
+import styles from "./DestinationDetailPage.module.scss";
 // import { useNavigate, useParams } from "react-router-dom";
 // import Button from "@/components/commons/Button";
 
@@ -54,7 +54,7 @@ const SpotDetailPage = () => {
               travelCount={null}
               duration={null}
               tags={tags}
-              type="spot-detail"
+              type="destination-detail"
             />
             {/* <div className={cx("btn-group")}>
               <Button onClick={handleEditClick} variant="secondary" color="navy">

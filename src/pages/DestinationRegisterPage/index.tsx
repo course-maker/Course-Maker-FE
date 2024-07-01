@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 
-import SpotRegisterLayout from "@/layout/SpotRegisterLayout";
-import { useRecoilState } from "recoil";
-import { authState } from "@/recoil/authAtom";
-import { useDestinationMutation } from "@/hooks/useDestinationMutation";
 import { postDestinationRequestDto } from "@/api/destination/type";
+import { useDestinationMutation } from "@/hooks/useDestinationMutation";
+import SpotRegisterLayout from "@/layout/DestinationRegisterLayout";
+import { authState } from "@/recoil/authAtom";
+import { useRecoilState } from "recoil";
 
 const SpotRegisterPage = () => {
   const [formData] = useState({

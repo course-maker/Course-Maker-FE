@@ -1,6 +1,6 @@
+import { useMutation /*useQueryClient*/ } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
-import { useMutation /*useQueryClient*/ } from "@tanstack/react-query";
 
 import { patchDestinationApi, postDestinationApi } from "@/api/destination";
 import { postDestinationRequestDto } from "@/api/destination/type";
@@ -17,7 +17,7 @@ export const useDestinationMutation = () => {
     mutationFn: (data: postDestinationRequestDto) => postDestinationApi(data),
     onSuccess: (data) => {
       alert("여행지가 등록되었습니다.");
-      navigate(`/spot/${data.id}`);
+      navigate(`/destination/${data.id}`);
       // invalidateCardList, // 쿼리 키 업데이트하기
     },
     onError: (error: AxiosError) => {
@@ -37,7 +37,7 @@ export const useDestinationMutation = () => {
       patchDestinationApi(postId, data),
     onSuccess: (data) => {
       alert("여행지가 등록되었습니다.");
-      navigate(`/spot/${data.id}`);
+      navigate(`/destination/${data.id}`);
       // invalidateCardList, // 쿼리 키 업데이트하기
     },
     onError: (error: AxiosError) => {
