@@ -1,12 +1,12 @@
+import BadgeListsController from "@/components/commons/BadgeListsController";
+import Slider from "@/components/commons/SliderBar/SliderBar";
+import { getFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
+import classNames from "classnames/bind";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import Slider from "@/components/commons/SliderBar/SliderBar";
-import styles from "./Step1.module.scss";
-import classNames from "classnames/bind";
-import { useStepper } from "../../StepperContext";
 import NavigationButtons from "../../NavigationButtons/NavigationButtons";
-import { saveToLocalStorage, getFromLocalStorage } from "@/utils/localStorage";
-import BadgeListController from "@/components/domains/courseRegister/BadgeListsController";
+import { useStepper } from "../../StepperContext";
+import styles from "./Step1.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -58,7 +58,7 @@ const Step1: React.FC = () => {
       <Slider type="TravelCount" value={watch("travelerCount")} onChange={handleTravelCountChange} />
       <div className={cx("BadgeList-box")}>
         <p className={cx("BadgeList-title")}>태그 선택</p>
-        <BadgeListController formFieldName="tags" control={control} />
+        <BadgeListsController type="course" formFieldName="tags" control={control} />
       </div>
       <NavigationButtons onClickNext={handleSubmit(handleNext)} onClickPrev={handlePrev} />
     </form>
