@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
-import TitleBox from "@/components/commons/TitleBox/TitleBox";
-import Section from "@/components/commons/Section/Section";
-import styles from "./CourseDetailPage.module.scss";
-import classNames from "classnames/bind";
-import DOMPurify from "dompurify";
 import { getCourseDetail } from "@/api/course";
 import { Course } from "@/api/course/type";
-import { Map, CustomOverlayMap, Polyline } from "react-kakao-maps-sdk";
+import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
+import Section from "@/components/commons/Section/Section";
+import TitleBox from "@/components/commons/TitleBox/TitleBox";
+import classNames from "classnames/bind";
+import DOMPurify from "dompurify";
+import { useEffect, useState } from "react";
+import { CustomOverlayMap, Map, Polyline } from "react-kakao-maps-sdk";
+import { Link, useParams } from "react-router-dom";
+import styles from "./CourseDetailPage.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -67,7 +67,7 @@ const CourseDetailPage = () => {
           <AllCardList>
             {course &&
               course.courseDestinations.map((item, id) => (
-                <Link to={`/spot/${item.destination.id}`} key={id}>
+                <Link to={`/destination/${item.destination.id}`} key={id}>
                   <div className={cx("item-container")}>
                     <div>
                       <img

@@ -13,8 +13,8 @@ export const NAVIGATION_BAR_MENU = {
     title: "코스 등록하기",
     path: PAGE_PATH.courseRegister,
   },
-  spotRegister: {
+  destinationRegister: {
     title: "여행지 등록하기",
-    path: PAGE_PATH.spotRegister,
+    path: PAGE_PATH.destinationRegister,
   },
 };
