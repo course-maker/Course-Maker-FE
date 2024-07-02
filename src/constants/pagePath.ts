@@ -11,3 +11,9 @@ export const PAGE_PATH = {
   destinationEdit: "/destination/:id/edit", // 여행지 수정하기
   authKakao: "/auth/kakao/callback",
 };
+
+const { signIn, signUp, courseRegister, destinationRegister } = PAGE_PATH;
+
+export const authPages = [signIn, signUp];
+export const registerPages = [courseRegister, destinationRegister];
+export const dynamicPages = [/\/course\/[^/]+\/edit/, /\/destination\/[^/]+\/edit/];
