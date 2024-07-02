@@ -1,20 +1,25 @@
-import { ReactNode } from "react";
-import styles from "./SignLayout.module.scss";
+import Image from "@/components/commons/Image";
+import { IMAGES } from "@/constants/images";
+import { PAGE_PATH } from "@/constants/pagePath";
 import classNames from "classnames/bind";
+import { ReactNode } from "react";
+import { Link } from "react-router-dom";
+import styles from "./SignLayout.module.scss";
 
 const cx = classNames.bind(styles);
 
 type SignLayoutProps = {
-  header: string; // fix: type 지정하고 바꾸기
   form: ReactNode;
   oauth?: ReactNode;
 };
 
-const SignLayout = ({ header, form, oauth }: SignLayoutProps) => {
+const SignLayout = ({ form, oauth }: SignLayoutProps) => {
   return (
     <div className={cx("container")}>
       <div className={cx("items")}>
-        <h1 className={cx("header")}>{header}</h1>
+        <Link to={PAGE_PATH.home}>
+          <Image imageInfo={IMAGES.courseMakerLogo} />
+        </Link>
         {form}
         {oauth}
       </div>
