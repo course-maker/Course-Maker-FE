@@ -6,9 +6,9 @@ import styles from "./DestinationRegisterLayout.module.scss";
 
 import BadgeListController from "@/components/commons/BadgeListsController";
 import Button from "@/components/commons/Button";
+import MainImageInputController from "@/components/commons/MainImageInputController/MainImageInputController";
 import QuillEditorController from "@/components/commons/QuillEditorController";
 import AddressSearchController from "@/components/domains/destinationRegister/AddressSearchInputController";
-import MainImageInputController from "@/components/domains/destinationRegister/MainImageInputController";
 import TitleInputController from "@/components/domains/destinationRegister/TitleInputController";
 
 import { useImageUpload } from "@/hooks/useImageUpload";

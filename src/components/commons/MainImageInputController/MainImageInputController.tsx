@@ -1,5 +1,5 @@
-import { Controller, Control, FieldValues, Path } from "react-hook-form";
-import MainImageInput from "./MainImageInput";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import MainImageInput from "../MainImageInput/MainImageInput";
 
 interface MainImageInputControllerProps<ControlType extends FieldValues> {
   formFieldName: Path<ControlType>;
