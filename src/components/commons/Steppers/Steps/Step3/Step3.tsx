@@ -1,7 +1,7 @@
 import { postCourses } from "@/api/course";
 import { CourseDestination, DestinationDto, postCourse, Tag } from "@/api/course/register";
+import MainImageInputController from "@/components/commons/MainImageInputController/MainImageInputController";
 import QuillEditorController from "@/components/commons/QuillEditorController";
-import MainImageInputController from "@/components/domains/courseRegister/MainImageInputController";
 import { useImageUpload } from "@/hooks/useImageUpload";
 import { getFromLocalStorage, removeFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
 import classNames from "classnames/bind";
@@ -16,7 +16,7 @@ const cx = classNames.bind(styles);
 interface Step3FormValues {
   title: string;
   content: string;
-  pictureFile: File | null;
+  pictureFile: string;
   pictureLink: string;
 }
 
@@ -33,7 +33,7 @@ const Step3: React.FC = () => {
     defaultValues: {
       title: "",
       content: "",
-      pictureFile: null,
+      pictureFile: "",
       pictureLink: "",
     },
   });
@@ -80,15 +80,10 @@ const Step3: React.FC = () => {
       return;
     }
 
-    if (data.pictureFile.size > 15 * 1024 * 1024) {
-      alert("파일 크기가 너무 커서 업로드할 수 없습니다. 15MB 이하의 이미지로 다시 시도해주세요.");
-      return;
-    }
-
     let pictureLink = "";
     try {
       const formData = new FormData();
-      formData.append("images", data.pictureFile, data.pictureFile.name);
+      formData.append("images", data.pictureFile);
       const uploadResponse = await uploadImageAsync(formData);
       pictureLink = uploadResponse[0];
     } catch (error) {

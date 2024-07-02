@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import DestinationDetailsInput from "./DestinationDetailsInput";
+import DestinationDetailsInput from "../../domains/destinationRegister/DestinationDetailsInput";
 
 interface MainImageInputProps {
   selectedImage: string;
