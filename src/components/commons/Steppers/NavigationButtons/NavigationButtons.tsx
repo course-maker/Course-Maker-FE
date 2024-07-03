@@ -13,15 +13,33 @@ interface NavigationButtonsProps {
 const NavigationButtons: React.FC<NavigationButtonsProps> = ({ onClickNext, onClickPrev }) => {
   const { goToNextStep, goToPrevStep, currentStep } = useStepper();
 
+  const handlePrevClick = () => {
+    if (onClickPrev) {
+      onClickPrev();
+    } else {
+      goToPrevStep();
+    }
+    window.scrollTo(0, 0);
+  };
+
+  const handleNextClick = () => {
+    if (onClickNext) {
+      onClickNext();
+    } else {
+      goToNextStep();
+    }
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className={cx("buttonContainer")}>
       {currentStep > 1 && (
-        <Button color="navy" variant="secondary" size="medium" onClick={onClickPrev || goToPrevStep}>
+        <Button color="navy" variant="secondary" size="medium" onClick={handlePrevClick}>
           이전으로
         </Button>
       )}
       {currentStep < 3 && (
-        <Button color="navy" size="medium" variant="primary" onClick={onClickNext || goToNextStep}>
+        <Button color="navy" size="medium" variant="primary" onClick={handleNextClick}>
           다음으로
         </Button>
       )}
