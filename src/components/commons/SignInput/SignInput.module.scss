@@ -1,53 +1,40 @@
 .container {
   @include column-flexbox(center, end);
-  gap: 0.4rem;
-  width: 100%;
-}
-
-.input {
-  @include flexbox(between, center);
-  gap: 2rem;
+  gap: 0.3rem;
   width: 100%;
 
-  &-label {
-    @include text-style(1.6, 700);
-    white-space: nowrap;
-    min-width: 9.3rem;
-  }
-
-  &-field {
-    @include text-style(1.6, 400);
+  .input-field {
+    @include text-style(1.6, 400, $black30);
     width: 100%;
     background-color: $White;
-    border: 0.1rem solid #d9d9d9; // fix: 변수로 바꾸기
-    border-radius: 1rem;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-    padding: 1.6rem 2rem;
+    border: 0.1rem solid $gray20;
+    border-radius: 0.6rem;
+    padding: 2rem;
     transition: border-color 0.2s ease-in-out;
 
+    &.error {
+      border-color: $red;
+    }
+
     &::placeholder {
-      color: $Gray;
+      color: $black10;
     }
 
-    &:focus {
-      border-color: $Black;
-    }
-
-    &.isLabelExist {
-      max-width: 44.2rem;
+    &:focus:not(.error) {
+      border-color: $primary40;
     }
   }
-}
 
-.helper-text {
-  @include text-style(1.4, 400, $Gray);
-  height: 1.6rem;
+  .helper-text {
+    @include text-style(1.2, 400, $gray30);
+    height: 1.6rem;
 
-  &.error {
-    color: $Invalid;
-  }
+    &.error {
+      color: $red;
+    }
 
-  &.verified {
-    color: #0038ff; // fix: 변수로 바꾸기
+    &.verified {
+      color: #0038ff; // fix: 변수로 바꾸기
+    }
   }
 }
