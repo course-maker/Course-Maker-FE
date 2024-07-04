@@ -1,7 +1,7 @@
 import { PAGE_PATH } from "@/constants/pagePath";
 import { authState } from "@/recoil/authAtom";
 import { getAccessToken } from "@/utils/manageTokenInfo";
-import { isAuthPage, isRegisterPage } from "@/utils/pageHelpers";
+import { isRegisterPage, isSignPage } from "@/utils/pageHelpers";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -15,7 +15,7 @@ const useAuth = () => {
     const accessToken = getAccessToken();
     setIsAuth(!!accessToken);
 
-    if (accessToken && isAuthPage(location.pathname)) {
+    if (accessToken && isSignPage(location.pathname)) {
       navigate("/");
     } else if (!accessToken && isRegisterPage(location.pathname)) {
       navigate(PAGE_PATH.signIn);
