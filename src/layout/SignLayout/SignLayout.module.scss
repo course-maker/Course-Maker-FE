@@ -1,7 +1,8 @@
 .container {
   @include flexbox(center, start);
-  min-height: calc(100vh - 9.7rem);
-  padding: calc(120 / 844 * (100vh - 30rem)) 3.2rem 5rem;
+  min-height: 100vh;
+  padding-top: 15vh;
+  padding-bottom: calc(8.6rem + env(safe-area-inset-bottom, 0rem));
 }
 
 .items {
