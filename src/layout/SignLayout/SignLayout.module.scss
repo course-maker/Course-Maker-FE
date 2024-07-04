@@ -8,7 +8,7 @@
 .items {
   @include column-flexbox();
   gap: 4rem;
-  max-width: 42rem;
+  max-width: 35rem;
   width: 100%;
 }
 

@@ -1,11 +1,11 @@
 .container {
   @include column-flexbox();
-  gap: 3.9rem;
+  gap: 4rem;
   width: 100%;
 }
 
 .divider {
-  @include text-style(1.6, 400, #401e20); // fix: 색 변수로 변경하기
+  @include text-style(1.6, 400, $black20);
   @include flexbox();
   width: 100%;
 
@@ -13,7 +13,7 @@
   &::after {
     content: "";
     flex-grow: 1;
-    background: #776f6f; // fix: 색 변수로 변경하기
+    background: $black20;
     height: 1px;
   }
 
