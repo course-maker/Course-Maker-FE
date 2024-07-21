@@ -1,10 +1,10 @@
-import { KeyboardEventHandler, MouseEventHandler } from "react";
 import Modal from "@/components/commons/Modal";
 import ModalContentBox from "@/components/commons/Modal/ModalContentBox";
+import { KeyboardEventHandler, MouseEventHandler } from "react";
 
 type AlertModalProps = {
   isOpen: boolean;
-  message: string;
+  content: string;
   hasCloseBtn: boolean;
   onCloseClick?: MouseEventHandler<HTMLDivElement | HTMLButtonElement>;
   onConfirmClick: MouseEventHandler<HTMLButtonElement>;
@@ -13,7 +13,7 @@ type AlertModalProps = {
 
 export const AlertModal = ({
   isOpen,
-  message,
+  content,
   hasCloseBtn,
   onCloseClick,
   onConfirmClick,
@@ -22,7 +22,7 @@ export const AlertModal = ({
   return (
     <Modal isOpen={isOpen} onBackdropClick={onCloseClick} onKeyDown={onKeyDown} onConfirmClick={onConfirmClick}>
       <ModalContentBox
-        message={message}
+        content={content}
         hasCloseBtn={hasCloseBtn}
         onCloseClick={onCloseClick}
         onConfirmClick={onConfirmClick}
