@@ -1,12 +1,5 @@
 import courseMakerLogo from "@/assets/images/course_maker_logo.svg";
 import kakaoOauthButton from "@/assets/images/kakao_oauth_button.svg";
-import whiteHeartIcon from "@/assets/images/white_heart.svg";
-import whiteThumbsUpIcon from "@/assets/images/white_thumbs_up.svg";
-import whiteStarIcon from "@/assets/images/white_star.svg";
-import blackHeartIcon from "@/assets/images/black_heart.svg";
-import blackThumbsUpIcon from "@/assets/images/black_thumbs_up.svg";
-import blackStarIcon from "@/assets/images/black_star.svg";
-import linkCopyIcon from "@/assets/images/link_copy.svg";
 import locationIcon from "@/assets/images/location.svg";
 import testImage from "@/assets/images/test_img.png";
 import calendarIcon from "@/assets/images/calendar.svg";
@@ -27,7 +20,17 @@ import modalClose from "@/assets/images/modal_close.svg";
 import rangeLine from "@/assets/images/range_line.svg";
 import plus from "@/assets/images/plus.svg";
 import Down_arrow from "@/assets/images/down_arrow.svg";
-
+import BottomLine from "@/assets/images/bottom_line.svg";
+import ColumnLine from "@/assets/images/column_line.svg";
+import GrayStarIcon from "@/assets/images/gray_star.svg";
+import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
+import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
+import GrayKaKaoIcon from "@/assets/images/gray_kakao.svg";
+import GrayLinkIcon from "@/assets/images/gray_link.svg";
+import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
+import BlueBookmarkIcon from "@/assets/images/blue_bookmark.svg";
+import BlueKaKaoIcon from "@/assets/images/blue_kakao.svg";
+import BlueLinkIcon from "@/assets/images/blue_link.svg";
 export const IMAGES = {
   courseMakerLogo: {
     src: courseMakerLogo,
@@ -36,34 +39,6 @@ export const IMAGES = {
   kakaoOauthButton: {
     src: kakaoOauthButton,
     alt: "카카오톡 OAuth 버튼",
-  },
-  heartIcon: {
-    src: whiteHeartIcon,
-    alt: "하트 아이콘",
-  },
-  thumbsUpIcon: {
-    src: whiteThumbsUpIcon,
-    alt: "좋아요 아이콘",
-  },
-  starIcon: {
-    src: whiteStarIcon,
-    alt: "별점 아이콘",
-  },
-  blackHeartIcon: {
-    src: blackHeartIcon,
-    alt: "하트 아이콘",
-  },
-  blackThumbsUpIcon: {
-    src: blackThumbsUpIcon,
-    alt: "좋아요 아이콘",
-  },
-  blackStarIcon: {
-    src: blackStarIcon,
-    alt: "별점 아이콘",
-  },
-  linkCopyIcon: {
-    src: linkCopyIcon,
-    alt: "링크 복사 아이콘",
   },
   locationIcon: {
     src: locationIcon,
@@ -144,5 +119,49 @@ export const IMAGES = {
   Down_arrow: {
     src: Down_arrow,
     alt: "아래버튼",
+  },
+  ColumnLine: {
+    src: ColumnLine,
+    alt: "세로 구분선",
+  },
+  BottomLine: {
+    src: BottomLine,
+    alt: "가로 구분 선",
+  },
+  GrayStarIcon: {
+    src: GrayStarIcon,
+    alt: "회색 별 아이콘",
+  },
+  GrayFavoriteIcon: {
+    src: GrayFavoriteIcon,
+    alt: "회색 하트 아이콘",
+  },
+  GrayBookmarkIcon: {
+    src: GrayBookmarkIcon,
+    alt: "회색 북마크 아이콘",
+  },
+  GrayKaKaoIcon: {
+    src: GrayKaKaoIcon,
+    alt: "회색 카카오 아이콘",
+  },
+  GrayLinkIcon: {
+    src: GrayLinkIcon,
+    alt: "회색 링크 아이콘",
+  },
+  BlueFavoriteIcon: {
+    src: BlueFavoriteIcon,
+    alt: "블루 하트 아이콘",
+  },
+  BlueBookmarkIcon: {
+    src: BlueBookmarkIcon,
+    alt: "블루 북마크 아이콘",
+  },
+  BlueKaKaoIcon: {
+    src: BlueKaKaoIcon,
+    alt: "블루 카카오 아이콘",
+  },
+  BlueLinkIcon: {
+    src: BlueLinkIcon,
+    alt: "블루 링크 아이콘",
   },
 };
