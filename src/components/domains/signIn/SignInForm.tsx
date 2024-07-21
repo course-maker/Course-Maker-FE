@@ -64,7 +64,7 @@ const SignInForm = () => {
       </div>
       <AlertModal
         isOpen={currentModal === MODALS.invalidEmail.id}
-        message={MODALS.invalidEmail.message}
+        content={MODALS.invalidEmail.message}
         hasCloseBtn={MODALS.invalidEmail.hasCloseBtn}
         onCloseClick={closeModal}
         onConfirmClick={handleClickRedirect}
@@ -72,7 +72,7 @@ const SignInForm = () => {
       />
       <AlertModal
         isOpen={currentModal === MODALS.invalidPassword.id}
-        message={MODALS.invalidPassword.message}
+        content={MODALS.invalidPassword.message}
         hasCloseBtn={MODALS.invalidPassword.hasCloseBtn}
         onConfirmClick={closeModal}
         onKeyDown={handleKeyDown}
