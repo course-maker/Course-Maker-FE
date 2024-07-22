@@ -30,6 +30,13 @@ const Header = ({
   onEdit,
   onDelete,
 }: HeaderProps) => {
+  const buttonData = [
+    { onClick: onLike, image: IMAGES.GrayFavoriteIcon },
+    { onClick: onBookmark, image: IMAGES.GrayBookmarkIcon },
+    { onClick: onKaKaoShare, image: IMAGES.GrayKaKaoIcon },
+    { onClick: onLinkCopy, image: IMAGES.GrayLinkIcon },
+  ];
+
   return (
     <div className={cx("header-container")}>
       <div className={cx("header-box")}>
@@ -58,18 +65,11 @@ const Header = ({
             </button>
           </div>
           <div className={cx("icons")}>
-            <button onClick={onLike} className={cx("action-btn")}>
-              <Image imageInfo={IMAGES.GrayFavoriteIcon} />
-            </button>
-            <button onClick={onBookmark} className={cx("action-btn")}>
-              <Image imageInfo={IMAGES.GrayBookmarkIcon} />
-            </button>
-            <button onClick={onKaKaoShare} className={cx("action-btn")}>
-              <Image imageInfo={IMAGES.GrayKaKaoIcon} />
-            </button>
-            <button onClick={onLinkCopy} className={cx("action-btn")}>
-              <Image imageInfo={IMAGES.GrayLinkIcon} />
-            </button>
+            {buttonData.map((button, index) => (
+              <button key={index} onClick={button.onClick} className={cx("action-btn")}>
+                <Image imageInfo={button.image} />
+              </button>
+            ))}
           </div>
         </div>
       </div>
