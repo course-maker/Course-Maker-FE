@@ -1,7 +1,7 @@
 .list-container {
   @include column-flexbox($jc: start, $ai: start);
-  width: 51.6rem;
-  height: 56.4rem;
+
+  height: 47rem;
   flex-shrink: 0;
   overflow-y: scroll;
   overflow-x: hidden;
