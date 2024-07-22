@@ -1,6 +1,5 @@
 import { getDestinationApi } from "@/api/destination";
 import Image from "@/components/commons/Image";
-import TitleBox from "@/components/commons/TitleBox/TitleBox";
 import { IMAGES } from "@/constants/images";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
@@ -9,8 +8,6 @@ import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { useParams } from "react-router-dom";
 import styles from "./DestinationDetailPage.module.scss";
 import Section from "@/components/commons/Section/Section";
-// import { useNavigate, useParams } from "react-router-dom";
-// import Button from "@/components/commons/Button";
 
 const cx = classNames.bind(styles);
 
@@ -28,52 +25,20 @@ const SpotDetailPage = () => {
     return <div>Loading...</div>;
   }
 
-  const { nickname, name, tags, location, pictureLink, content } = spotDetailData;
+  const { location, content } = spotDetailData;
   const sanitizedContent = { __html: DOMPurify.sanitize(content) };
 
-  // const { id } = useParams();
-  // const navigate = useNavigate();
-
-  // const handleEditClick = () => {
-  //   navigate(`/spot/${id}/edit`);
-  // };
-
-  // const handleDeleteClick = () => {
-  //   // {delete data}
-  // };
   return (
     <Section>
       <section className={cx("section")}>
         <article className={cx("article")}>
-          <div>
-            <TitleBox
-              image={{ src: `${pictureLink}`, alt: `${`데이터`}해당 이미지` }}
-              title={name}
-              // rating={mockdata[0].rating}
-              name={nickname}
-              travelCount={null}
-              duration={null}
-              tags={tags}
-              type="destination-detail"
-            />
-            {/* <div className={cx("btn-group")}>
-              <Button onClick={handleEditClick} variant="secondary" color="navy">
-                수정하기
-              </Button>
-              <Button onClick={handleDeleteClick} variant="primary" color="gray">
-                삭제하기
-              </Button>
-            </div> */}
-          </div>
           <div className={cx("kakao-map")}>
             <Map
-              center={{ lat: location.latitude, lng: location.longitude }} // 지도의 중심 좌표 lat/lng 위도/경도
-              className={cx("kakao-map")} // 지도 크기
+              center={{ lat: location.latitude, lng: location.longitude }}
+              className={cx("kakao-map")}
               style={{ width: "50rem", height: "45.7rem" }}
               level={3}>
-              <MapMarker // 마커를 생성합니다
-                position={{ lat: location.latitude, lng: location.longitude }}
-              />
+              <MapMarker position={{ lat: location.latitude, lng: location.longitude }} />
             </Map>
 
             <div className={cx("location")}>
