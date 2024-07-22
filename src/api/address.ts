@@ -37,6 +37,7 @@ export const tagAddress = {
 export const coursesAddress = {
   //get
   get: "/v1/courses",
+  delete: "/v1/course",
 };
 
 export const oauthAddress = {
