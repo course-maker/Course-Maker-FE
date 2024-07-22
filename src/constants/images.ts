@@ -31,6 +31,10 @@ import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
 import BlueBookmarkIcon from "@/assets/images/blue_bookmark.svg";
 import BlueKaKaoIcon from "@/assets/images/blue_kakao.svg";
 import BlueLinkIcon from "@/assets/images/blue_link.svg";
+import BlackFavoriteIcon from "@/assets/images/black_favorite.svg";
+import BlackBookmarkIcon from "@/assets/images/black_bookmark.svg";
+import BlackStarIcon from "@/assets/images/black_star.svg";
+
 export const IMAGES = {
   courseMakerLogo: {
     src: courseMakerLogo,
@@ -163,5 +167,17 @@ export const IMAGES = {
   BlueLinkIcon: {
     src: BlueLinkIcon,
     alt: "블루 링크 아이콘",
+  },
+  BlackFavoriteIcon: {
+    src: BlackFavoriteIcon,
+    alt: "블랙 하트 아이콘",
+  },
+  BlackBookmarkIcon: {
+    src: BlackBookmarkIcon,
+    alt: "블랙 북마크 아이콘",
+  },
+  BlackStarIcon: {
+    src: BlackStarIcon,
+    alt: "블랙 별 아이콘",
   },
 };
