@@ -9,13 +9,13 @@ const cx = classNames.bind(styles);
 const CourseDetailPage = () => {
   return (
     <main className={cx("container")}>
-      <Section>
+      <Section className={cx("section")}>
         <CourseHeader />
       </Section>
-      <Section>
+      <Section className={cx("section")}>
         <CourseDetailInfo />
       </Section>
-      <Section>Tabs</Section>
+      <Section className={cx("section")}>Tabs</Section>
     </main>
   );
 };

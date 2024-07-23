@@ -73,7 +73,6 @@ const Header = ({
           </div>
         </div>
       </div>
-      <Image imageInfo={IMAGES.BottomLine} />
       <div className={cx("tags")}>
         {tags?.map((tag, index) => (
           <span key={index} className={cx("tag")}>
