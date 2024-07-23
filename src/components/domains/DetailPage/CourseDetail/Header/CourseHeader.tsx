@@ -58,10 +58,10 @@ const CourseHeader = () => {
 
   const handleKaKaoShare = () => {
     shareMessage({
-      id: courseDetailData?.id as number,
-      title: courseDetailData?.title as string, // 실제 페이지 제목
-      description: courseDetailData?.content as string,
-      imageUrl: courseDetailData?.pictureLink as string,
+      id: courseDetailData?.id,
+      title: courseDetailData?.title, // 실제 페이지 제목
+      description: courseDetailData?.content,
+      imageUrl: courseDetailData?.pictureLink,
       pageType: "course",
     });
   };
