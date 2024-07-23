@@ -1,4 +1,4 @@
-import { postCourses } from "@/api/course";
+import { createCourse } from "@/api/course";
 import { CourseDestination, DestinationDto, postCourse, Tag } from "@/api/course/register";
 import MainImageInputController from "@/components/commons/MainImageInputController/MainImageInputController";
 import QuillEditorController from "@/components/commons/QuillEditorController";
@@ -164,7 +164,7 @@ const Step3: React.FC = () => {
     };
 
     try {
-      await postCourses(formData);
+      await createCourse(formData);
       alert("코스가 등록되었습니다.");
       removeFromLocalStorage("step1");
       removeFromLocalStorage("step2");
