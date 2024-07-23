@@ -1,13 +1,12 @@
 import { getCourseDetail } from "@/api/course";
 import { deleteCourseDetail } from "@/api/course";
-import shareMessage from "@/api/kakaoShare";
+import { useKakaoShare } from "@/hooks/useKakaoShare";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../Header/Header";
 
 const CourseHeader = () => {
-  const KAKAO_JAVASCRIPT_APP_KEY = import.meta.env.VITE_KAKAOMAP_JAVASCRIPT_APP_KEY;
+  const { shareMessage, isKakaoInitialized } = useKakaoShare();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const {
@@ -50,20 +49,18 @@ const CourseHeader = () => {
     // 북마크 기능 구현
   };
 
-  useEffect(() => {
-    if (window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init(KAKAO_JAVASCRIPT_APP_KEY);
-    }
-  }, []); // kakao sdk 초기화
-
   const handleKaKaoShare = () => {
-    shareMessage({
-      id: courseDetailData?.id,
-      title: courseDetailData?.title, // 실제 페이지 제목
-      description: courseDetailData?.content,
-      imageUrl: courseDetailData?.pictureLink,
-      pageType: "course",
-    });
+    if (isKakaoInitialized) {
+      shareMessage({
+        id: courseDetailData?.id,
+        title: courseDetailData?.title,
+        description: courseDetailData?.content,
+        imageUrl: courseDetailData?.pictureLink,
+        pageType: "course",
+      });
+    } else {
+      console.error("Kakao SDK가 아직 초기화되지 않았습니다.");
+    }
   };
 
   const handleLinkCopy = async () => {
