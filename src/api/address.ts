@@ -35,9 +35,10 @@ export const tagAddress = {
 };
 
 export const coursesAddress = {
-  //get
-  get: "/v1/courses",
-  delete: "/v1/course",
+  getList: "/v1/courses",
+  getDetail: (id: number) => `/v1/courses/${id}`,
+  delete: (id: number) => `/v1/courses/${id}`,
+  create: "/v1/courses",
 };
 
 export const oauthAddress = {
