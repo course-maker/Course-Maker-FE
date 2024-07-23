@@ -36,35 +36,41 @@ const CourseDetailInfo = () => {
   ];
 
   return (
-    <div className={cx("info-container")}>
-      <div className={cx("course-img")}>
-        <img className={cx("course")} src={courseDetailData?.pictureLink} alt="코스상세페이지 대표 이미지" />
+    <div className={cx("course-detail-info")}>
+      <div className={cx("course-detail-info__main-image-container")}>
+        <img
+          className={cx("course-detail-info__main-image")}
+          src={courseDetailData?.pictureLink}
+          alt="코스상세페이지 대표 이미지"
+        />
       </div>
-      <div className={cx("destination-group")}>
-        <div className={cx("title-group")}>
-          <p className={cx("title")}>전체 여행지</p>
-          <p className={cx("sub-title")}>여행지를 클릭하면 여행지 상세페이지를 확인할 수 있습니다.</p>
+      <div className={cx("destination-section")}>
+        <div className={cx("destination-section__header")}>
+          <p className={cx("destination-section__title")}>전체 여행지</p>
+          <p className={cx("destination-section__subtitle")}>
+            여행지를 클릭하면 여행지 상세페이지를 확인할 수 있습니다.
+          </p>
         </div>
         <AllCardList>
           {courseDetailData &&
             courseDetailData.courseDestinations.map((item, id) => (
               <Link to={`/destination/${item.destination.id}`} key={id}>
-                <div className={cx("travel-group")}>
-                  <div className={cx("travel-img")}>
+                <div className={cx("destination-card")}>
+                  <div className={cx("destination-card__image-container")}>
                     <img
-                      className={cx("travel")}
+                      className={cx("destination-card__image")}
                       src={item?.destination?.pictureLink}
                       alt={`${item?.destination?.name} 이미지`}
                     />
                   </div>
-                  <div className={cx("travel-info")}>
-                    <div className={cx("info-group")}>
-                      <p className={cx("name")}>{item?.destination?.name}</p>
-                      <p className={cx("address")}>{item?.destination?.location?.address}</p>
+                  <div className={cx("destination-card__info")}>
+                    <div className={cx("destination-card__details")}>
+                      <p className={cx("destination-card__name")}>{item?.destination?.name}</p>
+                      <p className={cx("destination-card__address")}>{item?.destination?.location?.address}</p>
                     </div>
-                    <div className={cx("rating-group")}>
+                    <div className={cx("destination-card__ratings")}>
                       {ratingData.map((item, index) => (
-                        <span key={index} className={cx("rating-icon")}>
+                        <span key={index} className={cx("destination-card__rating-item")}>
                           <Image imageInfo={item.icon} />
                           <span>{item.value}</span>
                         </span>
