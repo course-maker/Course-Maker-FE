@@ -1,8 +1,8 @@
 interface ShareMessageProps {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
+  id: number | undefined;
+  title: string | undefined;
+  description: string | undefined;
+  imageUrl: string | undefined;
   pageType: "course" | "destination";
 }
 
