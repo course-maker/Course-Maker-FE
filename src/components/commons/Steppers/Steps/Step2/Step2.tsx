@@ -1,7 +1,6 @@
 import { getDestination } from "@/api/destination";
 import { GetDestinationDto } from "@/api/destination/type";
 import BadgeListsController from "@/components/commons/BadgeListsController";
-import { AllCardList, FilterCardList } from "@/components/commons/CardList/CardList";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
 import { getFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
@@ -160,7 +159,7 @@ const Step2: React.FC = () => {
         <div className={cx("BadgeList-box")}>
           <BadgeListsController type="course" formFieldName="tags" control={control} />
         </div>
-        <AllCardList>
+        <div>
           {filteredData.map((item, id) => (
             <div className={cx("item-container")} key={id}>
               <button type="button" className={cx("plus-btn")} onClick={() => handleDestinationToggle(item.name)}>
@@ -181,7 +180,7 @@ const Step2: React.FC = () => {
               </div>
             </div>
           ))}
-        </AllCardList>
+        </div>
       </div>
       <div className={cx("schedule")}>
         <div className={cx("schedule-group")}>
@@ -196,7 +195,7 @@ const Step2: React.FC = () => {
               </button>
             ))}
           </div>
-          <FilterCardList>
+          <div>
             <div className={cx("scrollable-list")}>
               {step2Data.courseDestinations[activeDay]?.map((item, id) => (
                 <div className={cx("item-container")} key={id}>
@@ -213,7 +212,7 @@ const Step2: React.FC = () => {
                 </div>
               ))}
             </div>
-          </FilterCardList>
+          </div>
         </div>
         <Map center={mapCenter} className={cx("kakao-map")} style={{ width: "60rem", height: "80rem" }} level={6}>
           {step2Data.courseDestinations[activeDay]?.map((item, id) => (
