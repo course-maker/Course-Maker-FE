@@ -1,33 +1,36 @@
-.info-container {
+.course-detail-info {
   @include flexbox($ai: end);
   gap: 3.18rem;
+
+  &__main-image-container {
+    width: 48.9rem;
+    flex-shrink: 0;
+  }
+
+  &__main-image {
+    width: 100%;
+    height: 47rem;
+    border-radius: 2rem;
+  }
 }
 
-.info-img {
-  width: 48.9rem;
-  flex-shrink: 0;
-}
-.course {
-  width: 100%;
-  height: 47rem;
-  border-radius: 2rem;
+.destination-section {
+  &__header {
+    @include column-flexbox();
+    gap: 0.9rem;
+    padding-bottom: 2rem;
+  }
+
+  &__title {
+    @include text-style(2.6, 700, #363636);
+  }
+
+  &__subtitle {
+    @include text-style(1.3, 400, #8c8c8c);
+  }
 }
 
-.title-group {
-  @include column-flexbox();
-  gap: 0.9rem;
-  padding-bottom: 2rem;
-}
-
-.title {
-  @include text-style(2.6, 700, #363636);
-}
-
-.sub-title {
-  @include text-style(1.3, 400, #8c8c8c);
-}
-
-.travel-group {
+.destination-card {
   @include inline-flexbox($jc: center, $ai: start);
   gap: 1rem;
   border-radius: 1rem;
@@ -36,47 +39,49 @@
   flex-shrink: 0;
   box-shadow: 0rem 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
   padding: 1.24rem 0 1.27rem 1.08rem;
-}
 
-.travel-img {
-  width: 14.899rem;
-  height: 12.0194rem;
-  flex-shrink: 0;
-  overflow: hidden;
-  border-radius: 0.5rem;
-}
+  &__image-container {
+    width: 14.899rem;
+    height: 12.0194rem;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
 
-.travel {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.travel-info {
-  @include column-flexbox($jc: start, $ai: start);
-  width: 100%;
-  gap: 4.06rem;
-}
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-.info-group {
-  @include column-flexbox($jc: start, $ai: start);
-  gap: 1rem;
-}
-.name {
-  @include text-style(1.8, 700, #363636);
-}
+  &__info {
+    @include column-flexbox($jc: start, $ai: start);
+    width: 100%;
+    gap: 4.06rem;
+  }
 
-.address {
-  @include text-style(1.3, 500, #363636);
-}
+  &__details {
+    @include column-flexbox($jc: start, $ai: start);
+    gap: 1rem;
+  }
 
-.rating-group {
-  @include inline-flexbox($jc: center, $ai: center);
-  padding-left: 55%;
-  gap: 0.64rem;
-  flex-shrink: 0;
-}
+  &__name {
+    @include text-style(1.8, 700, #363636);
+  }
 
-.rating-icon {
-  @include inline-flexbox($jc: center, $ai: center);
-  gap: 0.1rem;
+  &__address {
+    @include text-style(1.3, 500, #363636);
+  }
+
+  &__ratings {
+    @include inline-flexbox($jc: center, $ai: center);
+    padding-left: 55%;
+    gap: 0.64rem;
+    flex-shrink: 0;
+  }
+
+  &__rating-item {
+    @include inline-flexbox($jc: center, $ai: center);
+    gap: 0.1rem;
+  }
 }
