@@ -20,7 +20,6 @@ import modalClose from "@/assets/images/modal_close.svg";
 import rangeLine from "@/assets/images/range_line.svg";
 import plus from "@/assets/images/plus.svg";
 import Down_arrow from "@/assets/images/down_arrow.svg";
-import BottomLine from "@/assets/images/bottom_line.svg";
 import ColumnLine from "@/assets/images/column_line.svg";
 import GrayStarIcon from "@/assets/images/gray_star.svg";
 import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
@@ -127,10 +126,6 @@ export const IMAGES = {
   ColumnLine: {
     src: ColumnLine,
     alt: "세로 구분선",
-  },
-  BottomLine: {
-    src: BottomLine,
-    alt: "가로 구분 선",
   },
   GrayStarIcon: {
     src: GrayStarIcon,

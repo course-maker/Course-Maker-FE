@@ -1,8 +1,10 @@
 .header-container {
+  width: 100%;
   padding-top: 14.1rem;
 }
 .header-box {
   @include flexbox($jc: between, $ai: center);
+  border-bottom: 0.1rem solid #dbdbdb;
 }
 .content {
   @include column-flexbox($jc: center, $ai: start);
