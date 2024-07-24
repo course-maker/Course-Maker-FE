@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react";
 import styles from "./CardList.module.scss";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import Image from "@/components/commons/Image";
-import { IMAGES } from "@/constants/images";
+import { CardContent } from "../CardContent/CardContent";
 
 const cx = classNames.bind(styles);
 
@@ -39,48 +38,16 @@ export const AllCardList = ({ destinations, ratingValues, useLink = false }: All
     }
   }, []);
 
-  const ratingData = [
-    { icon: IMAGES.BlackFavoriteIcon, value: ratingValues.likes },
-    { icon: IMAGES.BlackBookmarkIcon, value: ratingValues.bookmarks },
-    { icon: IMAGES.BlackStarIcon, value: ratingValues.rating },
-  ];
-
-  const CardContent = ({ item }: { item: DestinationItem }) => (
-    <div className={cx("destination-card")}>
-      <div className={cx("destination-card__image-container")}>
-        <img
-          className={cx("destination-card__image")}
-          src={item.destination.pictureLink}
-          alt={`${item.destination.name} 이미지`}
-        />
-      </div>
-      <div className={cx("destination-card__info")}>
-        <div className={cx("destination-card__details")}>
-          <p className={cx("destination-card__name")}>{item.destination.name}</p>
-          <p className={cx("destination-card__address")}>{item.destination.location.address}</p>
-        </div>
-        <div className={cx("destination-card__ratings")}>
-          {ratingData.map((ratingItem, index) => (
-            <span key={index} className={cx("destination-card__rating-item")}>
-              <Image imageInfo={ratingItem.icon} />
-              <span>{ratingItem.value}</span>
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className={cx("list-container")} ref={listContainerRef}>
       <div className={cx("list-box")}>
         {destinations.map((item, id) =>
           useLink ? (
             <Link to={`/destination/${item.destination.id}`} key={id}>
-              <CardContent item={item} />
+              <CardContent item={item} ratingValues={ratingValues} />
             </Link>
           ) : (
-            <CardContent item={item} key={id} />
+            <CardContent item={item} ratingValues={ratingValues} key={id} />
           ),
         )}
       </div>
