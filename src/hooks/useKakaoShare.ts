@@ -1,4 +1,3 @@
-import { loadKakaoScripts } from "@/utils/loadKakaoScript";
 import { useState, useEffect } from "react";
 
 interface ShareMessageProps {
@@ -10,24 +9,30 @@ interface ShareMessageProps {
 }
 
 export const useKakaoShare = () => {
-  const [isKakaoInitialized, setIsKakaoInitialized] = useState(false);
+  const [isKakaoInitialized, setIsKakaoInitialized] = useState<boolean>(false);
   const KAKAO_JAVASCRIPT_APP_KEY = import.meta.env.VITE_KAKAOMAP_JAVASCRIPT_APP_KEY;
 
   useEffect(() => {
-    const initializeKakao = async () => {
-      try {
-        await loadKakaoScripts();
-        if (!window.Kakao.isInitialized()) {
-          window.Kakao.init(KAKAO_JAVASCRIPT_APP_KEY);
-        }
-        setIsKakaoInitialized(true);
-        console.log("Kakao SDK가 성공적으로 초기화되었습니다.");
-      } catch (error) {
-        console.error("Kakao SDK 로드 실패:", error);
-      }
-    };
+    const existingScript = document.getElementById("kakao-sdk");
 
-    initializeKakao();
+    if (existingScript) {
+      setIsKakaoInitialized(true);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = "kakao-sdk";
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.defer = true;
+    script.onload = () => {
+      window.Kakao.init(KAKAO_JAVASCRIPT_APP_KEY);
+      setIsKakaoInitialized(true);
+      console.log("Kakao SDK가 성공적으로 초기화되었습니다.");
+    };
+    script.onerror = () => {
+      console.error("Failed to load Kakao SDK");
+    };
+    document.head.appendChild(script);
   }, [KAKAO_JAVASCRIPT_APP_KEY]);
 
   const shareMessage = ({ id, title, description, imageUrl, pageType }: ShareMessageProps) => {
