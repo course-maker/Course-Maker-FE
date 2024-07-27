@@ -1,8 +1,9 @@
+// 기본 버튼 스타일
 %btn-base {
   @include text-style(1.6, 700);
   @include flexbox();
   border-radius: 0.6rem;
-  transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.2s;
   white-space: nowrap;
   cursor: pointer;
 
@@ -11,6 +12,7 @@
   }
 }
 
+// 버튼 크기별 스타일
 .btn-size {
   &-small,
   &-medium,
@@ -40,124 +42,102 @@
   }
 }
 
-.btn-blue {
-  &-primary {
-    color: $White;
-    background-color: $primary40;
+// 버튼 색상별 스타일
+.btn {
+  &-blue {
+    &-primary {
+      color: $White;
+      background-color: $primary40;
 
-    &:hover {
-      background-color: $primary50;
+      &:disabled {
+        background-color: $gray30;
+      }
     }
 
-    &:disabled {
-      background-color: $gray30;
-    }
-  }
+    &-secondary {
+      color: $primary30;
+      background-color: $White;
+      border: 1px solid $primary30;
 
-  &-secondary {
-    color: $primary30;
-    background-color: $White;
-    border: 1px solid $primary30;
-
-    &:hover {
-      color: $primary40;
-      background-color: $primary20;
+      &:disabled {
+        color: $gray30;
+        background-color: $gray10;
+        border: 1px solid $gray30;
+      }
     }
 
-    &:disabled {
-      color: $gray30;
-      background-color: $gray10;
+    &-third {
+      color: $black30;
+      background-color: $White;
       border: 1px solid $gray30;
+
+      &:disabled {
+        color: $gray30;
+      }
     }
   }
 
-  &-third {
-    color: $black30;
-    background-color: $White;
-    border: 1px solid $gray30;
-
-    &:hover {
-      border: 1px solid $black30;
-    }
-
-    &:disabled {
-      color: $gray30;
-      border: 1px solid $gray30;
-    }
-  }
-}
-
-.btn-none {
-  &-primary {
-    width: 3rem;
-    height: 3rem;
-  }
-}
-
-// fix: 기존 코드 에러 방지용(나중에 위의 변수로 모두 교체해야함)
-.btn-emerald {
-  &-primary {
-    color: $White;
-    background-color: $Primary_Emerald;
-
-    &:hover {
-      background-color: $Dark_Emerald;
-    }
-
-    &:disabled {
-      background-color: $Dark_Gray;
+  .btn-none {
+    &-primary {
+      width: 3rem;
+      height: 3rem;
     }
   }
 
-  &-secondary {
-    color: $emerald;
-    background-color: $White;
-    border: 1px solid $Primary_Emerald;
-
-    &:hover {
-      background-color: $Light_Emerald;
+  // fix: 기존 코드 에러 방지용(나중에 위의 변수로 모두 교체해야함)
+  &-emerald {
+    &-primary {
+      color: $White;
+      background-color: $Primary_Emerald;
     }
 
-    &:disabled {
-      color: $Dark_Gray;
-      background-color: $Background_Gray;
-      border: 1px solid $Dark_Gray;
+    &-secondary {
+      color: $emerald;
+      background-color: $White;
+      border: 1px solid $Primary_Emerald;
+    }
+
+    &-third {
+      color: $Black;
+      background-color: $White;
+      border: 1px solid $Light_Gray;
     }
   }
 
-  &-third {
-    color: $Black;
-    background-color: $White;
-    border: 1px solid $Light_Gray;
-
-    &:hover {
-      border: 1px solid $Black;
+  &-navy {
+    &-primary {
+      color: $White;
+      background-color: $Primary_Navy;
     }
 
-    &:disabled {
-      color: $Dark_Gray;
-      border: 1px solid $Dark_Gray;
+    &-secondary {
+      color: $Primary_Navy;
+      background-color: $White;
+      border: 1px solid $Primary_Navy;
+    }
+  }
+
+  &-none {
+    &-primary {
+      width: 3rem;
+      height: 3rem;
     }
   }
 }
 
-.btn-navy {
-  &-primary {
-    color: $White;
-    background-color: $Primary_Navy;
-
-    &:hover {
-      background-color: $Dark_Navy;
-    }
-  }
-
-  &-secondary {
-    color: $Primary_Navy;
-    background-color: $White;
-    border: 1px solid $Primary_Navy;
-
-    &:hover {
-      background-color: $Light_Navy;
+@media (hover: hover) and (pointer: fine) {
+  .btn {
+    &-blue {
+      &-primary:hover:not(:disabled) {
+        background-color: $primary50;
+      }
+      &-secondary:hover:not(:disabled) {
+        color: $primary40;
+        background-color: $primary20;
+      }
+      &-third:hover:not(:disabled) {
+        border: 1px solid $black30;
+      }
     }
   }
 }
