@@ -2,30 +2,38 @@
   @include column-flexbox(between, center);
   @include pos-center(absolute);
   gap: 2.5rem;
-  min-width: 43rem;
+  width: 43rem;
+  max-height: 80vh;
   min-height: 20.8rem;
+  padding: 1.8rem 2rem 4rem;
   border-radius: 1rem;
   background-color: $White;
 
+  @include responsive("M") {
+    width: calc(100% - 4rem);
+    max-width: 32rem;
+  }
+
   .close-btn {
-    padding-top: 1.8rem;
-    padding-right: 1.8rem;
     align-self: flex-end;
     cursor: pointer;
   }
 
   .content {
-    @include text-style(1.6, 500, $black30);
-    text-align: center;
-  }
+    &-box {
+      overflow-y: scroll;
 
-  .confirm-btn {
-    @include text-style(1.5, 700, $primary30);
-    justify-self: flex-end;
-    border: solid 0.1rem $primary30;
-    border-radius: 0.6rem;
-    padding: 1.2rem 2.4rem;
-    margin-bottom: 4rem;
-    cursor: pointer;
+      -ms-overflow-style: none; /* Internet Explorer, Edge */
+      scrollbar-width: none; /* Firefox */
+
+      .element::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &-content {
+      @include text-style(1.6, 500, $black30);
+      text-align: center;
+    }
   }
 }

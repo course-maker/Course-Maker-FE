@@ -12,8 +12,8 @@ export type ButtonSize = "small" | "medium" | "large";
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   type?: ButtonType;
-  color: ButtonColor;
-  variant: ButtonVariant;
+  color?: ButtonColor;
+  variant?: ButtonVariant;
   size?: ButtonSize;
   isDisabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
