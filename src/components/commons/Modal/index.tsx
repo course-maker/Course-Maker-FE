@@ -1,6 +1,6 @@
-import styles from "./Modal.module.scss";
 import classNames from "classnames/bind";
 import { KeyboardEvent, KeyboardEventHandler, MouseEvent, MouseEventHandler, ReactNode, useEffect } from "react";
+import styles from "./Modal.module.scss";
 import { Portal } from "./Portal";
 
 const cx = classNames.bind(styles);

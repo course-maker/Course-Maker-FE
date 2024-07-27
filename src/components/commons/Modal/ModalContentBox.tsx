@@ -1,6 +1,7 @@
 import { IMAGES } from "@/constants/images";
 import classNames from "classnames/bind";
 import { Fragment, MouseEventHandler } from "react";
+import Button from "../Button";
 import Image from "../Image";
 import styles from "./ModalContentBox.module.scss";
 
@@ -31,10 +32,12 @@ const ModalContentBox = ({ content, hasCloseBtn, onCloseClick, onConfirmClick }:
           <Image imageInfo={IMAGES.modalClose} />
         </button>
       )}
-      <p className={cx("content")}>{renderContent(content)}</p>
-      <button className={cx("confirm-btn")} onClick={onConfirmClick}>
+      <div className={cx("content-box")}>
+        <p className={cx("content-content")}>{renderContent(content)}</p>
+      </div>
+      <Button type="button" color="blue" variant="secondary" size="small" onClick={onConfirmClick}>
         확인
-      </button>
+      </Button>
     </div>
   );
 };

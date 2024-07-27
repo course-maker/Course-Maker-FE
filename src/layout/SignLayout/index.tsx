@@ -1,3 +1,4 @@
+import Button from "@/components/commons/Button";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
 import { PAGE_PATH } from "@/constants/pagePath";
@@ -18,7 +19,9 @@ const SignLayout = ({ form, oauth }: SignLayoutProps) => {
     <div className={cx("container")}>
       <div className={cx("items")}>
         <Link to={PAGE_PATH.home}>
-          <Image imageInfo={IMAGES.courseMakerLogo} />
+          <Button type="button">
+            <Image imageInfo={IMAGES.courseMakerLogo} />
+          </Button>
         </Link>
         {form}
         {oauth}
