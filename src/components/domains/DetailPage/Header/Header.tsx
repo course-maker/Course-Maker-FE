@@ -1,19 +1,21 @@
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
+import { tagResponseDto } from "@/api/tag/type";
 
 const cx = classNames.bind(styles);
 
 interface HeaderProps {
   title?: string;
   nickname?: string;
-  tags?: string[];
+  tags?: tagResponseDto[];
   viewCount: number;
   onLike: () => void;
   onBookmark: () => void;
   onKaKaoShare: () => void;
-  onLinkCopy: () => void;
   onEdit: () => void;
   onDelete: () => void;
 }
@@ -26,15 +28,39 @@ const Header = ({
   onLike,
   onBookmark,
   onKaKaoShare,
-  onLinkCopy,
   onEdit,
   onDelete,
 }: HeaderProps) => {
+  const handleLinkCopy = async () => {
+    try {
+      const currentUrl = window.location.href;
+      await navigator.clipboard.writeText(currentUrl);
+      toast.success("링크가 복사되었습니다.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    } catch (err) {
+      console.error("링크 복사에 실패했습니다:", err);
+      toast.error("링크 복사에 실패했습니다. 다시 시도해주세요.", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
+
   const buttonData = [
     { onClick: onLike, image: IMAGES.GrayFavoriteIcon },
     { onClick: onBookmark, image: IMAGES.GrayBookmarkIcon },
     { onClick: onKaKaoShare, image: IMAGES.GrayKaKaoIcon },
-    { onClick: onLinkCopy, image: IMAGES.GrayLinkIcon },
+    { onClick: handleLinkCopy, image: IMAGES.GrayLinkIcon },
   ];
 
   return (
@@ -71,12 +97,13 @@ const Header = ({
               </button>
             ))}
           </div>
+          <ToastContainer />
         </div>
       </div>
       <div className={cx("tags")}>
-        {tags?.map((tag, index) => (
-          <span key={index} className={cx("tag")}>
-            {tag}
+        {tags?.map((tag, id) => (
+          <span key={id} className={cx("tag")}>
+            {tag.name}
           </span>
         ))}
       </div>
