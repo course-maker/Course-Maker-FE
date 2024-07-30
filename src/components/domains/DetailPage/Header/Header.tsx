@@ -1,10 +1,10 @@
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
 import { tagResponseDto } from "@/api/tag/type";
+import useToast from "@/hooks/useToast";
 
 const cx = classNames.bind(styles);
 
@@ -31,28 +31,16 @@ const Header = ({
   onEdit,
   onDelete,
 }: HeaderProps) => {
+  const showToast = useToast();
+
   const handleLinkCopy = async () => {
     try {
       const currentUrl = window.location.href;
       await navigator.clipboard.writeText(currentUrl);
-      toast.success("링크가 복사되었습니다.", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      showToast("링크가 복사되었습니다.", "success");
     } catch (err) {
       console.error("링크 복사에 실패했습니다:", err);
-      toast.error("링크 복사에 실패했습니다. 다시 시도해주세요.", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      showToast("링크 복사에 실패했습니다. 다시 시도해주세요.", "error");
     }
   };
 
@@ -97,7 +85,7 @@ const Header = ({
               </button>
             ))}
           </div>
-          <ToastContainer />
+          <ToastContainer limit={3} />
         </div>
       </div>
       <div className={cx("tags")}>
