@@ -1,5 +1,4 @@
-import { getCourseDetail } from "@/api/course";
-import { deleteCourseDetail } from "@/api/course";
+import { getCourseDetail, deleteCourseDetail } from "@/api/course";
 import { useKakaoShare } from "@/hooks/useKakaoShare";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,23 +8,11 @@ const CourseHeader = () => {
   const { shareMessage, isKakaoInitialized } = useKakaoShare();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const {
-    data: courseDetailData,
-    isError,
-    isSuccess,
-  } = useQuery({
+  const { data: courseDetailData } = useQuery({
     queryKey: ["courseDetailData"],
     queryFn: () => getCourseDetail(Number(id)),
     retry: 0,
   });
-
-  if (isSuccess) {
-    courseDetailData;
-  } else {
-    if (isError) {
-      isError;
-    }
-  } // 코스 상세 데이터 불러오기
 
   const deleteMutation = useMutation({
     mutationFn: () => deleteCourseDetail(Number(id)),
@@ -41,12 +28,10 @@ const CourseHeader = () => {
 
   const handleLike = () => {
     console.log("좋아요 콘솔 확인");
-    // 좋아요 기능 구현
   };
 
   const handleBookmark = () => {
     console.log("북마크 콘솔 확인");
-    // 북마크 기능 구현
   };
 
   const handleKaKaoShare = () => {
@@ -60,17 +45,6 @@ const CourseHeader = () => {
       });
     } else {
       console.error("Kakao SDK가 아직 초기화되지 않았습니다.");
-    }
-  };
-
-  const handleLinkCopy = async () => {
-    try {
-      const currentUrl = window.location.href;
-      await navigator.clipboard.writeText(currentUrl);
-      alert("링크가 복사되었습니다.");
-    } catch (err) {
-      console.error("링크 복사에 실패했습니다:", err);
-      alert("링크 복사에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -88,12 +62,11 @@ const CourseHeader = () => {
     <Header
       title={courseDetailData?.title}
       nickname={courseDetailData?.member.nickname}
-      tags={["축제", "연인", "자연속휴식", "부모님"]}
+      tags={courseDetailData?.tags || []}
       viewCount={4.2}
       onLike={handleLike}
       onBookmark={handleBookmark}
       onKaKaoShare={handleKaKaoShare}
-      onLinkCopy={handleLinkCopy}
       onEdit={handleEdit}
       onDelete={handleDelete}
     />
