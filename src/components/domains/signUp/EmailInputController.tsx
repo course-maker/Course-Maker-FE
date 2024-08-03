@@ -1,7 +1,7 @@
-import { Controller, Control, FieldValues, Path, UseFormSetError } from "react-hook-form";
 import { SignField } from "@/constants/signInputCondition";
-import EmailInput from "./EmailInput";
 import { SignUpFormInputs } from "@/schemas/signUpSchema";
+import { Control, Controller, FieldValues, Path, UseFormSetError } from "react-hook-form";
+import EmailInput from "./EmailInput";
 
 interface SignInputControllerProps<T extends FieldValues> {
   name: Path<T>;

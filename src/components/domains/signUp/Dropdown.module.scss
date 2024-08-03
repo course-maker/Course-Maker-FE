@@ -1,35 +1,26 @@
 .dropdown {
-  @include column-flexbox();
-  border: 0.1rem solid red; // fix: 변수로 바꾸기
-  position: relative;
+  width: 15.5rem;
+  height: 5.8rem;
+
+  flex-shrink: 0;
 
   &-header {
+    @extend %input-base;
+    width: 100%;
     position: relative;
 
+    &.error {
+      border: 0.1rem solid $red;
+      border-radius: 0.6rem;
+    }
+
     &-field {
-      @include text-style(1.6, 400);
-      width: 22rem;
-      background-color: $White;
-      border: 0.1rem solid #d9d9d9; // fix: 변수로 바꾸기
-      border-radius: 1rem;
-      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-      padding: 1.6rem 2rem;
-      transition: border-color 0.2s ease-in-out;
       cursor: pointer;
     }
 
     &-input {
-      @include text-style(1.6, 400);
-      width: 22rem;
-      background-color: $White;
-      border: 0.1rem solid #d9d9d9; // fix: 변수로 바꾸기
-      border-radius: 1rem;
-      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-      padding: 1.6rem 2rem;
-      transition: border-color 0.2s ease-in-out;
-
       &::placeholder {
-        color: $Gray;
+        color: $black10;
       }
     }
 
@@ -44,21 +35,18 @@
   &-menu {
     @include column-flexbox();
     position: absolute;
-    border: 0.1rem solid #d9d9d9; // fix: 변수로 바꾸기
-    border-radius: 1rem;
+    border: 0.1rem solid $gray20;
+    border-radius: 0.6rem;
     overflow: hidden;
+    width: 15.5rem;
 
     li {
-      @include text-style(1.6, 400);
-      width: 22rem;
-      background-color: $White;
-      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-      padding: 1.2rem 2rem;
-      transition: border-color 0.2s ease-in-out;
+      @extend %input-base;
+      border: none;
       cursor: pointer;
 
       &:hover {
-        background-color: #f1f1f1;
+        background-color: $gray10;
       }
     }
   }
