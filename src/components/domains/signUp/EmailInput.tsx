@@ -1,19 +1,18 @@
-import { forwardRef, InputHTMLAttributes, useEffect, useState, useRef } from "react";
-import { UseFormSetError } from "react-hook-form";
-import styles from "./EmailInput.module.scss";
-import classNames from "classnames/bind";
-import Button from "@/components/commons/Button";
-import Dropdown from "./Dropdown";
-import { z } from "zod";
-import { useMutation } from "@tanstack/react-query";
 import { postEmail } from "@/api/member";
 import { validateEmailRequestDto } from "@/api/member/type";
+import Button from "@/components/commons/Button";
 import { SignUpFormInputs } from "@/schemas/signUpSchema";
+import { useMutation } from "@tanstack/react-query";
+import classNames from "classnames/bind";
+import { forwardRef, InputHTMLAttributes, useEffect, useRef, useState } from "react";
+import { UseFormSetError } from "react-hook-form";
+import { z } from "zod";
+import Dropdown from "./Dropdown";
+import styles from "./EmailInput.module.scss";
 
 const cx = classNames.bind(styles);
 interface EmailInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   id: string;
-  label?: string;
   isError?: boolean;
   helperText?: string;
   emailValue: string;
@@ -27,19 +26,7 @@ const emailSchema = z.string().min(1, "이메일 주소를 입력해주세요.")
 
 const EmailInput = forwardRef<HTMLInputElement, EmailInputProps>(
   (
-    {
-      id,
-      label,
-      type,
-      isError = false,
-      helperText,
-      emailValue,
-      isEmailValid,
-      setError,
-      setIsEmailValid,
-      onChange,
-      ...props
-    },
+    { id, type, isError = false, helperText, emailValue, isEmailValid, setError, setIsEmailValid, onChange, ...props },
     ref,
   ) => {
     const [emailId, setEmailId] = useState<string>("");
@@ -121,31 +108,24 @@ const EmailInput = forwardRef<HTMLInputElement, EmailInputProps>(
       <div className={cx("container")}>
         <div className={cx("inner-box")}>
           <div className={cx("input")}>
-            {label && (
-              <label className={cx("input-label")} htmlFor={id}>
-                {label}
-              </label>
-            )}
-            <div className={cx("input-group")}>
-              <input
-                className={cx("input-group-field")}
-                ref={ref}
-                id={id}
-                type={type}
-                onChange={handleEmailIdChange}
-                {...props}
-                value={emailId}
-              />
-              <span className={cx("input-group-address")}>@</span>
-              <Dropdown domainValue={domainValue} setDomainValue={setDomainValue} />
-            </div>
+            <input
+              className={cx("input-group-field", { error: isError })}
+              ref={ref}
+              id={id}
+              type={type}
+              onChange={handleEmailIdChange}
+              {...props}
+              value={emailId}
+            />
+            <span className={cx("input-group-address")}>@</span>
+            <Dropdown isError={isError} domainValue={domainValue} setDomainValue={setDomainValue} />
           </div>
           <p className={cx("helper-text", { error: isError, verified: isEmailValid })}>
             {emailVerifiedHelperText || helperText}
           </p>
         </div>
-        <Button color="emerald" variant="primary" size="small" onClick={validateEmail}>
-          중복확인
+        <Button color="blue" variant="primary" size="medium" onClick={validateEmail}>
+          인증코드 받기
         </Button>
       </div>
     );

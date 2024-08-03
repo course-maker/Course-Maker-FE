@@ -4,25 +4,7 @@
   width: 100%;
 
   .input-field {
-    @include text-style(1.6, 400, $black30);
-    width: 100%;
-    background-color: $White;
-    border: 0.1rem solid $gray20;
-    border-radius: 0.6rem;
-    padding: 2rem;
-    transition: border-color 0.2s ease-in-out;
-
-    &.error {
-      border-color: $red;
-    }
-
-    &::placeholder {
-      color: $black10;
-    }
-
-    &:focus:not(.error) {
-      border-color: $primary40;
-    }
+    @extend %input-base;
   }
 
   .helper-text {
@@ -34,7 +16,7 @@
     }
 
     &.verified {
-      color: #0038ff; // fix: 변수로 바꾸기
+      color: $primary40;
     }
   }
 }

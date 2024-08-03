@@ -1,18 +1,19 @@
-import styles from "./Dropdown.module.scss";
-import classNames from "classnames/bind";
+import Image from "@/components/commons/Image";
 import { EMAIL_DOMAIN_DROPDOWN } from "@/constants/dropdownMenu";
 import { IMAGES } from "@/constants/images";
-import Image from "@/components/commons/Image";
+import classNames from "classnames/bind";
 import { useEffect, useRef, useState } from "react";
+import styles from "./Dropdown.module.scss";
 
 const cx = classNames.bind(styles);
 
 interface DropdownProps {
+  isError: boolean;
   domainValue: string;
   setDomainValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Dropdown = ({ domainValue, setDomainValue }: DropdownProps) => {
+const Dropdown = ({ isError, domainValue, setDomainValue }: DropdownProps) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownOption, setDropdownOption] = useState("직접입력");
@@ -49,13 +50,13 @@ const Dropdown = ({ domainValue, setDomainValue }: DropdownProps) => {
   }, []);
 
   return (
-    <div ref={dropdownRef}>
-      <div className={cx("dropdown-header")} onClick={handleDropdownClick}>
+    <div className={cx("dropdown")} ref={dropdownRef}>
+      <div className={cx("dropdown-header", { error: isError })} onClick={handleDropdownClick}>
         {dropdownOption !== "직접입력" ? (
           <div className={cx("dropdown-header-field")}>{dropdownOption}</div>
         ) : (
           <input
-            className={cx("dropdown-header-input")}
+            className={cx("dropdown-header-input", { error: isError })}
             type="text"
             placeholder="직접입력"
             onClick={(e) => {
