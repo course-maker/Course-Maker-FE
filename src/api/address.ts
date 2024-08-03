@@ -6,11 +6,11 @@ export const memberAddress = {
   //post
   validateEmail: "/v1/member/validate-email",
   //post
-  login: "/v1/member/login",
+  login: "/v1/auth/login",
   //post
-  logout: "/v1/member/logout",
+  logout: "/v1/auth/logout",
   //post
-  signUp: "/v1/member/signup",
+  signUp: "/v1/auth/join",
 };
 
 export const destinationAddress = {
