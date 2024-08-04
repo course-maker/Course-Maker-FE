@@ -39,6 +39,35 @@ import TabBarPointerIcon from "@/assets/images/TabBarPointerIcon";
 import TabBarSearchIcon from "@/assets/images/TabBarSearchIcon";
 import termMore from "@/assets/images/term_more.svg";
 import testImage from "@/assets/images/test_img.png";
+import Home_left_test from "@/assets/images/home_left_test.svg";
+import Home_right_test from "@/assets/images/home_right_test.svg";
+import Banner2 from "@/assets/images/banner2.png";
+import Banner3 from "@/assets/images/banner3.png";
+import Banner4 from "@/assets/images/banner4.png";
+import grayTriangle from "@/assets/images/gray_triangle.svg";
+import modalClose from "@/assets/images/modal_close.svg";
+import rangeLine from "@/assets/images/range_line.svg";
+import plus from "@/assets/images/plus.svg";
+import Down_arrow from "@/assets/images/down_arrow.svg";
+import ColumnLine from "@/assets/images/column_line.svg";
+import GrayStarIcon from "@/assets/images/gray_star.svg";
+import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
+import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
+import GrayKaKaoIcon from "@/assets/images/gray_kakao.svg";
+import GrayLinkIcon from "@/assets/images/gray_link.svg";
+import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
+import BlueBookmarkIcon from "@/assets/images/blue_bookmark.svg";
+import BlueKaKaoIcon from "@/assets/images/blue_kakao.svg";
+import BlueLinkIcon from "@/assets/images/blue_link.svg";
+import BlackFavoriteIcon from "@/assets/images/black_favorite.svg";
+import BlackBookmarkIcon from "@/assets/images/black_bookmark.svg";
+import BlackStarIcon from "@/assets/images/black_star.svg";
+import ChildIcon from "@/assets/images/child.svg";
+import CultureIcon from "@/assets/images/culture.svg";
+import CoupleIcon from "@/assets/images/couple.svg";
+import PetIcon from "@/assets/images/dog.svg";
+import PartyIcon from "@/assets/images/party.svg";
+import PicnicIcon from "@/assets/images/basket.svg";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -184,6 +213,30 @@ export const IMAGES = {
   BlackStarIcon: {
     src: BlackStarIcon,
     alt: "블랙 별 아이콘",
+  },
+  ChildIcon: {
+    src: ChildIcon,
+    alt: "유아동반",
+  },
+  CultureIcon: {
+    src: CultureIcon,
+    alt: "문화유적지",
+  },
+  CoupleIcon: {
+    src: CoupleIcon,
+    alt: "커플여행",
+  },
+  PetIcon: {
+    src: PetIcon,
+    alt: "애견동반",
+  },
+  PartyIcon: {
+    src: PartyIcon,
+    alt: "축제",
+  },
+  PicnicIcon: {
+    src: PicnicIcon,
+    alt: "식도락",
   },
   termMore: {
     src: termMore,
