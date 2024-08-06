@@ -13,7 +13,7 @@
 }
 
 %banner-text-base {
-  padding: 8px;
+  padding: 1.8rem;
   color: white;
   width: 100%;
 }
@@ -35,6 +35,10 @@
   &-large {
     // width: 300px;
     height: 150px;
+
+    @media (max-width: 360px) {
+      align-items: flex-end;
+    }
   }
 
   &-x-large {
@@ -44,7 +48,7 @@
 }
 
 .banner-text {
-  padding: 8px;
+  padding: 1.8rem;
   text-align: center;
   color: white;
   width: 100%;
@@ -64,6 +68,10 @@
 
   &-large {
     text-align: left;
+
+    @media (max-width: 360px) {
+      padding: 30px 10px;
+    }
   }
 
   &-x-large {
@@ -92,11 +100,19 @@
 .banner-title {
   font-size: 16px;
   font-weight: bold;
+
+  @media (max-width: 360px) {
+    font-size: 10px;
+  }
 }
 
 .banner-subtitle {
   margin-top: 8px;
   font-size: 20px;
+
+  @media (max-width: 360px) {
+    font-size: 16px;
+  }
 }
 
 .banner-description {

@@ -2,17 +2,18 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "@/components/commons/Card/Card";
 import Section from "@/components/commons/Section/Section";
-import SearchBar from "@/components/commons/SearchBar";
-import Banner from "@/components/commons/Banner/Banner";
-import Image from "@/components/commons/Image";
+import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
-import { bannerItemsData } from "./data.js"; // Ensure this data includes 'title'
+import { bannerData, bannerItemsData } from "./data.js"; // Ensure this data includes 'title'
+import "swiper/css";
 
 import { getTag } from "@/api/tag";
+
 import { tagResponseDto } from "@/api/tag/type";
 import { getCourse } from "@/api/course";
 import { Course } from "@/api/course/type";
+import Banner from "@/components/commons/Banner/Banner";
 
 const cx = classNames.bind(styles);
 
@@ -20,11 +21,11 @@ const bannerItems = bannerItemsData;
 
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
-  const [tagsData, setTagsData] = useState<tagResponseDto[]>([tagsData]);
+  const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [course, setCourse] = useState<Course[]>([]);
 
   const navigate = useNavigate();
-  // console.log(tagsData);
+  console.log(tagsData);
   useEffect(() => {
     const fetchTags = async () => {
       setLoading(true);
@@ -58,20 +59,34 @@ const HomePage = () => {
   return (
     <div data-testid="home-page">
       <Section title="" className={cx("container")}>
-        <SearchBar />
+        <div className={cx("banner-container")}>
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{ delay: 1000 }}
+            className={cx("swiper-container")}>
+            {bannerData.map((item) => (
+              <SwiperSlide key={item.id}>
+                <Banner image={item.image} size="x-large" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </Section>
-
       <Section title="어떤 여행을 할까요?">
         <div className={cx("banner-container")}>
-          {bannerItems.small.map((item) => (
-            <div
-              className={cx("banner")}
+          <button className={cx("arrow-button", "left")}>{"<"}</button>
+          {bannerItems.small.slice(0, 6).map((item) => (
+            <Banner
               key={item.id}
-              onClick={() => navigate(`search`, { state: { propsTagName: item.title } })}>
-              <Image imageInfo={item.image} />
-              <h1>{item.title}</h1>
-            </div>
+              image={item.image}
+              title={item.title}
+              onClick={() => navigate(`search`, { state: { propsTagName: item.title } })}
+              size="small"
+            />
           ))}
+          <button className={cx("arrow-button", "right")}>{">"}</button>
         </div>
         <div className={cx("banner-container")}>
           {bannerItems.large.map((item) => (
@@ -87,14 +102,22 @@ const HomePage = () => {
         </div>
       </Section>
 
-      <Section title="코스메이커 추천">
+      <Section title="코스메이커’S PICK">
         <div className={cx("card_container")}>
           {!loading &&
             course &&
             course.slice(0, 4)?.map((item) => <Card key={item.id} name={"코스 찾기"} item={item} loading={false} />)}
         </div>
-        <div></div>
       </Section>
+      {/* <Section title="요즘 인기있는 코스">
+        <div className={cx("card_container")}>
+          {loading
+            ? Array.from({ length: 4 }).map((_, index) => (
+                <Card key={index} name={"코스 찾기"} loading={true} item={null} />
+              ))
+            : course.slice(0, 4)?.map((item) => <Card key={item.id} name={"코스 찾기"} item={item} loading={false} />)}
+        </div>
+      </Section> */}
     </div>
   );
 };
