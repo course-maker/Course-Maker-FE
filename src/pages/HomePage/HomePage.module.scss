@@ -1,5 +1,17 @@
 .container {
   padding: 0px 24px !important;
+  margin-top: 80px;
+  margin-bottom: 70px;
+
+  @media (max-width: 768px) {
+    margin-top: 46px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 360px) {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
 }
 
 .card_container {
@@ -17,12 +29,48 @@
 }
 
 .banner-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flexbox($jc: around, $ai: center);
   gap: 16px;
   border-radius: 8px;
   margin-bottom: 24px;
+}
+
+.banner {
+  text-align: center;
+
+  h1 {
+    font-size: 20px;
+    margin-top: 4px;
+  }
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    h1 {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
 
 .arrow-button {
