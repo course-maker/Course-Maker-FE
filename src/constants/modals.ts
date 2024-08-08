@@ -9,4 +9,9 @@ export const MODALS = {
     message: "비밀번호를 확인해주세요.",
     hasCloseBtn: true,
   },
+  successLogout: {
+    id: "successLogout",
+    message: "성공적으로 로그아웃 되었습니다.",
+    hasCloseBtn: true,
+  },
 };
