@@ -1,0 +1,5 @@
+.container {
+  @include flexbox(center, start);
+  gap: 2rem;
+  width: 100%;
+}

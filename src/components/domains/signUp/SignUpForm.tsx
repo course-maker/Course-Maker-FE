@@ -1,15 +1,16 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import styles from "./SignUpForm.module.scss";
-import classNames from "classnames/bind";
 import Button from "@/components/commons/Button";
-import { SignUpFormInputs, signUpSchema } from "@/schemas/signUpSchema";
-import { SIGN_UP_CONDITION, SIGN_UP_EMAIL_CONDITION } from "@/constants/signInputCondition";
 import SignInputController from "@/components/commons/SignInputController";
-import EmailInputController from "./EmailInputController";
-import { useRef, useState, useEffect } from "react";
+import { SIGN_UP_CONDITION, SIGN_UP_EMAIL_CONDITION } from "@/constants/signInputCondition";
 import { useSignUpMutation } from "@/hooks/useSignUpMutation";
+import { SignUpFormInputs, signUpSchema } from "@/schemas/signUpSchema";
 import { validateNickname } from "@/utils/validateSignUpElements";
+import { zodResolver } from "@hookform/resolvers/zod";
+import classNames from "classnames/bind";
+import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import CodeInputController from "./CodeInputController";
+import EmailInputController from "./EmailInputController";
+import styles from "./SignUpForm.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +26,7 @@ const SignUpForm = () => {
     mode: "onChange",
     defaultValues: {
       email: "",
+      code: "",
       password: "",
       confirmPassword: "",
       name: "",
@@ -93,6 +95,7 @@ const SignUpForm = () => {
           isEmailValid={isEmailValid}
           setIsEmailValid={setIsEmailValid}
         />
+        <CodeInputController name="code" control={control} condition={SIGN_UP_EMAIL_CONDITION.code} />
         <div className={cx("form-input-except-email")}>
           {(Object.keys(SIGN_UP_CONDITION) as Array<keyof typeof SIGN_UP_CONDITION>).map((key) => (
             <SignInputController
