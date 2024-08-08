@@ -21,9 +21,10 @@ interface ItemBoxProps {
   views?: number;
   duration?: number;
   name?: string;
+  color?: string;
 }
 
-const ItemBox: React.FC<ItemBoxProps> = ({ location, title, tags, name, travelerCount, views, duration }) => {
+const ItemBox: React.FC<ItemBoxProps> = ({ location, title, tags, name, travelerCount, views, duration, color }) => {
   return (
     <div className={cx("item-box")}>
       <div className={cx("title-group")}>
@@ -38,12 +39,16 @@ const ItemBox: React.FC<ItemBoxProps> = ({ location, title, tags, name, traveler
         {name === "코스 찾기" ? (
           <div className={cx("score-group")}>
             <div className={cx("score-item-course")}>
-              <Image imageInfo={IMAGES.calendarIcon} />
+              <Image imageInfo={color === "white" ? IMAGES.calendarWhiteIcon : IMAGES.calendarIcon} />
               <span className={cx("score-text")}>{duration}일</span>
             </div>
             <div className={cx("score-item-course")}>
-              <Image imageInfo={IMAGES.memberIcon} />
+              <Image imageInfo={color === "white" ? IMAGES.memberWhiteIcon : IMAGES.memberIcon} />
               <span className={cx("score-text")}>{travelerCount}인</span>
+            </div>
+            <div className={cx("score-item-course")}>
+              <Image imageInfo={color === "white" ? IMAGES.WhiteStarIcon : IMAGES.BlackStarIcon} />
+              <span className={cx("score-text")}>{travelerCount}점</span>
             </div>
           </div>
         ) : (
