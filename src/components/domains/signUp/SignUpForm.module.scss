@@ -1,6 +1,6 @@
 .form {
-  @include column-flexbox();
-  gap: 8.7rem;
+  @include column-flexbox(center, start);
+  gap: 3rem;
 
   &-input {
     @include column-flexbox(center, start);

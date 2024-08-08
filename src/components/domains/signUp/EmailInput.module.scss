@@ -34,7 +34,7 @@
 }
 
 .helper-text {
-  @include text-style(1.4, 400, $gray30);
+  @include text-style(1.2, 400, $gray30);
   height: 1.6rem;
 
   &.error {

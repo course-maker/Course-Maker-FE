@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import CodeInputController from "./CodeInputController";
 import EmailInputController from "./EmailInputController";
+import SignTerms from "./SignTerms";
 import styles from "./SignUpForm.module.scss";
 
 const cx = classNames.bind(styles);
@@ -108,7 +109,8 @@ const SignUpForm = () => {
           ))}
         </div>
       </div>
-      <Button type="submit" color="navy" variant="primary" size="large" ref={submitButtonRef}>
+      <SignTerms />
+      <Button type="submit" color="blue" variant="primary" size="large" ref={submitButtonRef}>
         회원가입
       </Button>
     </form>
