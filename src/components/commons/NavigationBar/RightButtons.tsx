@@ -19,6 +19,9 @@ const RightButtons = ({ isAuth }: { isAuth: boolean | null }) => {
     if (e.key === "Escape") {
       setIsModalOpen(false);
     }
+    if (e.key === "Enter") {
+      setIsModalOpen(false);
+    }
   };
 
   return (
