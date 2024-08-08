@@ -8,18 +8,13 @@ export interface SignField {
 
 export const SIGN_IN_CONDITION = {
   loginEmail: {
-    label: undefined,
     type: "text",
     placeholder: "이메일을 입력하세요.",
-    maxLength: undefined,
-    defaultMessage: undefined,
   },
   password: {
-    label: undefined,
     type: "password",
     placeholder: "비밀번호를 입력하세요.",
     maxLength: 15,
-    defaultMessage: undefined,
   },
 };
 
@@ -28,8 +23,11 @@ export const SIGN_UP_EMAIL_CONDITION = {
     label: "이메일",
     type: "text",
     placeholder: "이메일을 입력하세요.",
-    maxLength: undefined,
-    defaultMessage: undefined,
+  },
+  code: {
+    label: "인증번호",
+    type: "text",
+    placeholder: "인증번호를 입력하세요.",
   },
 };
 
@@ -46,7 +44,6 @@ export const SIGN_UP_CONDITION = {
     type: "password",
     placeholder: "비밀번호를 다시 입력해주세요.",
     maxLength: 15,
-    defaultMessage: undefined,
   },
   name: {
     label: "이름",
