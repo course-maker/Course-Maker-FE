@@ -1,0 +1,10 @@
+.container {
+  @include column-flexbox(center, start);
+  gap: 2.4rem;
+}
+
+.message {
+  @include text-style(1.3, 400, $gray30);
+  padding-left: 2rem;
+  padding-top: 0.7rem;
+}

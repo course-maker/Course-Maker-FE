@@ -1,0 +1,37 @@
+.container {
+  @include flexbox(between, center);
+  width: 35rem;
+  padding-left: 2rem;
+
+  .box {
+    @include flexbox(start, center);
+    gap: 1rem;
+
+    .checkbox {
+      width: 1.8rem;
+      height: 1.8rem;
+      border: solid 0.1rem $gray30;
+      border-radius: 0.4rem;
+      background-color: $white;
+    }
+
+    .label {
+      @include text-style(1.6, 400, $black30);
+    }
+  }
+
+  &.all {
+    height: 5.8rem;
+    background-color: $gray10;
+    border-radius: 0.6rem;
+
+    .label {
+      @include text-style(1.6, 500, $black30);
+    }
+  }
+
+  .button {
+    @include flexbox(center, center);
+    cursor: pointer;
+  }
+}
