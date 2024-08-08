@@ -27,6 +27,10 @@ import memberIcon from "@/assets/images/member.svg";
 import modalClose from "@/assets/images/modal_close.svg";
 import plus from "@/assets/images/plus.svg";
 import rangeLine from "@/assets/images/range_line.svg";
+import testImage from "@/assets/images/test_img.png";
+import calendarIcon from "@/assets/images/calendar.svg";
+import calendarWhiteIcon from "@/assets/images/calendar_white.svg";
+import memberWhiteIcon from "@/assets/images/member_white.svg";
 import Rectangle_40 from "@/assets/images/Rectangle_40.svg";
 import Rectangle_41 from "@/assets/images/Rectangle_41.svg";
 import Rectangle_42 from "@/assets/images/Rectangle_42.svg";
@@ -62,12 +66,17 @@ import BlueLinkIcon from "@/assets/images/blue_link.svg";
 import BlackFavoriteIcon from "@/assets/images/black_favorite.svg";
 import BlackBookmarkIcon from "@/assets/images/black_bookmark.svg";
 import BlackStarIcon from "@/assets/images/black_star.svg";
+import WhiteStarIcon from "@/assets/images/white_star.svg";
 import ChildIcon from "@/assets/images/child.svg";
 import CultureIcon from "@/assets/images/culture.svg";
 import CoupleIcon from "@/assets/images/couple.svg";
 import PetIcon from "@/assets/images/dog.svg";
 import PartyIcon from "@/assets/images/party.svg";
 import PicnicIcon from "@/assets/images/basket.svg";
+import One from "@/assets/images/main/1.png";
+import Two from "@/assets/images/main/2.png";
+import Three from "@/assets/images/main/3.png";
+import Four from "@/assets/images/main/4.png";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -94,8 +103,16 @@ export const IMAGES = {
     src: calendarIcon,
     alt: "달력 아이콘",
   },
+  calendarWhiteIcon: {
+    src: calendarWhiteIcon,
+    alt: "달력 아이콘",
+  },
   memberIcon: {
     src: memberIcon,
+    alt: "멤버 아이콘",
+  },
+  memberWhiteIcon: {
+    src: memberWhiteIcon,
     alt: "멤버 아이콘",
   },
   Rectangle_40: {
@@ -214,6 +231,10 @@ export const IMAGES = {
     src: BlackStarIcon,
     alt: "블랙 별 아이콘",
   },
+  WhiteStarIcon: {
+    src: WhiteStarIcon,
+    alt: "블랙 별 아이콘",
+  },
   ChildIcon: {
     src: ChildIcon,
     alt: "유아동반",
@@ -237,6 +258,22 @@ export const IMAGES = {
   PicnicIcon: {
     src: PicnicIcon,
     alt: "식도락",
+  },
+  One: {
+    src: One,
+    alt: "박물관 여행",
+  },
+  Two: {
+    src: Two,
+    alt: "영도",
+  },
+  Three: {
+    src: Three,
+    alt: "문화공간투어",
+  },
+  Four: {
+    src: Four,
+    alt: "송도",
   },
   termMore: {
     src: termMore,
