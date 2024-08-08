@@ -1,15 +1,15 @@
-import { useSetRecoilState } from "recoil";
-import { authState } from "@/recoil/authAtom";
 import { postLogout } from "@/api/member";
-import { removeSteps, removeTokens } from "@/utils/manageTokenInfo";
+import { authState } from "@/recoil/authAtom";
+import { getRefreshToken, removeSteps, removeTokens } from "@/utils/manageTokenInfo";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { useSetRecoilState } from "recoil";
 
 export const useLogoutMutation = () => {
   const setIsAuth = useSetRecoilState(authState);
 
   const { mutate: logout } = useMutation({
-    mutationFn: () => postLogout(),
+    mutationFn: () => postLogout({ refreshToken: getRefreshToken() }),
     onSuccess: () => {
       removeTokens();
       removeSteps();

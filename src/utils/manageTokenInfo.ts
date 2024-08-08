@@ -19,7 +19,7 @@ export const getAccessToken = () => {
 };
 
 export const getRefreshToken = () => {
-  return localStorage.getItem(REFRESH_TOKEN_KEY);
+  return localStorage.getItem(REFRESH_TOKEN_KEY) || "";
 };
 
 export const removeTokens = () => {
