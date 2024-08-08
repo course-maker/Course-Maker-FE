@@ -1064,6 +1064,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-devtools@npm:5.51.16":
+  version: 5.51.16
+  resolution: "@tanstack/query-devtools@npm:5.51.16"
+  checksum: 10c0/40f1fbad77b703b96809b06323962614f9868b6e453fbcfcc1c73f3ff4f479f4ef066706fdfb3c3be33da76122dac21725de42c0f65ac0344d3839688d672c32
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.51.21":
+  version: 5.51.21
+  resolution: "@tanstack/react-query-devtools@npm:5.51.21"
+  dependencies:
+    "@tanstack/query-devtools": "npm:5.51.16"
+  peerDependencies:
+    "@tanstack/react-query": ^5.51.21
+    react: ^18 || ^19
+  checksum: 10c0/dccc8def9e8138306fda6bae0dcb710ae65b647ae73e76898eecded59d0da797696fa8fe55e62a0c8a58fd92f7733c50602f47a4d9fa1e7d5069e11ab79f9e5e
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-query@npm:^5.37.1":
   version: 5.51.23
   resolution: "@tanstack/react-query@npm:5.51.23"
@@ -2307,6 +2326,7 @@ __metadata:
     "@commitlint/config-conventional": "npm:^19.2.2"
     "@hookform/resolvers": "npm:^3.4.2"
     "@tanstack/react-query": "npm:^5.37.1"
+    "@tanstack/react-query-devtools": "npm:^5.51.21"
     "@testing-library/jest-dom": "npm:^6.4.5"
     "@testing-library/react": "npm:^15.0.7"
     "@testing-library/user-event": "npm:^14.5.2"
