@@ -22,8 +22,9 @@ export const bannerData = [
 export const busanData = [
   {
     id: 0,
-    name: "부산 아쿠아리움",
-    location: "부산 해운대구 해운대해변로 266",
+    name: "마음이 평화로워지는 역사 탐방",
+    location: "박물관 여행",
+    image: IMAGES.One.src,
     icons: {
       calendar: 2,
       member: 2,
@@ -36,8 +37,9 @@ export const busanData = [
   },
   {
     id: 1,
-    name: "해운대",
-    location: "부산 해운대구 해운대해변로 280",
+    name: "부산의 숨은 명소 한국의 산토리니",
+    location: "영도",
+    image: IMAGES.Two.src,
     icons: {
       calendar: 102,
       member: 21,
@@ -50,8 +52,9 @@ export const busanData = [
   },
   {
     id: 2,
-    name: "부산 영도",
-    location: "부산 해운대구 해운대해변로 299",
+    name: "마음의 양식을 채우는 시간",
+    location: "문화공간투어",
+    image: IMAGES.Three.src,
     icons: {
       calendar: 22,
       member: 27,
@@ -64,8 +67,9 @@ export const busanData = [
   },
   {
     id: 3,
-    name: "부산 광안리",
-    location: "부산 해운대구 해운대해변로 388",
+    name: "가슴이 뻥뚫리는 바다 위를 건너가는",
+    location: "송도  케이블카",
+    image: IMAGES.Four.src,
     icons: {
       calendar: 72,
       member: 827,

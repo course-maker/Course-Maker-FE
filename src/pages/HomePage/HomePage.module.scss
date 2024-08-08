@@ -19,6 +19,46 @@
   display: grid;
   gap: 1rem; /* gap-4 */
 
+  .card-image-container {
+    position: relative;
+  }
+
+  .card-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .card-content {
+    position: absolute;
+    display: grid;
+    bottom: 20px;
+    padding: 1rem;
+    color: white;
+
+    span {
+      color: white;
+      font-weight: bold;
+    }
+
+    .card-title {
+      font-size: 16px;
+
+      @media (max-width: 360px) {
+        font-size: 10px;
+      }
+    }
+
+    .card-subtitle {
+      margin-top: 20px;
+      font-size: 20px;
+
+      @media (max-width: 360px) {
+        font-size: 16px;
+      }
+    }
+  }
+
   @media (min-width: 640px) {
     grid-template-columns: repeat(2, 1fr);
   }
