@@ -1,0 +1,21 @@
+.container {
+  @include column-flexbox(between, center);
+  @include pos-center(absolute);
+  gap: 2.5rem;
+  width: 60rem;
+  max-height: 80vh;
+  min-height: 20.8rem;
+  padding: 1.8rem 2rem 4rem;
+  border-radius: 1rem;
+  background-color: $White;
+
+  @include responsive("M") {
+    width: calc(100% - 4rem);
+    max-width: 60rem;
+  }
+
+  .close-btn {
+    align-self: flex-end;
+    cursor: pointer;
+  }
+}
