@@ -1,5 +1,6 @@
 import { TermModal } from "@/components/domains/signUp/TermModal";
 import { IMAGES } from "@/constants/images";
+import { TERMS } from "@/constants/terms";
 import classNames from "classnames/bind";
 import { KeyboardEvent, ReactNode, useState } from "react";
 import Image from "../Image";
@@ -44,7 +45,12 @@ const SignTerm = ({ id, checked, children, onChange }: SignTermProps) => {
           </button>
         )}
       </div>
-      <TermModal isOpen={isModalOpen} onCloseClick={closeModal} onKeyDown={handleKeyDown} />
+      <TermModal
+        isOpen={isModalOpen}
+        onCloseClick={closeModal}
+        onKeyDown={handleKeyDown}
+        content={TERMS[id as keyof typeof TERMS]}
+      />
     </>
   );
 };
