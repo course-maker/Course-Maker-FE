@@ -4,6 +4,7 @@ export interface SignField {
   placeholder: string;
   maxLength?: number;
   defaultMessage?: string;
+  button?: string;
 }
 
 export const SIGN_IN_CONDITION = {
@@ -23,11 +24,13 @@ export const SIGN_UP_EMAIL_CONDITION = {
     label: "이메일",
     type: "text",
     placeholder: "이메일을 입력하세요.",
+    button: "인증코드 받기",
   },
   code: {
     label: "인증번호",
     type: "text",
     placeholder: "인증번호를 입력하세요.",
+    button: "인증 확인",
   },
 };
 
