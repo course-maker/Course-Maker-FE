@@ -8,8 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import classNames from "classnames/bind";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import CodeInputController from "./CodeInputController";
-import EmailInputController from "./EmailInputController";
+import InputWithButtonController from "./InputWithButtonController";
 import SignTerms from "./SignTerms";
 import styles from "./SignUpForm.module.scss";
 
@@ -17,7 +16,7 @@ const cx = classNames.bind(styles);
 
 const SignUpForm = () => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
-  const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+  const [isEmailValid] = useState<boolean>(false);
   const [isNicknameValid, setIsNicknameValid] = useState<boolean>(false);
   const [areTermsAccepted, setAreTermsAccepted] = useState<boolean>(false);
 
@@ -89,15 +88,9 @@ const SignUpForm = () => {
   return (
     <form className={cx("form")} onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
       <div className={cx("form-input")}>
-        <EmailInputController
-          name="email"
-          control={control}
-          condition={SIGN_UP_EMAIL_CONDITION.email}
-          setError={setError}
-          isEmailValid={isEmailValid}
-          setIsEmailValid={setIsEmailValid}
-        />
-        <CodeInputController name="code" control={control} condition={SIGN_UP_EMAIL_CONDITION.code} />
+        {(Object.keys(SIGN_UP_EMAIL_CONDITION) as Array<keyof typeof SIGN_UP_EMAIL_CONDITION>).map((key) => (
+          <InputWithButtonController key={key} name={key} control={control} condition={SIGN_UP_EMAIL_CONDITION[key]} />
+        ))}
         <div className={cx("form-input-except-email")}>
           {(Object.keys(SIGN_UP_CONDITION) as Array<keyof typeof SIGN_UP_CONDITION>).map((key) => (
             <SignInputController
