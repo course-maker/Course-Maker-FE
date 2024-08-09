@@ -1,6 +1,11 @@
 .container {
+  width: 100%;
+}
+
+.terms {
   @include column-flexbox(center, start);
   gap: 2.4rem;
+  width: 100%;
 }
 
 .message {

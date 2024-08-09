@@ -1,6 +1,6 @@
 .container {
   @include flexbox(between, center);
-  width: 35rem;
+  width: 100%;
   padding-left: 2rem;
 
   .box {

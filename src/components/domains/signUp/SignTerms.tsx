@@ -37,8 +37,8 @@ const SignTerms = ({ setAreTermsAccepted }: SignTermsProps) => {
   }, [terms, setAreTermsAccepted]);
 
   return (
-    <div>
-      <div className={cx("container")}>
+    <div className={cx("container")}>
+      <div className={cx("terms")}>
         <SignTerm id="all" checked={terms.all} onChange={() => handleCheckboxChange("all")}>
           약관 전체 동의
         </SignTerm>
