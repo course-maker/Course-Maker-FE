@@ -9,7 +9,7 @@
     &-except-email {
       @include column-flexbox();
       gap: 0.6rem;
-      width: 35rem;
+      width: 100%;
     }
   }
 }
