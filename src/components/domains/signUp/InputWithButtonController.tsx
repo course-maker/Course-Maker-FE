@@ -14,7 +14,13 @@ const InputWithButtonController = <T extends FieldValues>({
   condition,
 }: InputWithButtonControllerProps<T>) => {
   return (
-    <Controller name={name} control={control} render={() => <InputWithButton type={name} condition={condition} />} />
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState }) => (
+        <InputWithButton type={name} condition={condition} field={field} fieldState={fieldState} />
+      )}
+    />
   );
 };
 export default InputWithButtonController;
