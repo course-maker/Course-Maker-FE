@@ -6,6 +6,7 @@
   .box {
     @include flexbox(start, center);
     gap: 1rem;
+    position: relative;
 
     .checkbox {
       width: 1.8rem;
@@ -13,10 +14,28 @@
       border: solid 0.1rem $gray30;
       border-radius: 0.4rem;
       background-color: $white;
+      cursor: pointer;
+
+      &:checked {
+        background-color: $gray30;
+      }
+
+      &:checked + svg {
+        display: block;
+        cursor: pointer;
+      }
+    }
+
+    svg {
+      display: none;
+      position: absolute;
+      top: 0.5rem;
+      left: 0.3rem;
     }
 
     .label {
       @include text-style(1.6, 400, $black30);
+      cursor: pointer;
     }
   }
 
