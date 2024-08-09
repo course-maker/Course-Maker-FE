@@ -74,6 +74,7 @@ const SignInForm = () => {
         isOpen={currentModal === MODALS.invalidPassword.id}
         content={MODALS.invalidPassword.message}
         hasCloseBtn={MODALS.invalidPassword.hasCloseBtn}
+        onCloseClick={closeModal}
         onConfirmClick={closeModal}
         onKeyDown={handleKeyDown}
       />
