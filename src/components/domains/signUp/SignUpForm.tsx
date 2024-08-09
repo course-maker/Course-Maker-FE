@@ -19,6 +19,7 @@ const SignUpForm = () => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
   const [isNicknameValid, setIsNicknameValid] = useState<boolean>(false);
+  const [areTermsAccepted, setAreTermsAccepted] = useState<boolean>(false);
 
   const { signUp } = useSignUpMutation();
 
@@ -46,7 +47,7 @@ const SignUpForm = () => {
   };
 
   const onSubmit = (data: SignUpFormInputs) => {
-    if (isEmailValid && isNicknameValid) {
+    if (isEmailValid && isNicknameValid && areTermsAccepted) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { confirmPassword, ...restData } = data;
       signUp(restData);
@@ -109,7 +110,7 @@ const SignUpForm = () => {
           ))}
         </div>
       </div>
-      <SignTerms />
+      <SignTerms setAreTermsAccepted={setAreTermsAccepted} />
       <Button type="submit" color="blue" variant="primary" size="large" ref={submitButtonRef}>
         회원가입
       </Button>
