@@ -2,7 +2,6 @@ import { NAVIGATION_BAR_MENU } from "@/constants/navigationBarMenu";
 import { NavLink } from "react-router-dom";
 
 import classNames from "classnames/bind";
-import Image from "../Image";
 import styles from "./MobileTabBar.module.scss";
 
 const cx = classNames.bind(styles);
@@ -10,7 +9,8 @@ const cx = classNames.bind(styles);
 const MobileTabBar = () => {
   return (
     <ul className={cx("menu")}>
-      {Object.entries(NAVIGATION_BAR_MENU).map(([key, { tabTitle, path, tabImage }]) => {
+      {Object.entries(NAVIGATION_BAR_MENU).map(([key, { tabTitle, path, icon }]) => {
+        const { SVGComponent, alt } = icon;
         return (
           <li key={key} className={cx("menu-item")}>
             <NavLink
@@ -20,8 +20,12 @@ const MobileTabBar = () => {
                   "menu-item-active": isActive,
                 })
               }>
-              <Image imageInfo={tabImage} />
-              <div>{tabTitle}</div>
+              {({ isActive }) => (
+                <>
+                  <SVGComponent title={alt} color={isActive ? "#60a5fa" : "#363636"} />
+                  <div>{tabTitle}</div>
+                </>
+              )}
             </NavLink>
           </li>
         );

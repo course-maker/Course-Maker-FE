@@ -3,10 +3,6 @@ import Banner3 from "@/assets/images/banner3.png";
 import Banner4 from "@/assets/images/banner4.png";
 import BlackBookmarkIcon from "@/assets/images/black_bookmark.svg";
 import BlackFavoriteIcon from "@/assets/images/black_favorite.svg";
-import BlackHomeIcon from "@/assets/images/black_home.svg";
-import BlackMapIcon from "@/assets/images/black_map.svg";
-import BlackPointerIcon from "@/assets/images/black_pointer.svg";
-import BlackSearchIcon from "@/assets/images/black_search.svg";
 import BlackStarIcon from "@/assets/images/black_star.svg";
 import BlueBookmarkIcon from "@/assets/images/blue_bookmark.svg";
 import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
@@ -37,6 +33,10 @@ import Rectangle_42 from "@/assets/images/Rectangle_42.svg";
 import Rectangle_43 from "@/assets/images/Rectangle_43.svg";
 import Rectangle_44 from "@/assets/images/Rectangle_44.svg";
 import Rectangle_45 from "@/assets/images/Rectangle_45.svg";
+import TabBarHomeIcon from "@/assets/images/TabBarHomeIcon";
+import TabBarMapIcon from "@/assets/images/TabBarMapIcon";
+import TabBarPointerIcon from "@/assets/images/TabBarPointerIcon";
+import TabBarSearchIcon from "@/assets/images/TabBarSearchIcon";
 import termMore from "@/assets/images/term_more.svg";
 import testImage from "@/assets/images/test_img.png";
 
@@ -188,20 +188,21 @@ export const IMAGES = {
   termMore: {
     src: termMore,
     alt: "약관 더보기",
+  },
   BlackHomeIcon: {
-    src: BlackHomeIcon,
+    SVGComponent: TabBarHomeIcon,
     alt: "블랙 홈 아이콘",
   },
   BlackSearchIcon: {
-    src: BlackSearchIcon,
+    SVGComponent: TabBarSearchIcon,
     alt: "블랙 검색 아이콘",
   },
   BlackMapIcon: {
-    src: BlackMapIcon,
+    SVGComponent: TabBarMapIcon,
     alt: "블랙 지도 아이콘",
   },
   BlackPointerIcon: {
-    src: BlackPointerIcon,
+    SVGComponent: TabBarPointerIcon,
     alt: "블랙 포인터 아이콘",
   },
 };

@@ -1,6 +1,6 @@
 import AuthListener from "@/components/commons/AuthListener";
 import { PAGE_PATH } from "@/constants/pagePath";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import AppLayout from "../layout/AppLayout";
 
@@ -28,22 +28,20 @@ const {
 
 function PageRouter() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path={search} element={<SearchPage />} />
-          <Route path={signIn} element={<SignInPage />} />
-          <Route path={signUp} element={<SignUpPage />} />
-          <Route path={courseDetail} element={<CourseDetailPage />} />
-          <Route path={destinationDetail} element={<DestinationDetailPage />} />
-          <Route path={courseRegister} element={<CourseRegisterPage />} />
-          <Route path={destinationRegister} element={<DestinationRegisterPage />} />
-          <Route path={destinationEdit} element={<DestinationEditPage />} />
-        </Route>
-        <Route path={authKakao} element={<AuthListener />} />
-      </Routes>
-    </Suspense>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path={search} element={<SearchPage />} />
+        <Route path={signIn} element={<SignInPage />} />
+        <Route path={signUp} element={<SignUpPage />} />
+        <Route path={courseDetail} element={<CourseDetailPage />} />
+        <Route path={destinationDetail} element={<DestinationDetailPage />} />
+        <Route path={courseRegister} element={<CourseRegisterPage />} />
+        <Route path={destinationRegister} element={<DestinationRegisterPage />} />
+        <Route path={destinationEdit} element={<DestinationEditPage />} />
+      </Route>
+      <Route path={authKakao} element={<AuthListener />} />
+    </Routes>
   );
 }
 
