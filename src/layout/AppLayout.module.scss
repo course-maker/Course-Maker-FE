@@ -2,10 +2,15 @@
   @include flexbox();
   @include pos-center-x(fixed);
   background-color: $White;
-  border-bottom: 0.1rem solid #dbdbdb; // fix: 머지 후에 변수로 바꾸기
+  border-bottom: 0.1rem solid $gray20;
+
   width: 100%;
   height: 8rem;
   z-index: $nav;
+
+  @include responsive("M") {
+    height: 6rem;
+  }
 }
 
 .main {
@@ -15,6 +20,13 @@
   max-width: 90rem;
   z-index: $main;
   background-color: $gray10;
+
+  @include responsive("T") {
+    max-width: calc(100% - 16.8rem);
+  }
+  @include responsive("M") {
+    max-width: calc(100% - 4rem);
+  }
 }
 
 .empty {

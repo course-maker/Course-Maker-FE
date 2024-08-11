@@ -1,0 +1,28 @@
+.nav {
+  @include flexbox(between, center);
+  background-color: $White;
+  width: 100%;
+  height: 100%;
+  padding-left: 3rem;
+  padding-right: 3rem;
+
+  &-logo {
+    width: 4rem;
+  }
+
+  &-btn {
+    @include text-style(1.5, 700, $black30);
+    button {
+      cursor: pointer;
+    }
+  }
+
+  @include responsive("M") {
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    &-logo {
+      width: 3rem;
+    }
+  }
+}
