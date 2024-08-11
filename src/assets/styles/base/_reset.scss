@@ -9,5 +9,8 @@
 html {
   font-family: $font-main;
   font-size: $browser-font-size;
-  scrollbar-gutter: stable;
+}
+
+body {
+  overflow-y: scroll;
 }
