@@ -5,13 +5,17 @@
   &-item {
     @include text-style(1.6, 400, $black30);
     cursor: pointer;
+
+    &-active {
+      @include text-style(1.6, 700, $primary30);
+    }
   }
 
   a {
     @include column-flexbox(center, center);
     gap: 0.5rem;
 
-    img {
+    svg {
       width: 2.4rem;
     }
   }

@@ -4,6 +4,7 @@ import NavigationBar from "@/components/commons/NavigationBar";
 import useAuth from "@/hooks/useAuth";
 import { isSignPage } from "@/utils/pageHelpers";
 import classNames from "classnames/bind";
+import { Suspense } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useWindowSize } from "usehooks-ts";
 import styles from "./AppLayout.module.scss";
@@ -19,7 +20,9 @@ const AppLayout = () => {
   return (
     <>
       {isSignPage(pathname) ? (
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       ) : (
         <>
           <nav className={cx("nav")}>
@@ -27,7 +30,9 @@ const AppLayout = () => {
           </nav>
           <main className={cx("main")}>
             <div className={cx("empty")}></div>
-            <Outlet />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Outlet />
+            </Suspense>
           </main>
           {!isDesktopSize && (
             <nav className={cx("tabBar")}>
