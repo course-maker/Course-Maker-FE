@@ -1,0 +1,18 @@
+.menu {
+  @include flexbox(around, center);
+  width: 100%;
+
+  &-item {
+    @include text-style(1.6, 400, $black30);
+    cursor: pointer;
+  }
+
+  a {
+    @include column-flexbox(center, center);
+    gap: 0.5rem;
+
+    img {
+      width: 2.4rem;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import MobileNavigationBar from "@/components/commons/MobileNavigationBar";
+import MobileTabBar from "@/components/commons/MobileTabBar";
 import NavigationBar from "@/components/commons/NavigationBar";
 import useAuth from "@/hooks/useAuth";
 import { isSignPage } from "@/utils/pageHelpers";
@@ -12,7 +13,8 @@ const cx = classNames.bind(styles);
 const AppLayout = () => {
   const { isAuth } = useAuth();
   const { pathname } = useLocation();
-  const { width: screenWidth } = useWindowSize();
+  const { width } = useWindowSize();
+  const isDesktopSize = width > 1199;
 
   return (
     <>
@@ -21,12 +23,17 @@ const AppLayout = () => {
       ) : (
         <>
           <nav className={cx("nav")}>
-            {screenWidth > 1199 ? <NavigationBar isAuth={isAuth} /> : <MobileNavigationBar isAuth={isAuth} />}
+            {isDesktopSize ? <NavigationBar isAuth={isAuth} /> : <MobileNavigationBar isAuth={isAuth} />}
           </nav>
           <main className={cx("main")}>
             <div className={cx("empty")}></div>
             <Outlet />
           </main>
+          {!isDesktopSize && (
+            <nav className={cx("tabBar")}>
+              <MobileTabBar />
+            </nav>
+          )}
         </>
       )}
     </>

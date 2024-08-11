@@ -3,6 +3,10 @@ import Banner3 from "@/assets/images/banner3.png";
 import Banner4 from "@/assets/images/banner4.png";
 import BlackBookmarkIcon from "@/assets/images/black_bookmark.svg";
 import BlackFavoriteIcon from "@/assets/images/black_favorite.svg";
+import BlackHomeIcon from "@/assets/images/black_home.svg";
+import BlackMapIcon from "@/assets/images/black_map.svg";
+import BlackPointerIcon from "@/assets/images/black_pointer.svg";
+import BlackSearchIcon from "@/assets/images/black_search.svg";
 import BlackStarIcon from "@/assets/images/black_star.svg";
 import BlueBookmarkIcon from "@/assets/images/blue_bookmark.svg";
 import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
@@ -184,5 +188,20 @@ export const IMAGES = {
   termMore: {
     src: termMore,
     alt: "약관 더보기",
+  BlackHomeIcon: {
+    src: BlackHomeIcon,
+    alt: "블랙 홈 아이콘",
+  },
+  BlackSearchIcon: {
+    src: BlackSearchIcon,
+    alt: "블랙 검색 아이콘",
+  },
+  BlackMapIcon: {
+    src: BlackMapIcon,
+    alt: "블랙 지도 아이콘",
+  },
+  BlackPointerIcon: {
+    src: BlackPointerIcon,
+    alt: "블랙 포인터 아이콘",
   },
 };
