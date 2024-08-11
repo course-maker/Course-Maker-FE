@@ -11,6 +11,7 @@ import BlueLinkIcon from "@/assets/images/blue_link.svg";
 import calendarIcon from "@/assets/images/calendar.svg";
 import ColumnLine from "@/assets/images/column_line.svg";
 import courseMakerLogo from "@/assets/images/course_maker_logo.svg";
+import courseMakerLogoMobile from "@/assets/images/course_maker_logo_mobile.svg";
 import Down_arrow from "@/assets/images/down_arrow.svg";
 import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
 import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
@@ -39,6 +40,10 @@ export const IMAGES = {
   courseMakerLogo: {
     src: courseMakerLogo,
     alt: "코스메이커 로고",
+  },
+  courseMakerLogoMobile: {
+    src: courseMakerLogoMobile,
+    alt: "코스메이커 모바일 로고",
   },
   kakaoOauthButton: {
     src: kakaoOauthButton,

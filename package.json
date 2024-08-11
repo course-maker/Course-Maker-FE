@@ -33,6 +33,7 @@
     "recoil": "^0.7.7",
     "supports-color": "^9.4.0",
     "swiper": "^11.1.4",
+    "usehooks-ts": "^3.1.0",
     "zod": "^3.23.8"
   },
   "lint-staged": {
