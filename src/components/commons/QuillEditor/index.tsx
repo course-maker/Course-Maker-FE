@@ -28,7 +28,7 @@ const formats = [
 
 interface QuillEditorProps {
   value: string;
-  placeholder: string;
+  placeholder?: string;
   onChange: (value: string) => void;
 }
 
