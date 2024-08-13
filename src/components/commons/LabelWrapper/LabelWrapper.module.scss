@@ -1,0 +1,21 @@
+.container {
+  @include column-flexbox(center, start);
+  gap: 1rem;
+
+  .label {
+    @include text-style(2.4, 600, $black30);
+
+    .asterisk {
+      color: #ff7c33;
+    }
+  }
+
+  .message {
+    @include text-style(1.5, 500, $gray30);
+  }
+
+  .component {
+    padding-top: 2rem;
+    padding-left: 1rem;
+  }
+}
