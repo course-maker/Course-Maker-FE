@@ -11,7 +11,7 @@
 
 .form {
   @include column-flexbox(center, start);
-  gap: 7rem;
+  gap: 6rem;
 
   &-indent {
     @include column-flexbox(center, start);
@@ -31,6 +31,7 @@
   }
 
   &-btn {
-    align-self: center;
+    @include flexbox();
+    width: 100%;
   }
 }

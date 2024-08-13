@@ -81,7 +81,7 @@ const QuillEditor = ({ value, placeholder, onChange }: QuillEditorProps) => {
   }, [imageHandler]);
 
   return (
-    <div>
+    <div className="ql-user-defined-container">
       <CustomToolbar />
       <div>
         <ReactQuill

@@ -1,22 +1,12 @@
-.container {
-  @include column-flexbox(center, end);
-  gap: 0.5rem;
-}
-
 .input {
   @include flexbox(start, center);
   gap: 1.4rem;
 
-  &-title {
-    @include text-style(2.5, 700);
-    padding-right: 2rem;
-  }
-
   &-field {
-    @include text-style(1.5, 400);
+    @include text-style(1.6, 400, $black30);
     background-color: $White;
-    border: 0.1rem solid #d9d9d9;
-    border-radius: 1rem;
+    border: 0.1rem solid $gray20;
+    border-radius: 0.6rem;
     padding: 1.1rem 1.3rem;
     width: 27.6rem;
 
@@ -25,12 +15,7 @@
     }
 
     &::placeholder {
-      color: $Primary_Gray;
+      color: $gray30;
     }
   }
-}
-
-.helper-text {
-  @include text-style(1.3, 400, $Primary_Gray);
-  padding-right: 11.8rem;
 }
