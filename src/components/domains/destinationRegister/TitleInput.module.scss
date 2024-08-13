@@ -1,10 +1,10 @@
 .input {
-  @include text-style(2.5, 500);
+  @include text-style(2, 500, $black30);
   padding-bottom: 1rem;
-  border-bottom: 0.1rem solid black;
+  border-bottom: 0.1rem solid $black30;
   width: 97.2rem;
 
   &::placeholder {
-    color: $Primary_Gray;
+    color: $gray30;
   }
 }
