@@ -4,7 +4,7 @@ import { Control, Controller, FieldValues, Path } from "react-hook-form";
 interface QuillEditorControllerProps<ControlType extends FieldValues> {
   formFieldName: Path<ControlType>;
   control: Control<ControlType>;
-  placeholder: string;
+  placeholder?: string;
 }
 
 const QuillEditorController = <ControlType extends FieldValues>({

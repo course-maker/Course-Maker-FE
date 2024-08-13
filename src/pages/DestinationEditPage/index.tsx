@@ -25,7 +25,7 @@ const SpotEditPage = () => {
   const { id } = useParams();
   const postId = Number(id);
 
-  const { data: spotDetailData } = useQuery({
+  const { data: destinationDetailData } = useQuery({
     queryKey: ["spotEdit", postId],
     queryFn: () => getDestinationApi(postId),
   });
@@ -40,8 +40,8 @@ const SpotEditPage = () => {
   };
 
   useEffect(() => {
-    if (spotDetailData) {
-      const { name, tags, location, pictureLink, content } = spotDetailData;
+    if (destinationDetailData) {
+      const { name, tags, location, pictureLink, content } = destinationDetailData;
       setFormData({
         name,
         tags,
@@ -50,7 +50,7 @@ const SpotEditPage = () => {
         content,
       });
     }
-  }, [spotDetailData]);
+  }, [destinationDetailData]);
 
   return <SpotRegisterLayout title="여행지 수정하기" formData={formData} onSubmitClick={handleSubmit} />;
 };

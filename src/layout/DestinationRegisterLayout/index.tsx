@@ -4,13 +4,10 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import classNames from "classnames/bind";
 import styles from "./DestinationRegisterLayout.module.scss";
 
-import BadgeListController from "@/components/commons/BadgeListsController";
 import Button from "@/components/commons/Button";
-import MainImageInputController from "@/components/commons/MainImageInputController/MainImageInputController";
-import QuillEditorController from "@/components/commons/QuillEditorController";
-import AddressSearchController from "@/components/domains/destinationRegister/AddressSearchInputController";
-import TitleInputController from "@/components/domains/destinationRegister/TitleInputController";
 
+import LabelWrapper from "@/components/commons/LabelWrapper";
+import { INPUTS } from "@/constants/destinationRegisterAndEditPageInputs";
 import { useImageUpload } from "@/hooks/useImageUpload";
 import { validateFormData } from "@/utils/validateFormData";
 
@@ -58,18 +55,15 @@ const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayo
     <div className={cx("container")}>
       <h1 className={cx("title")}>{title}</h1>
       <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
-        <TitleInputController formFieldName="name" control={control} />
-        <div className={cx("form-indent")}>
-          <div className={cx("form-tag")}>
-            <h2 className={cx("form-tag-title")}>태그</h2>
-            <div className={cx("form-tag-content")}>
-              <BadgeListController formFieldName="tags" control={control} />
-            </div>
-          </div>
-          <AddressSearchController formFieldName="location" control={control} />
-          <MainImageInputController formFieldName="pictureLink" control={control} />
-        </div>
-        <QuillEditorController formFieldName="content" control={control} placeholder="여행지를 소개해주세요!" />
+        {Object.entries(INPUTS).map(([key, { label, message, isEssential, component: InputComponent, ...rest }]) => (
+          <LabelWrapper
+            key={key}
+            label={label}
+            message={message}
+            isEssential={isEssential}
+            component={<InputComponent formFieldName={key} control={control} {...rest} />}
+          />
+        ))}
         <div className={cx("form-btn")}>
           <Button color="navy" variant="primary" size="large" type="submit">
             {title}
