@@ -1,6 +1,7 @@
 .container {
   @include column-flexbox(center, start);
   gap: 1rem;
+  width: 100%;
 
   .label {
     @include text-style(2.4, 600, $black30);
@@ -15,7 +16,7 @@
   }
 
   .component {
-    padding-top: 2rem;
-    padding-left: 1rem;
+    padding: 2rem 1rem 0;
+    width: 100%;
   }
 }

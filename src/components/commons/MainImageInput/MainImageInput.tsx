@@ -40,7 +40,6 @@ const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
         buttonName="파일첨부"
         placeholder="대표 이미지를 첨부해주세요."
         selectedOption={inputFileName || selectedImage}
-        helperText="대표 이미지는 1개, 15MB 이하입니다."
         onButtonClick={handleButtonClick}
       />
       <input type="file" accept="image/*" ref={fileInputRef} style={{ display: "none" }} onChange={handleImageAttach} />

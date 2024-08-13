@@ -65,7 +65,7 @@ const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayo
           />
         ))}
         <div className={cx("form-btn")}>
-          <Button color="navy" variant="primary" size="large" type="submit">
+          <Button color="blue" variant="secondary" size="large" type="submit">
             {title}
           </Button>
         </div>
