@@ -28,19 +28,19 @@ const RightButtons = ({ isAuth }: { isAuth: boolean | null }) => {
     <>
       {isAuth ? (
         <div className={cx("container")}>
-          {/* <Button color="emerald" variant="primary" size="small">
-        마이페이지
-      </Button> */}
-          <Button color="emerald" variant="secondary" size="small" onClick={() => logout()}>
+          <Button color="blue" variant="primary" size="small">
+            마이페이지
+          </Button>
+          <Button color="blue" variant="secondary" size="small" onClick={() => logout()}>
             로그아웃
           </Button>
         </div>
       ) : (
         <div className={cx("container")}>
-          <Button color="emerald" variant="primary" size="small" onClick={() => navigate(signIn)}>
+          <Button color="blue" variant="primary" size="small" onClick={() => navigate(signIn)}>
             로그인
           </Button>
-          <Button color="emerald" variant="secondary" size="small" onClick={() => navigate(signUp)}>
+          <Button color="blue" variant="secondary" size="small" onClick={() => navigate(signUp)}>
             회원가입
           </Button>
         </div>
