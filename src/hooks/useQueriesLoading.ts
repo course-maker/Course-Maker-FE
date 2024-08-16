@@ -11,13 +11,13 @@ export function useQueriesLoading() {
     if (queries) {
       setQueryChangedCount(queries.length);
     }
-  }, []);
+  }, [queries]);
 
   useEffect(() => {
     if (queries.every(({ state }) => state.status !== "loading") && queryChangedCount >= 0) {
       setQueryChangedCount((prevState) => prevState - 1);
     }
-  });
+  }, [queries, queryChangedCount]);
 
   if (queryChangedCount < 0) {
     return false;

@@ -14,8 +14,8 @@ import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
 import { getCourse } from "@/api/course";
 import { Course } from "@/api/course/type";
-import { useQueriesLoading } from "@/hooks/useQueriesLoading.ts";
-import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery.ts";
+import { useQueriesLoading } from "@/hooks/useQueriesLoading";
+import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
 const Card = lazy(() => import("@/components/commons/Card/Card"));
 const cx = classNames.bind(styles);
 
