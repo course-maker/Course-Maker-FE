@@ -9,12 +9,11 @@ import styles from "./BadgeLists.module.scss";
 const cx = classNames.bind(styles);
 
 interface BadgeListProps {
-  type?: string;
   selectedBadges: tagResponseDto[];
   onChange: (updatedDestinationBadges: tagResponseDto[]) => void;
 }
 
-const BadgeLists = ({ type, selectedBadges, onChange }: BadgeListProps) => {
+const BadgeLists = ({ selectedBadges, onChange }: BadgeListProps) => {
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<tagResponseDto[]>(selectedBadges);
 
@@ -41,7 +40,6 @@ const BadgeLists = ({ type, selectedBadges, onChange }: BadgeListProps) => {
       {Object.entries(groupedTags).map(([description, tags]) => (
         <BadgeList
           key={description}
-          type={type}
           title={description}
           tags={tags}
           selectedBadges={selectedDestinationBadges}
