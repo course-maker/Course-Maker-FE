@@ -33,7 +33,7 @@ const HomePage = () => {
     console.log(tagsData);
     console.log(course);
   }
-  console.log(courseData);
+  console.log(courseData.contents);
 
   const navigate = useNavigate();
 
