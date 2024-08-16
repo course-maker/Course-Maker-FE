@@ -73,7 +73,7 @@ const HomePage = () => {
         <SearchBar />
       </Section>
 
-      <Section title="어떤 여행을 할까요?">
+      <Section title="어떤 여행을 할까요? ">
         <div className={cx("banner-container")}>
           {bannerItems.small.map((item) => (
             <div
