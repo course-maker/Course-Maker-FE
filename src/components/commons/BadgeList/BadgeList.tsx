@@ -8,20 +8,13 @@ import styles from "./BadgeList.module.scss";
 const cx = classNames.bind(styles);
 
 interface BadgeListProps {
-  type?: string;
   title: string;
   tags: tagResponseDto[];
   selectedBadges?: tagResponseDto[];
   setSelectedBadges?: React.Dispatch<React.SetStateAction<tagResponseDto[]>>; // Updated type
 }
 
-const BadgeList: React.FC<BadgeListProps> = ({
-  type = "destination",
-  title,
-  tags,
-  selectedBadges = [],
-  setSelectedBadges,
-}) => {
+const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges = [], setSelectedBadges }) => {
   const toggleBadge = (badge: tagResponseDto) => {
     if (!setSelectedBadges) return;
     setSelectedBadges((prevSelected) =>
@@ -30,7 +23,7 @@ const BadgeList: React.FC<BadgeListProps> = ({
   };
 
   return (
-    <div className={cx("tab-content", type)}>
+    <div className={cx("tab-content")}>
       <div className={cx("item-title")}>
         <Image imageInfo={TAG_IMAGES[title as keyof typeof TAG_IMAGES]} />
         <span className={cx("letter")}>{title}</span>
