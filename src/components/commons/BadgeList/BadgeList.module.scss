@@ -16,7 +16,11 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    row-gap: 0.5rem;
+    gap: 1rem;
+
+    @include responsive("M") {
+      gap: 0.6rem;
+    }
   }
 }
 
