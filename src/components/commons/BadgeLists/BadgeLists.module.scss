@@ -1,0 +1,4 @@
+.container {
+  @include column-flexbox(center, start);
+  gap: 2rem;
+}

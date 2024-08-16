@@ -1,25 +1,44 @@
 .destination {
   &.tab-content {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+    @include flexbox(center, start);
+    gap: 3rem;
     white-space: nowrap;
-  }
 
-  .item-title {
-    font-size: 1.64rem;
-    font-weight: bold;
-    margin-right: 20px;
-  }
+    @include responsive("T") {
+      @include column-flexbox(center, start);
+      gap: 1rem;
+    }
 
-  .btn-group {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 1rem;
+    .item-title {
+      @include flexbox();
+      gap: 0.5rem;
 
-    @include responsive("M") {
-      gap: 0.6rem;
+      img {
+        width: 2.4rem;
+
+        @include responsive("M") {
+          width: 1.8rem;
+        }
+      }
+
+      .letter {
+        @include text-style(2, 500, $black30);
+
+        @include responsive("M") {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 1rem;
+
+      @include responsive("M") {
+        gap: 0.6rem;
+      }
     }
   }
 }

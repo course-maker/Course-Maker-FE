@@ -2,7 +2,11 @@ import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
 import BadgeList from "@/components/commons/BadgeList/BadgeList";
 import groupTags from "@/utils/groupTags";
+import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
+import styles from "./BadgeLists.module.scss";
+
+const cx = classNames.bind(styles);
 
 interface BadgeListProps {
   type?: string;
@@ -33,7 +37,7 @@ const BadgeLists = ({ type, selectedBadges, onChange }: BadgeListProps) => {
 
   const groupedTags = groupTags(tagsData);
   return (
-    <>
+    <div className={cx("container")}>
       {Object.entries(groupedTags).map(([description, tags]) => (
         <BadgeList
           key={description}
@@ -44,7 +48,7 @@ const BadgeLists = ({ type, selectedBadges, onChange }: BadgeListProps) => {
           setSelectedBadges={setSelectedDestinationBadges}
         />
       ))}
-    </>
+    </div>
   );
 };
 
