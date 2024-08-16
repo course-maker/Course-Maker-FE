@@ -13,14 +13,14 @@ export function useQueriesLoading() {
     }
   }, [queries]);
 
-  useEffect(() => {
-    if (queries.every(({ state }) => state.status !== "loading") && queryChangedCount >= 0) {
-      setQueryChangedCount((prevState) => prevState - 1);
-    }
-  }, [queries, queryChangedCount]);
+  // useEffect(() => {
+  //   if (queries.every(({ state }) => state.status !== "loading") && queryChangedCount >= 0) {
+  //     setQueryChangedCount((prevState) => prevState - 1);
+  //   }
+  // }, [queries, queryChangedCount]);
 
-  if (queryChangedCount < 0) {
-    return false;
-  }
-  return true;
+  // if (queryChangedCount < 0) {
+  //   return false;
+  // }
+  // return true;
 }
