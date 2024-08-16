@@ -15,6 +15,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   color?: ButtonColor;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  isSquare?: boolean;
   isDisabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -29,8 +30,12 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
  * @property {string} size - 버튼 사이즈. "small | medium | large". 입력하지 않을 경우 height: 100%, width:100% 로 설정
  * */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, type = "button", color, variant, size, isDisabled = false, onClick, ...props }, ref) => {
-    const buttonClass = cx(`btn-${color}-${variant}`, size ? `btn-size-${size}` : "btn-size-default");
+  ({ children, type = "button", color, variant, size, isSquare, isDisabled = false, onClick, ...props }, ref) => {
+    const buttonClass = cx(
+      `btn-${color}-${variant}`,
+      size ? `btn-size-${size}` : "btn-size-default",
+      isSquare && "btn-square",
+    );
 
     return (
       <button

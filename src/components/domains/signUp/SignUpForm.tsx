@@ -104,7 +104,7 @@ const SignUpForm = () => {
         </div>
       </div>
       <SignTerms setAreTermsAccepted={setAreTermsAccepted} />
-      <Button type="submit" color="blue" variant="primary" size="large" ref={submitButtonRef}>
+      <Button type="submit" color="blue" variant="primary" size="large" isSquare={true} ref={submitButtonRef}>
         회원가입
       </Button>
     </form>

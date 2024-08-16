@@ -18,7 +18,7 @@ const InputWithButton = <T extends FieldValues>({ type, condition, field, fieldS
   return (
     <div className={cx("container")}>
       <SignInput isError={fieldState.invalid} helperText={fieldState.error?.message} {...condition} {...field} />
-      <Button color="blue" variant={type === "email" ? "primary" : "secondary"} size="medium">
+      <Button color="blue" variant={type === "email" ? "primary" : "secondary"} size="medium" isSquare={true}>
         {condition.button}
       </Button>
     </div>
