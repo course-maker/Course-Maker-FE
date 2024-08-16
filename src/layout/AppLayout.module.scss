@@ -14,7 +14,7 @@
 }
 
 .main {
-  padding-top: 9.7rem;
+  padding-top: 8rem;
   position: relative;
   margin: 0 auto;
   max-width: 90rem;
@@ -26,6 +26,7 @@
     padding-bottom: 8rem;
   }
   @include responsive("M") {
+    padding-top: 6rem;
     max-width: calc(100% - 4rem);
   }
 }

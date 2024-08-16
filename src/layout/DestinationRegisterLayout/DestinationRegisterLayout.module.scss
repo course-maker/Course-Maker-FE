@@ -1,34 +1,15 @@
 .container {
-  padding-top: 5rem;
-  padding-left: 5.4rem;
-  padding-bottom: 16.5rem;
+  padding: 4rem 0 10rem;
 }
 
 .title {
   @include text-style(3, 700);
-  padding-bottom: 8.8rem;
 }
 
 .form {
   @include column-flexbox(center, start);
   gap: 6rem;
-
-  &-indent {
-    @include column-flexbox(center, start);
-    gap: 2.6rem;
-    padding-left: 2.6rem;
-  }
-
-  &-tag {
-    &-title {
-      @include text-style(2.5, 700);
-      padding-bottom: 3rem;
-    }
-
-    &-content {
-      padding-left: 1.7rem;
-    }
-  }
+  padding: 6rem 4rem 0;
 
   &-btn {
     @include flexbox();
