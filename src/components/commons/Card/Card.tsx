@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 interface CardProps {
   id: any;
   name: string;
-  children: ReactNode;
+  children: any;
 }
 
 const Card: React.FC<CardProps> = ({ id, name, children }) => {
