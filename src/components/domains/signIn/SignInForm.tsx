@@ -54,11 +54,16 @@ const SignInForm = () => {
             <SignInputController name="loginEmail" control={control} condition={SIGN_IN_CONDITION.loginEmail} />
             <SignInputController name="password" control={control} condition={SIGN_IN_CONDITION.password} />
           </div>
-          <Button type="submit" color="blue" variant="primary" size="large">
+          <Button type="submit" color="blue" variant="primary" size="large" isSquare={true}>
             로그인
           </Button>
         </form>
-        <Button color="blue" variant="secondary" size="large" onClick={() => navigate(PAGE_PATH.signUp)}>
+        <Button
+          color="blue"
+          variant="secondary"
+          size="large"
+          isSquare={true}
+          onClick={() => navigate(PAGE_PATH.signUp)}>
           회원가입
         </Button>
       </div>

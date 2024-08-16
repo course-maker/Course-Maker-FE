@@ -24,7 +24,7 @@ const DestinationDetailsInput = forwardRef<HTMLInputElement, DestinationDetailsI
           readOnly
           {...props}
         />
-        <Button color="blue" variant="secondary" size="small" onClick={onButtonClick}>
+        <Button color="blue" variant="secondary" size="small" onClick={onButtonClick} isSquare={true}>
           {buttonName}
         </Button>
       </div>
