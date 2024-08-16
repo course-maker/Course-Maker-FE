@@ -14,7 +14,6 @@ import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
 import { getCourse } from "@/api/course";
 import { Course } from "@/api/course/type";
-import { useQueriesLoading } from "@/hooks/useQueriesLoading";
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
 const Card = lazy(() => import("@/components/commons/Card/Card"));
 const cx = classNames.bind(styles);
@@ -26,9 +25,8 @@ const HomePage = () => {
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [course, setCourse] = useState<Course[]>([]);
   const { isLoading, courseData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
-  const isQueriesLoading = useQueriesLoading();
 
-  if (!isQueriesLoading && !loading && !isLoading) {
+  if (!loading && !isLoading) {
     console.log("안됨");
     console.log(tagsData);
     console.log(course);
