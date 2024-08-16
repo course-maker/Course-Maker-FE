@@ -58,7 +58,7 @@ const Step1: React.FC = () => {
       <Slider type="TravelCount" value={watch("travelerCount")} onChange={handleTravelCountChange} />
       <div className={cx("BadgeList-box")}>
         <p className={cx("BadgeList-title")}>태그 선택</p>
-        <BadgeListsController type="course" formFieldName="tags" control={control} />
+        <BadgeListsController formFieldName="tags" control={control} />
       </div>
       <NavigationButtons onClickNext={handleSubmit(handleNext)} onClickPrev={handlePrev} />
     </form>
