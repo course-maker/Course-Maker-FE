@@ -1,60 +1,32 @@
-.destination {
-  &.tab-content {
-    @include flexbox(center, start);
-    gap: 3rem;
-    white-space: nowrap;
+.tab-content {
+  @include flexbox(center, start);
+  gap: 3rem;
+  white-space: nowrap;
 
-    @include responsive("T") {
-      @include column-flexbox(center, start);
-      gap: 1rem;
-    }
-
-    .item-title {
-      @include flexbox();
-      gap: 0.5rem;
-
-      img {
-        width: 2.4rem;
-
-        @include responsive("M") {
-          width: 1.8rem;
-        }
-      }
-
-      .letter {
-        @include text-style(2, 500, $black30);
-
-        @include responsive("M") {
-          font-size: 1.6rem;
-        }
-      }
-    }
-
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      gap: 1rem;
-
-      @include responsive("M") {
-        gap: 0.6rem;
-      }
-    }
-  }
-}
-
-.course {
-  &.tab-content {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
-    gap: 1.9rem;
+  @include responsive("T") {
+    @include column-flexbox(center, start);
+    gap: 1rem;
   }
 
   .item-title {
-    font-size: 1.64rem;
-    font-weight: bold;
-    margin-right: 2rem;
+    @include flexbox();
+    gap: 0.5rem;
+
+    img {
+      width: 2.4rem;
+
+      @include responsive("M") {
+        width: 1.8rem;
+      }
+    }
+
+    .letter {
+      @include text-style(2, 500, $black30);
+
+      @include responsive("M") {
+        font-size: 1.6rem;
+      }
+    }
   }
 
   .btn-group {
@@ -62,5 +34,9 @@
     flex-wrap: wrap;
     width: 100%;
     gap: 1rem;
+
+    @include responsive("M") {
+      gap: 0.6rem;
+    }
   }
 }

@@ -157,7 +157,7 @@ const Step2: React.FC = () => {
       </div>
       <div className={cx("path-box")}>
         <div className={cx("BadgeList-box")}>
-          <BadgeListsController type="course" formFieldName="tags" control={control} />
+          <BadgeListsController formFieldName="tags" control={control} />
         </div>
         <div>
           {filteredData.map((item, id) => (
