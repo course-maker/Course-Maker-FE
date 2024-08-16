@@ -1,16 +1,49 @@
 import Banner2 from "@/assets/images/banner2.png";
 import Banner3 from "@/assets/images/banner3.png";
 import Banner4 from "@/assets/images/banner4.png";
-import courseMakerLogo from "@/assets/images/course_maker_logo.svg";
-import courseMakerLogoMobile from "@/assets/images/course_maker_logo_mobile.svg";
-import kakaoOauthButton from "@/assets/images/kakao_oauth_button.svg";
-import locationIcon from "@/assets/images/location.svg";
-import memberIcon from "@/assets/images/member.svg";
-import modalClose from "@/assets/images/modal_close.svg";
-import rangeLine from "@/assets/images/range_line.svg";
+import PicnicIcon from "@/assets/images/basket.svg";
+import BlackBookmarkIcon from "@/assets/images/black_bookmark.svg";
+import BlackFavoriteIcon from "@/assets/images/black_favorite.svg";
+import BlackStarIcon from "@/assets/images/black_star.svg";
+import BlackTagActivityIcon from "@/assets/images/black_tag_activity.svg";
+import BlackTagFoodsIcon from "@/assets/images/black_tag_foods.svg";
+import BlackTagPeopleIcon from "@/assets/images/black_tag_people.svg";
+import BlackTagTreeIcon from "@/assets/images/black_tag_tree.svg";
+import BlackTagWeatherIcon from "@/assets/images/black_tag_weather.svg";
+import BlueBookmarkIcon from "@/assets/images/blue_bookmark.svg";
+import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
+import BlueKaKaoIcon from "@/assets/images/blue_kakao.svg";
+import BlueLinkIcon from "@/assets/images/blue_link.svg";
 import calendarIcon from "@/assets/images/calendar.svg";
 import calendarWhiteIcon from "@/assets/images/calendar_white.svg";
+import ChildIcon from "@/assets/images/child.svg";
+import ColumnLine from "@/assets/images/column_line.svg";
+import CoupleIcon from "@/assets/images/couple.svg";
+import courseMakerLogo from "@/assets/images/course_maker_logo.svg";
+import courseMakerLogoMobile from "@/assets/images/course_maker_logo_mobile.svg";
+import CultureIcon from "@/assets/images/culture.svg";
+import PetIcon from "@/assets/images/dog.svg";
+import Down_arrow from "@/assets/images/down_arrow.svg";
+import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
+import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
+import GrayKaKaoIcon from "@/assets/images/gray_kakao.svg";
+import GrayLinkIcon from "@/assets/images/gray_link.svg";
+import GrayStarIcon from "@/assets/images/gray_star.svg";
+import grayTriangle from "@/assets/images/gray_triangle.svg";
+import Home_left_test from "@/assets/images/home_left_test.svg";
+import Home_right_test from "@/assets/images/home_right_test.svg";
+import kakaoOauthButton from "@/assets/images/kakao_oauth_button.svg";
+import locationIcon from "@/assets/images/location.svg";
+import One from "@/assets/images/main/1.png";
+import Two from "@/assets/images/main/2.png";
+import Three from "@/assets/images/main/3.png";
+import Four from "@/assets/images/main/4.png";
+import memberIcon from "@/assets/images/member.svg";
 import memberWhiteIcon from "@/assets/images/member_white.svg";
+import modalClose from "@/assets/images/modal_close.svg";
+import PartyIcon from "@/assets/images/party.svg";
+import plus from "@/assets/images/plus.svg";
+import rangeLine from "@/assets/images/range_line.svg";
 import Rectangle_40 from "@/assets/images/Rectangle_40.svg";
 import Rectangle_41 from "@/assets/images/Rectangle_41.svg";
 import Rectangle_42 from "@/assets/images/Rectangle_42.svg";
@@ -23,35 +56,7 @@ import TabBarPointerIcon from "@/assets/images/TabBarPointerIcon";
 import TabBarSearchIcon from "@/assets/images/TabBarSearchIcon";
 import termMore from "@/assets/images/term_more.svg";
 import testImage from "@/assets/images/test_img.png";
-import Home_left_test from "@/assets/images/home_left_test.svg";
-import Home_right_test from "@/assets/images/home_right_test.svg";
-import grayTriangle from "@/assets/images/gray_triangle.svg";
-import plus from "@/assets/images/plus.svg";
-import Down_arrow from "@/assets/images/down_arrow.svg";
-import ColumnLine from "@/assets/images/column_line.svg";
-import GrayStarIcon from "@/assets/images/gray_star.svg";
-import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
-import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
-import GrayKaKaoIcon from "@/assets/images/gray_kakao.svg";
-import GrayLinkIcon from "@/assets/images/gray_link.svg";
-import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
-import BlueBookmarkIcon from "@/assets/images/blue_bookmark.svg";
-import BlueKaKaoIcon from "@/assets/images/blue_kakao.svg";
-import BlueLinkIcon from "@/assets/images/blue_link.svg";
-import BlackFavoriteIcon from "@/assets/images/black_favorite.svg";
-import BlackBookmarkIcon from "@/assets/images/black_bookmark.svg";
-import BlackStarIcon from "@/assets/images/black_star.svg";
 import WhiteStarIcon from "@/assets/images/white_star.svg";
-import ChildIcon from "@/assets/images/child.svg";
-import CultureIcon from "@/assets/images/culture.svg";
-import CoupleIcon from "@/assets/images/couple.svg";
-import PetIcon from "@/assets/images/dog.svg";
-import PartyIcon from "@/assets/images/party.svg";
-import PicnicIcon from "@/assets/images/basket.svg";
-import One from "@/assets/images/main/1.png";
-import Two from "@/assets/images/main/2.png";
-import Three from "@/assets/images/main/3.png";
-import Four from "@/assets/images/main/4.png";
 
 export const IMAGES = {
   courseMakerLogo: {
@@ -269,5 +274,25 @@ export const IMAGES = {
   BlackPointerIcon: {
     SVGComponent: TabBarPointerIcon,
     alt: "블랙 포인터 아이콘",
+  },
+  BlackTagTreeIcon: {
+    src: BlackTagTreeIcon,
+    alt: "블랙 나무 아이콘",
+  },
+  BlackTagPeopleIcon: {
+    src: BlackTagPeopleIcon,
+    alt: "블랙 동행 아이콘",
+  },
+  BlackTagActivityIcon: {
+    src: BlackTagActivityIcon,
+    alt: "블랙 활동 아이콘",
+  },
+  BlackTagFoodsIcon: {
+    src: BlackTagFoodsIcon,
+    alt: "블랙 음식 아이콘",
+  },
+  BlackTagWeatherIcon: {
+    src: BlackTagWeatherIcon,
+    alt: "블랙 날씨 아이콘",
   },
 };

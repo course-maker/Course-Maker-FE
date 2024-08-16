@@ -1,7 +1,9 @@
 import { tagResponseDto } from "@/api/tag/type";
+import { TAG_IMAGES } from "@/constants/tagImages";
 import classNames from "classnames/bind";
 import React from "react";
 import Button from "../Button";
+import Image from "../Image";
 import styles from "./BadgeList.module.scss";
 const cx = classNames.bind(styles);
 
@@ -29,7 +31,10 @@ const BadgeList: React.FC<BadgeListProps> = ({
 
   return (
     <div className={cx("tab-content", type)}>
-      <span className={cx("item-title")}>{title}</span>
+      <div className={cx("item-title")}>
+        <Image imageInfo={TAG_IMAGES[title as keyof typeof TAG_IMAGES]} />
+        <span className={cx("letter")}>{title}</span>
+      </div>
       <div className={cx("btn-group")}>
         {tags.map((tag) => (
           <Button
