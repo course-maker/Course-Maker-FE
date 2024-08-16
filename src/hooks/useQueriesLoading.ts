@@ -1,4 +1,4 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { useQueryClient, QueryStatus } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 export function useQueriesLoading() {
@@ -14,7 +14,7 @@ export function useQueriesLoading() {
   }, [queries]);
 
   useEffect(() => {
-    if (queries.every(({ state }) => state.status !== "loading") && queryChangedCount >= 0) {
+    if (queries.every(({ state }) => state.status !== QueryStatus.Loading) && queryChangedCount >= 0) {
       setQueryChangedCount((prevState) => prevState - 1);
     }
   }, [queries, queryChangedCount]);
