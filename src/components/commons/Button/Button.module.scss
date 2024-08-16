@@ -13,17 +13,28 @@
   }
 }
 
-.btn-square {
-  border-radius: 0.6rem;
-}
-
 // 버튼 크기별 스타일
 .btn-size {
+  &-xsmall,
   &-small,
   &-medium,
   &-large,
   &-default {
     @extend %btn-base;
+  }
+
+  &-xsmall {
+    font-weight: 500;
+    padding: 0.8rem 1.6rem;
+
+    @include responsive("T") {
+      padding: 0.6rem 1.6rem;
+    }
+
+    @include responsive("M") {
+      font-size: 1.2rem;
+      padding: 0.6rem 1.2rem;
+    }
   }
 
   &-small {
@@ -79,6 +90,17 @@
 
       &:disabled {
         color: $gray30;
+      }
+    }
+
+    &-badge {
+      color: $black10;
+      background-color: $White;
+      border: 1px solid $gray30;
+
+      &-selected {
+        color: $primary30;
+        border: 1px solid $primary30;
       }
     }
   }
@@ -144,6 +166,14 @@
       &-third:hover:not(:disabled) {
         border: 1px solid $black30;
       }
+      &-badge:hover:not(:disabled) {
+        color: $primary30;
+        border: 1px solid $primary30;
+      }
     }
   }
+}
+
+.btn-square {
+  border-radius: 0.6rem;
 }
