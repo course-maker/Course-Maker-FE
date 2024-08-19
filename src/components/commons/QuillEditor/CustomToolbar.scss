@@ -1,8 +1,7 @@
 #toolbar {
-  display: flex;
-  justify-content: start;
-  align-items: center;
+  @include flexbox(start, center);
   gap: 2rem;
+  flex-wrap: wrap;
   width: 100%;
   height: auto;
   border-top-left-radius: 1rem;
@@ -11,6 +10,10 @@
   background-color: $gray10;
   border: 0.1rem solid $gray20;
   padding: 1.5rem 2rem;
+
+  & > span {
+    @include flexbox();
+  }
 
   & button {
     font-size: 14px;

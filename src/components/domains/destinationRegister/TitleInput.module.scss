@@ -4,6 +4,10 @@
   border-bottom: 0.1rem solid $black30;
   width: 100%;
 
+  @include responsive("M") {
+    font-size: 1.8rem;
+  }
+
   &::placeholder {
     color: $gray30;
   }
