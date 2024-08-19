@@ -28,6 +28,8 @@ import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
 import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
 import GrayKaKaoIcon from "@/assets/images/gray_kakao.svg";
 import GrayLinkIcon from "@/assets/images/gray_link.svg";
+import GrayPhotoIcon from "@/assets/images/gray_photo.svg";
+import GraySearchIcon from "@/assets/images/gray_search.svg";
 import GrayStarIcon from "@/assets/images/gray_star.svg";
 import grayTriangle from "@/assets/images/gray_triangle.svg";
 import Home_left_test from "@/assets/images/home_left_test.svg";
@@ -294,5 +296,13 @@ export const IMAGES = {
   BlackTagWeatherIcon: {
     src: BlackTagWeatherIcon,
     alt: "블랙 날씨 아이콘",
+  },
+  GraySearchIcon: {
+    src: GraySearchIcon,
+    alt: "회색 검색 아이콘",
+  },
+  GrayPhotoIcon: {
+    src: GrayPhotoIcon,
+    alt: "회색 이미지 아이콘",
   },
 };

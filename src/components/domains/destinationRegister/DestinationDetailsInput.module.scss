@@ -1,6 +1,7 @@
 .input {
   @include flexbox(start, center);
   gap: 1.4rem;
+  position: relative;
 
   &-field {
     @include text-style(1.6, 400, $black30);
@@ -17,5 +18,16 @@
     &::placeholder {
       color: $gray30;
     }
+
+    @include responsive("M") {
+      width: 100%;
+    }
+  }
+
+  &-mobile-btn {
+    @include pos-center-y();
+    right: 2rem;
+    width: 2rem;
+    height: 2rem;
   }
 }
