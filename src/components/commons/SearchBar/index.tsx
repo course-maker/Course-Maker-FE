@@ -1,11 +1,15 @@
 import styles from "./SearchBar.module.scss";
 import classNames from "classnames/bind";
 
+import Image from "@/components/commons/Image";
+import { IMAGES } from "@/constants/images";
+
 const cx = classNames.bind(styles);
 
 const SearchBar = () => {
   return (
     <div className={cx("search-bar")}>
+      <Image className={cx("search_img")} imageInfo={IMAGES.GraySerchbarIcon} />
       <input type="text" placeholder="어디로 떠나시나요?" />
     </div>
   );

@@ -32,6 +32,7 @@ import GrayPhotoIcon from "@/assets/images/gray_photo.svg";
 import GraySearchIcon from "@/assets/images/gray_search.svg";
 import GrayStarIcon from "@/assets/images/gray_star.svg";
 import grayTriangle from "@/assets/images/gray_triangle.svg";
+import GraySerchbarIcon from "@/assets/images/search_bar_gray.svg";
 import Home_left_test from "@/assets/images/home_left_test.svg";
 import Home_right_test from "@/assets/images/home_right_test.svg";
 import kakaoOauthButton from "@/assets/images/kakao_oauth_button.svg";
@@ -304,5 +305,9 @@ export const IMAGES = {
   GrayPhotoIcon: {
     src: GrayPhotoIcon,
     alt: "회색 이미지 아이콘",
+  },
+  GraySerchbarIcon: {
+    src: GraySerchbarIcon,
+    alt: "회색 돋보기 아이콘",
   },
 };
