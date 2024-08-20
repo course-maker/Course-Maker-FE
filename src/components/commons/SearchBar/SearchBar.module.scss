@@ -5,7 +5,7 @@
   position: relative;
   border: 2px solid transparent;
   background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #bfdbfe 0%, #0038b0 100%);
-  border-radius: 20px;
+  border-radius: 50px;
   background-origin: border-box;
   background-clip: content-box, border-box;
   width: 100%;
@@ -15,12 +15,17 @@
     border-color 0.3s,
     box-shadow 0.3s;
 
+  .search_img {
+    width: 22px;
+    height: 22px;
+    margin-left: 40px;
+  }
   input {
     border: none;
     outline: none;
     width: 100%;
     font-size: 16px;
-    padding: 15px;
+    padding: 19px;
   }
 
   input::placeholder {
@@ -34,7 +39,7 @@
 }
 
 .search-bar::before {
-  content: "\1F50D"; /* Unicode character for magnifying glass */
+  // content: "\1F50D"; /* Unicode character for magnifying glass */
   font-size: 18px;
   color: #ccc;
   margin-right: 10px;
