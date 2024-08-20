@@ -11,9 +11,10 @@ const cx = classNames.bind(styles);
 interface BadgeListProps {
   selectedBadges: tagResponseDto[];
   onChange: (updatedDestinationBadges: tagResponseDto[]) => void;
+  forSearch?: boolean;
 }
 
-const BadgeLists = ({ selectedBadges, onChange }: BadgeListProps) => {
+const BadgeLists = ({ selectedBadges, onChange, forSearch }: BadgeListProps) => {
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
   const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<tagResponseDto[]>(selectedBadges);
 
@@ -42,6 +43,7 @@ const BadgeLists = ({ selectedBadges, onChange }: BadgeListProps) => {
           key={description}
           title={description}
           tags={tags}
+          forSearch={forSearch}
           selectedBadges={selectedDestinationBadges}
           setSelectedBadges={setSelectedDestinationBadges}
         />
