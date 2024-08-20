@@ -23,39 +23,9 @@
       margin-bottom: -1px;
       text-align: center;
     }
-
-    .tab-button {
-      padding: 1.2rem;
-      font-size: 2rem;
-      font-weight: 500;
-      color: #6b7280;
-      border: 2px solid transparent;
-      border-color: #e5e7eb #e5e7eb #ffffff;
-      border-bottom: 2px solid transparent;
-      border-radius: 8px 8px 0 0;
-      cursor: pointer;
-
-      &.active {
-        color: $Primary_Emerald;
-        border-color: $Primary_Emerald $Primary_Emerald #ffffff;
-        // border-bottom: 2px solid $Primary_Emerald;
-        border-radius: 8px 8px 0 0;
-      }
-
-      &:hover {
-        color: $Dark_Emerald;
-      }
-
-      @media (min-width: 640px) {
-        /* sm:text-3xl */
-        font-size: 2.25rem;
-      }
-    }
   }
   .tab-container {
-    border-color: #01937f #01937f #ffffff #01937f;
-    border-radius: 0 0 8px 8px;
-    border: 2px solid #01937f;
+    background-color: #fafafa;
   }
 
   .option-container {
