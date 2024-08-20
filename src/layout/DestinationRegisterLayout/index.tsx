@@ -13,14 +13,14 @@ import { validateFormData } from "@/utils/validateFormData";
 
 const cx = classNames.bind(styles);
 
-interface SpotRegisterLayoutProps {
+interface DestinationRegisterLayoutProps {
   isApiData?: boolean;
   formData: FieldValues;
   title: string;
   onSubmitClick: (data: FieldValues) => void;
 }
 
-const SpotRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: SpotRegisterLayoutProps) => {
+const DestinationRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: DestinationRegisterLayoutProps) => {
   const inputElement = isApiData ? API_INPUTS : INPUTS;
   const { uploadImageAsync } = useImageUpload();
   const { control, handleSubmit, setFocus } = useForm({
@@ -78,4 +78,4 @@ const SpotRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: SpotR
   );
 };
 
-export default SpotRegisterLayout;
+export default DestinationRegisterLayout;

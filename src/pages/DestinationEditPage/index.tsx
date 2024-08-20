@@ -7,10 +7,10 @@ import { useRecoilState } from "recoil";
 import { getDestinationApi } from "@/api/destination";
 import { postDestinationRequestDto } from "@/api/destination/type";
 import { useDestinationMutation } from "@/hooks/useDestinationMutation";
-import SpotRegisterLayout from "@/layout/DestinationRegisterLayout";
+import DestinationRegisterLayout from "@/layout/DestinationRegisterLayout";
 import { authState } from "@/recoil/authAtom";
 
-const SpotEditPage = () => {
+const DestinationEditPage = () => {
   const [isApiData, setIsApiData] = useState<boolean>(false);
   const [formData, setFormData] = useState<postDestinationRequestDto>({
     name: "",
@@ -27,7 +27,7 @@ const SpotEditPage = () => {
   const postId = Number(id);
 
   const { data: destinationDetailData } = useQuery({
-    queryKey: ["spotEdit", postId],
+    queryKey: ["destinationEdit", postId],
     queryFn: () => getDestinationApi(postId),
   });
 
@@ -56,7 +56,7 @@ const SpotEditPage = () => {
   }, [destinationDetailData]);
 
   return (
-    <SpotRegisterLayout
+    <DestinationRegisterLayout
       title="여행지 수정하기"
       formData={formData}
       onSubmitClick={handleSubmit}
@@ -65,4 +65,4 @@ const SpotEditPage = () => {
   );
 };
 
-export default SpotEditPage;
+export default DestinationEditPage;

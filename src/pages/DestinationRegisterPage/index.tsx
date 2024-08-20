@@ -3,11 +3,11 @@ import { FieldValues } from "react-hook-form";
 
 import { postDestinationRequestDto } from "@/api/destination/type";
 import { useDestinationMutation } from "@/hooks/useDestinationMutation";
-import SpotRegisterLayout from "@/layout/DestinationRegisterLayout";
+import DestinationRegisterLayout from "@/layout/DestinationRegisterLayout";
 import { authState } from "@/recoil/authAtom";
 import { useRecoilState } from "recoil";
 
-const SpotRegisterPage = () => {
+const DestinationRegisterPage = () => {
   const [formData] = useState({
     name: "",
     tags: [],
@@ -29,9 +29,9 @@ const SpotRegisterPage = () => {
 
   return (
     <>
-      <SpotRegisterLayout title="여행지 등록하기" formData={formData} onSubmitClick={handleSubmit} />
+      <DestinationRegisterLayout title="여행지 등록하기" formData={formData} onSubmitClick={handleSubmit} />
     </>
   );
 };
 
-export default SpotRegisterPage;
+export default DestinationRegisterPage;
