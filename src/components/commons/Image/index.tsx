@@ -12,10 +12,11 @@ type ObjectFit = "fill" | "contain" | "cover" | "scale-down" | "none";
 interface ImageProps {
   imageInfo: ImageInfo;
   objectFit?: ObjectFit;
+  className?: string;
 }
 
-const Image = ({ imageInfo, objectFit = "fill" }: ImageProps) => {
-  return <img className={cx("img", objectFit)} src={imageInfo.src} alt={imageInfo.alt} />;
+const Image = ({ imageInfo, objectFit = "fill", className }: ImageProps) => {
+  return <img className={cx("img", objectFit, className)} src={imageInfo.src} alt={imageInfo.alt} />;
 };
 
 export default Image;
