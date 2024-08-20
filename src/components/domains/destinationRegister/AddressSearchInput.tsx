@@ -5,9 +5,10 @@ import DestinationDetailsInput from "./DestinationDetailsInput";
 interface AddressSearchInput {
   selectedAddress: Location;
   onChange: (updatedAddress: Location) => void;
+  disabled?: boolean;
 }
 
-const AddressSearchInput = ({ selectedAddress, onChange }: AddressSearchInput) => {
+const AddressSearchInput = ({ selectedAddress, onChange, disabled }: AddressSearchInput) => {
   const { handleAddressSearch } = useAddressSearch(onChange);
 
   return (
@@ -18,6 +19,7 @@ const AddressSearchInput = ({ selectedAddress, onChange }: AddressSearchInput) =
         placeholder="주소를 입력해주세요."
         selectedOption={selectedAddress.address}
         onButtonClick={handleAddressSearch}
+        disabled={disabled}
       />
     </>
   );
