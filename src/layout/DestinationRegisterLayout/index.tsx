@@ -7,19 +7,21 @@ import styles from "./DestinationRegisterLayout.module.scss";
 import Button from "@/components/commons/Button";
 
 import LabelWrapper from "@/components/commons/LabelWrapper";
-import { INPUTS } from "@/constants/destinationRegisterAndEditPageInputs";
+import { API_INPUTS, INPUTS } from "@/constants/destinationRegisterAndEditPageInputs";
 import { useImageUpload } from "@/hooks/useImageUpload";
 import { validateFormData } from "@/utils/validateFormData";
 
 const cx = classNames.bind(styles);
 
 interface SpotRegisterLayoutProps {
+  isApiData?: boolean;
   formData: FieldValues;
   title: string;
   onSubmitClick: (data: FieldValues) => void;
 }
 
-const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayoutProps) => {
+const SpotRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: SpotRegisterLayoutProps) => {
+  const inputElement = isApiData ? INPUTS : API_INPUTS;
   const { uploadImageAsync } = useImageUpload();
   const { control, handleSubmit, setFocus } = useForm({
     defaultValues: formData,
@@ -55,15 +57,17 @@ const SpotRegisterLayout = ({ formData, title, onSubmitClick }: SpotRegisterLayo
     <div className={cx("container")}>
       <h1 className={cx("title")}>{title}</h1>
       <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
-        {Object.entries(INPUTS).map(([key, { label, message, isEssential, component: InputComponent, ...rest }]) => (
-          <LabelWrapper
-            key={key}
-            label={label}
-            message={message}
-            isEssential={isEssential}
-            component={<InputComponent formFieldName={key} control={control} {...rest} />}
-          />
-        ))}
+        {Object.entries(inputElement).map(
+          ([key, { label, message, isEssential, component: InputComponent, ...rest }]) => (
+            <LabelWrapper
+              key={key}
+              label={label}
+              message={message}
+              isEssential={isEssential}
+              component={<InputComponent formFieldName={key} control={control} {...rest} />}
+            />
+          ),
+        )}
         <div className={cx("form-btn")}>
           <Button color="blue" variant="secondary" size="large" type="submit">
             {title}

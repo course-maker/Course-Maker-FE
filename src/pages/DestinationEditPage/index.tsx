@@ -11,6 +11,7 @@ import SpotRegisterLayout from "@/layout/DestinationRegisterLayout";
 import { authState } from "@/recoil/authAtom";
 
 const SpotEditPage = () => {
+  const [isApiData, setIsApiData] = useState<boolean>(false);
   const [formData, setFormData] = useState<postDestinationRequestDto>({
     name: "",
     tags: [],
@@ -41,7 +42,9 @@ const SpotEditPage = () => {
 
   useEffect(() => {
     if (destinationDetailData) {
-      const { name, tags, location, pictureLink, content } = destinationDetailData;
+      const { apiData, name, tags, location, pictureLink, content } = destinationDetailData;
+
+      setIsApiData(!!apiData);
       setFormData({
         name,
         tags,
@@ -52,7 +55,14 @@ const SpotEditPage = () => {
     }
   }, [destinationDetailData]);
 
-  return <SpotRegisterLayout title="여행지 수정하기" formData={formData} onSubmitClick={handleSubmit} />;
+  return (
+    <SpotRegisterLayout
+      title="여행지 수정하기"
+      formData={formData}
+      onSubmitClick={handleSubmit}
+      isApiData={isApiData}
+    />
+  );
 };
 
 export default SpotEditPage;

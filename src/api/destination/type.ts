@@ -53,6 +53,7 @@ export interface getDestinationResponseDto {
   location: Location;
   pictureLink: string;
   content: string;
+  apiData: 0 | 1;
 }
 
 /**여행지 전체 목록 조회*/
