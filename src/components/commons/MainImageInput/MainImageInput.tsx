@@ -4,9 +4,10 @@ import DestinationDetailsInput from "../../domains/destinationRegister/Destinati
 interface MainImageInputProps {
   selectedImage: string;
   onChange: (updatedImage: File | null) => void;
+  disabled?: boolean;
 }
 
-const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
+const MainImageInput = ({ selectedImage, onChange, disabled }: MainImageInputProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [inputFileName, setInputFileName] = useState<string>("");
 
@@ -41,6 +42,7 @@ const MainImageInput = ({ selectedImage, onChange }: MainImageInputProps) => {
         placeholder="대표 이미지를 첨부해주세요."
         selectedOption={inputFileName || selectedImage}
         onButtonClick={handleButtonClick}
+        disabled={disabled}
       />
       <input type="file" accept="image/*" ref={fileInputRef} style={{ display: "none" }} onChange={handleImageAttach} />
     </>
