@@ -4,17 +4,21 @@ import MainImageInput from "../MainImageInput/MainImageInput";
 interface MainImageInputControllerProps<ControlType extends FieldValues> {
   formFieldName: Path<ControlType>;
   control: Control<ControlType>;
+  disabled?: boolean;
 }
 
 function MainImageInputController<ControlType extends FieldValues>({
   formFieldName,
   control,
+  disabled,
 }: MainImageInputControllerProps<ControlType>) {
   return (
     <Controller
       control={control}
       name={formFieldName}
-      render={({ field }) => <MainImageInput selectedImage={field.value} onChange={field.onChange} />}
+      render={({ field }) => (
+        <MainImageInput selectedImage={field.value} onChange={field.onChange} disabled={disabled} />
+      )}
     />
   );
 }

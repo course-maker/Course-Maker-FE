@@ -17,12 +17,12 @@ interface DestinationDetailsInputProps extends InputHTMLAttributes<HTMLInputElem
 }
 
 const DestinationDetailsInput = forwardRef<HTMLInputElement, DestinationDetailsInputProps>(
-  ({ title, buttonName, selectedOption, onButtonClick, ...props }, ref) => {
+  ({ title, buttonName, selectedOption, onButtonClick, disabled, ...props }, ref) => {
     const { width } = useWindowSize();
     const isMobileSize = width < 744;
 
     return (
-      <div className={cx("input")} onClick={isMobileSize ? onButtonClick : undefined}>
+      <div className={cx("input")} onClick={isMobileSize && !disabled ? onButtonClick : undefined}>
         <input
           className={cx("input-field", { isAddress: title === "여행지 위치" })}
           ref={ref}
@@ -41,7 +41,13 @@ const DestinationDetailsInput = forwardRef<HTMLInputElement, DestinationDetailsI
             </button>
           )
         ) : (
-          <Button color="blue" variant="secondary" size="small" onClick={onButtonClick} isSquare={true}>
+          <Button
+            color="blue"
+            variant="secondary"
+            size="small"
+            onClick={onButtonClick}
+            isSquare={true}
+            disabled={disabled}>
             {buttonName}
           </Button>
         )}

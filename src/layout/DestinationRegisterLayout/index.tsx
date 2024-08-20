@@ -21,7 +21,7 @@ interface SpotRegisterLayoutProps {
 }
 
 const SpotRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: SpotRegisterLayoutProps) => {
-  const inputElement = isApiData ? INPUTS : API_INPUTS;
+  const inputElement = isApiData ? API_INPUTS : INPUTS;
   const { uploadImageAsync } = useImageUpload();
   const { control, handleSubmit, setFocus } = useForm({
     defaultValues: formData,
