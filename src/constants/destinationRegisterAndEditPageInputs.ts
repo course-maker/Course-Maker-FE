@@ -4,6 +4,7 @@ import QuillEditorController from "@/components/commons/QuillEditorController";
 import AddressSearchInputController from "@/components/domains/destinationRegister/AddressSearchInputController";
 import TitleInputController from "@/components/domains/destinationRegister/TitleInputController";
 
+// fix: label, message string constants로 정리하기
 export const INPUTS = {
   name: {
     label: "여행지 이름",
@@ -25,7 +26,7 @@ export const INPUTS = {
   },
   tags: {
     label: "여행지 태그 선택",
-    message: "여행지에 적합한 태그를 1개 이상 선택해 주세요!",
+    message: "여행지에 적합한 태그를 1개 이상, 5개 이하로 선택해 주세요!",
     isEssential: true,
     component: BadgeListsController,
   },
@@ -62,7 +63,7 @@ export const API_INPUTS = {
   },
   tags: {
     label: "여행지 태그 선택",
-    message: "여행지에 적합한 태그를 1개 이상 선택해 주세요!",
+    message: "여행지에 적합한 태그를 1개 이상, 5개 이하로 선택해 주세요!",
     isEssential: true,
     component: BadgeListsController,
   },

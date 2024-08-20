@@ -10,16 +10,30 @@ const cx = classNames.bind(styles);
 interface BadgeListProps {
   title: string;
   tags: tagResponseDto[];
+  forSearch?: boolean;
   selectedBadges?: tagResponseDto[];
   setSelectedBadges?: React.Dispatch<React.SetStateAction<tagResponseDto[]>>; // Updated type
 }
 
-const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges = [], setSelectedBadges }) => {
+const BadgeList: React.FC<BadgeListProps> = ({
+  title,
+  tags,
+  forSearch = true,
+  selectedBadges = [],
+  setSelectedBadges,
+}) => {
   const toggleBadge = (badge: tagResponseDto) => {
     if (!setSelectedBadges) return;
-    setSelectedBadges((prevSelected) =>
-      prevSelected.includes(badge) ? prevSelected.filter((item) => item !== badge) : [...prevSelected, badge],
-    );
+
+    setSelectedBadges((prevSelected) => {
+      if (prevSelected.includes(badge)) {
+        return prevSelected.filter((item) => item !== badge);
+      } else if (prevSelected.length < 5 || forSearch) {
+        return [...prevSelected, badge];
+      } else {
+        return prevSelected;
+      }
+    });
   };
 
   return (
