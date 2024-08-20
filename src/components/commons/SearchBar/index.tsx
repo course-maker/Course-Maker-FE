@@ -6,9 +6,14 @@ import { IMAGES } from "@/constants/images";
 
 const cx = classNames.bind(styles);
 
-const SearchBar = () => {
+export type BarColor = "blue" | "gray";
+export interface SearchBarProps {
+  color?: BarColor;
+}
+
+const SearchBar = ({ color = "blue" }: SearchBarProps) => {
   return (
-    <div className={cx("search-bar")}>
+    <div className={cx(`search-bar-${color}`, "search-bar")}>
       <Image className={cx("search_img")} imageInfo={IMAGES.GraySerchbarIcon} />
       <input type="text" placeholder="어디로 떠나시나요?" />
     </div>
