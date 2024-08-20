@@ -25,6 +25,8 @@
     }
   }
   .tab-container {
+    @include column-flexbox(center, start);
+    gap: 2rem;
     background-color: #fafafa;
   }
 
