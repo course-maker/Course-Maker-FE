@@ -11,18 +11,18 @@
     padding: 1.2rem;
     font-size: 2rem;
     font-weight: 500;
-    color: #6b7280;
+    color: $gray30;
     border-bottom: 2px solid transparent;
     cursor: pointer;
 
     &.active {
-      color: $Primary_Emerald;
-      border-bottom: 2px solid $Primary_Emerald;
+      color: $primary30;
+      border-bottom: 2px solid $primary30;
       border-radius: 8px 8px 0 0;
     }
 
     &:hover {
-      color: $Dark_Emerald;
+      color: $primary20;
     }
 
     @media (min-width: 640px) {
