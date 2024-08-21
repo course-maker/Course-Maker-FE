@@ -12,24 +12,19 @@ import { busanData, bannerItemsData } from "./data.js";
 
 import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
-import { getCourse } from "@/api/course";
-import { Course } from "@/api/course/type";
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
 const Card = lazy(() => import("@/components/commons/Card/Card"));
 const cx = classNames.bind(styles);
-
 const bannerItems = bannerItemsData;
 
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
-  const [course, setCourse] = useState<Course[]>([]);
   const { isLoading, courseData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
 
-  if (!loading && !isLoading) {
+  if (loading || isLoading) {
     console.log("안됨");
     console.log(tagsData);
-    console.log(course);
   }
   console.log(courseData);
 
@@ -48,21 +43,6 @@ const HomePage = () => {
       }
     };
     fetchTags();
-  }, []);
-
-  useEffect(() => {
-    const fetchLists = async () => {
-      setLoading(true);
-      try {
-        const response = await getCourse(`record=8&page=1&orderBy=NEWEST`);
-        setCourse(response.contents);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchLists();
   }, []);
 
   return (
