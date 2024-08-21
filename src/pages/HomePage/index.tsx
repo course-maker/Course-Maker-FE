@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
 import Section from "@/components/commons/Section/Section";
@@ -8,42 +8,17 @@ import Banner from "@/components/commons/Banner/Banner";
 import Image from "@/components/commons/Image";
 import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
-import { busanData, bannerItemsData } from "./data.js";
-
-import { getTag } from "@/api/tag";
-import { tagResponseDto } from "@/api/tag/type";
+import { bannerItemsData } from "./data.js";
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
+
 const Card = lazy(() => import("@/components/commons/Card/Card"));
 const cx = classNames.bind(styles);
 const bannerItems = bannerItemsData;
 
 const HomePage = () => {
-  const [loading, setLoading] = useState(true);
-  const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
-  const { isLoading, courseData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
-
-  if (loading || isLoading) {
-    console.log("안됨");
-    console.log(tagsData);
-  }
-  console.log(courseData);
-
+  const { courseData: coursePopularData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
+  const { courseData: courseRatingData } = useGetCourseQuery("record=4&page=2&orderBy=RATING");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchTags = async () => {
-      setLoading(true);
-      try {
-        const response = await getTag();
-        setTagsData(response);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchTags();
-  }, []);
 
   return (
     <div data-testid="home-page">
@@ -57,7 +32,7 @@ const HomePage = () => {
             <div
               className={cx("banner")}
               key={item.id}
-              onClick={() => navigate(`search`, { state: { propsTagName: item.title } })}>
+              onClick={() => navigate(`search`, { state: { propsTagName: item.tag } })}>
               <Image imageInfo={item.image} />
               <h1>{item.title}</h1>
             </div>
@@ -81,13 +56,13 @@ const HomePage = () => {
       <Section title="코스메이커 추천">
         <div className={cx("card_container")}>
           <Suspense fallback={<LoadingSkeleton />}>
-            {busanData.map((item) => (
+            {courseRatingData?.contents.map((item) => (
               <Card key={item.id} name={"코스 찾기"} id={item.id}>
                 <div className={cx("card-image-container")}>
-                  <img loading="lazy" alt={item.location} src={item.image} className={cx("card-image")} />
+                  <img loading="lazy" alt={item.title} src={item.pictureLink} className={cx("card-image")} />
                   <div className={cx("card-content")}>
-                    <span className={cx("card-title")}>{item.name}</span>
-                    <span className={cx("card-subtitle")}>{item.location}</span>
+                    <span className={cx("card-title")}>{item.content}</span>
+                    <span className={cx("card-subtitle")}>{item.title}</span>
                   </div>
                 </div>
               </Card>
@@ -99,18 +74,18 @@ const HomePage = () => {
       <Section title="요즘 인기있는 코스">
         <div className={cx("card_container")}>
           <Suspense fallback={<LoadingSkeleton />}>
-            {busanData.map((item) => (
+            {coursePopularData?.contents.map((item) => (
               <Card key={item.id} name={"코스 찾기"} id={item.id}>
                 <div className={cx("card-image-container")}>
-                  <img loading="lazy" alt={item.location} src={item.image} className={cx("card-image")} />
+                  <img loading="lazy" alt={item.title} src={item.pictureLink} className={cx("card-image")} />
                   <div className={cx("card-content")}>
                     <ItemBox
                       color="white"
                       name={"코스 찾기"}
-                      title={item.location}
-                      travelerCount={item.icons.member}
-                      views={item.icons.member}
-                      duration={item.icons.calendar}
+                      title={item.title}
+                      travelerCount={item.travelerCount}
+                      views={item.views}
+                      duration={item.duration}
                     />
                   </div>
                 </div>
