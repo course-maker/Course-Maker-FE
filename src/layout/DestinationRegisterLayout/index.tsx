@@ -8,7 +8,7 @@ import Button from "@/components/commons/Button";
 
 import LabelWrapper from "@/components/commons/LabelWrapper";
 import { API_INPUTS, INPUTS } from "@/constants/destinationRegisterAndEditPageInputs";
-import { useImageUpload } from "@/hooks/useImageUpload";
+import { useHandleImageUpload } from "@/hooks/useFormImageUpload";
 import { validateFormData } from "@/utils/validateFormData";
 
 const cx = classNames.bind(styles);
@@ -22,7 +22,7 @@ interface DestinationRegisterLayoutProps {
 
 const DestinationRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: DestinationRegisterLayoutProps) => {
   const inputElement = isApiData ? API_INPUTS : INPUTS;
-  const { uploadImageAsync } = useImageUpload();
+  const { handleImageUpload } = useHandleImageUpload();
   const { control, handleSubmit, setFocus } = useForm({
     defaultValues: formData,
     values: formData,
@@ -45,10 +45,7 @@ const DestinationRegisterLayout = ({ isApiData, formData, title, onSubmitClick }
     if (!validateFormData(data, setFocus)) return;
 
     if (data.pictureLink instanceof File) {
-      const formData = new FormData();
-      formData.append("images", data.pictureLink);
-      const imageUrlArray = await uploadImageAsync(formData);
-      data.pictureLink = imageUrlArray[0];
+      data.pictureLink = await handleImageUpload(data.pictureLink);
     }
     onSubmitClick(data);
   };

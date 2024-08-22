@@ -1,7 +1,17 @@
-import axios, { isAxiosError, HttpStatusCode, AxiosRequestConfig, AxiosResponse } from "axios";
-import { getAccessToken, retryWithNewAccessToken } from "@/utils/manageTokenInfo";
+import { getAccessToken, handleSessionExpired, retryWithNewAccessToken } from "@/utils/manageTokenInfo";
+import axios, {
+  AxiosRequestConfig,
+  AxiosResponse,
+  HttpStatusCode,
+  InternalAxiosRequestConfig,
+  isAxiosError,
+} from "axios";
 
 export type HttpMethod = "get" | "post" | "put" | "patch" | "delete";
+
+interface CustomAxiosRequestConfig extends AxiosRequestConfig {
+  requireAuth?: boolean;
+}
 
 export interface ApiRequestResponse<T> {
   data?: T | null;
@@ -22,11 +32,12 @@ export const api = axios.create({
 
 // 요청 인터셉터
 api.interceptors.request.use(
-  async (config) => {
-    const accessToken = getAccessToken();
-
-    if (accessToken) {
-      config.headers["Authorization"] = `Bearer ${accessToken}`;
+  async (config: InternalAxiosRequestConfig & CustomAxiosRequestConfig) => {
+    if (config.requireAuth) {
+      const accessToken = getAccessToken();
+      if (accessToken) {
+        config.headers["Authorization"] = `Bearer ${accessToken}`;
+      }
     }
 
     if (config.data instanceof FormData) {
@@ -46,6 +57,7 @@ api.interceptors.response.use(
   (response) => {
     return response;
   },
+
   async (error) => {
     if (isAxiosError(error)) {
       switch (error.response?.status) {
@@ -54,8 +66,8 @@ api.interceptors.response.use(
           break;
         case HttpStatusCode.Unauthorized:
           console.error("401 Error: Unauthorized.");
+          if (error.config?.url === "/v1/auth/reissue") handleSessionExpired();
           return retryWithNewAccessToken(error);
-          break;
         case HttpStatusCode.Forbidden:
           console.error("403 Error: Forbidden.");
           break;
@@ -81,8 +93,8 @@ export async function apiRequest<T, U>(
   method: HttpMethod,
   url: string,
   data?: U,
-  params?: Record<string, unknown>,
-  config?: AxiosRequestConfig,
+  params?: Record<string, unknown> | null,
+  config?: CustomAxiosRequestConfig,
 ): Promise<T> {
   try {
     const request: AxiosRequestConfig = {
