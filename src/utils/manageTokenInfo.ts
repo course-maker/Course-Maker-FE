@@ -33,12 +33,13 @@ export const removeSteps = () => {
   localStorage.removeItem(STEPS_STORAGE[2]);
   localStorage.removeItem(STEPS_STORAGE[3]);
 };
+
 export const refreshAccessToken = async () => {
   const refreshToken = getRefreshToken();
   if (refreshToken) {
     try {
       const response = await axios.post(
-        "/jwt/reissue",
+        "/v1/auth/reissue",
         {},
         {
           headers: {
@@ -57,8 +58,7 @@ export const refreshAccessToken = async () => {
   return null;
 };
 
-export const handleSessionExpired = async () => {
-  // await postLogout();
+export const handleSessionExpired = () => {
   removeTokens();
   alert("세션이 만료되어 다시 로그인 해주세요.");
   window.location.href = PAGE_PATH.signIn;
