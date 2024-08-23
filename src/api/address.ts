@@ -2,7 +2,7 @@ import { BASE_URL } from "./axios";
 
 export const memberAddress = {
   //post
-  validateNickname: "/v1/member/validate-nickname",
+  validateNickname: "/v1/auth/validate/nickname",
   //post
   validateEmail: "/v1/member/validate-email",
   //post
