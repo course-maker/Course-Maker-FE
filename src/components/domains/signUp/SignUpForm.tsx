@@ -1,5 +1,6 @@
 import Button from "@/components/commons/Button";
 import SignInputController from "@/components/commons/SignInputController";
+import { SIGNUP_DEFAULT_VALUES } from "@/constants/signDefaultValues";
 import { SIGN_UP_CONDITION, SIGN_UP_EMAIL_CONDITION } from "@/constants/signInputCondition";
 import { useSignUpMutation } from "@/hooks/useSignUpMutation";
 import { SignUpFormInputs, signUpSchema } from "@/schemas/signUpSchema";
@@ -7,7 +8,7 @@ import { validateNickname } from "@/utils/validateSignUpElements";
 import { zodResolver } from "@hookform/resolvers/zod";
 import classNames from "classnames/bind";
 import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFormState } from "react-hook-form";
 import InputWithButtonController from "./InputWithButtonController";
 import SignTerms from "./SignTerms";
 import styles from "./SignUpForm.module.scss";
@@ -17,7 +18,7 @@ const cx = classNames.bind(styles);
 const SignUpForm = () => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
   const [isEmailValid] = useState<boolean>(false);
-  const [isNicknameValid, setIsNicknameValid] = useState<boolean>(false);
+  const [isNicknameValid] = useState<boolean>(false);
   const [areTermsAccepted, setAreTermsAccepted] = useState<boolean>(false);
 
   const { signUp } = useSignUpMutation();
@@ -25,18 +26,14 @@ const SignUpForm = () => {
   const { control, handleSubmit, setError, watch } = useForm<SignUpFormInputs>({
     resolver: zodResolver(signUpSchema),
     mode: "onChange",
-    defaultValues: {
-      email: "",
-      code: "",
-      password: "",
-      confirmPassword: "",
-      name: "",
-      nickname: "",
-      phoneNumber: "",
-    },
+    defaultValues: SIGNUP_DEFAULT_VALUES,
   });
 
   const nickname = watch("nickname");
+
+  const {
+    errors: { nickname: isNicknameError },
+  } = useFormState({ control, name: "nickname" });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === "Enter") {
@@ -67,23 +64,16 @@ const SignUpForm = () => {
   };
 
   useEffect(() => {
-    const validate = async () => {
-      if (nickname) {
-        const isDuplicate = await validateNickname(nickname);
-        if (isDuplicate) {
-          setError("nickname", {
-            type: "invalid",
-            message: "이미 사용 중인 닉네임입니다. 다른 닉네임을 사용해주세요.",
-          });
-          setIsNicknameValid(false);
-        } else {
-          setIsNicknameValid(true);
-        }
-      }
-    };
+    if (nickname.length > 1 && !isNicknameError) {
+      const timer = setTimeout(() => {
+        validateNickname(nickname, setError);
+      }, 500);
 
-    validate();
-  }, [nickname, setError]);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [nickname, isNicknameError, setError]);
 
   return (
     <form className={cx("form")} onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
