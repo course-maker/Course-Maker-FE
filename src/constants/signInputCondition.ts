@@ -25,6 +25,7 @@ export const SIGN_UP_EMAIL_CONDITION = {
     type: "text",
     placeholder: "이메일을 입력하세요.",
     button: "인증코드 받기",
+    defaultMessage: "이메일로 인증코드를 전송해 주세요.",
   },
   code: {
     label: "인증번호",

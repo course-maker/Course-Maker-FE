@@ -4,7 +4,8 @@ import { SIGNUP_DEFAULT_VALUES } from "@/constants/signDefaultValues";
 import { SIGN_UP_CONDITION, SIGN_UP_EMAIL_CONDITION } from "@/constants/signInputCondition";
 import { useSignUpMutation } from "@/hooks/useSignUpMutation";
 import { SignUpFormInputs, signUpSchema } from "@/schemas/signUpSchema";
-import { validateNickname } from "@/utils/validateSignUpElements";
+import { Status } from "@/type/type";
+import { validateCode, validateEmail, validateNickname } from "@/utils/validateSignUpElements";
 import { zodResolver } from "@hookform/resolvers/zod";
 import classNames from "classnames/bind";
 import { useEffect, useRef, useState } from "react";
@@ -17,19 +18,23 @@ const cx = classNames.bind(styles);
 
 const SignUpForm = () => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
+  const [emailStatus, setEmailStatus] = useState<Status>({ status: "noSent", message: "" });
+  const [codeStatus, setCodeStatus] = useState<Status>({ status: "noSent", message: "" });
+
   const [isEmailValid] = useState<boolean>(false);
-  const [isNicknameValid] = useState<boolean>(false);
   const [areTermsAccepted, setAreTermsAccepted] = useState<boolean>(false);
 
   const { signUp } = useSignUpMutation();
 
-  const { control, handleSubmit, setError, watch } = useForm<SignUpFormInputs>({
+  const { control, handleSubmit, setError, watch, clearErrors, setValue } = useForm<SignUpFormInputs>({
     resolver: zodResolver(signUpSchema),
     mode: "onChange",
     defaultValues: SIGNUP_DEFAULT_VALUES,
   });
 
+  const email = watch("email");
   const nickname = watch("nickname");
+  const code = watch("code");
 
   const {
     errors: { nickname: isNicknameError },
@@ -43,7 +48,7 @@ const SignUpForm = () => {
   };
 
   const onSubmit = (data: SignUpFormInputs) => {
-    if (isEmailValid && isNicknameValid && areTermsAccepted) {
+    if (isEmailValid && areTermsAccepted) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { confirmPassword, ...restData } = data;
       signUp(restData);
@@ -54,14 +59,27 @@ const SignUpForm = () => {
           message: "이메일 중복 확인을 해주세요.",
         });
       }
-      if (nickname && !isNicknameValid) {
-        setError("nickname", {
-          type: "invalid",
-          message: "이미 사용 중인 닉네임입니다. 다른 닉네임을 사용해주세요.",
-        });
-      }
     }
   };
+
+  const handleEmailButtonClick = async () => {
+    clearErrors("email");
+    clearErrors("code");
+    setValue("code", "");
+    setCodeStatus({ status: "noSent", message: "" });
+
+    await validateEmail(email, setError, setEmailStatus, setCodeStatus);
+  };
+
+  const handleCodeButtonClick = async () => {
+    clearErrors("code");
+
+    await validateCode(email, code, setError, setCodeStatus);
+  };
+
+  useEffect(() => {
+    setEmailStatus({ status: "noSent", message: "" });
+  }, [email]);
 
   useEffect(() => {
     if (nickname.length > 1 && !isNicknameError) {
@@ -79,7 +97,14 @@ const SignUpForm = () => {
     <form className={cx("form")} onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
       <div className={cx("form-input")}>
         {(Object.keys(SIGN_UP_EMAIL_CONDITION) as Array<keyof typeof SIGN_UP_EMAIL_CONDITION>).map((key) => (
-          <InputWithButtonController key={key} name={key} control={control} condition={SIGN_UP_EMAIL_CONDITION[key]} />
+          <InputWithButtonController
+            key={key}
+            name={key}
+            control={control}
+            condition={SIGN_UP_EMAIL_CONDITION[key]}
+            status={key === "email" ? emailStatus : codeStatus}
+            onClick={key === "email" ? handleEmailButtonClick : handleCodeButtonClick}
+          />
         ))}
         <div className={cx("form-input-except-email")}>
           {(Object.keys(SIGN_UP_CONDITION) as Array<keyof typeof SIGN_UP_CONDITION>).map((key) => (

@@ -1,19 +1,11 @@
 /**닉네임 중복 검사하기 */
 export type validateNicknameRequestDto = { nickname: string };
 
-export type validateNicknameResponseDto = { isDuplicate: boolean; isInappropriate: false };
-
 /**이메일 중복 검사하기 */
 export type validateEmailRequestDto = { email: string };
 
-export type validateEmailResponseDto = {
-  fromMail: string;
-  toMail: string;
-  title: string;
-  authCode: string;
-  isDuplicate: boolean;
-  isInappropriate: boolean;
-};
+/**인증 코드 검증하기*/
+export type validateCodeRequestDto = { email: string; code: string };
 
 /** 로그인 요청 */
 export type loginRequestDto = {
