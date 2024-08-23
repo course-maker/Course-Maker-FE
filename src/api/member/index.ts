@@ -7,19 +7,20 @@ import {
   logoutResponseDto,
   signUpRequestDto,
   signUpResponseDto,
+  validateCodeRequestDto,
   validateEmailRequestDto,
-  validateEmailResponseDto,
   validateNicknameRequestDto,
-  validateNicknameResponseDto,
 } from "./type";
 
 /**닉네임 중복 검사하기*/
-export const postNickname = (data: validateNicknameRequestDto): Promise<validateNicknameResponseDto> =>
+export const postNickname = (data: validateNicknameRequestDto) =>
   apiRequest("post", memberAddress.validateNickname, data);
 
 /**이메일 중복 검사하기*/
-export const postEmail = (data: validateEmailRequestDto): Promise<validateEmailResponseDto> =>
-  apiRequest("post", memberAddress.validateEmail, data);
+export const postEmail = (data: validateEmailRequestDto) => apiRequest("post", memberAddress.validateEmail, data);
+
+/**인증 코드 검증하기*/
+export const postCode = (data: validateCodeRequestDto) => apiRequest("post", memberAddress.validateCode, data);
 
 /** 로그인 요청 */
 export const postLogin = (data: loginRequestDto): Promise<loginResponseDto> =>

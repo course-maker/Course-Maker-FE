@@ -4,7 +4,9 @@ export const memberAddress = {
   //post
   validateNickname: "/v1/auth/validate/nickname",
   //post
-  validateEmail: "/v1/member/validate-email",
+  validateEmail: "/v1/auth/validate/email",
+  //post
+  validateCode: "/v1/auth/validate/email/code",
   //post
   login: "/v1/auth/login",
   //post
