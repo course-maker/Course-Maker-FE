@@ -1,4 +1,4 @@
-import { getAccessToken, handleSessionExpired, retryWithNewAccessToken } from "@/utils/manageTokenInfo";
+import { getAccessToken, retryWithNewAccessToken } from "@/utils/manageTokenInfo";
 import axios, {
   AxiosRequestConfig,
   AxiosResponse,
@@ -66,7 +66,6 @@ api.interceptors.response.use(
           break;
         case HttpStatusCode.Unauthorized:
           console.error("401 Error: Unauthorized.");
-          if (error.config?.url === "/v1/auth/reissue") handleSessionExpired();
           return retryWithNewAccessToken(error);
         case HttpStatusCode.Forbidden:
           console.error("403 Error: Forbidden.");
