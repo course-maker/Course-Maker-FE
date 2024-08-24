@@ -38,12 +38,20 @@ const InputWithButton = <T extends FieldValues>({
     return false;
   };
 
+  const helperText = () => {
+    if (type === "code" && fieldState.error?.type === "mismatch") {
+      return `${fieldState.error?.message}\n${status.message}`;
+    }
+    return status.message || fieldState.error?.message || condition.defaultMessage;
+  };
+
   return (
     <div className={cx("container")}>
       <SignInput
-        isError={fieldState.invalid || (type === "email" && status.status === "expired")}
+        id={type}
+        isError={fieldState.invalid}
         isVerified={status.status === "success" || status.status === "timer"}
-        helperText={status.message || fieldState.error?.message || condition.defaultMessage}
+        helperText={helperText()}
         disabled={type === "code" && status.status !== "timer"}
         {...condition}
         {...field}
