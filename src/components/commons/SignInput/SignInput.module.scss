@@ -9,14 +9,15 @@
 
   .helper-text {
     @include text-style(1.2, 400, $gray30);
-    height: 1.6rem;
+    @include column-flexbox(start, end);
+    min-height: 1.6rem;
 
-    &.error {
-      color: $red;
+    .verified {
+      color: $primary40;
     }
 
-    &.verified {
-      color: $primary40;
+    .error {
+      color: $red;
     }
   }
 }

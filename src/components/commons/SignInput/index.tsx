@@ -1,6 +1,5 @@
-import { forwardRef, InputHTMLAttributes } from "react";
-
 import classNames from "classnames/bind";
+import { forwardRef, InputHTMLAttributes } from "react";
 import styles from "./SignInput.module.scss";
 
 const cx = classNames.bind(styles);
@@ -13,10 +12,18 @@ interface SignInputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const SignInput = forwardRef<HTMLInputElement, SignInputProps>(
   ({ id, type = "text", isError = false, isVerified = false, helperText, ...props }, ref) => {
+    const helperTextLines = helperText?.split("\n") || [];
+
     return (
       <div className={cx("container")}>
         <input className={cx("input-field", { error: isError })} ref={ref} id={id} type={type} {...props} />
-        <p className={cx("helper-text", { error: isError, verified: isVerified })}>{helperText}</p>
+        <div className={cx("helper-text")}>
+          {helperTextLines.map((line, index) => (
+            <p key={index} className={cx({ error: isError, verified: isVerified })}>
+              {line}
+            </p>
+          ))}
+        </div>
       </div>
     );
   },
