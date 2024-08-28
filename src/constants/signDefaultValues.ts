@@ -7,3 +7,5 @@ export const SIGNUP_DEFAULT_VALUES = {
   nickname: "",
   phoneNumber: "",
 };
+
+export const inputOrder = Object.keys(SIGNUP_DEFAULT_VALUES) as Array<keyof typeof SIGNUP_DEFAULT_VALUES>;

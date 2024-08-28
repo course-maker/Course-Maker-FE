@@ -1,5 +1,6 @@
 import Button from "@/components/commons/Button";
 import SignInput from "@/components/commons/SignInput";
+import { ErrorType } from "@/constants/emailAndCodeStatus";
 import { SignField } from "@/constants/signInputCondition";
 import { Status } from "@/type/type";
 import classNames from "classnames/bind";
@@ -25,13 +26,14 @@ const InputWithButton = <T extends FieldValues>({
   status,
   onClick,
 }: InputWithButtonProps<T>) => {
+  const { defaultMessage, ...rest } = condition;
   const isButtonBlock = () => {
+    const emailErrorException =
+      fieldState.error?.type === ErrorType.EXPIRED ||
+      fieldState.error?.type === ErrorType.UNVERIFIED ||
+      fieldState.error?.type === ErrorType.UNKNOWN;
     if (type === "email") {
-      return (
-        !fieldState.isDirty ||
-        (fieldState.invalid && fieldState.error?.type !== "expired") ||
-        status.status === "pending"
-      );
+      return !fieldState.isDirty || (fieldState.invalid && !emailErrorException) || status.status === "pending";
     } else if (type === "code") {
       return status.status !== "timer";
     }
@@ -39,10 +41,12 @@ const InputWithButton = <T extends FieldValues>({
   };
 
   const helperText = () => {
-    if (type === "code" && fieldState.error?.type === "mismatch") {
+    const codeErrorException =
+      fieldState.error?.type === ErrorType.MISMATCH || fieldState.error?.type === ErrorType.UNVERIFIED;
+    if (type === "code" && codeErrorException) {
       return `${fieldState.error?.message}\n${status.message}`;
     }
-    return status.message || fieldState.error?.message || condition.defaultMessage;
+    return status.message || fieldState.error?.message || defaultMessage;
   };
 
   return (
@@ -53,7 +57,7 @@ const InputWithButton = <T extends FieldValues>({
         isVerified={status.status === "success" || status.status === "timer"}
         helperText={helperText()}
         disabled={type === "code" && status.status !== "timer"}
-        {...condition}
+        {...rest}
         {...field}
       />
       <Button

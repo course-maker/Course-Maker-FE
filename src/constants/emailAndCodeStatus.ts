@@ -25,6 +25,7 @@ export const STATUS_MESSAGES = {
 };
 
 export enum ErrorType {
+  UNVERIFIED = "unverified",
   CONFLICT = "conflict",
   MISMATCH = "mismatch",
   EXPIRED = "expired",
@@ -33,16 +34,18 @@ export enum ErrorType {
 
 export const ERROR_MESSAGES = {
   email: {
-    conflict: "가입된 이메일 입니다. 다른 이메일을 입력해주세요.",
+    unverified: "이메일로 인증코드를 전송해 주세요.",
+    conflict: "가입된 이메일 입니다.\n다른 이메일을 입력해주세요.",
     expired: "인증코드가 만료되었습니다.\n재전송해 주세요.",
-    unknown: "알 수 없는 이메일 오류가 발생했습니다. 다시 시도해 주세요.",
+    unknown: "알 수 없는 이메일 오류가 발생했습니다.\n다시 시도해 주세요.",
   },
   code: {
+    unverified: "인증을 진행해 주세요.",
     mismatch: "인증코드가 일치하지 않습니다.",
-    unknown: "알 수 없는 인증코드 오류가 발생했습니다. 다시 시도해 주세요.",
+    unknown: "알 수 없는 인증코드 오류가 발생했습니다.\n다시 시도해 주세요.",
   },
   nickname: {
     conflict: "이미 사용 중인 닉네임입니다. 다른 닉네임을 사용해주세요.",
-    unknown: "알 수 없는 닉네임 오류가 발생했습니다. 다시 시도해 주세요.",
+    unknown: "알 수 없는 닉네임 오류가 발생했습니다.\n다시 시도해 주세요.",
   },
 };
