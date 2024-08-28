@@ -56,7 +56,6 @@ export const validateEmail = async (
   clearErrors: UseFormClearErrors<SignUpFormInputs>,
 ) => {
   const emailForm: validateEmailRequestDto = { email };
-  stopTimer();
 
   try {
     setEmailStatus({ status: StatusType.PENDING, message: STATUS_MESSAGES.email.pending });
@@ -100,11 +99,13 @@ export const validateCode = async (
         type: ErrorType.MISMATCH,
         message: ERROR_MESSAGES.code.mismatch,
       });
-    else
+    else {
+      stopTimer();
       setError("code", {
         type: ErrorType.UNKNOWN,
         message: ERROR_MESSAGES.code.unknown,
       });
+    }
   }
 };
 

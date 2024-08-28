@@ -30,7 +30,7 @@ export const SIGN_UP_EMAIL_CONDITION = {
   code: {
     label: "인증번호",
     type: "text",
-    placeholder: "인증번호를 입력하세요.",
+    placeholder: "인증코드를 입력하세요.",
     button: "인증 확인",
   },
 };

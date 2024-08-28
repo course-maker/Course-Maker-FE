@@ -1,6 +1,7 @@
 import Button from "@/components/commons/Button";
 import SignInputController from "@/components/commons/SignInputController";
-import { SIGNUP_DEFAULT_VALUES } from "@/constants/signDefaultValues";
+import { StatusType } from "@/constants/emailAndCodeStatus";
+import { inputOrder, SIGNUP_DEFAULT_VALUES } from "@/constants/signDefaultValues";
 import { SIGN_UP_CONDITION, SIGN_UP_EMAIL_CONDITION } from "@/constants/signInputCondition";
 import { useEmailAndCodeValidation } from "@/hooks/useEmailAndCodeValidation";
 import { useNicknameValidation } from "@/hooks/useNicknameValidation";
@@ -8,7 +9,7 @@ import { useSignUpMutation } from "@/hooks/useSignUpMutation";
 import { SignUpFormInputs, signUpSchema } from "@/schemas/signUpSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import classNames from "classnames/bind";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm, useFormState } from "react-hook-form";
 import InputWithButtonController from "./InputWithButtonController";
 import SignTerms from "./SignTerms";
@@ -19,37 +20,71 @@ const cx = classNames.bind(styles);
 const SignUpForm = () => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
   const [areTermsAccepted, setAreTermsAccepted] = useState<boolean>(false);
+  const [submitKey, setSubmitKey] = useState(0);
 
-  const { control, handleSubmit, setError, watch, clearErrors, setValue } = useForm<SignUpFormInputs>({
-    resolver: zodResolver(signUpSchema),
-    mode: "onChange",
-    defaultValues: SIGNUP_DEFAULT_VALUES,
-  });
+  const { control, formState, setError, watch, clearErrors, setValue, trigger, getValues, setFocus } =
+    useForm<SignUpFormInputs>({
+      resolver: zodResolver(signUpSchema),
+      mode: "onChange",
+      defaultValues: SIGNUP_DEFAULT_VALUES,
+    });
 
-  const { emailStatus, codeStatus, handleEmailButtonClick, handleCodeButtonClick } = useEmailAndCodeValidation(
-    watch,
-    setValue,
-    setError,
-    clearErrors,
-  );
+  const { emailStatus, codeStatus, handleEmailButtonClick, handleCodeButtonClick, validateEmailAndCode } =
+    useEmailAndCodeValidation(watch, setValue, setError, clearErrors);
 
   const nickname = watch("nickname");
 
   const {
-    errors: { nickname: isNicknameError },
-  } = useFormState({ control, name: "nickname" });
+    errors: { email: isEmailError, nickname: isNicknameError },
+  } = useFormState({ control, name: ["email", "nickname"] });
 
   useNicknameValidation(nickname, Boolean(isNicknameError), setError);
 
   const { signUp } = useSignUpMutation();
 
-  const onSubmit = (data: SignUpFormInputs) => {
-    if (emailStatus && codeStatus && areTermsAccepted) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { confirmPassword, ...restData } = data;
-      signUp(restData);
+  const customSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setSubmitKey((prev) => prev + 1);
+
+      if (isEmailError) {
+        await trigger(["password", "confirmPassword", "name", "nickname", "phoneNumber"]);
+        return;
+      } else {
+        const isZodValid = await trigger();
+        const isEmailAndCodeValid = validateEmailAndCode();
+
+        if (!isEmailAndCodeValid || !isZodValid || !areTermsAccepted) {
+          return;
+        }
+
+        const { email, name, nickname, password, phoneNumber } = getValues();
+        // console.log({ email, name, nickname, password, phoneNumber });
+        signUp({ email, name, nickname, password, phoneNumber });
+      }
+    },
+    [isEmailError, trigger, validateEmailAndCode, areTermsAccepted, getValues, signUp],
+  );
+
+  useEffect(() => {
+    const errors = formState.errors;
+
+    if (emailStatus.status !== StatusType.SUCCESS) {
+      setFocus("email");
+      return;
+    } else if (codeStatus.status !== StatusType.SUCCESS) {
+      setFocus("code");
+      return;
     }
-  };
+    if (Object.keys(errors).length > 0) {
+      console.log(errors);
+      const firstErrorField = inputOrder.find((field) => errors[field]);
+
+      if (firstErrorField) {
+        setFocus(firstErrorField);
+      }
+    }
+  }, [formState.errors, submitKey, codeStatus.status, emailStatus.status, setFocus]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === "Enter") {
@@ -59,7 +94,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <form className={cx("form")} onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
+    <form className={cx("form")} onSubmit={customSubmit} onKeyDown={handleKeyDown}>
       <div className={cx("form-input")}>
         {(Object.keys(SIGN_UP_EMAIL_CONDITION) as Array<keyof typeof SIGN_UP_EMAIL_CONDITION>).map((key) => (
           <InputWithButtonController
@@ -90,5 +125,4 @@ const SignUpForm = () => {
     </form>
   );
 };
-
 export default SignUpForm;
