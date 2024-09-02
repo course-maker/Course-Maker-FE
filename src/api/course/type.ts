@@ -1,11 +1,15 @@
-import { tagResponseDto } from "@/api/tag/type";
 import { getDestinationResponseDto } from "@/api/destination/type";
+import { tagResponseDto } from "@/api/tag/type";
 
 export interface CourseDestination {
   visitOrder: number;
   date: number;
   destination: getDestinationResponseDto;
 }
+
+type Member = {
+  nickname: string;
+};
 
 export interface Course {
   id: number;
@@ -17,11 +21,15 @@ export interface Course {
   travelType: number;
   pictureLink: string;
   courseDestinations: CourseDestination[];
-  tags?: tagResponseDto[];
-  courseTags?: tagResponseDto[];
-  member: {
-    nickname: string;
-  };
+  tags: tagResponseDto[];
+  member: Member;
+  isMyCourse: boolean;
+  averageRating: number;
+  wishCount: number;
+  reviewCount: number;
+  likeCount: number;
+  isMyWishCourse: boolean;
+  isMyLikeCourse: boolean;
 }
 
 export interface Courses {

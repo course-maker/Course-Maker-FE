@@ -18,6 +18,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   isSquare?: boolean;
   isDisabled?: boolean;
   isSelected?: boolean;
+  isPointer?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -32,14 +33,27 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
  * */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { children, type = "button", color, variant, size, isSquare, isSelected, isDisabled = false, onClick, ...props },
+    {
+      children,
+      type = "button",
+      color,
+      variant,
+      size,
+      isSquare,
+      isSelected,
+      isDisabled = false,
+      isPointer = true,
+      onClick,
+      ...props
+    },
     ref,
   ) => {
     const buttonClass = cx(
       `btn-${color}-${variant}`,
       size ? `btn-size-${size}` : "btn-size-default",
-      isSquare && "btn-square",
       isSelected && `btn-${color}-${variant}-selected`,
+      { "btn-square": isSquare },
+      { "btn-cursor": isPointer },
     );
 
     return (

@@ -6,11 +6,6 @@
   transition: all ease-in-out 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
-  cursor: pointer;
-
-  &:disabled {
-    cursor: default;
-  }
 }
 
 // 버튼 크기별 스타일
@@ -171,6 +166,14 @@
         border: 1px solid $primary30;
       }
     }
+  }
+}
+
+.btn-cursor {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
   }
 }
 

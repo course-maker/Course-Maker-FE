@@ -1,4 +1,5 @@
-import { getCourseDetail, deleteCourseDetail } from "@/api/course";
+import { deleteCourseDetail, getCourseDetail } from "@/api/course";
+import { defaultCourseDetail } from "@/constants/defaultValues";
 import { useKakaoShare } from "@/hooks/useKakaoShare";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,6 +14,8 @@ const CourseHeader = () => {
     queryFn: () => getCourseDetail(Number(id)),
     retry: 0,
   });
+
+  const courseDetail = courseDetailData ?? defaultCourseDetail;
 
   const deleteMutation = useMutation({
     mutationFn: () => deleteCourseDetail(Number(id)),
@@ -60,10 +63,7 @@ const CourseHeader = () => {
 
   return (
     <Header
-      title={courseDetailData?.title}
-      nickname={courseDetailData?.member.nickname}
-      tags={courseDetailData?.tags || []}
-      viewCount={4.2}
+      data={courseDetail}
       onLike={handleLike}
       onBookmark={handleBookmark}
       onKaKaoShare={handleKaKaoShare}
