@@ -1,18 +1,17 @@
-import { ToastContainer } from "react-toastify";
-import styles from "./Header.module.scss";
-import classNames from "classnames/bind";
+import { Course } from "@/api/course/type";
+import Button from "@/components/commons/Button";
+import EditAndDeleteButton from "@/components/commons/EditAndDeleteButton";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
-import { tagResponseDto } from "@/api/tag/type";
 import useToast from "@/hooks/useToast";
+import classNames from "classnames/bind";
+import { ToastContainer } from "react-toastify";
+import styles from "./Header.module.scss";
 
 const cx = classNames.bind(styles);
 
 interface HeaderProps {
-  title?: string;
-  nickname?: string;
-  tags?: tagResponseDto[];
-  viewCount: number;
+  data: Course;
   onLike: () => void;
   onBookmark: () => void;
   onKaKaoShare: () => void;
@@ -20,17 +19,7 @@ interface HeaderProps {
   onDelete: () => void;
 }
 
-const Header = ({
-  title,
-  nickname,
-  tags,
-  viewCount,
-  onLike,
-  onBookmark,
-  onKaKaoShare,
-  onEdit,
-  onDelete,
-}: HeaderProps) => {
+const Header = ({ data, onLike, onBookmark, onKaKaoShare, onEdit, onDelete }: HeaderProps) => {
   const showToast = useToast();
 
   const handleLinkCopy = async () => {
@@ -52,50 +41,43 @@ const Header = ({
   ];
 
   return (
-    <div className={cx("header-container")}>
-      <div className={cx("header-box")}>
-        <div className={cx("content")}>
-          <h1 className={cx("title")}>{title}</h1>
-          <div className={cx("detail-info")}>
-            <span className={cx("nickname")}>작성자 {nickname}</span>
-            <div className={cx("line")}>
-              <Image imageInfo={IMAGES.ColumnLine} />
+    <>
+      <div className={cx("header-container")}>
+        <div className={cx("header-box")}>
+          <div className={cx("content")}>
+            <h1 className={cx("title")}>{data.title}</h1>
+            {data.isMyCourse && <EditAndDeleteButton onEdit={onEdit} onDelete={onDelete} />}
+          </div>
+
+          <div className={cx("content")}>
+            <div className={cx("detail-info")}>
+              <span className={cx("nickname")}>작성자 {data.member.nickname}</span>
+              <div className={cx("line")}>
+                <Image imageInfo={IMAGES.ColumnLine} />
+              </div>
+              <div className={cx("view-count")}>
+                <Image imageInfo={IMAGES.GrayStarIcon} /> {data.reviewCount}
+              </div>
             </div>
-            <div className={cx("view-count")}>
-              <Image imageInfo={IMAGES.GrayStarIcon} /> {viewCount}
+            <div className={cx("icons")}>
+              {buttonData.map((button, index) => (
+                <button key={index} onClick={button.onClick} className={cx("action-btn")}>
+                  <Image imageInfo={button.image} />
+                </button>
+              ))}
             </div>
           </div>
         </div>
-        <div className={cx("actions")}>
-          <div className={cx("role-box")}>
-            <button onClick={onEdit} className={cx("text-btn")}>
-              수정
-            </button>
-            <div className={cx("line")}>
-              <Image imageInfo={IMAGES.ColumnLine} />
-            </div>
-            <button onClick={onDelete} className={cx("text-btn")}>
-              삭제
-            </button>
-          </div>
-          <div className={cx("icons")}>
-            {buttonData.map((button, index) => (
-              <button key={index} onClick={button.onClick} className={cx("action-btn")}>
-                <Image imageInfo={button.image} />
-              </button>
-            ))}
-          </div>
-          <ToastContainer limit={3} />
+        <div className={cx("tags")}>
+          {data.tags?.map((tag, id) => (
+            <Button key={id} color="blue" variant="badge" size="xsmall" isSelected={true} isPointer={false}>
+              {tag.name}
+            </Button>
+          ))}
         </div>
       </div>
-      <div className={cx("tags")}>
-        {tags?.map((tag, id) => (
-          <span key={id} className={cx("tag")}>
-            {tag.name}
-          </span>
-        ))}
-      </div>
-    </div>
+      <ToastContainer limit={3} />
+    </>
   );
 };
 

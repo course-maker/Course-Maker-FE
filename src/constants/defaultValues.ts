@@ -1,0 +1,22 @@
+export const defaultCourseDetail = {
+  id: 0,
+  title: "",
+  content: "",
+  views: 0,
+  duration: 0,
+  travelerCount: 0,
+  travelType: 0,
+  pictureLink: "",
+  courseDestinations: [],
+  tags: [],
+  member: {
+    nickname: "",
+  },
+  isMyCourse: false,
+  averageRating: 0,
+  wishCount: 0,
+  reviewCount: 0,
+  likeCount: 0,
+  isMyWishCourse: false,
+  isMyLikeCourse: false,
+};
