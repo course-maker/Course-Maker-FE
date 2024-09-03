@@ -14,7 +14,7 @@ interface Location {
 }
 
 interface ItemBoxProps {
-  location: Location;
+  location?: Location;
   title?: string;
   tags?: tagResponseDto[];
   travelerCount?: number;
