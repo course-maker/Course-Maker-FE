@@ -38,3 +38,7 @@ export interface Courses {
   pagingSlice: number;
   contents: Course[];
 }
+
+export interface CourseId {
+  courseId: number;
+}

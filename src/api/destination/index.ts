@@ -1,6 +1,7 @@
-import { destinationAddress } from "../address";
+import { destinationAddress, destinationLikeAddress, destinationWishAddress } from "../address";
 import { apiRequest } from "../axios";
 import {
+  DestinationId,
   getDestinationResponseDto,
   GetDestinationsResponseDto,
   postDestinationRequestDto,
@@ -27,3 +28,19 @@ export const patchDestinationApi = (
   postId: number,
   data: postDestinationRequestDto,
 ): Promise<postDestinationResponseDto> => apiRequest("patch", destinationAddress.patchDestination(postId), data);
+
+// 목적지 좋아요 등록
+export const addDestinationLike = (data: DestinationId) =>
+  apiRequest("post", destinationLikeAddress.addLike, data, null, { requireAuth: true });
+
+// 목적지 좋아요 취소
+export const deleteDestinationLike = (id: number) =>
+  apiRequest("delete", destinationLikeAddress.deleteLike(id), null, null, { requireAuth: true });
+
+// 목적지 찜 등록
+export const addDestinationWish = (data: DestinationId) =>
+  apiRequest("post", destinationWishAddress.addWish, data, null, { requireAuth: true });
+
+// 목적지 찜 취소
+export const deleteDestinationWish = (id: number) =>
+  apiRequest("delete", destinationWishAddress.deleteWish(id), null, null, { requireAuth: true });
