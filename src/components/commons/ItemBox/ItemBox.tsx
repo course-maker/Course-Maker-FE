@@ -32,7 +32,7 @@ const ItemBox: React.FC<ItemBoxProps> = ({ location, title, tags, name, traveler
         {name === "코스 찾기" ? (
           <p className={cx("item-location")}>조회수 {views} 회</p>
         ) : (
-          <p className={cx("item-location")}>{location.address}</p>
+          <p className={cx("item-location")}>{location?.address}</p>
         )}
       </div>
       <div>
