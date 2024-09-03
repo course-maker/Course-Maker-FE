@@ -3,11 +3,14 @@ import { useLocation } from "react-router-dom";
 import styles from "./SearchPage.module.scss";
 import classNames from "classnames/bind";
 
+// import BadgeLists from "@/components/commons/BadgeLists/BadgeLists";
 import BadgeList from "@/components/commons/BadgeList/BadgeList";
 import Section from "@/components/commons/Section/Section";
 import Card from "@/components/commons/Card/Card";
 import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
+import SearchBar from "@/components/commons/SearchBar";
 
+import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
 import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
 import { getDestinations } from "@/api/destination";
@@ -17,7 +20,6 @@ import { Courses } from "@/api/course/type";
 
 import groupTags from "@/utils/groupTags";
 import { initialDestination, initialCourse, initialSortOrder, initialPage } from "@/constants/initialValues";
-
 const cx = classNames.bind(styles);
 
 const SearchPage = () => {
@@ -32,10 +34,18 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
 
+  const { isLoading, courseData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
   const observerRef = useRef<IntersectionObserver | null>(null);
   const scrollPositionRef = useRef(0);
   const location = useLocation();
   const { propsTagName } = location.state || {};
+
+  if (loading || isLoading) {
+    console.log("안됨");
+    console.log(tagsData);
+    console.log(course);
+  }
+  console.log(courseData);
 
   const selectedTagsInfo = (params: tagResponseDto[]) => {
     if (tagsData.length > 0 && params.length > 0) {
@@ -188,8 +198,12 @@ const SearchPage = () => {
 
   return (
     <div className={cx("search-page")}>
+      <Section title="" className={cx("container")}>
+        <SearchBar color="gray" />
+      </Section>
       <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-      <Section title="" className={cx("tab-container")}>
+      <Section className={cx("tab-container")}>
+        {/* <BadgeLists selectedBadges={field.value} onChange={field.onChange} />; */}
         {Object.entries(groupedTags).map(([description, tags]) => (
           <BadgeList
             key={description}
