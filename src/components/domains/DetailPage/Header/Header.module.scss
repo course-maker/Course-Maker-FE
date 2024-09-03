@@ -30,10 +30,6 @@
   gap: 0.5rem;
 }
 
-.action-btn {
-  cursor: pointer;
-}
-
 .icons {
   @include flexbox($jc: center);
   gap: 0.9rem;

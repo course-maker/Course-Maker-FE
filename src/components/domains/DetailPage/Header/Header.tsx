@@ -1,45 +1,22 @@
 import { Course } from "@/api/course/type";
 import Button from "@/components/commons/Button";
+import DetailActionButtons from "@/components/commons/DetailActionButtons";
 import EditAndDeleteButton from "@/components/commons/EditAndDeleteButton";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
-import useToast from "@/hooks/useToast";
 import classNames from "classnames/bind";
-import { ToastContainer } from "react-toastify";
 import styles from "./Header.module.scss";
 
 const cx = classNames.bind(styles);
 
 interface HeaderProps {
+  type: "course" | "destination";
   data: Course;
-  onLike: () => void;
-  onBookmark: () => void;
-  onKaKaoShare: () => void;
   onEdit: () => void;
   onDelete: () => void;
 }
 
-const Header = ({ data, onLike, onBookmark, onKaKaoShare, onEdit, onDelete }: HeaderProps) => {
-  const showToast = useToast();
-
-  const handleLinkCopy = async () => {
-    try {
-      const currentUrl = window.location.href;
-      await navigator.clipboard.writeText(currentUrl);
-      showToast("링크가 복사되었습니다.", "success");
-    } catch (err) {
-      console.error("링크 복사에 실패했습니다:", err);
-      showToast("링크 복사에 실패했습니다. 다시 시도해주세요.", "error");
-    }
-  };
-
-  const buttonData = [
-    { onClick: onLike, image: IMAGES.GrayFavoriteIcon },
-    { onClick: onBookmark, image: IMAGES.GrayBookmarkIcon },
-    { onClick: onKaKaoShare, image: IMAGES.GrayKaKaoIcon },
-    { onClick: handleLinkCopy, image: IMAGES.GrayLinkIcon },
-  ];
-
+const Header = ({ type, data, onEdit, onDelete }: HeaderProps) => {
   return (
     <>
       <div className={cx("header-container")}>
@@ -60,11 +37,12 @@ const Header = ({ data, onLike, onBookmark, onKaKaoShare, onEdit, onDelete }: He
               </div>
             </div>
             <div className={cx("icons")}>
-              {buttonData.map((button, index) => (
-                <button key={index} onClick={button.onClick} className={cx("action-btn")}>
-                  <Image imageInfo={button.image} />
-                </button>
-              ))}
+              <DetailActionButtons
+                type={type}
+                data={data}
+                initialLiked={data.isMyLikeCourse}
+                initialWished={data.isMyWishCourse}
+              />
             </div>
           </div>
         </div>
@@ -76,7 +54,6 @@ const Header = ({ data, onLike, onBookmark, onKaKaoShare, onEdit, onDelete }: He
           ))}
         </div>
       </div>
-      <ToastContainer limit={3} />
     </>
   );
 };

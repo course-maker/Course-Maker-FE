@@ -55,3 +55,31 @@ export const courseAddress = {
   //post
   courses: "/v1/courses",
 };
+
+export const courseLikeAddress = {
+  //post
+  addLike: "/v1/courseLikes",
+  //delete
+  deleteLike: (id: number) => `/v1/courseLikes/${id}`,
+};
+
+export const courseWishAddress = {
+  //post
+  addWish: "/v1/coursewishes",
+  //delete
+  deleteWish: (id: number) => `/v1/coursewishes/${id}`,
+};
+
+export const destinationLikeAddress = {
+  //post
+  addLike: "/v1/destinationLike",
+  //delete
+  deleteLike: (id: number) => `/v1/destinationLike/${id}`,
+};
+
+export const destinationWishAddress = {
+  //post
+  addWish: "/v1/destinationwish",
+  //delete
+  deleteWish: (id: number) => `/v1/destinationwish/${id}`,
+};
