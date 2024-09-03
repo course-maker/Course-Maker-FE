@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 // import BadgeLists from "@/components/commons/BadgeLists/BadgeLists";
 import BadgeList from "@/components/commons/BadgeList/BadgeList";
 import Section from "@/components/commons/Section/Section";
-import Card from "@/components/commons/Card/Card";
+import Card2 from "@/components/commons/Card/Card2";
 import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
 import SearchBar from "@/components/commons/SearchBar";
 
@@ -236,10 +236,10 @@ const SearchPage = () => {
         <div className={cx("card_container")}>
           {loading
             ? Array.from({ length: 12 }).map((_, index) => (
-                <Card key={index} name={activeTab} loading={true} item={null} />
+                <Card2 key={index} name={activeTab} loading={true} item={null} />
               ))
             : (activeTab === "코스 찾기" ? course.contents : lists.contents)?.map((item) => (
-                <Card key={item.id} name={activeTab} item={item} loading={false} />
+                <Card2 key={item.id} name={activeTab} item={item} loading={false} />
               ))}
         </div>
         <div ref={loadMoreObserver} style={{ height: 20 }}></div>

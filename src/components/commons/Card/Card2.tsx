@@ -25,7 +25,7 @@ interface CardProps {
   children: any;
 }
 
-const Card: React.FC<CardProps> = ({ item, name, loading, children }) => {
+const Card2: React.FC<CardProps> = ({ item, name, loading, children }) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(loading);
 
@@ -82,4 +82,4 @@ const Card: React.FC<CardProps> = ({ item, name, loading, children }) => {
   );
 };
 
-export default Card;
+export default Card2;
