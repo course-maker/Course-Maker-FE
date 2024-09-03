@@ -22,7 +22,7 @@ interface CardProps {
   item: any;
   name: string;
   loading: boolean;
-  children: any;
+  children?: any;
 }
 
 const Card2: React.FC<CardProps> = ({ item, name, loading, children }) => {
