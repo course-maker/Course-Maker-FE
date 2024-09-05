@@ -1,7 +1,7 @@
 import { tagResponseDto } from "@/api/tag/type";
 
 const groupTags = (tags: tagResponseDto[]): Record<string, tagResponseDto[]> => {
-  return tags.reduce(
+  return tags?.reduce(
     (acc, tag) => {
       if (!acc[tag.description]) {
         acc[tag.description] = [];
