@@ -7,13 +7,13 @@ export const activeTabState = atom<string>({
   default: "여행지 찾기",
 });
 
-export const selectedCourseBadgesState = atom<tagResponseDto[]>({
-  key: "selectedCourseBadgesState",
+export const CourseBadgesState = atom<tagResponseDto[]>({
+  key: "CourseBadgesState",
   default: [],
 });
 
-export const selectedDestinationBadgesState = atom<tagResponseDto[]>({
-  key: "selectedDestinationBadgesState",
+export const DestinationBadgesState = atom<tagResponseDto[]>({
+  key: "DestinationBadgesState",
   default: [],
 });
 
