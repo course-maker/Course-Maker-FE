@@ -10,28 +10,20 @@ const cx = classNames.bind(styles);
 interface BadgeListProps {
   title: string;
   tags: tagResponseDto[];
-  forSearch?: boolean;
   selectedBadges?: tagResponseDto[];
   setSelectedBadges?: React.Dispatch<React.SetStateAction<tagResponseDto[]>>; // Updated type
+  onToggle?: (badge: tagResponseDto) => void;
 }
 
-const BadgeList: React.FC<BadgeListProps> = ({
-  title,
-  tags,
-  forSearch = true,
-  selectedBadges = [],
-  setSelectedBadges,
-}) => {
+const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges = [], setSelectedBadges, onToggle }) => {
   const toggleBadge = (badge: tagResponseDto) => {
     if (!setSelectedBadges) return;
 
     setSelectedBadges((prevSelected) => {
-      if (prevSelected.includes(badge)) {
+      if (prevSelected.some((prev) => prev.id === badge.id)) {
         return prevSelected.filter((item) => item !== badge);
-      } else if (prevSelected.length < 5 || forSearch) {
-        return [...prevSelected, badge];
       } else {
-        return prevSelected;
+        return [...prevSelected, badge];
       }
     });
   };
@@ -49,8 +41,11 @@ const BadgeList: React.FC<BadgeListProps> = ({
             color="blue"
             variant="badge"
             size="xsmall"
-            isSelected={selectedBadges.includes(tag) ? true : false} // Corrected argument type
-            onClick={() => toggleBadge(tag)}>
+            isSelected={selectedBadges.some((badge) => badge.id === tag.id)}
+            onClick={() => {
+              if (onToggle) onToggle(tag);
+              else toggleBadge(tag);
+            }}>
             {tag.name}
           </Button>
         ))}

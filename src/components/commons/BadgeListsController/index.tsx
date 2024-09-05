@@ -15,7 +15,7 @@ const BadgeListsController = <ControlType extends FieldValues>({
       control={control}
       name={formFieldName}
       render={({ field }) => {
-        return <BadgeLists selectedBadges={field.value} onChange={field.onChange} forSearch={false} />;
+        return <BadgeLists selectedBadges={field.value} onChange={field.onChange} />;
       }}
     />
   );

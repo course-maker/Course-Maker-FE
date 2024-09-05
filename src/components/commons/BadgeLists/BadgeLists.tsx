@@ -11,16 +11,18 @@ const cx = classNames.bind(styles);
 interface BadgeListProps {
   selectedBadges: tagResponseDto[];
   onChange: (updatedDestinationBadges: tagResponseDto[]) => void;
-  forSearch?: boolean;
 }
 
-const BadgeLists = ({ selectedBadges, onChange, forSearch }: BadgeListProps) => {
+const BadgeLists = ({ selectedBadges, onChange }: BadgeListProps) => {
   const [tagsData, setTagsData] = useState<tagResponseDto[]>([]);
-  const [selectedDestinationBadges, setSelectedDestinationBadges] = useState<tagResponseDto[]>(selectedBadges);
 
-  useEffect(() => {
-    onChange(selectedDestinationBadges);
-  }, [selectedDestinationBadges, onChange]);
+  const handleBadgeToggle = (badge: tagResponseDto) => {
+    if (selectedBadges.some((item) => item.id === badge.id)) {
+      onChange(selectedBadges.filter((item) => item.id !== badge.id));
+    } else if (selectedBadges.length < 5) {
+      onChange([...selectedBadges, badge]);
+    } else return;
+  };
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -43,9 +45,8 @@ const BadgeLists = ({ selectedBadges, onChange, forSearch }: BadgeListProps) => 
           key={description}
           title={description}
           tags={tags}
-          forSearch={forSearch}
-          selectedBadges={selectedDestinationBadges}
-          setSelectedBadges={setSelectedDestinationBadges}
+          selectedBadges={selectedBadges}
+          onToggle={handleBadgeToggle}
         />
       ))}
     </div>
