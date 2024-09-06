@@ -37,12 +37,7 @@ const Header = ({ type, data, onEdit, onDelete }: HeaderProps) => {
               </div>
             </div>
             <div className={cx("icons")}>
-              <DetailActionButtons
-                type={type}
-                data={data}
-                initialLiked={data.isMyLikeCourse}
-                initialWished={data.isMyWishCourse}
-              />
+              <DetailActionButtons type={type} data={data} />
             </div>
           </div>
         </div>

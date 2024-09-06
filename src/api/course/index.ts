@@ -7,7 +7,8 @@ import { Course, CourseId, Courses } from "./type";
 export const getCourse = (params: string): Promise<Courses> => apiRequest("get", `${coursesAddress.getList}?${params}`);
 
 // 코스 상세정보 조회
-export const getCourseDetail = (id: number): Promise<Course> => apiRequest("get", coursesAddress.getDetail(id));
+export const getCourseDetail = (id: number): Promise<Course> =>
+  apiRequest("get", coursesAddress.getDetail(id), null, null, { requireAuth: true });
 
 // 코스 삭제
 export const deleteCourseDetail = (id: number): Promise<Course> => apiRequest("delete", coursesAddress.delete(id));
