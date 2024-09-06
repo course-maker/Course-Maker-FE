@@ -1,38 +1,21 @@
-import React from "react";
-import classNames from "classnames/bind";
-import styles from "./CardContent.module.scss";
+import { CourseDestination } from "@/api/course/type";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
+import classNames from "classnames/bind";
+import React from "react";
+import styles from "./CardContent.module.scss";
 
 const cx = classNames.bind(styles);
 
-interface DestinationItem {
-  destination: {
-    id: number;
-    name: string;
-    pictureLink: string;
-    location: {
-      address: string;
-    };
-  };
-}
-
-interface RatingValues {
-  likes: string;
-  bookmarks: string;
-  rating: string;
-}
-
 interface CardContentProps {
-  item: DestinationItem;
-  ratingValues: RatingValues;
+  item: CourseDestination;
 }
 
-export const CardContent: React.FC<CardContentProps> = ({ item, ratingValues }) => {
+export const CardContent: React.FC<CardContentProps> = ({ item }) => {
   const ratingData = [
-    { icon: IMAGES.BlackFavoriteIcon, value: ratingValues.likes },
-    { icon: IMAGES.BlackBookmarkIcon, value: ratingValues.bookmarks },
-    { icon: IMAGES.BlackStarIcon, value: ratingValues.rating },
+    { icon: IMAGES.BlackFavoriteIcon, value: item.destination.likeCount },
+    { icon: IMAGES.BlackBookmarkIcon, value: item.destination.wishCount },
+    { icon: IMAGES.BlackStarIcon, value: item.destination.averageRating },
   ];
 
   return (

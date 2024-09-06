@@ -1,14 +1,21 @@
 .list-container {
   @include column-flexbox($jc: start, $ai: start);
-  height: 47rem;
-  flex-shrink: 0;
-  overflow-y: scroll;
+  height: 40rem;
+  overflow: scroll;
   overflow-x: hidden;
 
   .list-box {
     @include column-flexbox($jc: start, $ai: start);
-    width: 46.9rem;
     flex-shrink: 0;
-    gap: 1.7rem;
+    gap: 1.8rem;
+    width: 100%;
+
+    & > a {
+      width: 100%;
+    }
+
+    & > div {
+      width: 100%;
+    }
   }
 }
