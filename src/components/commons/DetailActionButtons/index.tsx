@@ -13,7 +13,7 @@ import { useKakaoShare } from "@/hooks/useKakaoShare";
 import useToast from "@/hooks/useToast";
 import { useMutation } from "@tanstack/react-query";
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import styles from "./DetailActionButtons.module.scss";
 
@@ -22,13 +22,11 @@ const cx = classNames.bind(styles);
 interface DetailActionButtonsProps {
   type: "course" | "destination";
   data: Course;
-  initialLiked: boolean;
-  initialWished: boolean;
 }
 
-const DetailActionButtons = ({ type, data, initialLiked, initialWished }: DetailActionButtonsProps) => {
-  const [isLiked, setIsLiked] = useState(initialLiked);
-  const [isWished, setIsWished] = useState(initialWished);
+const DetailActionButtons = ({ type, data }: DetailActionButtonsProps) => {
+  const [isLiked, setIsLiked] = useState(data.isMyLikeCourse);
+  const [isWished, setIsWished] = useState(data.isMyWishCourse);
   const { isAuth } = useAuth();
   const { shareMessage, isKakaoInitialized } = useKakaoShare();
   const showToast = useToast();
@@ -103,6 +101,14 @@ const DetailActionButtons = ({ type, data, initialLiked, initialWished }: Detail
       postWishMutation.mutate();
     }
   };
+
+  useEffect(() => {
+    setIsLiked(data.isMyLikeCourse);
+  }, [data.isMyLikeCourse]);
+
+  useEffect(() => {
+    setIsWished(data.isMyWishCourse);
+  }, [data.isMyWishCourse]);
 
   const handleKaKaoShare = () => {
     if (isKakaoInitialized) {
