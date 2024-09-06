@@ -14,7 +14,6 @@ import useToast from "@/hooks/useToast";
 import { useMutation } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
 import styles from "./DetailActionButtons.module.scss";
 
 const cx = classNames.bind(styles);
@@ -149,7 +148,6 @@ const DetailActionButtons = ({ type, data }: DetailActionButtonsProps) => {
           <Image imageInfo={button.image} />
         </button>
       ))}
-      <ToastContainer limit={3} />
     </>
   );
 };

@@ -5,6 +5,7 @@ import EditAndDeleteButton from "@/components/commons/EditAndDeleteButton";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
 import classNames from "classnames/bind";
+import { ToastContainer } from "react-toastify";
 import styles from "./Header.module.scss";
 
 const cx = classNames.bind(styles);
@@ -49,6 +50,7 @@ const Header = ({ type, data, onEdit, onDelete }: HeaderProps) => {
           ))}
         </div>
       </div>
+      <ToastContainer limit={3} />
     </>
   );
 };
