@@ -38,15 +38,7 @@ export const refreshAccessToken = async () => {
   const refreshToken = getRefreshToken();
   if (refreshToken) {
     try {
-      const response = await axios.post(
-        "/v1/auth/reissue",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${refreshToken}`,
-          },
-        },
-      );
+      const response = await axios.post("/v1/auth/reissue", { refreshToken });
       const newAccessToken = response.data.accessToken;
       saveAccessToken(newAccessToken);
       return newAccessToken;

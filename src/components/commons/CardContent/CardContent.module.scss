@@ -2,16 +2,15 @@
   @include inline-flexbox($jc: center, $ai: start);
   gap: 1rem;
   border-radius: 1rem;
-  width: 45.2195rem;
-  height: 14.5374rem;
-  flex-shrink: 0;
+  width: 100%;
+  height: 12rem;
   box-shadow: 0rem 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
-  padding: 1.24rem 0 1.27rem 1.08rem;
+  padding: 1.2rem;
+  background-color: $white;
 
   &__image-container {
-    width: 14.899rem;
-    height: 12.0194rem;
-    flex-shrink: 0;
+    width: 40%;
+    height: 100%;
     overflow: hidden;
     border-radius: 0.5rem;
   }
@@ -25,27 +24,27 @@
   &__info {
     @include column-flexbox($jc: start, $ai: start);
     width: 100%;
-    gap: 4.06rem;
+    gap: 3rem;
   }
 
   &__details {
     @include column-flexbox($jc: start, $ai: start);
-    gap: 1rem;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
   }
 
   &__name {
-    @include text-style(1.8, 700, #363636);
+    @include text-style(1.6, 700, $black30);
   }
 
   &__address {
-    @include text-style(1.3, 500, #363636);
+    @include text-style(1.2, 500, $black30);
   }
 
   &__ratings {
     @include inline-flexbox($jc: center, $ai: center);
-    padding-left: 55%;
     gap: 0.64rem;
-    flex-shrink: 0;
+    align-self: self-end;
   }
 
   &__rating-item {

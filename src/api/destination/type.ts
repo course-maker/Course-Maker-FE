@@ -49,11 +49,20 @@ export interface getDestinationResponseDto {
   id: number;
   nickname: string;
   name: string;
+  views: number;
   tags: Tag[];
   location: Location;
   pictureLink: string;
   content: string;
-  apiData: 0 | 1;
+  averageRating: number;
+  isMyDestination: boolean;
+  disabled: boolean | null;
+  isApiData: boolean;
+  wishCount: number;
+  reviewCount: number;
+  likeCount: number;
+  isMyWishDestination: boolean;
+  isMyLikeDestination: boolean;
 }
 
 /**여행지 전체 목록 조회*/
