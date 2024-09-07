@@ -1,9 +1,0 @@
-.container {
-  @include column-flexbox($jc: center, $ai: center);
-  width: 100%;
-}
-
-.section {
-  width: 100%;
-  @include column-flexbox($jc: center, $ai: center);
-}

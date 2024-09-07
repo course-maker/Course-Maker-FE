@@ -38,7 +38,7 @@ export const refreshAccessToken = async () => {
   const refreshToken = getRefreshToken();
   if (refreshToken) {
     try {
-      const response = await axios.post("/v1/auth/reissue", { refreshToken });
+      const response = await axios.post("http://api.course-maker.net:8080/v1/auth/reissue", { refreshToken });
       return response.data.accessToken;
     } catch (error) {
       console.error("Failed to refresh access token", error);
