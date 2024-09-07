@@ -17,7 +17,7 @@ const SearchBadgeLists = ({ activeTab }: SearchBadgeListProps) => {
   const [CourseBadges, setCourseBadges] = useRecoilState(CourseBadgesState);
   const [DestinationBadges, setDestinationBadges] = useRecoilState(DestinationBadgesState);
   const { tagData } = useBadgeListViewModel();
-  const groupedTags = groupTags(tagData) || {};
+  const groupedTags = groupTags(tagData || []) || {};
 
   const selectedBadges = activeTab === "코스 찾기" ? CourseBadges : DestinationBadges;
   const setSelectedBadges = activeTab === "코스 찾기" ? setCourseBadges : setDestinationBadges;

@@ -35,13 +35,13 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
 
-  const { isLoading, courseData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
+  const { isCourseLoading, courseData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
   const observerRef = useRef<IntersectionObserver | null>(null);
   const scrollPositionRef = useRef(0);
   const location = useLocation();
   const { propsTagName } = location.state || {};
 
-  if (loading || isLoading) {
+  if (loading || isCourseLoading) {
     console.log("안됨");
     console.log(tagsData);
     console.log(course);
