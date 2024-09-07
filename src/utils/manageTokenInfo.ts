@@ -39,9 +39,7 @@ export const refreshAccessToken = async () => {
   if (refreshToken) {
     try {
       const response = await axios.post("/v1/auth/reissue", { refreshToken });
-      const newAccessToken = response.data.accessToken;
-      saveAccessToken(newAccessToken);
-      return newAccessToken;
+      return response.data.accessToken;
     } catch (error) {
       console.error("Failed to refresh access token", error);
       return null;
