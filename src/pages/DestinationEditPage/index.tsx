@@ -42,9 +42,9 @@ const DestinationEditPage = () => {
 
   useEffect(() => {
     if (destinationDetailData) {
-      const { apiData, name, tags, location, pictureLink, content } = destinationDetailData;
+      const { isApiData, name, tags, location, pictureLink, content } = destinationDetailData;
 
-      setIsApiData(!!apiData);
+      setIsApiData(!!isApiData);
       setFormData({
         name,
         tags,
