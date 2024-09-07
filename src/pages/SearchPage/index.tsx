@@ -11,6 +11,7 @@ import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
 import SearchBar from "@/components/commons/SearchBar";
 
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
+import { useBadgeListViewModel } from "@/hooks/business/useBadgeListViewModel";
 import { getTag } from "@/api/tag";
 import { tagResponseDto } from "@/api/tag/type";
 import { getDestinations } from "@/api/destination";
@@ -46,6 +47,8 @@ const SearchPage = () => {
     console.log(course);
   }
   console.log(courseData);
+
+  console.log(useBadgeListViewModel());
 
   const selectedTagsInfo = (params: tagResponseDto[]) => {
     if (tagsData.length > 0 && params.length > 0) {

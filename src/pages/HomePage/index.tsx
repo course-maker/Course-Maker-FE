@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { useRecoilState } from "recoil";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
 import Section from "@/components/commons/Section/Section";
@@ -10,6 +11,8 @@ import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
 import { bannerItemsData } from "./data.js";
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
+import { DestinationBadgesState } from "@/recoil/serviceAtom";
+import { tagResponseDto } from "@/api/tag/type";
 
 const Card = lazy(() => import("@/components/commons/Card/Card"));
 const cx = classNames.bind(styles);
@@ -18,8 +21,13 @@ const bannerItems = bannerItemsData;
 const HomePage = () => {
   const { courseData: coursePopularData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
   const { courseData: courseRatingData } = useGetCourseQuery("record=4&page=2&orderBy=RATING");
+  const [DestinationBadges, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
   const navigate = useNavigate();
 
+  const handleClick = (tag: tagResponseDto) => {
+    setDestinationBadgesState([...DestinationBadges, tag]);
+    navigate(`search`, { state: { propsTagName: tag.name } });
+  };
   return (
     <div data-testid="home-page">
       <Section title="" className={cx("container")}>
@@ -29,10 +37,7 @@ const HomePage = () => {
       <Section title="어떤 여행을 할까요? ">
         <div className={cx("banner-container")}>
           {bannerItems.small.map((item) => (
-            <div
-              className={cx("banner")}
-              key={item.id}
-              onClick={() => navigate(`search`, { state: { propsTagName: item.tag } })}>
+            <div className={cx("banner")} key={item.id} onClick={() => handleClick(item.tag)}>
               <Image imageInfo={item.image} />
               <h1>{item.title}</h1>
             </div>
