@@ -47,7 +47,7 @@ const SearchPage = () => {
     console.log(course);
   }
   console.log(courseData);
-
+  console.log("test");
   console.log(useBadgeListViewModel());
 
   const selectedTagsInfo = (params: tagResponseDto[]) => {
