@@ -2,17 +2,46 @@
   @include flexbox($ai: end);
   gap: 1rem;
 
+  @include responsive("T") {
+    @include column-flexbox(center, center);
+    gap: 5rem;
+    max-width: 50rem;
+  }
+
   &__main-image-container {
     border-radius: 2rem;
     overflow: hidden;
     height: 40rem;
-    width: 50%;
+    width: 40rem;
     flex-shrink: 0;
+
+    @include responsive("T") {
+      @include column-flexbox(center, center);
+    }
+
+    @include responsive("M") {
+      width: 90%;
+      padding-top: 90%;
+      height: 0;
+      position: relative;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
   }
 }
 
 .destination-section {
-  width: 50%;
+  width: 40rem;
+
+  @include responsive("T") {
+    width: 100%;
+  }
 
   &__header {
     @include column-flexbox();
@@ -22,10 +51,18 @@
 
   &__title {
     @include text-style(2.2, 700, #363636);
+
+    @include responsive("M") {
+      font-size: 2rem;
+    }
   }
 
   &__subtitle {
     @include text-style(1.2, 400, #8c8c8c);
+
+    @include responsive("M") {
+      font-size: 1.1rem;
+    }
   }
 
   &__cards {

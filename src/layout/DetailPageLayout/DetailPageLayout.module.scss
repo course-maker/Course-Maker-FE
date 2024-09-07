@@ -1,0 +1,14 @@
+.container {
+  @include column-flexbox(center, center);
+  gap: 3rem;
+
+  .header {
+    width: 100%;
+  }
+
+  .main {
+    @include responsive("T") {
+      padding: 0 1rem;
+    }
+  }
+}

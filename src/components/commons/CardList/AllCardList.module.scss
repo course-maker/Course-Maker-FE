@@ -1,8 +1,17 @@
 .list-container {
   @include column-flexbox($jc: start, $ai: start);
   height: 40rem;
-  overflow: scroll;
+  overflow-y: scroll;
   overflow-x: hidden;
+
+  @include responsive("T") {
+    max-height: 40rem;
+    height: 100%;
+  }
+
+  @include responsive("M") {
+    max-height: 35rem;
+  }
 
   .list-box {
     @include column-flexbox($jc: start, $ai: start);
