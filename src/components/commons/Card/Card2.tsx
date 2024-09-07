@@ -68,7 +68,7 @@ const Card2: React.FC<CardProps> = ({ item, name, loading, children }) => {
             name={name}
             location={item.courseDestinations[0].destination.location}
             title={item.title}
-            tags={item.courseTags || []}
+            tags={item.tags || []}
             travelerCount={item.travelerCount}
             views={item.views}
             duration={item.duration}
