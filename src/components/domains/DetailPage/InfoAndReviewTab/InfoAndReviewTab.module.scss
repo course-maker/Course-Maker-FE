@@ -1,0 +1,15 @@
+.tabs {
+  @include text-style(1.6, 700, $black30);
+  @include flexbox(around, center);
+  width: 100%;
+  border-bottom: solid 0.1rem $gray20;
+  padding-bottom: 2rem;
+
+  &-btn {
+    cursor: pointer;
+
+    &.isSelected {
+      color: $primary40;
+    }
+  }
+}

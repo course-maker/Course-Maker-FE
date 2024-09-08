@@ -83,3 +83,13 @@ export const destinationWishAddress = {
   //delete
   deleteWish: (id: number) => `/v1/destinationwish/${id}`,
 };
+
+export const courseReviewAddress = {
+  //get
+  getCourseReviews: "/v1/coursereview",
+};
+
+export const destinationReviewAddress = {
+  //get
+  getDestinationReviews: "/v1/destinationreview",
+};

@@ -1,7 +1,7 @@
-import { courseLikeAddress, coursesAddress, courseWishAddress } from "../address";
+import { courseLikeAddress, courseReviewAddress, coursesAddress, courseWishAddress } from "../address";
 import { apiRequest } from "../axios";
 import { postCourse } from "./register";
-import { Course, CourseId, Courses } from "./type";
+import { Course, CourseId, Courses, getCourseReviewsResponseDto, PagenationOptions } from "./type";
 
 // 코스 목록 조회
 export const getCourse = (params: string): Promise<Courses> => apiRequest("get", `${coursesAddress.getList}?${params}`);
@@ -31,3 +31,7 @@ export const addCourseWish = (data: CourseId) =>
 // 코스 찜 취소
 export const deleteCourseWish = (id: number) =>
   apiRequest("delete", courseWishAddress.deleteWish(id), null, null, { requireAuth: true });
+
+//코스 리뷰 조회
+export const getCourseReviews = (qs: PagenationOptions): Promise<getCourseReviewsResponseDto> =>
+  apiRequest("get", courseReviewAddress.getCourseReviews, null, qs);
