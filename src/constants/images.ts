@@ -25,6 +25,7 @@ import courseMakerLogo from "@/assets/images/course_maker_logo.svg";
 import courseMakerLogoMobile from "@/assets/images/course_maker_logo_mobile.svg";
 import CultureIcon from "@/assets/images/culture.svg";
 import destinationPin from "@/assets/images/destinationPin.svg";
+import destinationPinStress from "@/assets/images/destinationPin_stress.svg";
 import PetIcon from "@/assets/images/dog.svg";
 import Down_arrow from "@/assets/images/down_arrow.svg";
 import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
@@ -339,5 +340,9 @@ export const IMAGES = {
   grayTransitTriangle: {
     src: grayTransitTriangle,
     alt: "삼각형",
+  },
+  destinationPinStress: {
+    src: destinationPinStress,
+    alt: "여행지 핀 강조",
   },
 };

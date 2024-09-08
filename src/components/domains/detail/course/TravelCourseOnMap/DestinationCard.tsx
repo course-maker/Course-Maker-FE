@@ -9,14 +9,16 @@ interface DestinationCardProps {
   number: number;
   title: string;
   address: string;
+  isSelected: boolean;
+  onClick: () => void;
 }
 
-const DestinationCard = ({ number, title, address }: DestinationCardProps) => {
+const DestinationCard = ({ number, title, address, isSelected, onClick }: DestinationCardProps) => {
   return (
-    <div className={cx("container")}>
+    <div className={cx("container")} onClick={onClick}>
       <div className={cx("content")}>
         <div className={cx("icon")}>
-          <Image imageInfo={IMAGES.destinationPin} />
+          {isSelected ? <Image imageInfo={IMAGES.destinationPinStress} /> : <Image imageInfo={IMAGES.destinationPin} />}
           <span className={cx("icon-num")}>{number}</span>
         </div>
         <div className={cx("text")}>

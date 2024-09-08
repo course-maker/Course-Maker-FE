@@ -6,17 +6,14 @@ const cx = classNames.bind(styles);
 interface DateTabProps {
   days: number[];
   selectedDate: number;
-  setSelectedDate: React.Dispatch<React.SetStateAction<number>>;
+  onClick: (day: number) => void;
 }
 
-const DateTab = ({ days, selectedDate, setSelectedDate }: DateTabProps) => {
+const DateTab = ({ days, selectedDate, onClick }: DateTabProps) => {
   return (
     <div className={cx("container")}>
       {days.map((day) => (
-        <button
-          key={day}
-          className={cx("btn", { isSelected: day === selectedDate })}
-          onClick={() => setSelectedDate(day)}>
+        <button key={day} className={cx("btn", { isSelected: day === selectedDate })} onClick={() => onClick(day)}>
           DAY {day}
         </button>
       ))}
