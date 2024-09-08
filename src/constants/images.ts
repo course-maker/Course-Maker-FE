@@ -24,6 +24,7 @@ import courseInfoPeople from "@/assets/images/course_info_people.svg";
 import courseMakerLogo from "@/assets/images/course_maker_logo.svg";
 import courseMakerLogoMobile from "@/assets/images/course_maker_logo_mobile.svg";
 import CultureIcon from "@/assets/images/culture.svg";
+import destinationPin from "@/assets/images/destinationPin.svg";
 import PetIcon from "@/assets/images/dog.svg";
 import Down_arrow from "@/assets/images/down_arrow.svg";
 import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
@@ -319,5 +320,9 @@ export const IMAGES = {
   courseInfoPeople: {
     src: courseInfoPeople,
     alt: "여행추천인원 아이콘",
+  },
+  destinationPin: {
+    src: destinationPin,
+    alt: "여행지 핀",
   },
 };
