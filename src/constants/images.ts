@@ -28,12 +28,15 @@ import destinationPin from "@/assets/images/destinationPin.svg";
 import PetIcon from "@/assets/images/dog.svg";
 import Down_arrow from "@/assets/images/down_arrow.svg";
 import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
+import grayBus from "@/assets/images/gray_bus.svg";
+import grayCar from "@/assets/images/gray_car.svg";
 import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
 import GrayKaKaoIcon from "@/assets/images/gray_kakao.svg";
 import GrayLinkIcon from "@/assets/images/gray_link.svg";
 import GrayPhotoIcon from "@/assets/images/gray_photo.svg";
 import GraySearchIcon from "@/assets/images/gray_search.svg";
 import GrayStarIcon from "@/assets/images/gray_star.svg";
+import grayTransitTriangle from "@/assets/images/gray_transit_triangle.svg";
 import grayTriangle from "@/assets/images/gray_triangle.svg";
 import Home_left_test from "@/assets/images/home_left_test.svg";
 import Home_right_test from "@/assets/images/home_right_test.svg";
@@ -324,5 +327,17 @@ export const IMAGES = {
   destinationPin: {
     src: destinationPin,
     alt: "여행지 핀",
+  },
+  grayCar: {
+    src: grayCar,
+    alt: "자가용 아이콘",
+  },
+  grayBus: {
+    src: grayBus,
+    alt: "대중교통 아이콘",
+  },
+  grayTransitTriangle: {
+    src: grayTransitTriangle,
+    alt: "삼각형",
   },
 };
