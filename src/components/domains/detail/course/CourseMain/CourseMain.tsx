@@ -5,11 +5,11 @@ import { defaultCourseDetail } from "@/constants/defaultValues";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { useParams } from "react-router-dom";
-import styles from "./CourseDetailInfo.module.scss";
+import styles from "./CourseMain.module.scss";
 
 const cx = classNames.bind(styles);
 
-const CourseDetailInfo = () => {
+const CourseMain = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data: courseDetailData } = useQuery({
@@ -43,4 +43,4 @@ const CourseDetailInfo = () => {
   );
 };
 
-export default CourseDetailInfo;
+export default CourseMain;
