@@ -4,7 +4,6 @@ import DestinationCard from "./DestinationCard";
 
 interface DestinationListProps {
   duration: number;
-  courseDestinations: CourseDestination[];
   selectedDestinations: CourseDestination[];
   selectedDate: number;
   setSelectedDate: React.Dispatch<React.SetStateAction<number>>;

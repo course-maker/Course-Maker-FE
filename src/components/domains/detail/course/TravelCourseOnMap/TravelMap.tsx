@@ -1,6 +1,6 @@
 import { CourseDestination } from "@/api/course/register";
-import { Map, MapMarker, Polyline } from "react-kakao-maps-sdk";
-
+import { useEffect } from "react";
+import { Map, MapMarker, Polyline, useMap } from "react-kakao-maps-sdk";
 interface TravelMapProps {
   destinations: CourseDestination[];
 }
@@ -13,16 +13,36 @@ const TravelMap = ({ destinations }: TravelMapProps) => {
 
   return (
     <Map center={positions[0]} style={{ width: "100%", height: "400px" }}>
-      {/* 여행지 마커 표시 */}
+      <MarkersAndPolyline positions={positions} />
+    </Map>
+  );
+};
+
+interface MarkersAndPolylineProps {
+  positions: { lat: number; lng: number }[];
+}
+
+const MarkersAndPolyline = ({ positions }: MarkersAndPolylineProps) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (map && positions.length > 0) {
+      const bounds = new kakao.maps.LatLngBounds();
+      positions.forEach((pos) => bounds.extend(new kakao.maps.LatLng(pos.lat, pos.lng)));
+      map.setBounds(bounds);
+    }
+  }, [map, positions]);
+
+  return (
+    <>
       {positions.map((position, index) => (
         <MapMarker key={index} position={position}>
-          <div>{destinations[index].destination.name}</div>
+          <div>{`Marker ${index + 1}`}</div>
         </MapMarker>
       ))}
 
-      {/* 여행지 경로를 선으로 연결 */}
       <Polyline path={positions} strokeWeight={5} strokeColor="#FFAE00" strokeOpacity={0.7} />
-    </Map>
+    </>
   );
 };
 
