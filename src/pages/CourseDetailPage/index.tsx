@@ -1,6 +1,6 @@
 import CourseHeader from "@/components/domains/detail/course/CourseHeader/CourseHeader";
 import CourseMain from "@/components/domains/detail/course/CourseMain/CourseMain";
-import TravelCourseOnMap from "@/components/domains/detail/course/TravelCourseOnMap/TravelCourseOnMap";
+import TravelCourseOnMap from "@/components/domains/detail/course/TravelCourseOnMap";
 import DetailPageLayout from "@/layout/DetailPageLayout";
 
 const CourseDetailPage = () => {
