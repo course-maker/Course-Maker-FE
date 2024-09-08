@@ -98,3 +98,21 @@ export type GetDestinationsResponseDto = {
 export interface DestinationId {
   destinationId: number;
 }
+
+type DestinationReview = {
+  destinationId: number;
+  reviewId: number;
+  nickname: string;
+  title: string;
+  description: string;
+  picture: string;
+  rating: number;
+};
+
+export interface getDestinationReviewsResponseDto {
+  currentPage: number;
+  totalPage: number;
+  pagingSlice: number;
+  totalContents: number;
+  contents: DestinationReview[];
+}

@@ -3,7 +3,7 @@ import CourseHeader from "@/components/domains/DetailPage/CourseDetail/Header/Co
 import DetailPageLayout from "@/layout/DetailPageLayout";
 
 const CourseDetailPage = () => {
-  return <DetailPageLayout header={<CourseHeader />} main={<CourseDetailInfo />} />;
+  return <DetailPageLayout type="course" header={<CourseHeader />} main={<CourseDetailInfo />} />;
 };
 
 export default CourseDetailPage;

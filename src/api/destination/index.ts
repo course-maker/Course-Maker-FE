@@ -1,8 +1,15 @@
-import { destinationAddress, destinationLikeAddress, destinationWishAddress } from "../address";
+import {
+  destinationAddress,
+  destinationLikeAddress,
+  destinationReviewAddress,
+  destinationWishAddress,
+} from "../address";
 import { apiRequest } from "../axios";
+import { PagenationOptions } from "../course/type";
 import {
   DestinationId,
   getDestinationResponseDto,
+  getDestinationReviewsResponseDto,
   GetDestinationsResponseDto,
   postDestinationRequestDto,
   postDestinationResponseDto,
@@ -44,3 +51,7 @@ export const addDestinationWish = (data: DestinationId) =>
 // 목적지 찜 취소
 export const deleteDestinationWish = (id: number) =>
   apiRequest("delete", destinationWishAddress.deleteWish(id), null, null, { requireAuth: true });
+
+//목적지 리뷰 조회
+export const getDestinationReviews = (qs: PagenationOptions): Promise<getDestinationReviewsResponseDto> =>
+  apiRequest("get", destinationReviewAddress.getDestinationReviews, null, qs);
