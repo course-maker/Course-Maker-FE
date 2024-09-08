@@ -1,5 +1,6 @@
 import { getCourseDetail } from "@/api/course";
 import { defaultCourseDetail } from "@/constants/defaultValues";
+import { LocationWithId } from "@/type/type";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -8,7 +9,13 @@ import DestinationList from "./DestinationList";
 import TravelMap from "./TravelMap";
 
 const TravelCourseOnMap = () => {
-  const [selectedDate, setSelectedDate] = useState(1);
+  const [selectedDate, setSelectedDate] = useState<number>(1);
+  const [selectedLocation, setSelectedLocation] = useState<LocationWithId | null>(null);
+
+  const handleDestinationClick = (day: number) => {
+    setSelectedDate(day);
+    setSelectedLocation(null);
+  };
 
   const { id } = useParams<{ id: string }>();
 
@@ -30,9 +37,13 @@ const TravelCourseOnMap = () => {
         duration={courseDetail.duration}
         selectedDestinations={selectedDestinations}
         selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
+        onClick={handleDestinationClick}
+        selectedLocation={selectedLocation}
+        setSelectedLocation={setSelectedLocation}
       />
-      {selectedDestinations.length > 0 && <TravelMap destinations={selectedDestinations} />}
+      {selectedDestinations.length > 0 && (
+        <TravelMap destinations={selectedDestinations} selectedLocation={selectedLocation} />
+      )}
     </>
   );
 };
