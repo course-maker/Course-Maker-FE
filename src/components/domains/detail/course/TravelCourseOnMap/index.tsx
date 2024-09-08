@@ -28,12 +28,11 @@ const TravelCourseOnMap = () => {
     <>
       <DestinationList
         duration={courseDetail.duration}
-        courseDestinations={courseDetail.courseDestinations}
         selectedDestinations={selectedDestinations}
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
       />
-      <TravelMap destinations={selectedDestinations} />
+      {selectedDestinations.length > 0 && <TravelMap destinations={selectedDestinations} />}
     </>
   );
 };
