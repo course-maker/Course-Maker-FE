@@ -19,6 +19,8 @@ import calendarWhiteIcon from "@/assets/images/calendar_white.svg";
 import ChildIcon from "@/assets/images/child.svg";
 import ColumnLine from "@/assets/images/column_line.svg";
 import CoupleIcon from "@/assets/images/couple.svg";
+import courseInfoCanlendar from "@/assets/images/course_info_calendar.svg";
+import courseInfoPeople from "@/assets/images/course_info_people.svg";
 import courseMakerLogo from "@/assets/images/course_maker_logo.svg";
 import courseMakerLogoMobile from "@/assets/images/course_maker_logo_mobile.svg";
 import CultureIcon from "@/assets/images/culture.svg";
@@ -32,7 +34,6 @@ import GrayPhotoIcon from "@/assets/images/gray_photo.svg";
 import GraySearchIcon from "@/assets/images/gray_search.svg";
 import GrayStarIcon from "@/assets/images/gray_star.svg";
 import grayTriangle from "@/assets/images/gray_triangle.svg";
-import GraySerchbarIcon from "@/assets/images/search_bar_gray.svg";
 import Home_left_test from "@/assets/images/home_left_test.svg";
 import Home_right_test from "@/assets/images/home_right_test.svg";
 import kakaoOauthButton from "@/assets/images/kakao_oauth_button.svg";
@@ -53,6 +54,7 @@ import Rectangle_42 from "@/assets/images/Rectangle_42.svg";
 import Rectangle_43 from "@/assets/images/Rectangle_43.svg";
 import Rectangle_44 from "@/assets/images/Rectangle_44.svg";
 import Rectangle_45 from "@/assets/images/Rectangle_45.svg";
+import GraySerchbarIcon from "@/assets/images/search_bar_gray.svg";
 import TabBarHomeIcon from "@/assets/images/TabBarHomeIcon";
 import TabBarMapIcon from "@/assets/images/TabBarMapIcon";
 import TabBarPointerIcon from "@/assets/images/TabBarPointerIcon";
@@ -309,5 +311,13 @@ export const IMAGES = {
   GraySerchbarIcon: {
     src: GraySerchbarIcon,
     alt: "회색 돋보기 아이콘",
+  },
+  courseInfoCanlendar: {
+    src: courseInfoCanlendar,
+    alt: "여행기간 아이콘",
+  },
+  courseInfoPeople: {
+    src: courseInfoPeople,
+    alt: "여행추천인원 아이콘",
   },
 };
