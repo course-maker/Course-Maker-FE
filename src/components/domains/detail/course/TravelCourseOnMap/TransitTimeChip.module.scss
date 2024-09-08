@@ -3,6 +3,7 @@
   background-color: $primary10;
   border-radius: 1rem;
   padding: 0.8rem 1rem;
+  cursor: pointer;
 
   .content {
     @include flexbox();

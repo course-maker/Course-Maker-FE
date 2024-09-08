@@ -1,0 +1,16 @@
+.container {
+  @include inline-flexbox(stretch, center);
+  gap: 3rem;
+  background-color: $gray10;
+  border-radius: 0.5rem;
+  padding: 1rem 2.7rem;
+
+  .btn {
+    @include text-style(1.6, 500, $gray30);
+    cursor: pointer;
+
+    &.isSelected {
+      @include text-style(1.6, 700, $black30);
+    }
+  }
+}
