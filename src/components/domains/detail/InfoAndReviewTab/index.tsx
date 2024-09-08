@@ -4,7 +4,7 @@ import { getDestinationReviews } from "@/api/destination";
 import { getDestinationReviewsResponseDto } from "@/api/destination/type";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./InfoAndReviewTab.module.scss";
 
@@ -13,9 +13,10 @@ const cx = classNames.bind(styles);
 type ReviewsResponse = getCourseReviewsResponseDto | getDestinationReviewsResponseDto;
 interface InfoAndReviewTabProps {
   type: "course" | "destination";
+  info: ReactNode;
 }
 
-const InfoAndReviewTab = ({ type }: InfoAndReviewTabProps) => {
+const InfoAndReviewTab = ({ type, info }: InfoAndReviewTabProps) => {
   const { id } = useParams();
   const postId = Number(id);
   const [tab, setTab] = useState<string>("info");
@@ -46,7 +47,7 @@ const InfoAndReviewTab = ({ type }: InfoAndReviewTabProps) => {
           리뷰({totalReviewCount}개)
         </button>
       </div>
-      {tab === "info" ? <article>안내</article> : <article>리뷰</article>}
+      {tab === "info" ? <article>{info}</article> : <article>리뷰</article>}
     </>
   );
 };
