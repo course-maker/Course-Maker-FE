@@ -1,0 +1,22 @@
+.container {
+  @include flexbox(around, center);
+  gap: 14.5rem;
+
+  .element {
+    @include flexbox(center, center);
+    gap: 2rem;
+
+    .icon {
+      width: 5.7rem;
+    }
+
+    .text {
+      @include column-flexbox(center, start);
+      @include text-style(1.3, 500, $black30);
+
+      &-stress {
+        @include text-style(1.6, 700, $black30);
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import InfoAndReviewTab from "@/components/domains/DetailPage/InfoAndReviewTab";
+import InfoAndReviewTab from "@/components/domains/detail/InfoAndReviewTab";
 import classNames from "classnames/bind";
 import { ReactNode } from "react";
 import styles from "./DetailPageLayout.module.scss";
@@ -9,16 +9,16 @@ interface DetailPageLayoutProps {
   type: "course" | "destination";
   header: ReactNode;
   main: ReactNode;
-  // info: ReactNode;
+  info: ReactNode;
   // review: ReactNode;
 }
 
-const DetailPageLayout = ({ type, header, main }: DetailPageLayoutProps) => {
+const DetailPageLayout = ({ type, header, main, info }: DetailPageLayoutProps) => {
   return (
     <div className={cx("container")}>
       <header className={cx("header")}>{header}</header>
       <main className={cx("main")}>{main}</main>
-      <InfoAndReviewTab type={type} />
+      <InfoAndReviewTab type={type} info={info} />
     </div>
   );
 };

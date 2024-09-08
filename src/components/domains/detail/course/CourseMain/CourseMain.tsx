@@ -13,7 +13,7 @@ const CourseMain = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data: courseDetailData } = useQuery({
-    queryKey: ["courseDetailData"],
+    queryKey: ["courseDetailData", id],
     queryFn: () => getCourseDetail(Number(id)),
     retry: 0,
   });
