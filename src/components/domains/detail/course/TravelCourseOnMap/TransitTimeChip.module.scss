@@ -1,0 +1,27 @@
+.container {
+  @include inline-flexbox();
+  background-color: $primary10;
+  border-radius: 1rem;
+  padding: 0.8rem 1rem;
+
+  .content {
+    @include flexbox();
+    gap: 0.5rem;
+
+    .icon {
+      @include flexbox();
+
+      &.transit {
+        width: 1.5rem;
+      }
+
+      &.triangle {
+        width: 0.6rem;
+      }
+    }
+
+    .time {
+      @include text-style(1.2, 400, $black10);
+    }
+  }
+}
