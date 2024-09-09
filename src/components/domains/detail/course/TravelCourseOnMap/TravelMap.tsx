@@ -2,21 +2,27 @@ import { CourseDestination } from "@/api/course/register";
 import { Location, LocationWithId } from "@/type/type";
 import { useEffect } from "react";
 import { Map, MapMarker, Polyline, useMap } from "react-kakao-maps-sdk";
+import TransitChangeToggle from "./TransitChangeToggle";
 interface TravelMapProps {
   destinations: CourseDestination[];
   selectedLocation: LocationWithId | null;
+  selectedTransit: "car" | "bus";
+  onClick: () => void;
 }
 
-const TravelMap = ({ destinations, selectedLocation }: TravelMapProps) => {
+const TravelMap = ({ destinations, selectedLocation, selectedTransit, onClick }: TravelMapProps) => {
   const positions = destinations.map((destination) => ({
     lat: destination.destination.location.latitude,
     lng: destination.destination.location.longitude,
   }));
 
   return (
-    <Map center={positions[0]} style={{ width: "100%", height: "400px" }}>
-      <MarkersAndPolyline positions={positions} selectedLocation={selectedLocation} />
-    </Map>
+    <>
+      <Map center={positions[0]} style={{ width: "100%", height: "400px" }}>
+        <MarkersAndPolyline positions={positions} selectedLocation={selectedLocation} />
+      </Map>
+      <TransitChangeToggle selectedTransit={selectedTransit} onClick={onClick} />
+    </>
   );
 };
 
