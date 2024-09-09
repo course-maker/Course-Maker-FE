@@ -24,6 +24,8 @@ import courseInfoPeople from "@/assets/images/course_info_people.svg";
 import courseMakerLogo from "@/assets/images/course_maker_logo.svg";
 import courseMakerLogoMobile from "@/assets/images/course_maker_logo_mobile.svg";
 import CultureIcon from "@/assets/images/culture.svg";
+import deepGrayBus from "@/assets/images/deep_gray_bus.svg";
+import deepGrayCar from "@/assets/images/deep_gray_car.svg";
 import destinationPin from "@/assets/images/destinationPin.svg";
 import destinationPinStress from "@/assets/images/destinationPin_stress.svg";
 import PetIcon from "@/assets/images/dog.svg";
@@ -66,6 +68,8 @@ import TabBarPointerIcon from "@/assets/images/TabBarPointerIcon";
 import TabBarSearchIcon from "@/assets/images/TabBarSearchIcon";
 import termMore from "@/assets/images/term_more.svg";
 import testImage from "@/assets/images/test_img.png";
+import whiteBus from "@/assets/images/white_bus.svg";
+import whiteCar from "@/assets/images/white_car.svg";
 import WhiteStarIcon from "@/assets/images/white_star.svg";
 
 export const IMAGES = {
@@ -344,5 +348,21 @@ export const IMAGES = {
   destinationPinStress: {
     src: destinationPinStress,
     alt: "여행지 핀 강조",
+  },
+  deepGrayCar: {
+    src: deepGrayCar,
+    alt: "자가용 아이콘 선택",
+  },
+  deepGrayBus: {
+    src: deepGrayBus,
+    alt: "대중교통 아이콘 선택",
+  },
+  whiteCar: {
+    src: whiteCar,
+    alt: "자가용 아이콘 미선택",
+  },
+  whiteBus: {
+    src: whiteBus,
+    alt: "대중교통 아이콘 미선택",
   },
 };
