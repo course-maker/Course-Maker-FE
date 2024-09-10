@@ -1,8 +1,7 @@
 import { CourseDestination } from "@/api/course/register";
-import { Location, LocationWithId } from "@/type/type";
+import { LocationWithId } from "@/type/type";
 import { useEffect } from "react";
 import { CustomOverlayMap, Map, Polyline, useMap } from "react-kakao-maps-sdk";
-import TransitChangeToggle from "./TransitChangeToggle";
 
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
@@ -13,12 +12,13 @@ const cx = classNames.bind(styles);
 interface TravelMapProps {
   destinations: CourseDestination[];
   selectedLocation: LocationWithId | null;
-  selectedTransit: "car" | "bus";
-  onClick: () => void;
+  // selectedTransit: "car" | "bus";
+  // onClick: () => void;
 }
 
-const TravelMap = ({ destinations, selectedLocation, selectedTransit, onClick }: TravelMapProps) => {
+const TravelMap = ({ destinations, selectedLocation }: TravelMapProps) => {
   const positions = destinations.map((destination) => ({
+    id: destination.visitOrder,
     lat: destination.destination.location.latitude,
     lng: destination.destination.location.longitude,
   }));
@@ -28,13 +28,13 @@ const TravelMap = ({ destinations, selectedLocation, selectedTransit, onClick }:
       <Map center={positions[0]} style={{ width: "100%", height: "400px" }}>
         <MarkersAndPolyline positions={positions} selectedLocation={selectedLocation} />
       </Map>
-      <TransitChangeToggle selectedTransit={selectedTransit} onClick={onClick} />
+      {/* <TransitChangeToggle selectedTransit={selectedTransit} onClick={onClick} /> */}
     </>
   );
 };
 
 interface MarkersAndPolylineProps {
-  positions: Location[];
+  positions: LocationWithId[];
   selectedLocation: LocationWithId | null;
 }
 
@@ -55,7 +55,7 @@ const MarkersAndPolyline = ({ positions, selectedLocation }: MarkersAndPolylineP
   return (
     <>
       {positions.map((position, index) => (
-        <CustomOverlayMap position={position} xAnchor={0.5} yAnchor={1.1}>
+        <CustomOverlayMap key={position.id} position={position} xAnchor={0.5} yAnchor={1.1}>
           <div className={cx("marker")}>
             <div className={cx("icon")}>
               <Image imageInfo={IMAGES.markerInMap} />

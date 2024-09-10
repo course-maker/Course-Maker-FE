@@ -8,11 +8,12 @@ const cx = classNames.bind(styles);
 interface TransitTimeChipProps {
   transit: "private" | "public";
   time: string;
+  onClick: () => void;
 }
 
-const TransitTimeChip = ({ transit, time }: TransitTimeChipProps) => {
+const TransitTimeChip = ({ transit, time, onClick }: TransitTimeChipProps) => {
   return (
-    <div className={cx("container")}>
+    <div className={cx("container")} onClick={onClick}>
       <div className={cx("content")}>
         <div className={cx("icon", "transit")}>
           {transit === "private" ? <Image imageInfo={IMAGES.grayCar} /> : <Image imageInfo={IMAGES.grayBus} />}
