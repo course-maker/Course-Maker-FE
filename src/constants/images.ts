@@ -53,6 +53,7 @@ import memberIcon from "@/assets/images/member.svg";
 import memberWhiteIcon from "@/assets/images/member_white.svg";
 import modalClose from "@/assets/images/modal_close.svg";
 import PartyIcon from "@/assets/images/party.svg";
+import markerInMap from "@/assets/images/pin_on_map.png";
 import plus from "@/assets/images/plus.svg";
 import rangeLine from "@/assets/images/range_line.svg";
 import Rectangle_40 from "@/assets/images/Rectangle_40.svg";
@@ -364,5 +365,9 @@ export const IMAGES = {
   whiteBus: {
     src: whiteBus,
     alt: "대중교통 아이콘 미선택",
+  },
+  markerInMap: {
+    src: markerInMap,
+    alt: "마커",
   },
 };
