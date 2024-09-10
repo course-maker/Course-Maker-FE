@@ -18,7 +18,9 @@ const DetailPageLayout = ({ type, header, main, info }: DetailPageLayoutProps) =
     <div className={cx("container")}>
       <header className={cx("header")}>{header}</header>
       <main className={cx("main")}>{main}</main>
-      <InfoAndReviewTab type={type} info={info} />
+      <article className={cx("article")}>
+        <InfoAndReviewTab type={type} info={info} />
+      </article>
     </div>
   );
 };

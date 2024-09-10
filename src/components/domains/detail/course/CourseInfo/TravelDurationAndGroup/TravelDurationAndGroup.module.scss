@@ -1,0 +1,42 @@
+.container {
+  @include flexbox(center, center);
+  gap: 14rem;
+
+  @include responsive("M") {
+    gap: 2rem;
+  }
+
+  .element {
+    @include flexbox(center, center);
+    gap: 2rem;
+
+    @include responsive("M") {
+      gap: 1.3rem;
+    }
+
+    .icon {
+      width: 7rem;
+
+      @include responsive("M") {
+        width: 4rem;
+      }
+    }
+
+    .text {
+      @include column-flexbox(center, start);
+      @include text-style(1.3, 500, $black30);
+
+      @include responsive("M") {
+        font-size: 1.2rem;
+      }
+
+      &-stress {
+        @include text-style(1.6, 700, $black30);
+
+        @include responsive("M") {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
