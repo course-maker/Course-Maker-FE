@@ -1,0 +1,10 @@
+.container {
+  @include column-flexbox();
+  gap: 5rem;
+  padding: 5rem 0;
+
+  @include responsive("M") {
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+}

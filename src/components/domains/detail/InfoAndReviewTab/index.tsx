@@ -47,7 +47,7 @@ const InfoAndReviewTab = ({ type, info }: InfoAndReviewTabProps) => {
           리뷰({totalReviewCount}개)
         </button>
       </div>
-      {tab === "info" ? <article>{info}</article> : <article>리뷰</article>}
+      {tab === "info" ? <section>{info}</section> : <section>리뷰</section>}
     </>
   );
 };

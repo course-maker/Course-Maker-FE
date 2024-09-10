@@ -1,0 +1,32 @@
+.container {
+  @include flexbox(center, start);
+  gap: 1rem;
+
+  @include responsive("T") {
+    @include column-flexbox();
+    flex-direction: column-reverse;
+    gap: 3rem;
+  }
+
+  .destination-list {
+    width: 30rem;
+    height: 35rem;
+  }
+
+  .map {
+    width: 35rem;
+    height: 35rem;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    @include responsive("T") {
+      width: 50rem;
+      height: 30rem;
+    }
+
+    @include responsive("M") {
+      width: 100%;
+      height: 20rem;
+    }
+  }
+}
