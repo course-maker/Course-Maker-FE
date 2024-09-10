@@ -1,8 +1,15 @@
 import { CourseDestination } from "@/api/course/register";
 import { Location, LocationWithId } from "@/type/type";
 import { useEffect } from "react";
-import { Map, MapMarker, Polyline, useMap } from "react-kakao-maps-sdk";
+import { CustomOverlayMap, Map, Polyline, useMap } from "react-kakao-maps-sdk";
 import TransitChangeToggle from "./TransitChangeToggle";
+
+import Image from "@/components/commons/Image";
+import { IMAGES } from "@/constants/images";
+import classNames from "classnames/bind";
+import styles from "./MarkersAndPolyline.module.scss";
+
+const cx = classNames.bind(styles);
 interface TravelMapProps {
   destinations: CourseDestination[];
   selectedLocation: LocationWithId | null;
@@ -48,12 +55,17 @@ const MarkersAndPolyline = ({ positions, selectedLocation }: MarkersAndPolylineP
   return (
     <>
       {positions.map((position, index) => (
-        <MapMarker key={index} position={position}>
-          <div>{`Marker ${index + 1}`}</div>
-        </MapMarker>
+        <CustomOverlayMap position={position} xAnchor={0.5} yAnchor={1.1}>
+          <div className={cx("marker")}>
+            <div className={cx("icon")}>
+              <Image imageInfo={IMAGES.markerInMap} />
+            </div>
+            <div className={cx("order")}>{index + 1}</div>
+          </div>
+        </CustomOverlayMap>
       ))}
 
-      <Polyline path={positions} strokeWeight={5} strokeColor="#FFAE00" strokeOpacity={0.7} />
+      <Polyline path={positions} strokeWeight={5} strokeColor="#FF7C33" strokeOpacity={0.7} strokeStyle={"dash"} />
     </>
   );
 };
