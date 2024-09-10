@@ -1,0 +1,21 @@
+.marker {
+  position: relative;
+
+  .icon {
+    position: relative;
+    width: 3.6rem;
+    z-index: $icon;
+  }
+
+  .order {
+    @include text-style(1.2, 700, #ff7c33);
+    @include flexbox();
+    @include pos-center-x();
+    top: 0.25rem;
+    z-index: $index;
+    background: white;
+    border-radius: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
