@@ -7,6 +7,10 @@
   width: 30rem;
   cursor: pointer;
 
+  @include responsive("M") {
+    width: 100%;
+  }
+
   .content {
     @include flexbox(stretch, center);
     gap: 2rem;
