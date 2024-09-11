@@ -22,10 +22,10 @@ const CourseInfo = () => {
 
   return (
     <div className={cx("container")}>
-      <div>
+      <div className={cx("info")}>
         <TravelDurationAndGroup travelerCount={courseDetail.travelerCount} duration={courseDetail.duration} />
       </div>
-      <div>
+      <div className={cx("course")}>
         <TravelCourseOnMap courseDetail={courseDetail} />
       </div>
     </div>
