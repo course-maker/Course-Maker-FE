@@ -31,8 +31,10 @@ const DestinationList = ({
 
   return (
     <div className={cx("container")}>
-      <DateTab days={days} selectedDate={selectedDate} onClick={onCardClick} />
-      <p>여행지를 클릭하면 여행지 위치를 확인할 수 있습니다.</p>
+      <div>
+        <DateTab days={days} selectedDate={selectedDate} onClick={onCardClick} />
+      </div>
+      <p className={cx("text")}>여행지를 클릭하면 여행지 위치를 확인할 수 있습니다.</p>
       <div className={cx("cards")}>
         {selectedDestinations.map((destination, index) => (
           <div className={cx("card")} key={destination.visitOrder}>
@@ -49,9 +51,7 @@ const DestinationList = ({
                 });
               }}
             />
-            {selectedDestinations.length - 1 !== index && (
-              <TransitTimeChip transit="private" time="20분" onClick={() => onChipClick(index)} />
-            )}
+            {selectedDestinations.length - 1 !== index && <TransitTimeChip onClick={() => onChipClick(index)} />}
           </div>
         ))}
       </div>

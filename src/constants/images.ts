@@ -38,6 +38,7 @@ import GrayKaKaoIcon from "@/assets/images/gray_kakao.svg";
 import GrayLinkIcon from "@/assets/images/gray_link.svg";
 import GrayPhotoIcon from "@/assets/images/gray_photo.svg";
 import GraySearchIcon from "@/assets/images/gray_search.svg";
+import graySign from "@/assets/images/gray_sign.svg";
 import GrayStarIcon from "@/assets/images/gray_star.svg";
 import grayTransitTriangle from "@/assets/images/gray_transit_triangle.svg";
 import grayTriangle from "@/assets/images/gray_triangle.svg";
@@ -369,5 +370,9 @@ export const IMAGES = {
   markerInMap: {
     src: markerInMap,
     alt: "마커",
+  },
+  graySign: {
+    src: graySign,
+    alt: "길찾기 아이콘",
   },
 };

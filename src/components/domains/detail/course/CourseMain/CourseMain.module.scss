@@ -7,6 +7,10 @@
     max-width: 50rem;
   }
 
+  @include responsive("M") {
+    max-width: 40rem;
+  }
+
   &__main-image-container {
     border-radius: 2rem;
     overflow: hidden;
