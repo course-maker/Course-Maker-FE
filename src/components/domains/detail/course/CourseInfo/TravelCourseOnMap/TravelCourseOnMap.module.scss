@@ -1,6 +1,7 @@
 .container {
   @include flexbox(center, start);
   gap: 1rem;
+  width: 100%;
 
   @include responsive("T") {
     @include column-flexbox();
@@ -10,11 +11,16 @@
 
   .destination-list {
     width: 32rem;
+
+    @include responsive("M") {
+      max-width: 32rem;
+      width: 100%;
+    }
   }
 
   .map {
-    width: 40rem;
-    height: 40rem;
+    width: 50rem;
+    height: 50rem;
     border-radius: 1rem;
     overflow: hidden;
 
@@ -24,6 +30,7 @@
     }
 
     @include responsive("M") {
+      max-width: 50rem;
       width: 100%;
       height: 20rem;
     }

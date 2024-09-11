@@ -1,6 +1,12 @@
 .container {
-  @include column-flexbox();
+  @include column-flexbox(start, center);
   gap: 1rem;
+  max-height: 50rem;
+  height: 100%;
+
+  @include responsive("M") {
+    max-height: 40rem;
+  }
 
   .text {
     @include text-style(1.2, 400, #8c8c8c);
@@ -12,7 +18,7 @@
 
   .cards {
     @include custom-scroll-bar(1.2, 1.2);
-    max-height: 33rem;
+    width: 100%;
     overflow-y: scroll;
     padding: 1.5rem 1rem 1.5rem 1.5rem;
 
@@ -20,6 +26,7 @@
       @include column-flexbox();
       gap: 0.5rem;
       padding-bottom: 0.5rem;
+      width: 100%;
     }
   }
 }

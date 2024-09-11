@@ -25,7 +25,7 @@ const TravelMap = ({ destinations, selectedLocation }: TravelMapProps) => {
 
   return (
     <>
-      <Map center={positions[0]} style={{ width: "100%", height: "400px" }}>
+      <Map center={positions[0]} style={{ width: "100%", height: "100%" }}>
         <MarkersAndPolyline positions={positions} selectedLocation={selectedLocation} />
       </Map>
       {/* <TransitChangeToggle selectedTransit={selectedTransit} onClick={onClick} /> */}
