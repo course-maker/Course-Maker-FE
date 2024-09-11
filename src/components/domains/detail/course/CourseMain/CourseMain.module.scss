@@ -1,6 +1,5 @@
 .course-detail-info {
   @include flexbox($ai: end);
-  gap: 1rem;
 
   @include responsive("T") {
     @include column-flexbox(center, center);
