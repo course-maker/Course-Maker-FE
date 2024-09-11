@@ -26,11 +26,13 @@ export const AllCardList = ({ destinations, useLink = false }: AllCardListProps)
       <div className={cx("list-box")}>
         {destinations.map((item) =>
           useLink ? (
-            <Link to={`/destination/${item.destination.id}`} key={item.destination.id}>
+            <Link className={cx("card-link")} to={`/destination/${item.destination.id}`} key={item.destination.id}>
               <CardContent item={item} />
             </Link>
           ) : (
-            <CardContent item={item} key={item.destination.id} />
+            <div className={cx("card-link")}>
+              <CardContent item={item} key={item.destination.id} />
+            </div>
           ),
         )}
       </div>
