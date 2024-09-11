@@ -12,6 +12,7 @@
 
   @include responsive("M") {
     max-height: 35rem;
+    padding: 1.5rem 1rem;
   }
 
   .list-box {

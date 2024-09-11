@@ -6,19 +6,17 @@ import styles from "./TransitTimeChip.module.scss";
 const cx = classNames.bind(styles);
 
 interface TransitTimeChipProps {
-  transit: "private" | "public";
-  time: string;
   onClick: () => void;
 }
 
-const TransitTimeChip = ({ transit, time, onClick }: TransitTimeChipProps) => {
+const TransitTimeChip = ({ onClick }: TransitTimeChipProps) => {
   return (
     <div className={cx("container")} onClick={onClick}>
       <div className={cx("content")}>
         <div className={cx("icon", "transit")}>
-          {transit === "private" ? <Image imageInfo={IMAGES.grayCar} /> : <Image imageInfo={IMAGES.grayBus} />}
+          <Image imageInfo={IMAGES.graySign} />
         </div>
-        <p className={cx("time")}>{time}</p>
+        <p className={cx("time")}>{"길찾기"}</p>
         <div className={cx("icon", "triangle")}>
           <Image imageInfo={IMAGES.grayTransitTriangle} />
         </div>
