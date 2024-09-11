@@ -1,0 +1,25 @@
+.container {
+  @include column-flexbox();
+  gap: 1rem;
+
+  .text {
+    @include text-style(1.2, 400, #8c8c8c);
+
+    @include responsive("M") {
+      font-size: 1.1rem;
+    }
+  }
+
+  .cards {
+    @include custom-scroll-bar(1.2, 1.2);
+    max-height: 33rem;
+    overflow-y: scroll;
+    padding: 1.5rem 1rem 1.5rem 1.5rem;
+
+    .card {
+      @include column-flexbox();
+      gap: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+}

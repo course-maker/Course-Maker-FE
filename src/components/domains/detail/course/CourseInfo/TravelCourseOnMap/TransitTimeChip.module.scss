@@ -2,12 +2,12 @@
   @include inline-flexbox();
   background-color: $primary10;
   border-radius: 1rem;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 0.8rem;
   cursor: pointer;
 
   .content {
     @include flexbox();
-    gap: 0.5rem;
+    gap: 0.3rem;
 
     .icon {
       @include flexbox();
