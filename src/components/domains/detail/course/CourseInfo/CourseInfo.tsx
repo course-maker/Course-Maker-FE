@@ -3,6 +3,7 @@ import { defaultCourseDetail } from "@/constants/defaultValues";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { useParams } from "react-router-dom";
+import Description from "../../Description/Description";
 import styles from "./CourseInfo.module.scss";
 import TravelCourseOnMap from "./TravelCourseOnMap";
 import TravelDurationAndGroup from "./TravelDurationAndGroup/TravelDurationAndGroup";
@@ -27,6 +28,9 @@ const CourseInfo = () => {
       </div>
       <div className={cx("course")}>
         <TravelCourseOnMap courseDetail={courseDetail} />
+      </div>
+      <div className={cx("description")}>
+        <Description content={courseDetail.content} />
       </div>
     </div>
   );
