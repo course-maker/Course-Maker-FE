@@ -1,7 +1,7 @@
 .container {
   @include column-flexbox();
   gap: 5rem;
-  padding: 5rem 0;
+  padding: 5rem 0 0;
 
   @include responsive("M") {
     gap: 2rem;
@@ -13,6 +13,10 @@
   }
 
   .course {
+    width: 100%;
+  }
+
+  .description {
     width: 100%;
   }
 }
