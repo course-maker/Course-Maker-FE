@@ -1,3 +1,4 @@
+import addFile from "@/assets/images/add_file.svg";
 import Banner2 from "@/assets/images/banner2.png";
 import Banner3 from "@/assets/images/banner3.png";
 import Banner4 from "@/assets/images/banner4.png";
@@ -14,6 +15,7 @@ import BlueBookmarkIcon from "@/assets/images/blue_bookmark.svg";
 import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
 import BlueKaKaoIcon from "@/assets/images/blue_kakao.svg";
 import BlueLinkIcon from "@/assets/images/blue_link.svg";
+import blueStar from "@/assets/images/blue_star.svg";
 import calendarIcon from "@/assets/images/calendar.svg";
 import calendarWhiteIcon from "@/assets/images/calendar_white.svg";
 import ChildIcon from "@/assets/images/child.svg";
@@ -374,5 +376,13 @@ export const IMAGES = {
   graySign: {
     src: graySign,
     alt: "길찾기 아이콘",
+  },
+  blueStar: {
+    src: blueStar,
+    alt: "별 아이콘",
+  },
+  addFile: {
+    src: addFile,
+    alt: "파일 첨부 아이콘",
   },
 };

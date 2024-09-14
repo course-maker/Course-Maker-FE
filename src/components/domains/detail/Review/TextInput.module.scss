@@ -1,0 +1,30 @@
+.content {
+  @include column-flexbox(center, center);
+  gap: 0.3rem;
+  width: 100%;
+
+  .text-input {
+    @include text-style(1.6, 500, $black30);
+    border: solid 0.1rem $gray20;
+    border-radius: 0.8rem;
+    height: 18rem;
+    padding: 1.2rem 1.6rem;
+    width: 100%;
+
+    &::placeholder {
+      color: $gray30;
+    }
+  }
+  .helper-text {
+    @include flexbox(between, center);
+    width: 100%;
+
+    .length {
+      @include text-style(1.5, 500, $gray30);
+    }
+
+    .error {
+      @include text-style(1.2, 400, $red);
+    }
+  }
+}

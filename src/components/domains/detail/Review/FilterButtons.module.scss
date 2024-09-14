@@ -1,0 +1,21 @@
+.filters {
+  @include flexbox(center, center);
+  gap: 0.8rem;
+
+  .filter {
+    list-style: none;
+
+    &-btn {
+      @include text-style(1.4, 500, $black30);
+      background-color: $gray10;
+      border-radius: 0.6rem;
+      padding: 0.6rem 1.6rem;
+      cursor: pointer;
+
+      &.isSelected {
+        border: solid 0.1rem $primary40;
+        color: $primary40;
+      }
+    }
+  }
+}
