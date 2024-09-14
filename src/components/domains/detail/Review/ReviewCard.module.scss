@@ -1,0 +1,99 @@
+.container {
+  @include flexbox(start, start);
+  gap: 2.5rem;
+  width: 100%;
+
+  .info {
+    @include text-style(1.6, 400 $black30);
+    @include column-flexbox(center, start);
+    gap: 0.5rem;
+
+    &-nickname {
+      font-weight: 600;
+      width: 15rem;
+    }
+
+    &-date {
+      color: $black10;
+    }
+
+    &-like {
+      @include flexbox();
+      gap: 0.1rem;
+
+      &-btn {
+        @include flexbox();
+        width: 3rem;
+        cursor: pointer;
+      }
+
+      &-count {
+        color: $black10;
+      }
+    }
+  }
+
+  .content {
+    @include column-flexbox(center, start);
+    gap: 1.5rem;
+    width: 100%;
+
+    &-header {
+      @include flexbox(between, center);
+      width: 100%;
+
+      &-star {
+        @include flexbox();
+        gap: 0.5rem;
+
+        &-icon {
+          @include flexbox();
+          width: 2rem;
+        }
+
+        &-rating {
+          @include text-style(1.6, 400 $black30);
+        }
+      }
+    }
+
+    &-images {
+      @include flexbox();
+      gap: 0.5rem;
+
+      &-image {
+        border: solid 0.1rem $gray20;
+        border-radius: 0.6rem;
+        overflow: hidden;
+        width: 10rem;
+        height: 10rem;
+        cursor: pointer;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &-text {
+      @include text-style(1.6, 400, $black30);
+      @include column-flexbox(center, start);
+      gap: 0.5rem;
+      width: 100%;
+
+      &-text {
+        width: 60rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &-btn {
+        @include text-style(1.5, 500, $black30);
+        align-self: self-end;
+        cursor: pointer;
+      }
+    }
+  }
+}
