@@ -14,9 +14,10 @@ type ReviewsResponse = getCourseReviewsResponseDto | getDestinationReviewsRespon
 interface InfoAndReviewTabProps {
   type: "course" | "destination";
   info: ReactNode;
+  review: ReactNode;
 }
 
-const InfoAndReviewTab = ({ type, info }: InfoAndReviewTabProps) => {
+const InfoAndReviewTab = ({ type, info, review }: InfoAndReviewTabProps) => {
   const { id } = useParams();
   const postId = Number(id);
   const [tab, setTab] = useState<string>("info");
@@ -50,7 +51,7 @@ const InfoAndReviewTab = ({ type, info }: InfoAndReviewTabProps) => {
       {tab === "info" ? (
         <section className={cx("section")}>{info}</section>
       ) : (
-        <section className={cx("section")}>리뷰</section>
+        <section className={cx("section")}>{review}</section>
       )}
     </>
   );

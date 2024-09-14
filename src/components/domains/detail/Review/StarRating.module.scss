@@ -1,0 +1,21 @@
+.star-rating {
+  @include column-flexbox(center, start);
+  gap: 0.3rem;
+
+  .stars {
+    @include flexbox();
+    gap: 1rem;
+
+    .star {
+      position: relative;
+      width: 2rem;
+      display: block;
+      cursor: pointer;
+    }
+  }
+
+  .helper-text {
+    @include text-style(1.2, 400, $red);
+    min-height: 1.6rem;
+  }
+}

@@ -1,0 +1,17 @@
+.container {
+  @include flexbox();
+  gap: 0.5rem;
+
+  .icon {
+    @include flexbox();
+    width: 3rem;
+  }
+
+  .score {
+    @include text-style(2, 400, $black30);
+
+    &-stress {
+      font-weight: 700;
+    }
+  }
+}
