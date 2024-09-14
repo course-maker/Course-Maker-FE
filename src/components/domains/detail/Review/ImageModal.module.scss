@@ -1,0 +1,34 @@
+.container {
+  @include column-flexbox(between, center);
+  @include pos-center(absolute);
+  width: 60rem;
+  height: 80vh;
+  padding: 1rem 2rem 4rem;
+  border-radius: 1rem;
+  background-color: $White;
+
+  @include responsive("M") {
+    width: calc(100% - 4rem);
+    max-width: 60rem;
+  }
+
+  .close-btn {
+    align-self: flex-end;
+    cursor: pointer;
+  }
+
+  .content-box {
+    @include flexbox();
+    padding: 0 2rem;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: containe;
+    }
+  }
+}
