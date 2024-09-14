@@ -1,7 +1,7 @@
 import CourseHeader from "@/components/domains/detail/course/CourseHeader/CourseHeader";
 import CourseInfo from "@/components/domains/detail/course/CourseInfo/CourseInfo";
 import CourseMain from "@/components/domains/detail/course/CourseMain/CourseMain";
-import Review from "@/components/domains/detail/Review";
+import CourseReview from "@/components/domains/detail/course/CourseReview/CourseReview";
 import DetailPageLayout from "@/layout/DetailPageLayout";
 
 const CourseDetailPage = () => {
@@ -11,7 +11,7 @@ const CourseDetailPage = () => {
       header={<CourseHeader />}
       main={<CourseMain />}
       info={<CourseInfo />}
-      review={<Review />}
+      review={<CourseReview />}
     />
   );
 };
