@@ -64,8 +64,8 @@ const ImageInput = ({ control }: ImageInputProps) => {
                 ref={fileInputRef}
               />
               <div className={cx("images")}>
-                <div className={cx("add-btn")}>
-                  <div className={cx("icon")} onClick={handleClick}>
+                <div className={cx("add-btn")} onClick={handleClick}>
+                  <div className={cx("icon")}>
                     <Image imageInfo={IMAGES.addFile} />
                   </div>
                 </div>
