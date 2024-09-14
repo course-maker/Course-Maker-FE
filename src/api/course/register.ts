@@ -27,7 +27,7 @@ export interface CourseDestination {
 }
 
 export interface postCourse {
-  id: number;
+  id?: number;
   title: string;
   content: string;
   duration: number;

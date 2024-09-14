@@ -16,12 +16,12 @@ export const useCourseMutation = () => {
     },
     onError: (error: AxiosError) => {
       const statusCode = error?.response?.status;
-      const errorMessage = error?.response?.data?.message;
+      // const errorMessage = error?.response?.data?.message;
       switch (statusCode) {
-        case 400:
-          console.log(errorMessage);
-          alert(errorMessage);
-          break;
+        // case 400:
+        //   console.log(errorMessage);
+        //   alert(errorMessage);
+        //   break;
         case 409:
           alert("코스 이름이 이미 존재합니다. 다른 이름으로 변경해 주세요.");
           break;
