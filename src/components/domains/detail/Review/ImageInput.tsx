@@ -53,7 +53,7 @@ const ImageInput = ({ control }: ImageInputProps) => {
         };
 
         return (
-          <>
+          <div className={cx("container")}>
             <div className={cx("image-input")}>
               <input
                 className={cx("input")}
@@ -87,8 +87,8 @@ const ImageInput = ({ control }: ImageInputProps) => {
                 </div>
               </div>
             </div>
-            {errorMessage && <p className={cx("error-message")}>{errorMessage}</p>}
-          </>
+            <p className={cx("error-message")}>{errorMessage}</p>
+          </div>
         );
       }}
     />

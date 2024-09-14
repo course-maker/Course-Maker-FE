@@ -1,9 +1,14 @@
+import Button from "@/components/commons/Button";
 import { useHandleImageUpload } from "@/hooks/useFormImageUpload";
 import { ReviewFormType } from "@/type/type";
+import classNames from "classnames/bind";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import ImageInput from "./ImageInput";
+import styles from "./ReviewForm.module.scss";
 import StarRating from "./StarRating";
 import TextInput from "./TextInput";
+
+const cx = classNames.bind(styles);
 
 interface ReviewFormProps {
   initialData?: ReviewFormType;
@@ -54,15 +59,22 @@ const ReviewForm = ({ initialData }: ReviewFormProps) => {
   // }, [initialData, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <StarRating control={control} />
-      <TextInput control={control} />
-      <ImageInput control={control} />
-
+    <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <StarRating control={control} />
+      </div>
+      <div className={cx("text-input")}>
+        <TextInput control={control} />
+      </div>
+      <div className={cx("images-submit")}>
+        <ImageInput control={control} />
+        <Button type="submit" size="small" color="blue" variant="primary" isSquare={true}>
+          {initialData ? "리뷰 수정하기" : "리뷰 등록하기"}
+        </Button>
+      </div>
       {/* <button type="submit" disabled={mutation.isLoading}>
         {mutation.isLoading ? "처리 중..." : initialData ? "리뷰 수정하기" : "리뷰 등록하기"}
       </button> */}
-      <button type="submit">{initialData ? "리뷰 수정하기" : "리뷰 등록하기"}</button>
     </form>
   );
 };
