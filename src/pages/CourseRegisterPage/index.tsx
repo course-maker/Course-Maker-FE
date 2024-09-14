@@ -1,29 +1,38 @@
-import React from "react";
-import { Step1, Step2, Step3, Stepper } from "@/components/commons/Steppers";
-import { Step } from "@/components/commons/Steppers/Step";
-import { StepperProvider } from "@/components/commons/Steppers/StepperContext";
-import styles from "./CourseRegisterPage.module.scss";
-import classNames from "classnames/bind";
+import { useState } from "react";
+import { FieldValues } from "react-hook-form";
 
-const cx = classNames.bind(styles);
+import { postDestinationRequestDto } from "@/api/destination/type";
+import { useDestinationMutation } from "@/hooks/useDestinationMutation";
+import CourseRegisterLayout from "@/layout/CourseRegisterLayout";
+import { authState } from "@/recoil/authAtom";
+import { useRecoilState } from "recoil";
 
-const CourseRegisterPage: React.FC = () => {
+const CourseRegisterPage = () => {
+  const [formData] = useState({
+    name: "",
+    tags: [],
+    duration: "",
+    travelCount: "",
+    // location: { address: "", latitude: 0, longitude: 0 },
+    pictureLink: "",
+    content: "",
+  });
+
+  const [isAuth] = useRecoilState(authState);
+  const { postDestination } = useDestinationMutation();
+
+  const handleSubmit = (data: FieldValues) => {
+    if (isAuth) {
+      postDestination.mutate(data as postDestinationRequestDto);
+    } else {
+      alert("로그인을 해주세요.");
+    }
+  };
+
   return (
-    <StepperProvider>
-      <section className={cx("section")}>
-        <Stepper>
-          <Step stepNumber={1}>
-            <Step1 />
-          </Step>
-          <Step stepNumber={2}>
-            <Step2 />
-          </Step>
-          <Step stepNumber={3}>
-            <Step3 />
-          </Step>
-        </Stepper>
-      </section>
-    </StepperProvider>
+    <>
+      <CourseRegisterLayout title="코스 등록하기" formData={formData} onSubmitClick={handleSubmit} />
+    </>
   );
 };
 
