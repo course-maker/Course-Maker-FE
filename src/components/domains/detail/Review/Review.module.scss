@@ -1,0 +1,22 @@
+.container {
+  @include column-flexbox();
+  gap: 5rem;
+  padding: 5rem 3rem;
+  width: 100%;
+
+  .header {
+    @include flexbox(between, center);
+    width: 100%;
+  }
+
+  .form {
+    @include column-flexbox();
+    gap: 1.5rem;
+    width: 100%;
+
+    &-title {
+      @include text-style(2, 700, $black30);
+      width: 100%;
+    }
+  }
+}
