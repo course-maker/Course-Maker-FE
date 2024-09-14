@@ -13,7 +13,6 @@ export const useCourseMutation = () => {
     onSuccess: (data) => {
       alert("코스가 등록되었습니다.");
       navigate(`/course/${data.id}`);
-      // invalidateCardList, // 쿼리 키 업데이트하기
     },
     onError: (error: AxiosError) => {
       const statusCode = error?.response?.status;
