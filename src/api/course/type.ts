@@ -37,6 +37,7 @@ export interface Courses {
   totalPage: number;
   pagingSlice: number;
   contents: Course[];
+  tags: tagResponseDto[];
 }
 
 export interface CourseId {
