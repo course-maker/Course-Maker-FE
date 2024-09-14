@@ -15,6 +15,7 @@ export const initialCourse: Courses = {
   totalPage: 1,
   pagingSlice: 8,
   contents: [],
+  tags: [],
 };
 
 //정렬 기준
