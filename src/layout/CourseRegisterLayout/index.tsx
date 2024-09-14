@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 
 import classNames from "classnames/bind";
 import styles from "./CourseRegisterLayout.module.scss";
@@ -10,7 +9,7 @@ import Button from "@/components/commons/Button";
 import LabelWrapper from "@/components/commons/LabelWrapper";
 import { API_INPUTS, INPUTS } from "@/constants/courseInputs";
 import { useHandleImageUpload } from "@/hooks/useFormImageUpload";
-import { validateFormData } from "@/utils/validateFormData";
+import { validateFormData } from "@/utils/validateCourseFormData";
 
 const cx = classNames.bind(styles);
 
@@ -74,7 +73,6 @@ const CourseRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: Cou
           </div>
         </form>
       </div>
-      <DevTool control={control} />
     </>
   );
 };
