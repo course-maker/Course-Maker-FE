@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { useState } from "react";
 import FilterButtons from "./FilterButtons";
 import styles from "./Review.module.scss";
+import ReviewCardList from "./ReviewCardList";
 import ReviewForm from "./ReviewForm";
 import StarScore from "./StarScore";
 
@@ -21,10 +22,13 @@ const Review = () => {
         <StarScore score={4.2} />
         <FilterButtons selectedFilter={selectedFilter} onClick={handleFilterClick} />
       </header>
-      <section className={cx("form")}>
+      <div className={cx("form")}>
         <h2 className={cx("form-title")}>리뷰 작성하기</h2>
         <ReviewForm />
-      </section>
+      </div>
+      <article className={cx("review")}>
+        <ReviewCardList />
+      </article>
     </div>
   );
 };
