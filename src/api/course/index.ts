@@ -24,7 +24,12 @@ export const deleteCourseDetail = (id: number): Promise<Course> =>
   apiRequest("delete", coursesAddress.delete(id), null, null, { requireAuth: true });
 
 // 코스 등록
-export const createCourse = (data: postCourse): Promise<postCourse> => apiRequest("post", coursesAddress.create, data);
+export const createCourse = (data: postCourse): Promise<postCourse> =>
+  apiRequest("post", coursesAddress.create, data, null, { requireAuth: true });
+
+// 코스 수정
+export const patchCourseApi = (postId: number, data: postCourse): Promise<postCourse> =>
+  apiRequest("patch", coursesAddress.getDetail(postId), data);
 
 // 코스 좋아요 등록
 export const addCourseLike = (data: CourseId) =>

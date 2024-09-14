@@ -9,7 +9,6 @@ const OptionController = <ControlType extends FieldValues>({
   formFieldName,
   control,
 }: OptionControllerProps<ControlType>) => {
-  console.log(formFieldName);
   return (
     <Controller
       name={formFieldName}

@@ -6,7 +6,7 @@ import OptionController from "@/components/domains/courseRegister/OptionControll
 
 // fix: label, message string constants로 정리하기
 export const INPUTS = {
-  name: {
+  title: {
     label: "코스 이름",
     message: "코스 이름은 30글자까지 입력 가능합니다.",
     isEssential: true,
@@ -46,7 +46,7 @@ export const INPUTS = {
 };
 
 export const API_INPUTS = {
-  name: {
+  title: {
     label: "코스 이름",
     message: "한국관광공사에서 제공하는 여행지 정보는 여행지 이름 수정이 불가합니다.",
     isEssential: false,
