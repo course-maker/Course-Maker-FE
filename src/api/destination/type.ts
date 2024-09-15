@@ -109,7 +109,7 @@ type DestinationReview = {
   rating: number;
 };
 
-export interface getDestinationReviewsResponseDto {
+export interface GetDestinationReviewsResponseDto {
   currentPage: number;
   totalPage: number;
   pagingSlice: number;

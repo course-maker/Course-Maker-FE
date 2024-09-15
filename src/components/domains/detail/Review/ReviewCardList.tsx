@@ -1,9 +1,18 @@
+import { CourseReview } from "@/api/course/type";
 import ReviewCard from "./ReviewCard";
 
-const ReviewCardList = () => {
+interface ReviewCardListProps {
+  allReviews: CourseReview[];
+}
+
+const ReviewCardList = ({ allReviews }: ReviewCardListProps) => {
   return (
     <>
-      <ReviewCard />
+      {allReviews.map((review) => (
+        <div key={review.reviewId}>
+          <ReviewCard review={review} />
+        </div>
+      ))}
     </>
   );
 };
