@@ -1,4 +1,5 @@
 import Button from "@/components/commons/Button";
+import useAuth from "@/hooks/useAuth";
 import { useHandleImageUpload } from "@/hooks/useFormImageUpload";
 import { ReviewFormType } from "@/type/type";
 import classNames from "classnames/bind";
@@ -15,6 +16,7 @@ interface ReviewFormProps {
 }
 
 const ReviewForm = ({ initialData }: ReviewFormProps) => {
+  const { isAuth } = useAuth();
   const { handleImageUpload } = useHandleImageUpload();
   const { handleSubmit, control } = useForm<ReviewFormType>({
     defaultValues: initialData || {
@@ -61,15 +63,15 @@ const ReviewForm = ({ initialData }: ReviewFormProps) => {
   return (
     <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <StarRating control={control} />
+        <StarRating control={control} isDisabled={!isAuth} />
       </div>
       <div className={cx("text-input")}>
-        <TextInput control={control} />
+        <TextInput control={control} isDisabled={!isAuth} />
       </div>
       <div className={cx("images-submit")}>
         <ImageInput control={control} />
         <div className={cx("images-submit-btn")}>
-          <Button type="submit" size="small" color="blue" variant="primary" isSquare={true}>
+          <Button type="submit" size="small" color="blue" variant="primary" isSquare={true} isDisabled={!isAuth}>
             {initialData ? "리뷰 수정하기" : "리뷰 등록하기"}
           </Button>
         </div>
