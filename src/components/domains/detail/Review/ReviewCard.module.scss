@@ -97,11 +97,21 @@
         height: 10rem;
         cursor: pointer;
 
+        // @include responsive("T") {
+        //   max-width: 10rem;
+        //   width: 100%;
+        //   height: auto;
+        //   aspect-ratio: 1 / 1;
+        // }
+
         @include responsive("T") {
-          max-width: 10rem;
-          width: 100%;
-          height: auto;
-          aspect-ratio: 1 / 1;
+          width: 8rem;
+          height: 8rem;
+        }
+
+        @include responsive("M") {
+          width: 6rem;
+          height: 6rem;
         }
 
         img {
@@ -132,7 +142,7 @@
         }
 
         @include responsive("M") {
-          width: 100%;
+          width: 90%;
         }
       }
 

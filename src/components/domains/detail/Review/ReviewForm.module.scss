@@ -9,6 +9,18 @@
 
   .images-submit {
     @include flexbox(between, end);
+    gap: 1rem;
     width: 100%;
+
+    &-btn {
+      @include responsive("T") {
+        align-self: self-end;
+      }
+    }
+
+    @include responsive("T") {
+      @include column-flexbox(center, start);
+      gap: 0;
+    }
   }
 }
