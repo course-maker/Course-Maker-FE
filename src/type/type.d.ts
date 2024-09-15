@@ -23,5 +23,5 @@ export type FilterType = "date" | "recommendation" | "asc" | "desc";
 export interface ReviewFormType {
   rating: number;
   content: string;
-  images: string[] | null;
+  images: string[];
 }

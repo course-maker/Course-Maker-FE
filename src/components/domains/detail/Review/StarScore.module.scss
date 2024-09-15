@@ -5,10 +5,18 @@
   .icon {
     @include flexbox();
     width: 3rem;
+
+    @include responsive("M") {
+      width: 2rem;
+    }
   }
 
   .score {
     @include text-style(2, 400, $black30);
+
+    @include responsive("M") {
+      font-size: 1.8rem;
+    }
 
     &-stress {
       font-weight: 700;
