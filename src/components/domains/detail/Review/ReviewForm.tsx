@@ -20,7 +20,7 @@ const ReviewForm = ({ initialData }: ReviewFormProps) => {
     defaultValues: initialData || {
       rating: 0,
       content: "",
-      images: null,
+      images: [],
     },
   });
 
@@ -68,9 +68,11 @@ const ReviewForm = ({ initialData }: ReviewFormProps) => {
       </div>
       <div className={cx("images-submit")}>
         <ImageInput control={control} />
-        <Button type="submit" size="small" color="blue" variant="primary" isSquare={true}>
-          {initialData ? "리뷰 수정하기" : "리뷰 등록하기"}
-        </Button>
+        <div className={cx("images-submit-btn")}>
+          <Button type="submit" size="small" color="blue" variant="primary" isSquare={true}>
+            {initialData ? "리뷰 수정하기" : "리뷰 등록하기"}
+          </Button>
+        </div>
       </div>
       {/* <button type="submit" disabled={mutation.isLoading}>
         {mutation.isLoading ? "처리 중..." : initialData ? "리뷰 수정하기" : "리뷰 등록하기"}

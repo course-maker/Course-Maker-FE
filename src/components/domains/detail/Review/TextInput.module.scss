@@ -12,6 +12,11 @@
     width: 100%;
     word-wrap: break-word;
 
+    @include responsive("M") {
+      font-size: 1.3rem;
+      height: 13rem;
+    }
+
     &::placeholder {
       color: $gray30;
     }
@@ -22,6 +27,10 @@
 
     .length {
       @include text-style(1.5, 500, $gray30);
+
+      @include responsive("M") {
+        font-size: 1.2rem;
+      }
     }
 
     .error {
