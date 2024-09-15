@@ -20,9 +20,10 @@ const CourseReview = () => {
     retry: 0,
   });
 
-  const { data: reviewData } = useInfiniteQuery({
+  const reviewInfiniteQuery = useInfiniteQuery({
     queryKey: ["courseReview", postId, selectedFilter],
-    queryFn: () => getCourseReviews({ courseId: postId, record: 20, orderBy: selectedFilter }),
+    queryFn: ({ pageParam = 1 }) =>
+      getCourseReviews({ courseId: postId, record: 5, orderBy: selectedFilter, page: pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       if (lastPage.currentPage < lastPage.totalPage) {
@@ -34,7 +35,6 @@ const CourseReview = () => {
     retry: 0,
   });
 
-  const allReviews = reviewData?.pages.flatMap((page) => page.contents) ?? [];
   const averageRating = courseDetailData?.averageRating || 0;
 
   return (
@@ -43,8 +43,8 @@ const CourseReview = () => {
         type={"course"}
         selectedFilter={selectedFilter}
         onFilterClick={handleFilterClick}
-        allReviews={allReviews}
         averageRating={averageRating}
+        reviewInfiniteQuery={reviewInfiniteQuery}
       />
     </>
   );

@@ -41,7 +41,7 @@ export const deleteCourseWish = (id: number) =>
 
 //코스 리뷰 조회
 export const getCourseReviews = (qs: PagenationOptions): Promise<GetCourseReviewsResponseDto> =>
-  apiRequest("get", courseReviewAddress.getCourseReviews, null, qs);
+  apiRequest("get", courseReviewAddress.getCourseReviews, null, qs, { requireAuth: true });
 
 //코스 리뷰 추천 등록
 export const postCourseReviewRecommend = (id: number): Promise<PostCourseReviewRecommendResponseDto> =>

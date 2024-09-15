@@ -77,7 +77,7 @@ const ReviewForm = ({ initialData }: ReviewFormProps) => {
         </div>
       </div>
       {/* <button type="submit" disabled={mutation.isLoading}>
-        {mutation.isLoading ? "처리 중..." : initialData ? "리뷰 수정하기" : "리뷰 등록하기"}
+        {mutation.isLoading ? "등록중" : initialData ? "리뷰 수정하기" : "리뷰 등록하기"}
       </button> */}
     </form>
   );

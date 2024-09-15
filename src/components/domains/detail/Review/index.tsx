@@ -1,5 +1,6 @@
-import { CourseReview } from "@/api/course/type";
+import { GetCourseReviewsResponseDto } from "@/api/course/type";
 import { FilterType } from "@/type/type";
+import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import FilterButtons from "./FilterButtons";
 import styles from "./Review.module.scss";
@@ -13,11 +14,11 @@ interface ReviewProps {
   type: "course" | "destination";
   selectedFilter: FilterType;
   onFilterClick: (filter: FilterType) => void;
-  allReviews: CourseReview[];
   averageRating: number;
+  reviewInfiniteQuery: UseInfiniteQueryResult<InfiniteData<GetCourseReviewsResponseDto, unknown>, Error>;
 }
 
-const Review = ({ type, selectedFilter, onFilterClick, allReviews, averageRating }: ReviewProps) => {
+const Review = ({ type, selectedFilter, onFilterClick, averageRating, reviewInfiniteQuery }: ReviewProps) => {
   return (
     <div className={cx("container")}>
       <header className={cx("header")}>
@@ -29,7 +30,7 @@ const Review = ({ type, selectedFilter, onFilterClick, allReviews, averageRating
         <ReviewForm />
       </div>
       <article className={cx("review")}>
-        <ReviewCardList type={type} allReviews={allReviews} />
+        <ReviewCardList type={type} reviewInfiniteQuery={reviewInfiniteQuery} />
       </article>
     </div>
   );
