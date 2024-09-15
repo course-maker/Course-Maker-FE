@@ -1,7 +1,7 @@
 import { getCourseReviews } from "@/api/course";
-import { getCourseReviewsResponseDto } from "@/api/course/type";
+import { GetCourseReviewsResponseDto } from "@/api/course/type";
 import { getDestinationReviews } from "@/api/destination";
-import { getDestinationReviewsResponseDto } from "@/api/destination/type";
+import { GetDestinationReviewsResponseDto } from "@/api/destination/type";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { ReactNode, useState } from "react";
@@ -10,7 +10,7 @@ import styles from "./InfoAndReviewTab.module.scss";
 
 const cx = classNames.bind(styles);
 
-type ReviewsResponse = getCourseReviewsResponseDto | getDestinationReviewsResponseDto;
+type ReviewsResponse = GetCourseReviewsResponseDto | GetDestinationReviewsResponseDto;
 interface InfoAndReviewTabProps {
   type: "course" | "destination";
   info: ReactNode;

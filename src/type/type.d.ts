@@ -18,7 +18,7 @@ export interface LocationWithId {
   lng: number;
 }
 
-export type FilterType = "date" | "recommendation" | "asc" | "desc";
+export type FilterType = "NEWEST" | "RECOMMEND" | "RATING_DOWN" | "RATING_UP";
 
 export interface ReviewFormType {
   rating: number;
