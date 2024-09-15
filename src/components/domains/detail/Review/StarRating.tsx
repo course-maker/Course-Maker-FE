@@ -10,9 +10,10 @@ const cx = classNames.bind(styles);
 
 interface StarRatingProps {
   control: Control<ReviewFormType>;
+  isDisabled: boolean;
 }
 
-const StarRating = ({ control }: StarRatingProps) => {
+const StarRating = ({ control, isDisabled }: StarRatingProps) => {
   const [hoveredStar, setHoveredStar] = useState<number | null>(null);
 
   return (
@@ -33,10 +34,15 @@ const StarRating = ({ control }: StarRatingProps) => {
             {[1, 2, 3, 4, 5].map((star) => (
               <label
                 key={star}
-                className={cx("star")}
-                onMouseEnter={() => setHoveredStar(star)}
-                onMouseLeave={() => setHoveredStar(null)}>
-                <input type="radio" value={star} checked={field.value === star} onChange={() => field.onChange(star)} />
+                className={cx("star", { isDisabled })}
+                onMouseEnter={() => isDisabled || setHoveredStar(star)}
+                onMouseLeave={() => isDisabled || setHoveredStar(null)}>
+                <input
+                  type="radio"
+                  value={star}
+                  checked={field.value === star}
+                  onChange={() => isDisabled || field.onChange(star)}
+                />
                 <Image imageInfo={star <= (hoveredStar ?? field.value) ? IMAGES.blueStar : IMAGES.BlackStarIcon} />
               </label>
             ))}

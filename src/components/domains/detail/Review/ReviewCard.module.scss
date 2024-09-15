@@ -2,6 +2,7 @@
   @include flexbox(start, start);
   gap: 2.5rem;
   width: 100%;
+  padding-bottom: 4rem;
 
   @include responsive("M") {
     @include column-flexbox(center, start);
