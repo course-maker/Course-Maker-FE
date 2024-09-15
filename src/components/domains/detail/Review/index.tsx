@@ -10,13 +10,14 @@ import StarScore from "./StarScore";
 const cx = classNames.bind(styles);
 
 interface ReviewProps {
+  type: "course" | "destination";
   selectedFilter: FilterType;
   onFilterClick: (filter: FilterType) => void;
   allReviews: CourseReview[];
   averageRating: number;
 }
 
-const Review = ({ selectedFilter, onFilterClick, allReviews, averageRating }: ReviewProps) => {
+const Review = ({ type, selectedFilter, onFilterClick, allReviews, averageRating }: ReviewProps) => {
   return (
     <div className={cx("container")}>
       <header className={cx("header")}>
@@ -28,7 +29,7 @@ const Review = ({ selectedFilter, onFilterClick, allReviews, averageRating }: Re
         <ReviewForm />
       </div>
       <article className={cx("review")}>
-        <ReviewCardList allReviews={allReviews} />
+        <ReviewCardList type={type} allReviews={allReviews} />
       </article>
     </div>
   );

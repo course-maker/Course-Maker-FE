@@ -13,6 +13,7 @@ import {
   GetDestinationsResponseDto,
   postDestinationRequestDto,
   postDestinationResponseDto,
+  PostDestinationReviewRecommendResponseDto,
 } from "./type";
 
 // 여행지 정보
@@ -55,3 +56,11 @@ export const deleteDestinationWish = (id: number) =>
 //목적지 리뷰 조회
 export const getDestinationReviews = (qs: PagenationOptions): Promise<GetDestinationReviewsResponseDto> =>
   apiRequest("get", destinationReviewAddress.getDestinationReviews, null, qs);
+
+//목적지 리뷰 추천 등록
+export const postDestinationReviewRecommend = (id: number): Promise<PostDestinationReviewRecommendResponseDto> =>
+  apiRequest("post", destinationReviewAddress.postDestinationReviewRecommend(id), null, null, { requireAuth: true });
+
+//목적지 리뷰 추천 취소
+export const postDestinationReviewUnrecommend = (id: number): Promise<PostDestinationReviewRecommendResponseDto> =>
+  apiRequest("post", destinationReviewAddress.postDestinationReviewUnrecommend(id), null, null, { requireAuth: true });
