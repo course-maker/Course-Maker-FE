@@ -1,12 +1,36 @@
-import { CourseReview } from "@/api/course/type";
+import { GetCourseReviewsResponseDto } from "@/api/course/type";
+import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
+import { useCallback, useEffect, useRef } from "react";
 import ReviewCard from "./ReviewCard";
 
 interface ReviewCardListProps {
   type: "course" | "destination";
-  allReviews: CourseReview[];
+  reviewInfiniteQuery: UseInfiniteQueryResult<InfiniteData<GetCourseReviewsResponseDto>, Error>;
 }
 
-const ReviewCardList = ({ type, allReviews }: ReviewCardListProps) => {
+const ReviewCardList = ({ type, reviewInfiniteQuery }: ReviewCardListProps) => {
+  const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = reviewInfiniteQuery;
+
+  const observerElem = useRef<HTMLDivElement | null>(null);
+
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [target] = entries;
+      if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    },
+    [fetchNextPage, hasNextPage, isFetchingNextPage],
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, { threshold: 1.0 });
+    if (observerElem.current) observer.observe(observerElem.current);
+    return () => observer.disconnect();
+  }, [handleObserver]);
+
+  const allReviews = data?.pages.flatMap((page) => page.contents) ?? [];
+
   return (
     <>
       {allReviews.map((review) => (
@@ -14,7 +38,9 @@ const ReviewCardList = ({ type, allReviews }: ReviewCardListProps) => {
           <ReviewCard type={type} review={review} />
         </div>
       ))}
+      <div ref={observerElem} style={{ height: "1px" }} />
     </>
   );
 };
+
 export default ReviewCardList;
