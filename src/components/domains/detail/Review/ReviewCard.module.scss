@@ -3,14 +3,33 @@
   gap: 2.5rem;
   width: 100%;
 
+  @include responsive("M") {
+    @include column-flexbox(center, start);
+    gap: 1rem;
+  }
+
   .info {
     @include text-style(1.6, 400 $black30);
     @include column-flexbox(center, start);
     gap: 0.5rem;
 
+    @include responsive("M") {
+      @include flexbox();
+      flex-direction: row;
+      gap: 1rem;
+      font-size: 1.3rem;
+      width: 100%;
+    }
+
     &-nickname {
       font-weight: 600;
       width: 15rem;
+
+      @include responsive("M") {
+        width: 100%;
+        font-size: 1.6rem;
+        flex-grow: 2;
+      }
     }
 
     &-date {
@@ -25,6 +44,10 @@
         @include flexbox();
         width: 3rem;
         cursor: pointer;
+
+        @include responsive("M") {
+          width: 2rem;
+        }
       }
 
       &-count {
@@ -49,6 +72,10 @@
         &-icon {
           @include flexbox();
           width: 2rem;
+
+          @include responsive("M") {
+            width: 1.5rem;
+          }
         }
 
         &-rating {
@@ -58,8 +85,9 @@
     }
 
     &-images {
-      @include flexbox();
+      @include flexbox(start, center);
       gap: 0.5rem;
+      width: 100%;
 
       &-image {
         border: solid 0.1rem $gray20;
@@ -68,6 +96,13 @@
         width: 10rem;
         height: 10rem;
         cursor: pointer;
+
+        @include responsive("T") {
+          max-width: 10rem;
+          width: 100%;
+          height: auto;
+          aspect-ratio: 1 / 1;
+        }
 
         img {
           width: 100%;
@@ -83,10 +118,22 @@
       gap: 0.5rem;
       width: 100%;
 
+      @include responsive("M") {
+        font-size: 1.3rem;
+      }
+
       &-text {
         width: 60rem;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        @include responsive("T") {
+          width: calc(100vw - 48rem);
+        }
+
+        @include responsive("M") {
+          width: 100%;
+        }
       }
 
       &-btn {

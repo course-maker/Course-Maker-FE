@@ -4,6 +4,10 @@
   padding: 5rem 3rem;
   width: 100%;
 
+  @include responsive("M") {
+    padding: 2rem 0;
+  }
+
   .header {
     @include flexbox(between, center);
     width: 100%;
