@@ -42,12 +42,8 @@
 
       &-btn {
         @include flexbox();
-        width: 3rem;
+        width: 2rem;
         cursor: pointer;
-
-        @include responsive("M") {
-          width: 2rem;
-        }
       }
 
       &-count {

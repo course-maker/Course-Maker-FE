@@ -87,9 +87,17 @@ export const destinationWishAddress = {
 export const courseReviewAddress = {
   //get
   getCourseReviews: "/v1/coursereview",
+  //post
+  postCourseReviewRecommend: (id: number) => `/v1/coursereview/${id}/recommend`,
+  //post
+  postCourseReviewUnrecommend: (id: number) => `/v1/coursereview/${id}/unrecommend`,
 };
 
 export const destinationReviewAddress = {
   //get
   getDestinationReviews: "/v1/destinationreview",
+  //post
+  postDestinationReviewRecommend: (id: number) => `/v1/destinationreview/${id}/recommend`,
+  //post
+  postDestinationReviewUnrecommend: (id: number) => `/v1/destinationreview/${id}/unrecommend`,
 };
