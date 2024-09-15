@@ -11,6 +11,10 @@
       width: 2rem;
       display: block;
       cursor: pointer;
+
+      &.isDisabled {
+        cursor: default;
+      }
     }
   }
 

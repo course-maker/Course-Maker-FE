@@ -140,7 +140,7 @@ const ReviewCard = ({ type, review }: ReviewCardProps) => {
               </div>
               <span className={cx("content-header-star-rating")}>{review.rating}</span>
             </div>
-            <EditAndDeleteButton onEdit={() => {}} onDelete={() => {}} />
+            {review.isMyCourseReview && <EditAndDeleteButton onEdit={() => {}} onDelete={() => {}} />}
           </div>
           <ul className={cx("content-images")}>
             {review.pictures.map((item, id) => (
