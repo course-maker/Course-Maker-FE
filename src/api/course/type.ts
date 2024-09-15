@@ -61,6 +61,7 @@ export interface CourseReview {
   isMyCourseReview: boolean;
   recommendCount: number;
   reviewedAt: string;
+  isMyLikeReview: boolean;
 }
 
 export interface GetCourseReviewsResponseDto {
@@ -69,4 +70,17 @@ export interface GetCourseReviewsResponseDto {
   pagingSlice: number;
   totalContents: number;
   contents: CourseReview[];
+}
+
+export interface PostCourseReviewRecommendResponseDto {
+  courseId: number;
+  reviewId: number;
+  nickname: string;
+  title: string;
+  description: string;
+  pictures: string[];
+  rating: number;
+  isMyCourseReview: boolean;
+  recommendCount: number;
+  isMyLikeReview: boolean;
 }

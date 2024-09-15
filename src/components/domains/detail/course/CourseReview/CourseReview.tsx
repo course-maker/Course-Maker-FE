@@ -40,6 +40,7 @@ const CourseReview = () => {
   return (
     <>
       <Review
+        type={"course"}
         selectedFilter={selectedFilter}
         onFilterClick={handleFilterClick}
         allReviews={allReviews}

@@ -107,6 +107,8 @@ type DestinationReview = {
   description: string;
   picture: string;
   rating: number;
+  reviewedAt: string;
+  isMyLikeReview: boolean;
 };
 
 export interface GetDestinationReviewsResponseDto {
@@ -115,4 +117,17 @@ export interface GetDestinationReviewsResponseDto {
   pagingSlice: number;
   totalContents: number;
   contents: DestinationReview[];
+}
+
+export interface PostDestinationReviewRecommendResponseDto {
+  destinationId: number;
+  reviewId: number;
+  nickname: string;
+  title: string;
+  description: string;
+  pictures: string[];
+  rating: number;
+  isMyDestinationReview: boolean;
+  recommendCount: number;
+  isMyLikeReview: boolean;
 }
