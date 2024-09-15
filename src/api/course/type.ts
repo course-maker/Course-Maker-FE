@@ -47,22 +47,26 @@ export type PagenationOptions = {
   courseId: number;
   record?: number;
   page?: number;
+  orderBy?: string;
 };
 
-export interface courseReview {
+export interface CourseReview {
   courseId: number;
   reviewId: number;
   nickname: string;
   title: string;
   description: string;
-  picture: string;
+  pictures: string[];
   rating: number;
+  isMyCourseReview: boolean;
+  recommendCount: number;
+  reviewedAt: string;
 }
 
-export interface getCourseReviewsResponseDto {
+export interface GetCourseReviewsResponseDto {
   currentPage: number;
   totalPage: number;
   pagingSlice: number;
   totalContents: number;
-  contents: courseReview[];
+  contents: CourseReview[];
 }

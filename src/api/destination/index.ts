@@ -9,7 +9,7 @@ import { PagenationOptions } from "../course/type";
 import {
   DestinationId,
   getDestinationResponseDto,
-  getDestinationReviewsResponseDto,
+  GetDestinationReviewsResponseDto,
   GetDestinationsResponseDto,
   postDestinationRequestDto,
   postDestinationResponseDto,
@@ -53,5 +53,5 @@ export const deleteDestinationWish = (id: number) =>
   apiRequest("delete", destinationWishAddress.deleteWish(id), null, null, { requireAuth: true });
 
 //목적지 리뷰 조회
-export const getDestinationReviews = (qs: PagenationOptions): Promise<getDestinationReviewsResponseDto> =>
+export const getDestinationReviews = (qs: PagenationOptions): Promise<GetDestinationReviewsResponseDto> =>
   apiRequest("get", destinationReviewAddress.getDestinationReviews, null, qs);

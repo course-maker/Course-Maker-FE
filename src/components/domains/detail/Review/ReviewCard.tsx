@@ -1,3 +1,4 @@
+import { CourseReview } from "@/api/course/type";
 import EditAndDeleteButton from "@/components/commons/EditAndDeleteButton";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
@@ -9,14 +10,17 @@ import styles from "./ReviewCard.module.scss";
 
 const cx = classNames.bind(styles);
 
-const ReviewCard = () => {
+interface ReviewCardProps {
+  review: CourseReview;
+}
+
+const ReviewCard = ({ review }: ReviewCardProps) => {
   const { width } = useWindowSize();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [showToggleButton, setShowToggleButton] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<string>("");
-  const fullText =
-    "긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 긴글 테스트 ";
+  const fullText = review.description;
 
   const textRef = useRef<HTMLParagraphElement>(null);
 
@@ -55,13 +59,17 @@ const ReviewCard = () => {
     <>
       <div className={cx("container")}>
         <section className={cx("info")}>
-          <div className={cx("info-nickname")}>{"작성자닉네임가가가가"}</div>
-          <div className={cx("info-date")}>{"2024.09.14"}</div>
+          <div className={cx("info-nickname")}>{review.nickname}</div>
+          <div className={cx("info-date")}>{review.reviewedAt ? review.reviewedAt : "2024.00.00"}</div>
           <div className={cx("info-like")}>
             <div className={cx("info-like-btn")}>
-              <Image imageInfo={IMAGES.GrayFavoriteIcon} />
+              {review.isMyCourseReview ? (
+                <Image imageInfo={IMAGES.BlueFavoriteIcon} />
+              ) : (
+                <Image imageInfo={IMAGES.GrayFavoriteIcon} />
+              )}
             </div>
-            <span className={cx("info-like-count")}>{89}</span>
+            <span className={cx("info-like-count")}>{review.recommendCount ? review.recommendCount : 0}</span>
           </div>
         </section>
         <section className={cx("content")}>
@@ -70,18 +78,12 @@ const ReviewCard = () => {
               <div className={cx("content-header-star-icon")}>
                 <Image imageInfo={IMAGES.BlackStarIcon} />
               </div>
-              <span className={cx("content-header-star-rating")}>{4}</span>
+              <span className={cx("content-header-star-rating")}>{review.rating}</span>
             </div>
             <EditAndDeleteButton onEdit={() => {}} onDelete={() => {}} />
           </div>
           <ul className={cx("content-images")}>
-            {[
-              "https://myawsbucket0154.s3.ap-northeast-2.amazonaws.com/d2ebe00c-9749-441e-9540-6bf961ea62f6.png",
-              "https://myawsbucket0154.s3.ap-northeast-2.amazonaws.com/467f57ce-2267-47d0-8a2e-44b8eeae43c2.jpeg",
-              "https://myawsbucket0154.s3.ap-northeast-2.amazonaws.com/3babb647-e1ff-453b-9f81-9a24be943e91.jpg",
-              "https://myawsbucket0154.s3.ap-northeast-2.amazonaws.com/68698c2e-51d6-4e35-913e-82d26a0ffb6a.jpg",
-              "https://myawsbucket0154.s3.ap-northeast-2.amazonaws.com/68635088-f7a2-483b-b253-57958cd35956.jpg",
-            ].map((item, id) => (
+            {review.pictures.map((item, id) => (
               <div key={id} className={cx("content-images-image")} onClick={() => openModal(item)}>
                 <img src={item} alt={`Preview ${id}`} />
               </div>
