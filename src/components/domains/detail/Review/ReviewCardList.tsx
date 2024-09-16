@@ -1,4 +1,4 @@
-import { GetCourseReviewsResponseDto } from "@/api/course/type";
+import { CourseReview, GetCourseReviewsResponseDto } from "@/api/course/type";
 import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef } from "react";
 import ReviewCard from "./ReviewCard";
@@ -6,9 +6,10 @@ import ReviewCard from "./ReviewCard";
 interface ReviewCardListProps {
   type: "course" | "destination";
   reviewInfiniteQuery: UseInfiniteQueryResult<InfiniteData<GetCourseReviewsResponseDto>, Error>;
+  onEditClick: (review: CourseReview) => void;
 }
 
-const ReviewCardList = ({ type, reviewInfiniteQuery }: ReviewCardListProps) => {
+const ReviewCardList = ({ type, reviewInfiniteQuery, onEditClick }: ReviewCardListProps) => {
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = reviewInfiniteQuery;
 
   const observerElem = useRef<HTMLDivElement | null>(null);
@@ -35,7 +36,7 @@ const ReviewCardList = ({ type, reviewInfiniteQuery }: ReviewCardListProps) => {
     <>
       {allReviews.map((review) => (
         <div key={review.reviewId}>
-          <ReviewCard type={type} review={review} />
+          <ReviewCard type={type} review={review} onEditClick={onEditClick} />
         </div>
       ))}
       <div ref={observerElem} style={{ height: "1px" }} />

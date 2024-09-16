@@ -20,9 +20,10 @@ type RecommendResponse = PostDestinationReviewRecommendResponseDto | PostCourseR
 interface ReviewCardProps {
   type: "course" | "destination";
   review: CourseReview;
+  onEditClick: (review: CourseReview) => void;
 }
 
-const ReviewCard = ({ type, review }: ReviewCardProps) => {
+const ReviewCard = ({ type, review, onEditClick }: ReviewCardProps) => {
   const { width } = useWindowSize();
   const { isAuth } = useAuth();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -140,7 +141,7 @@ const ReviewCard = ({ type, review }: ReviewCardProps) => {
               </div>
               <span className={cx("content-header-star-rating")}>{review.rating}</span>
             </div>
-            {review.isMyCourseReview && <EditAndDeleteButton onEdit={() => {}} onDelete={() => {}} />}
+            {review.isMyCourseReview && <EditAndDeleteButton onEdit={() => onEditClick(review)} onDelete={() => {}} />}
           </div>
           <ul className={cx("content-images")}>
             {review.pictures.map((item, id) => (

@@ -21,7 +21,13 @@ export interface LocationWithId {
 export type FilterType = "NEWEST" | "RECOMMEND" | "RATING_DOWN" | "RATING_UP";
 
 export interface ReviewFormType {
+  title: string;
+  description: string;
+  pictures: string[];
   rating: number;
-  content: string;
-  images: string[];
+}
+
+export interface ReviewEditForm {
+  reviewId: number;
+  initialValue: ReviewFormType;
 }

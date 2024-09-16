@@ -1,3 +1,4 @@
+import { FieldValues } from "react-hook-form";
 import { courseLikeAddress, courseReviewAddress, coursesAddress, courseWishAddress } from "../address";
 import { apiRequest } from "../axios";
 import { postCourse } from "./register";
@@ -43,6 +44,10 @@ export const deleteCourseWish = (id: number) =>
 export const getCourseReviews = (qs: PagenationOptions): Promise<GetCourseReviewsResponseDto> =>
   apiRequest("get", courseReviewAddress.getCourseReviews, null, qs, { requireAuth: true });
 
+//코스 리뷰 등록
+export const postCourseReviews = (qs: PagenationOptions, data: FieldValues): Promise<GetCourseReviewsResponseDto> =>
+  apiRequest("post", courseReviewAddress.getCourseReviews, data, qs, { requireAuth: true });
+
 //코스 리뷰 추천 등록
 export const postCourseReviewRecommend = (id: number): Promise<PostCourseReviewRecommendResponseDto> =>
   apiRequest("post", courseReviewAddress.postCourseReviewRecommend(id), null, null, { requireAuth: true });
@@ -50,3 +55,7 @@ export const postCourseReviewRecommend = (id: number): Promise<PostCourseReviewR
 //코스 리뷰 추천 취소
 export const postCourseReviewUnrecommend = (id: number): Promise<PostCourseReviewRecommendResponseDto> =>
   apiRequest("post", courseReviewAddress.postCourseReviewUnrecommend(id), null, null, { requireAuth: true });
+
+//코스 리뷰 수정
+export const putCourseReviewEdit = (qs: { courseId: number; id: number }, data: FieldValues) =>
+  apiRequest("put", courseReviewAddress.courseReviewEditAndDelete, data, qs, { requireAuth: true });
