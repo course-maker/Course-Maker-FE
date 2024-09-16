@@ -72,4 +72,8 @@ export const postDestinationReviewUnrecommend = (id: number): Promise<PostDestin
 
 //목적지 리뷰 수정
 export const putDestinationReviewEdit = (qs: { destinationId: number; id: number }, data: FieldValues) =>
-  apiRequest("put", destinationReviewAddress.destinationReviewEditAndDelete, data, qs, { requireAuth: true });
+  apiRequest("put", destinationReviewAddress.putDestinationReviewEdit, data, qs, { requireAuth: true });
+
+//목적지 리뷰 삭제
+export const deleteDestinationReview = (id: number) =>
+  apiRequest("delete", destinationReviewAddress.deleteDestinationReview(id), null, null, { requireAuth: true });

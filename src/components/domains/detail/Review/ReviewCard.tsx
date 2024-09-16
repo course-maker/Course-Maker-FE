@@ -21,9 +21,10 @@ interface ReviewCardProps {
   type: "course" | "destination";
   review: CourseReview;
   onEditClick: (review: CourseReview) => void;
+  onDeleteClick: (reviewId: number) => void;
 }
 
-const ReviewCard = ({ type, review, onEditClick }: ReviewCardProps) => {
+const ReviewCard = ({ type, review, onEditClick, onDeleteClick }: ReviewCardProps) => {
   const { width } = useWindowSize();
   const { isAuth } = useAuth();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -141,7 +142,14 @@ const ReviewCard = ({ type, review, onEditClick }: ReviewCardProps) => {
               </div>
               <span className={cx("content-header-star-rating")}>{review.rating}</span>
             </div>
-            {review.isMyCourseReview && <EditAndDeleteButton onEdit={() => onEditClick(review)} onDelete={() => {}} />}
+            {review.isMyCourseReview && (
+              <EditAndDeleteButton
+                onEdit={() => onEditClick(review)}
+                onDelete={() => {
+                  onDeleteClick(review.reviewId);
+                }}
+              />
+            )}
           </div>
           <ul className={cx("content-images")}>
             {review.pictures.map((item, id) => (
