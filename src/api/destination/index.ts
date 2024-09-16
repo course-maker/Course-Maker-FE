@@ -1,3 +1,4 @@
+import { FieldValues } from "react-hook-form";
 import {
   destinationAddress,
   destinationLikeAddress,
@@ -5,12 +6,12 @@ import {
   destinationWishAddress,
 } from "../address";
 import { apiRequest } from "../axios";
-import { PagenationOptions } from "../course/type";
 import {
   DestinationId,
   getDestinationResponseDto,
   GetDestinationReviewsResponseDto,
   GetDestinationsResponseDto,
+  PagenationOptions,
   postDestinationRequestDto,
   postDestinationResponseDto,
   PostDestinationReviewRecommendResponseDto,
@@ -57,6 +58,10 @@ export const deleteDestinationWish = (id: number) =>
 export const getDestinationReviews = (qs: PagenationOptions): Promise<GetDestinationReviewsResponseDto> =>
   apiRequest("get", destinationReviewAddress.getDestinationReviews, null, qs);
 
+//목적지 리뷰 등록
+export const postDestinationReviews = (qs: PagenationOptions, data: FieldValues): Promise<DestinationId> =>
+  apiRequest("post", destinationReviewAddress.getDestinationReviews, data, qs, { requireAuth: true });
+
 //목적지 리뷰 추천 등록
 export const postDestinationReviewRecommend = (id: number): Promise<PostDestinationReviewRecommendResponseDto> =>
   apiRequest("post", destinationReviewAddress.postDestinationReviewRecommend(id), null, null, { requireAuth: true });
@@ -64,3 +69,7 @@ export const postDestinationReviewRecommend = (id: number): Promise<PostDestinat
 //목적지 리뷰 추천 취소
 export const postDestinationReviewUnrecommend = (id: number): Promise<PostDestinationReviewRecommendResponseDto> =>
   apiRequest("post", destinationReviewAddress.postDestinationReviewUnrecommend(id), null, null, { requireAuth: true });
+
+//목적지 리뷰 수정
+export const putDestinationReviewEdit = (qs: { destinationId: number; id: number }, data: FieldValues) =>
+  apiRequest("put", destinationReviewAddress.destinationReviewEditAndDelete, data, qs, { requireAuth: true });
