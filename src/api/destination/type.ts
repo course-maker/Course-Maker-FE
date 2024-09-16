@@ -99,14 +99,23 @@ export interface DestinationId {
   destinationId: number;
 }
 
+export type PagenationOptions = {
+  destinationId: number;
+  record?: number;
+  page?: number;
+  orderBy?: string;
+};
+
 type DestinationReview = {
   destinationId: number;
   reviewId: number;
   nickname: string;
   title: string;
   description: string;
-  picture: string;
+  pictures: [];
   rating: number;
+  isMyDestinationReview: boolean;
+  recommendCount: number;
   reviewedAt: string;
   isMyLikeReview: boolean;
 };

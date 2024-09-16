@@ -23,7 +23,7 @@ const ImageInput = ({ control }: ImageInputProps) => {
 
   return (
     <Controller
-      name="images"
+      name="pictures"
       control={control}
       render={({ field }) => {
         const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

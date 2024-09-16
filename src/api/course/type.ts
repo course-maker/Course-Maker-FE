@@ -84,3 +84,10 @@ export interface PostCourseReviewRecommendResponseDto {
   recommendCount: number;
   isMyLikeReview: boolean;
 }
+
+export interface PostCourseReviewsRequestDto {
+  title: string;
+  description: string;
+  pictures: string[];
+  rating: number;
+}

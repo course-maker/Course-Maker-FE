@@ -13,7 +13,7 @@ interface TextInputProps {
 const TextInput = ({ control, isDisabled }: TextInputProps) => {
   return (
     <Controller
-      name="content"
+      name="description"
       control={control}
       rules={{ required: "댓글을 작성해주세요." }}
       render={({ field, fieldState }) => (
