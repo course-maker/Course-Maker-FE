@@ -33,7 +33,7 @@ const InfoAndReviewTab = ({ type, info, review }: InfoAndReviewTabProps) => {
   const { data } = useQuery<ReviewsResponse>({
     queryKey: type === "course" ? ["courseReview", postId] : ["destinationReview", postId],
     queryFn: () =>
-      type === "course" ? getCourseReviews({ courseId: postId }) : getDestinationReviews({ courseId: postId }),
+      type === "course" ? getCourseReviews({ courseId: postId }) : getDestinationReviews({ destinationId: postId }),
   });
 
   const totalReviewCount = data?.totalContents;
