@@ -1,8 +1,12 @@
+import { deleteCourseReview } from "@/api/course";
 import { CourseReview, GetCourseReviewsResponseDto } from "@/api/course/type";
+import { deleteDestinationReview } from "@/api/destination";
 import { FilterType, ReviewEditForm } from "@/type/type";
-import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
+import { InfiniteData, UseInfiniteQueryResult, useMutation, useQueryClient } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import classNames from "classnames/bind";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import FilterButtons from "./FilterButtons";
 import styles from "./Review.module.scss";
 import ReviewCardList from "./ReviewCardList";
@@ -20,12 +24,42 @@ interface ReviewProps {
 }
 
 const Review = ({ type, selectedFilter, onFilterClick, averageRating, reviewInfiniteQuery }: ReviewProps) => {
+  const { id } = useParams();
+  const postId = Number(id);
   const [editingReview, setEditingReview] = useState<ReviewEditForm | null>(null);
+  const queryClient = useQueryClient();
+
+  const deleteReviewMutation = useMutation({
+    mutationFn: (reviewId: number) => {
+      return type === "course" ? deleteCourseReview(reviewId) : deleteDestinationReview(reviewId);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: type === "course" ? ["courseReview", postId] : ["destinationReview", postId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: type === "course" ? ["courseDetailData"] : ["destinationDetailData"],
+      });
+      setEditingReview(null);
+    },
+    onError: (error: AxiosError) => {
+      const statusCode = error?.response?.status;
+      switch (statusCode) {
+        case 404:
+          alert("해당하는 리뷰가 없습니다.");
+          break;
+        default:
+          alert("리뷰 삭제 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    },
+  });
 
   const handleEditClick = (review: CourseReview) => {
     const { reviewId, title, description, pictures, rating } = review;
     setEditingReview({ reviewId, initialValue: { title, description, pictures, rating } });
   };
+
+  const handleDeleteClick = (reviewId: number) => deleteReviewMutation.mutate(reviewId);
 
   return (
     <div className={cx("container")}>
@@ -38,7 +72,12 @@ const Review = ({ type, selectedFilter, onFilterClick, averageRating, reviewInfi
         <ReviewForm type={type} initialData={editingReview} setEditingReview={setEditingReview} />
       </div>
       <article className={cx("review")}>
-        <ReviewCardList type={type} reviewInfiniteQuery={reviewInfiniteQuery} onEditClick={handleEditClick} />
+        <ReviewCardList
+          type={type}
+          reviewInfiniteQuery={reviewInfiniteQuery}
+          onEditClick={handleEditClick}
+          onDeleteClick={handleDeleteClick}
+        />
       </article>
     </div>
   );

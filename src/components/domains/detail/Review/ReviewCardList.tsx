@@ -7,9 +7,10 @@ interface ReviewCardListProps {
   type: "course" | "destination";
   reviewInfiniteQuery: UseInfiniteQueryResult<InfiniteData<GetCourseReviewsResponseDto>, Error>;
   onEditClick: (review: CourseReview) => void;
+  onDeleteClick: (reviewId: number) => void;
 }
 
-const ReviewCardList = ({ type, reviewInfiniteQuery, onEditClick }: ReviewCardListProps) => {
+const ReviewCardList = ({ type, reviewInfiniteQuery, onEditClick, onDeleteClick }: ReviewCardListProps) => {
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = reviewInfiniteQuery;
 
   const observerElem = useRef<HTMLDivElement | null>(null);
@@ -36,7 +37,7 @@ const ReviewCardList = ({ type, reviewInfiniteQuery, onEditClick }: ReviewCardLi
     <>
       {allReviews.map((review) => (
         <div key={review.reviewId}>
-          <ReviewCard type={type} review={review} onEditClick={onEditClick} />
+          <ReviewCard type={type} review={review} onEditClick={onEditClick} onDeleteClick={onDeleteClick} />
         </div>
       ))}
       <div ref={observerElem} style={{ height: "1px" }} />
