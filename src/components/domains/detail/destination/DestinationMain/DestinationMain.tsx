@@ -28,20 +28,20 @@ const DestinationMain = () => {
           imageInfo={{ src: destinationDetail?.pictureLink, alt: `${destinationDetail.name} 대표 이미지` }}
           objectFit="cover"
         />
-        <div className={cx("logo")}>
-          <Image imageInfo={IMAGES.apiDataLogo} />
-        </div>
+        {destinationDetail.isApiData && (
+          <div className={cx("logo")}>
+            <Image imageInfo={IMAGES.apiDataLogo} />
+          </div>
+        )}
       </div>
       <div className={cx("map-location")}>
         <div className={cx("map")}>
           <Map center={position} className={cx("kakao-map")} style={{ width: "100%", height: "100%" }} level={3}>
             <CustomOverlayMap position={position} xAnchor={0.5} yAnchor={1.1}>
               <div className={cx("marker")}>
-                {destinationDetail.isApiData && (
-                  <div className={cx("icon")}>
-                    <Image imageInfo={IMAGES.locationIcon} />
-                  </div>
-                )}
+                <div className={cx("icon")}>
+                  <Image imageInfo={IMAGES.locationIcon} />
+                </div>
               </div>
             </CustomOverlayMap>
           </Map>

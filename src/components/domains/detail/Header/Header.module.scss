@@ -63,7 +63,8 @@
   }
 }
 .tags {
-  @include inline-flexbox();
+  @include inline-flexbox(start, center);
+  flex-wrap: wrap;
   padding-top: 2rem;
   gap: 1rem;
 
