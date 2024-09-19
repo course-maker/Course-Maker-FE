@@ -38,6 +38,7 @@ import grayCar from "@/assets/images/gray_car.svg";
 import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
 import GrayKaKaoIcon from "@/assets/images/gray_kakao.svg";
 import GrayLinkIcon from "@/assets/images/gray_link.svg";
+import grayLocation from "@/assets/images/gray_location.svg";
 import GrayPhotoIcon from "@/assets/images/gray_photo.svg";
 import GraySearchIcon from "@/assets/images/gray_search.svg";
 import graySign from "@/assets/images/gray_sign.svg";
@@ -384,5 +385,9 @@ export const IMAGES = {
   addFile: {
     src: addFile,
     alt: "파일 첨부 아이콘",
+  },
+  grayLocation: {
+    src: grayLocation,
+    alt: "회색 포인터 아이콘",
   },
 };

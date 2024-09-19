@@ -9,7 +9,7 @@ const CourseHeader = () => {
   const navigate = useNavigate();
 
   const { data: courseDetailData } = useQuery({
-    queryKey: ["courseDetailData"],
+    queryKey: ["courseDetailData", id],
     queryFn: () => getCourseDetail(Number(id)),
     retry: 0,
   });
