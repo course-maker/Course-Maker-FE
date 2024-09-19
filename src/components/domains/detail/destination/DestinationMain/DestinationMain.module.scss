@@ -13,10 +13,23 @@
     overflow: hidden;
     height: 40rem;
     width: 40rem;
+    position: relative;
 
     @include responsive("T") {
       height: 25rem;
       width: 25rem;
+    }
+
+    .logo {
+      @include flexbox();
+      width: 8rem;
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+
+      @include responsive("T") {
+        width: 6rem;
+      }
     }
   }
 
