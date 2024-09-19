@@ -19,12 +19,12 @@ const DestinationHeader = () => {
   const deleteMutation = useMutation({
     mutationFn: () => deleteDestinationDetail(Number(id)),
     onSuccess: () => {
-      navigate("/search");
-      alert("코스가 성공적으로 삭제되었습니다.");
+      navigate("/search", { replace: true });
+      alert("여행지가 성공적으로 삭제되었습니다.");
     },
     onError: (error) => {
-      console.error("코스 삭제 실패:", error);
-      alert("코스 삭제에 실패했습니다. 다시 시도해주세요.");
+      console.error("여행지 삭제 실패:", error);
+      alert("여행지 삭제에 실패했습니다. 다시 시도해주세요.");
     },
   });
 
@@ -33,7 +33,7 @@ const DestinationHeader = () => {
   };
 
   const handleDelete = () => {
-    if (window.confirm("정말로 이 목적지를 삭제하시겠습니까?")) {
+    if (window.confirm("정말로 이 여행지를 삭제하시겠습니까?")) {
       deleteMutation.mutate();
     }
   };
