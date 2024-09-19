@@ -9,7 +9,7 @@ const DestinationHeader = () => {
   const navigate = useNavigate();
 
   const { data: destinationDetailData } = useQuery({
-    queryKey: ["destinationDetailData"],
+    queryKey: ["destinationDetailData", id],
     queryFn: () => getDestinationApi(Number(id)),
     retry: 0,
   });
