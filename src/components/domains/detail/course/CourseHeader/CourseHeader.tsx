@@ -7,6 +7,7 @@ import Header from "../../Header/Header";
 const CourseHeader = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+
   const { data: courseDetailData } = useQuery({
     queryKey: ["courseDetailData"],
     queryFn: () => getCourseDetail(Number(id)),
@@ -18,7 +19,7 @@ const CourseHeader = () => {
   const deleteMutation = useMutation({
     mutationFn: () => deleteCourseDetail(Number(id)),
     onSuccess: () => {
-      navigate("/courses");
+      navigate("/search");
       alert("코스가 성공적으로 삭제되었습니다.");
     },
     onError: (error) => {
@@ -37,7 +38,24 @@ const CourseHeader = () => {
     }
   };
 
-  return <Header type="course" data={courseDetail} onEdit={handleEdit} onDelete={handleDelete} />;
+  const headerData = {
+    title: courseDetail.title,
+    nickname: courseDetail.member.nickname,
+    reviewCount: courseDetail.reviewCount,
+    isMyPost: courseDetail.isMyCourse,
+    tags: courseDetail.tags,
+
+    actionData: {
+      id: courseDetail.id,
+      title: courseDetail.title,
+      content: courseDetail.content,
+      pictureLink: courseDetail.pictureLink,
+      isMyWish: courseDetail.isMyWishCourse,
+      isMyLike: courseDetail.isMyLikeCourse,
+    },
+  };
+
+  return <Header type="course" data={headerData} onEdit={handleEdit} onDelete={handleDelete} />;
 };
 
 export default CourseHeader;

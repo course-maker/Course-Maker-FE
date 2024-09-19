@@ -24,6 +24,8 @@ export const destinationAddress = {
   getDestination: (postId: number) => `/v1/destination/${postId}`,
   //patch
   patchDestination: (postId: number) => `/v1/destination/${postId}`,
+  //delete
+  delete: (id: number) => `/v1/destination/${id}`,
 };
 
 export const imageAddress = {

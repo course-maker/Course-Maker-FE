@@ -1,3 +1,5 @@
+import { tagResponseDto } from "@/api/tag/type";
+
 export interface TabBarIconProps {
   title: string;
   color: string;
@@ -30,4 +32,23 @@ export interface ReviewFormType {
 export interface ReviewEditForm {
   reviewId: number;
   initialValue: ReviewFormType;
+}
+
+export interface DetailHeaderDataType {
+  title: string;
+  nickname: string;
+  reviewCount: number;
+  isMyPost: boolean;
+  tags: tagResponseDto[];
+
+  actionData: DetailActionData;
+}
+
+export interface DetailActionData {
+  id: number;
+  title: string;
+  content: string;
+  pictureLink: string;
+  isMyWish: boolean;
+  isMyLike: boolean;
 }
