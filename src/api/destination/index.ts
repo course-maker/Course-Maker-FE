@@ -30,50 +30,55 @@ export const postDestinationApi = (data: postDestinationRequestDto): Promise<pos
 
 /**여행지 상세정보 조회하기*/
 export const getDestinationApi = (postId: number): Promise<getDestinationResponseDto> =>
-  apiRequest("get", destinationAddress.getDestination(postId));
+  apiRequest("get", destinationAddress.getDestination(postId), null, null, { requireAuth: true });
 
 /**여행지 수정하기*/
 export const patchDestinationApi = (
   postId: number,
   data: postDestinationRequestDto,
-): Promise<postDestinationResponseDto> => apiRequest("patch", destinationAddress.patchDestination(postId), data);
+): Promise<postDestinationResponseDto> =>
+  apiRequest("patch", destinationAddress.patchDestination(postId), data, null, { requireAuth: true });
 
-// 목적지 좋아요 등록
+// 여행지 삭제
+export const deleteDestinationDetail = (id: number) =>
+  apiRequest("delete", destinationAddress.delete(id), null, null, { requireAuth: true });
+
+// 여행지 좋아요 등록
 export const addDestinationLike = (data: DestinationId) =>
   apiRequest("post", destinationLikeAddress.addLike, data, null, { requireAuth: true });
 
-// 목적지 좋아요 취소
+// 여행지 좋아요 취소
 export const deleteDestinationLike = (id: number) =>
   apiRequest("delete", destinationLikeAddress.deleteLike(id), null, null, { requireAuth: true });
 
-// 목적지 찜 등록
+// 여행지 찜 등록
 export const addDestinationWish = (data: DestinationId) =>
   apiRequest("post", destinationWishAddress.addWish, data, null, { requireAuth: true });
 
-// 목적지 찜 취소
+// 여행지 찜 취소
 export const deleteDestinationWish = (id: number) =>
   apiRequest("delete", destinationWishAddress.deleteWish(id), null, null, { requireAuth: true });
 
-//목적지 리뷰 조회
+//여행지 리뷰 조회
 export const getDestinationReviews = (qs: PagenationOptions): Promise<GetDestinationReviewsResponseDto> =>
   apiRequest("get", destinationReviewAddress.getDestinationReviews, null, qs);
 
-//목적지 리뷰 등록
+//여행지 리뷰 등록
 export const postDestinationReviews = (qs: PagenationOptions, data: FieldValues): Promise<DestinationId> =>
   apiRequest("post", destinationReviewAddress.getDestinationReviews, data, qs, { requireAuth: true });
 
-//목적지 리뷰 추천 등록
+//여행지 리뷰 추천 등록
 export const postDestinationReviewRecommend = (id: number): Promise<PostDestinationReviewRecommendResponseDto> =>
   apiRequest("post", destinationReviewAddress.postDestinationReviewRecommend(id), null, null, { requireAuth: true });
 
-//목적지 리뷰 추천 취소
+//여행지 리뷰 추천 취소
 export const postDestinationReviewUnrecommend = (id: number): Promise<PostDestinationReviewRecommendResponseDto> =>
   apiRequest("post", destinationReviewAddress.postDestinationReviewUnrecommend(id), null, null, { requireAuth: true });
 
-//목적지 리뷰 수정
+//여행지 리뷰 수정
 export const putDestinationReviewEdit = (qs: { destinationId: number; id: number }, data: FieldValues) =>
   apiRequest("put", destinationReviewAddress.putDestinationReviewEdit, data, qs, { requireAuth: true });
 
-//목적지 리뷰 삭제
+//여행지 리뷰 삭제
 export const deleteDestinationReview = (id: number) =>
   apiRequest("delete", destinationReviewAddress.deleteDestinationReview(id), null, null, { requireAuth: true });

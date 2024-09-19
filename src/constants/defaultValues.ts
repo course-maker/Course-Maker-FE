@@ -44,3 +44,27 @@ export const defaultCourseDetail = {
   isMyWishCourse: false,
   isMyLikeCourse: false,
 };
+
+export const defaultDestinationDetail = {
+  id: 0,
+  nickname: "",
+  name: "",
+  views: 0,
+  tags: [],
+  location: {
+    address: "",
+    longitude: 0,
+    latitude: 0,
+  },
+  pictureLink: "",
+  content: "",
+  averageRating: 0,
+  isMyDestination: false,
+  disabled: null,
+  isApiData: false,
+  wishCount: 0,
+  reviewCount: 0,
+  likeCount: 0,
+  isMyWishDestination: false,
+  isMyLikeDestination: false,
+};
