@@ -14,6 +14,7 @@ const useToast = () => {
       pauseOnFocusLoss: false,
       draggable: false,
       pauseOnHover: false,
+      style: { marginTop: "8rem", width: "30rem", marginLeft: "auto", marginRight: "auto" },
     };
 
     switch (type) {
