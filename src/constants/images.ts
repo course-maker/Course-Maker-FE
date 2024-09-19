@@ -1,4 +1,5 @@
 import addFile from "@/assets/images/add_file.svg";
+import apiDataLogo from "@/assets/images/api_data_logo.svg";
 import Banner2 from "@/assets/images/banner2.png";
 import Banner3 from "@/assets/images/banner3.png";
 import Banner4 from "@/assets/images/banner4.png";
@@ -389,5 +390,9 @@ export const IMAGES = {
   grayLocation: {
     src: grayLocation,
     alt: "회색 포인터 아이콘",
+  },
+  apiDataLogo: {
+    src: apiDataLogo,
+    alt: "한국관광공사 로고",
   },
 };
