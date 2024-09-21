@@ -44,6 +44,7 @@ const DestinationHeader = () => {
     reviewCount: destinationDetail.reviewCount,
     isMyPost: destinationDetail.isMyDestination,
     tags: destinationDetail.tags,
+    isApiData: destinationDetail.isApiData,
 
     actionData: {
       id: destinationDetail.id,

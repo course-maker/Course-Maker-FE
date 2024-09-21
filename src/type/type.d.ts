@@ -40,6 +40,7 @@ export interface DetailHeaderDataType {
   reviewCount: number;
   isMyPost: boolean;
   tags: tagResponseDto[];
+  isApiData?: boolean;
 
   actionData: DetailActionData;
 }
