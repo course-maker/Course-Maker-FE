@@ -30,7 +30,7 @@ const Header = ({ type, data, onEdit, onDelete }: HeaderProps) => {
 
           <div className={cx("content")}>
             <div className={cx("detail-info")}>
-              <span className={cx("nickname")}>작성자 {data.nickname}</span>
+              <span className={cx("nickname")}>작성자 {data.isApiData ? "한국관광공사" : data.nickname}</span>
               <div className={cx("line")}>
                 <Image imageInfo={IMAGES.ColumnLine} />
               </div>
