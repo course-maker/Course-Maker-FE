@@ -58,6 +58,7 @@ export const defaultDestinationDetail = {
   },
   pictureLink: "",
   content: "",
+  apiContent: "",
   averageRating: 0,
   isMyDestination: false,
   disabled: null,
