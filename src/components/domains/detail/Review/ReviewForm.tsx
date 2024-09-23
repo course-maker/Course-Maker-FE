@@ -43,8 +43,8 @@ const ReviewForm = ({ type, initialData, setEditingReview }: ReviewFormProps) =>
     mutationFn: (formData: FieldValues) => {
       if (initialData) {
         return type === "course"
-          ? putCourseReviewEdit({ courseId: postId, id: initialData?.reviewId }, formData)
-          : putDestinationReviewEdit({ destinationId: postId, id: initialData.reviewId }, formData);
+          ? putCourseReviewEdit(initialData?.reviewId, formData)
+          : putDestinationReviewEdit(initialData.reviewId, formData);
       } else {
         return type === "course"
           ? postCourseReviews({ courseId: postId }, formData)
