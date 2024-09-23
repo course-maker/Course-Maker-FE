@@ -61,7 +61,7 @@ export const deleteDestinationWish = (id: number) =>
 
 //여행지 리뷰 조회
 export const getDestinationReviews = (qs: PagenationOptions): Promise<GetReviewsResponseDto> =>
-  apiRequest("get", destinationReviewAddress.getDestinationReviews, null, qs);
+  apiRequest("get", destinationReviewAddress.getDestinationReviews, null, qs, { requireAuth: true });
 
 //여행지 리뷰 등록
 export const postDestinationReviews = (qs: PagenationOptions, data: FieldValues): Promise<getDestinationResponseDto> =>
