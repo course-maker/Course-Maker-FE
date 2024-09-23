@@ -76,9 +76,9 @@ export const postDestinationReviewUnrecommend = (id: number): Promise<PostDestin
   apiRequest("post", destinationReviewAddress.postDestinationReviewUnrecommend(id), null, null, { requireAuth: true });
 
 //여행지 리뷰 수정
-export const putDestinationReviewEdit = (qs: { destinationId: number; id: number }, data: FieldValues) =>
-  apiRequest("put", destinationReviewAddress.putDestinationReviewEdit, data, qs, { requireAuth: true });
+export const putDestinationReviewEdit = (id: number, data: FieldValues) =>
+  apiRequest("put", destinationReviewAddress.destinationReviewEditAndDelete(id), data, null, { requireAuth: true });
 
 //여행지 리뷰 삭제
 export const deleteDestinationReview = (id: number) =>
-  apiRequest("delete", destinationReviewAddress.deleteDestinationReview(id), null, null, { requireAuth: true });
+  apiRequest("delete", destinationReviewAddress.destinationReviewEditAndDelete(id), null, null, { requireAuth: true });
