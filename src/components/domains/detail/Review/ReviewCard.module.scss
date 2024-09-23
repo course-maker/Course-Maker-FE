@@ -134,6 +134,7 @@
         width: 60rem;
         overflow: hidden;
         text-overflow: ellipsis;
+        overflow-wrap: break-word;
 
         @include responsive("T") {
           width: calc(100vw - 48rem);
