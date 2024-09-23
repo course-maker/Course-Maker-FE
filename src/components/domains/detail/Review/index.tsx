@@ -1,7 +1,6 @@
 import { deleteCourseReview } from "@/api/course";
-import { CourseReview, GetCourseReviewsResponseDto } from "@/api/course/type";
 import { deleteDestinationReview } from "@/api/destination";
-import { FilterType, ReviewEditForm } from "@/type/type";
+import { FilterType, GetReviewsResponseDto, RefinedReview, ReviewEditForm } from "@/type/type";
 import { InfiniteData, UseInfiniteQueryResult, useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import classNames from "classnames/bind";
@@ -20,7 +19,7 @@ interface ReviewProps {
   selectedFilter: FilterType;
   onFilterClick: (filter: FilterType) => void;
   averageRating: number;
-  reviewInfiniteQuery: UseInfiniteQueryResult<InfiniteData<GetCourseReviewsResponseDto, unknown>, Error>;
+  reviewInfiniteQuery: UseInfiniteQueryResult<InfiniteData<GetReviewsResponseDto, unknown>, Error>;
 }
 
 const Review = ({ type, selectedFilter, onFilterClick, averageRating, reviewInfiniteQuery }: ReviewProps) => {
@@ -54,7 +53,7 @@ const Review = ({ type, selectedFilter, onFilterClick, averageRating, reviewInfi
     },
   });
 
-  const handleEditClick = (review: CourseReview) => {
+  const handleEditClick = (review: RefinedReview) => {
     const { reviewId, title, description, pictures, rating } = review;
     setEditingReview({ reviewId, initialValue: { title, description, pictures, rating } });
   };

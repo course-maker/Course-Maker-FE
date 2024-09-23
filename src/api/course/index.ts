@@ -1,3 +1,4 @@
+import { GetReviewsResponseDto } from "@/type/type";
 import { FieldValues } from "react-hook-form";
 import { courseLikeAddress, courseReviewAddress, coursesAddress, courseWishAddress } from "../address";
 import { apiRequest } from "../axios";
@@ -42,7 +43,7 @@ export const deleteCourseWish = (id: number) =>
   apiRequest("delete", courseWishAddress.deleteWish(id), null, null, { requireAuth: true });
 
 //코스 리뷰 조회
-export const getCourseReviews = (qs: PagenationOptions): Promise<GetCourseReviewsResponseDto> =>
+export const getCourseReviews = (qs: PagenationOptions): Promise<GetReviewsResponseDto> =>
   apiRequest("get", courseReviewAddress.getCourseReviews, null, qs, { requireAuth: true });
 
 //코스 리뷰 등록
