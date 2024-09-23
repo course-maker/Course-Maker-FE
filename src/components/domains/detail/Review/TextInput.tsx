@@ -20,7 +20,7 @@ const TextInput = ({ control, isDisabled }: TextInputProps) => {
         <div className={cx("content")}>
           <textarea
             className={cx("text-input")}
-            placeholder={isDisabled ? "로그인이 필요합니다." : "후기를 작성해주세요."}
+            placeholder={isDisabled ? "로그인이 필요합니다." : "후기를 작성해주세요. 후기는 하나만 남길 수 있습니다."}
             maxLength={4000}
             {...field}
             disabled={isDisabled}

@@ -1,11 +1,12 @@
 import { postCourseReviewRecommend, postCourseReviewUnrecommend } from "@/api/course";
-import { CourseReview, PostCourseReviewRecommendResponseDto } from "@/api/course/type";
+import { PostCourseReviewRecommendResponseDto } from "@/api/course/type";
 import { postDestinationReviewRecommend, postDestinationReviewUnrecommend } from "@/api/destination";
 import { PostDestinationReviewRecommendResponseDto } from "@/api/destination/type";
 import EditAndDeleteButton from "@/components/commons/EditAndDeleteButton";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
 import useAuth from "@/hooks/useAuth";
+import { RefinedReview } from "@/type/type";
 import { useMutation } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { KeyboardEvent, useEffect, useRef, useState } from "react";
@@ -19,8 +20,8 @@ type RecommendResponse = PostDestinationReviewRecommendResponseDto | PostCourseR
 
 interface ReviewCardProps {
   type: "course" | "destination";
-  review: CourseReview;
-  onEditClick: (review: CourseReview) => void;
+  review: RefinedReview;
+  onEditClick: (review: RefinedReview) => void;
   onDeleteClick: (reviewId: number) => void;
 }
 
@@ -142,7 +143,7 @@ const ReviewCard = ({ type, review, onEditClick, onDeleteClick }: ReviewCardProp
               </div>
               <span className={cx("content-header-star-rating")}>{review.rating}</span>
             </div>
-            {review.isMyCourseReview && (
+            {review.isMyReview && (
               <EditAndDeleteButton
                 onEdit={() => onEditClick(review)}
                 onDelete={() => {
