@@ -58,9 +58,9 @@ export const postCourseReviewUnrecommend = (id: number): Promise<PostCourseRevie
   apiRequest("post", courseReviewAddress.postCourseReviewUnrecommend(id), null, null, { requireAuth: true });
 
 //코스 리뷰 수정
-export const putCourseReviewEdit = (qs: { courseId: number; id: number }, data: FieldValues) =>
-  apiRequest("put", courseReviewAddress.putCourseReviewEdit, data, qs, { requireAuth: true });
+export const putCourseReviewEdit = (id: number, data: FieldValues) =>
+  apiRequest("put", courseReviewAddress.courseReviewEditAndDelete(id), data, null, { requireAuth: true });
 
 //코스 리뷰 삭제
 export const deleteCourseReview = (id: number) =>
-  apiRequest("delete", courseReviewAddress.deleteCourseReview(id), null, null, { requireAuth: true });
+  apiRequest("delete", courseReviewAddress.courseReviewEditAndDelete(id), null, null, { requireAuth: true });

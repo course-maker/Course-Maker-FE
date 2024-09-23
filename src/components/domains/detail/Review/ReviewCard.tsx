@@ -122,7 +122,7 @@ const ReviewCard = ({ type, review, onEditClick, onDeleteClick }: ReviewCardProp
       <div className={cx("container")}>
         <section className={cx("info")}>
           <div className={cx("info-nickname")}>{review.nickname}</div>
-          <div className={cx("info-date")}>{review.reviewedAt ? review.reviewedAt : "2024.00.00"}</div>
+          <div className={cx("info-date")}>{review.reviewedAt}</div>
           <div className={cx("info-like")}>
             <div className={cx("info-like-btn")} onClick={handleRecommendToggle}>
               {isRecommended ? (

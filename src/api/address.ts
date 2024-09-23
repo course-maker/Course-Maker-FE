@@ -94,12 +94,7 @@ export const courseReviewAddress = {
   //post
   postCourseReviewUnrecommend: (id: number) => `/v1/coursereview/${id}/unrecommend`,
   //put, delete
-  // courseReviewEditAndDelete: (id: number) => `/v1/coursereview/${id}`,
-
-  //temp put
-  putCourseReviewEdit: "/v1/coursereview/{id}",
-  //temp delete
-  deleteCourseReview: (id: number) => `/v1/coursereview/${id}`,
+  courseReviewEditAndDelete: (id: number) => `/v1/coursereview/${id}`,
 };
 
 export const destinationReviewAddress = {
@@ -110,10 +105,5 @@ export const destinationReviewAddress = {
   //post
   postDestinationReviewUnrecommend: (id: number) => `/v1/destinationreview/${id}/unrecommend`,
   //put, delete
-  // destinationReviewEditAndDelete: (id: number) => `/v1/destinationreview/${id}`,
-
-  //temp put
-  putDestinationReviewEdit: "/v1/destinationreview/{id}",
-  //delete
-  deleteDestinationReview: (id: number) => `/v1/destination/${id}`,
+  destinationReviewEditAndDelete: (id: number) => `/v1/destinationreview/${id}`,
 };
