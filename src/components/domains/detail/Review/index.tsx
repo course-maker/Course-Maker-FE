@@ -54,8 +54,8 @@ const Review = ({ type, selectedFilter, onFilterClick, averageRating, reviewInfi
   });
 
   const handleEditClick = (review: RefinedReview) => {
-    const { reviewId, title, description, pictures, rating } = review;
-    setEditingReview({ reviewId, initialValue: { title, description, pictures, rating } });
+    const { reviewId, description, pictures, rating } = review;
+    setEditingReview({ reviewId, initialValue: { description, pictures, rating } });
   };
 
   const handleDeleteClick = (reviewId: number) => deleteReviewMutation.mutate(reviewId);

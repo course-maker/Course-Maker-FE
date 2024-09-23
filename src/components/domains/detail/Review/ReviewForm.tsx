@@ -28,9 +28,8 @@ const ReviewForm = ({ type, initialData, setEditingReview }: ReviewFormProps) =>
   const { id } = useParams();
   const postId = Number(id);
   const { handleImageUpload } = useHandleImageUpload();
-  const { handleSubmit, control, reset } = useForm<ReviewFormType>({
+  const { handleSubmit, control, reset, setFocus } = useForm<ReviewFormType>({
     defaultValues: initialData?.initialValue || {
-      title: "temp",
       description: "",
       pictures: [],
       rating: 0,
@@ -60,7 +59,6 @@ const ReviewForm = ({ type, initialData, setEditingReview }: ReviewFormProps) =>
       });
       // initialData ? alert("리뷰가 성공적으로 수정 되었습니다!") : alert("리뷰가 성공적으로 등록 되었습니다!");
       reset({
-        title: "temp",
         description: "",
         pictures: [],
         rating: 0,
@@ -103,8 +101,11 @@ const ReviewForm = ({ type, initialData, setEditingReview }: ReviewFormProps) =>
   useEffect(() => {
     if (initialData) {
       reset(initialData.initialValue);
+      setTimeout(() => {
+        setFocus("description");
+      }, 0);
     }
-  }, [initialData, reset]);
+  }, [initialData, reset, setFocus]);
 
   return (
     <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
