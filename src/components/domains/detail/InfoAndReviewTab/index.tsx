@@ -1,7 +1,6 @@
 import { getCourseReviews } from "@/api/course";
-import { GetCourseReviewsResponseDto } from "@/api/course/type";
 import { getDestinationReviews } from "@/api/destination";
-import { GetDestinationReviewsResponseDto } from "@/api/destination/type";
+import { GetReviewsResponseDto } from "@/type/type";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { ReactNode, useState } from "react";
@@ -10,7 +9,6 @@ import styles from "./InfoAndReviewTab.module.scss";
 
 const cx = classNames.bind(styles);
 
-type ReviewsResponse = GetCourseReviewsResponseDto | GetDestinationReviewsResponseDto;
 interface InfoAndReviewTabProps {
   type: "course" | "destination";
   info: ReactNode;
@@ -30,7 +28,7 @@ const InfoAndReviewTab = ({ type, info, review }: InfoAndReviewTabProps) => {
     setTab("review");
   };
 
-  const { data } = useQuery<ReviewsResponse>({
+  const { data } = useQuery<GetReviewsResponseDto>({
     queryKey: type === "course" ? ["courseReview", postId] : ["destinationReview", postId],
     queryFn: () =>
       type === "course" ? getCourseReviews({ courseId: postId }) : getDestinationReviews({ destinationId: postId }),
