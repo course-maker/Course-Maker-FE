@@ -1,12 +1,12 @@
-import { CourseReview, GetCourseReviewsResponseDto } from "@/api/course/type";
+import { GetReviewsResponseDto, RefinedReview } from "@/type/type";
 import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef } from "react";
 import ReviewCard from "./ReviewCard";
 
 interface ReviewCardListProps {
   type: "course" | "destination";
-  reviewInfiniteQuery: UseInfiniteQueryResult<InfiniteData<GetCourseReviewsResponseDto>, Error>;
-  onEditClick: (review: CourseReview) => void;
+  reviewInfiniteQuery: UseInfiniteQueryResult<InfiniteData<GetReviewsResponseDto, unknown>, Error>;
+  onEditClick: (review: RefinedReview) => void;
   onDeleteClick: (reviewId: number) => void;
 }
 
@@ -35,11 +35,24 @@ const ReviewCardList = ({ type, reviewInfiniteQuery, onEditClick, onDeleteClick 
 
   return (
     <>
-      {allReviews.map((review) => (
-        <div key={review.reviewId}>
-          <ReviewCard type={type} review={review} onEditClick={onEditClick} onDeleteClick={onDeleteClick} />
-        </div>
-      ))}
+      {allReviews.map((review) => {
+        let isMyReview: boolean | undefined;
+        if (type === "course" && "isMyCourseReview" in review) {
+          isMyReview = review.isMyCourseReview;
+        } else if (type === "destination" && "isMyDestinationReview" in review) {
+          isMyReview = review.isMyDestinationReview;
+        } else {
+          isMyReview = false;
+        }
+
+        const refinedReview = { ...review, isMyReview };
+
+        return (
+          <div key={review.reviewId}>
+            <ReviewCard type={type} review={refinedReview} onEditClick={onEditClick} onDeleteClick={onDeleteClick} />
+          </div>
+        );
+      })}
       <div ref={observerElem} style={{ height: "1px" }} />
     </>
   );

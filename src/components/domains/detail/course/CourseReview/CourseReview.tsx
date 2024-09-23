@@ -15,8 +15,8 @@ const CourseReview = () => {
   };
 
   const { data: courseDetailData } = useQuery({
-    queryKey: ["courseDetailData"],
-    queryFn: () => getCourseDetail(Number(postId)),
+    queryKey: ["courseDetailData", postId],
+    queryFn: () => getCourseDetail(postId),
     retry: 0,
   });
 

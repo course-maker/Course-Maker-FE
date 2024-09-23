@@ -1,3 +1,4 @@
+import { GetReviewsResponseDto } from "@/type/type";
 import { FieldValues } from "react-hook-form";
 import {
   destinationAddress,
@@ -9,7 +10,6 @@ import { apiRequest } from "../axios";
 import {
   DestinationId,
   getDestinationResponseDto,
-  GetDestinationReviewsResponseDto,
   GetDestinationsResponseDto,
   PagenationOptions,
   postDestinationRequestDto,
@@ -60,11 +60,11 @@ export const deleteDestinationWish = (id: number) =>
   apiRequest("delete", destinationWishAddress.deleteWish(id), null, null, { requireAuth: true });
 
 //여행지 리뷰 조회
-export const getDestinationReviews = (qs: PagenationOptions): Promise<GetDestinationReviewsResponseDto> =>
+export const getDestinationReviews = (qs: PagenationOptions): Promise<GetReviewsResponseDto> =>
   apiRequest("get", destinationReviewAddress.getDestinationReviews, null, qs);
 
 //여행지 리뷰 등록
-export const postDestinationReviews = (qs: PagenationOptions, data: FieldValues): Promise<DestinationId> =>
+export const postDestinationReviews = (qs: PagenationOptions, data: FieldValues): Promise<getDestinationResponseDto> =>
   apiRequest("post", destinationReviewAddress.getDestinationReviews, data, qs, { requireAuth: true });
 
 //여행지 리뷰 추천 등록

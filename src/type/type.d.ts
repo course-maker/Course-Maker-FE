@@ -1,3 +1,5 @@
+import { CourseReview } from "@/api/course/type";
+import { DestinationReview } from "@/api/destination/type";
 import { tagResponseDto } from "@/api/tag/type";
 
 export interface TabBarIconProps {
@@ -52,4 +54,27 @@ export interface DetailActionData {
   pictureLink: string;
   isMyWish: boolean;
   isMyLike: boolean;
+}
+
+export type Review = DestinationReview | CourseReview;
+
+export interface GetReviewsResponseDto {
+  currentPage: number;
+  totalPage: number;
+  pagingSlice: number;
+  totalContents: number;
+  contents: Review[];
+}
+
+export interface RefinedReview {
+  reviewId: number;
+  nickname: string;
+  title: string;
+  description: string;
+  pictures: string[];
+  rating: number;
+  isMyReview: boolean;
+  recommendCount: number;
+  reviewedAt: string;
+  isMyLikeReview: boolean;
 }

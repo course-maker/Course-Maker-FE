@@ -107,7 +107,7 @@ export type PagenationOptions = {
   orderBy?: string;
 };
 
-type DestinationReview = {
+export type DestinationReview = {
   destinationId: number;
   reviewId: number;
   nickname: string;
