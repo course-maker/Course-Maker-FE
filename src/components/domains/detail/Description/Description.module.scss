@@ -1,5 +1,33 @@
 .container {
   padding: 0 3rem;
+  width: 100%;
+
+  .none {
+    @include text-style(1.8, 500, $gray30);
+    @include column-flexbox();
+
+    min-height: 20rem;
+    border-radius: 1rem;
+    background-color: $white;
+    padding: 2rem;
+    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.08);
+    line-height: 1.42;
+
+    @include responsive("M") {
+      font-size: 1.2rem;
+    }
+
+    &-img {
+      display: block;
+      width: 13rem;
+      padding-bottom: 2rem;
+
+      @include responsive("M") {
+        width: 9rem;
+        padding-bottom: 1rem;
+      }
+    }
+  }
 
   .content {
     min-height: 20rem;
@@ -9,6 +37,10 @@
     box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.08);
     font-size: 1.5rem;
     line-height: 1.42;
+
+    @include responsive("M") {
+      font-size: 1.2rem;
+    }
 
     h1 {
       font-size: 2em;

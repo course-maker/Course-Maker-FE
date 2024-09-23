@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+
+  .api-data {
+    @include column-flexbox(center, start);
+    gap: 3rem;
+    padding: 5rem 1rem 1.2rem;
+    border-bottom: solid 0.1rem $gray20;
+
+    &-content {
+      @include text-style(1.5, 400, $black10);
+
+      @include responsive("M") {
+        font-size: 1.2rem;
+      }
+    }
+
+    &-info {
+      @include text-style(1.2, 400, $black10);
+      align-self: self-end;
+
+      @include responsive("M") {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .description {
+    padding-top: 5rem;
+    width: 100%;
+  }
+}

@@ -54,6 +54,7 @@ export interface getDestinationResponseDto {
   location: Location;
   pictureLink: string;
   content: string;
+  apiContent?: string;
   averageRating: number;
   isMyDestination: boolean;
   disabled: boolean | null;
