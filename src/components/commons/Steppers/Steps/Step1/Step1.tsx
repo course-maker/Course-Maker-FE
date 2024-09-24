@@ -55,7 +55,7 @@ const Step1: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(handleNext)}>
       <Slider type="Duration" value={watch("duration")} onChange={handleDurationChange} />
-      <Slider type="TravelCount" value={watch("travelerCount")} onChange={handleTravelCountChange} />
+      <Slider type="TravelerCount" value={watch("travelerCount")} onChange={handleTravelCountChange} />
       <div className={cx("BadgeList-box")}>
         <p className={cx("BadgeList-title")}>태그 선택</p>
         <BadgeListsController formFieldName="tags" control={control} />

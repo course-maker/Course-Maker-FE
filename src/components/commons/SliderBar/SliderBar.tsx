@@ -7,7 +7,7 @@ import Image from "@/components/commons/Image";
 const cx = classNames.bind(styles);
 
 interface SliderBarProps {
-  type: "TravelCount" | "Duration";
+  type: "TravelerCount" | "Duration";
   value: number;
   onChange: (value: number) => void;
 }

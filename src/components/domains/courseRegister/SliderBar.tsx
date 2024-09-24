@@ -8,7 +8,7 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ type, value, onChange }) => {
-  const options = type === "travelCount" ? ["1인", "2인", "3인", "4인", "5인이상"] : ["1일", "2일", "3일"];
+  const options = type === "travelerCount" ? ["1인", "2인", "3인", "4인", "5인이상"] : ["1일", "2일", "3일"];
 
   const handleClick = (index: number) => {
     onChange(index + 1); // index에 1을 더해서 1부터 시작하도록 설정
