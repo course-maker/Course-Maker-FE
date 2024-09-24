@@ -44,7 +44,7 @@ const CourseRegisterPage = () => {
     title: "",
     content: "",
     duration: "",
-    travelCount: "",
+    travelerCount: "",
     travelType: 0,
     pictureLink: "",
     courseDestinations: [mock],
