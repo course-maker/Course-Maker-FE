@@ -3,7 +3,7 @@ import MainImageInputController from "@/components/commons/MainImageInputControl
 import QuillEditorController from "@/components/commons/QuillEditorController";
 import TitleInputController from "@/components/domains/destinationRegister/TitleInputController";
 import OptionController from "@/components/domains/courseRegister/OptionController";
-
+import DestinationsInputController from "@/components/domains/destinationRegister/DestinationsInputController";
 // fix: label, message string constants로 정리하기
 export const INPUTS = {
   title: {
@@ -18,11 +18,17 @@ export const INPUTS = {
     isEssential: true,
     component: OptionController,
   },
-  travelCount: {
+  travelerCount: {
     label: "여행 추천 인원",
     message: "여행 추천 인원을 선택해주세요.",
     isEssential: true,
     component: OptionController,
+  },
+  courseDestinations: {
+    label: "경로 설정",
+    message: "코스 경로를 설정해주세요!",
+    isEssential: true,
+    component: DestinationsInputController,
   },
   pictureLink: {
     label: "대표 이미지",
@@ -58,11 +64,17 @@ export const API_INPUTS = {
     isEssential: true,
     component: TitleInputController,
   },
-  travelCount: {
+  travelerCount: {
     label: "여행 추천 인원",
     message: "여행 추천 인원을 선택해주세요.",
     isEssential: true,
     component: TitleInputController,
+  },
+  courseDestinations: {
+    label: "경로 설정",
+    message: "코스 경로를 설정해주세요!",
+    isEssential: true,
+    component: DestinationsInputController,
   },
   pictureLink: {
     label: "대표 이미지",

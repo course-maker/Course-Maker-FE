@@ -7,10 +7,10 @@ import { FieldValues, UseFormSetFocus } from "react-hook-form";
  * @returns {boolean} - 유효한 데이터인 경우 true, 그렇지 않으면 false
  */
 export const validateFormData = (data: FieldValues, setFocus: UseFormSetFocus<FieldValues>): boolean => {
-  const { title, tags, duration, travelCount, courseDestinations, pictureLink, content } = data;
+  const { title, tags, duration, travelerCount, courseDestinations, pictureLink, content } = data;
 
   if (!title) {
-    alert("여행지 이름을 입력해 주세요.");
+    alert("코스 이름을 입력해 주세요.");
     setFocus("name");
     return false;
   }
@@ -27,9 +27,9 @@ export const validateFormData = (data: FieldValues, setFocus: UseFormSetFocus<Fi
     return false;
   }
 
-  if (!travelCount) {
+  if (!travelerCount) {
     alert("여행 추천 인원을 선택해 주세요.");
-    setFocus("travelCount");
+    setFocus("travelerCount");
     return false;
   }
 
