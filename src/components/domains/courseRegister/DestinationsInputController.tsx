@@ -1,5 +1,6 @@
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import TitleInput from "./TitleInput";
+
+import TravelCourseOnMap from "./TravelCourseOnMap";
 
 interface DestinationsInputControllerProps<ControlType extends FieldValues> {
   formFieldName: Path<ControlType>;
@@ -16,7 +17,7 @@ const DestinationsInputController = <ControlType extends FieldValues>({
     <Controller
       name={formFieldName}
       control={control}
-      render={({ field }) => <TitleInput placeholder="여행지 이름을 입력하세요." disabled={disabled} {...field} />}
+      render={({ field }) => <TravelCourseOnMap courseDetail={field.value} disabled={disabled} {...field} />}
     />
   );
 };
