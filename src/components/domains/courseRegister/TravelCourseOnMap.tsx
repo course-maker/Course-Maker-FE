@@ -35,7 +35,6 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
   const page = 1;
   const { destinationData, isDestinationLoading } = useGetDestinationQuery(page, selectedBadges);
 
-  console.log(destinationData);
   console.log(courseDetail);
   console.log(selectedBadges);
   console.log(selectedDestination);
