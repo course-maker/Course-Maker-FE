@@ -18,6 +18,7 @@ const TravelCourseOnMap = ({ courseDetail }: TravelCourseOnMapProps) => {
   const [selectedLocation, setSelectedLocation] = useState<LocationWithId | null>(null);
   // const [selectedTransit, setSelectedTransit] = useState<"car" | "bus">("car");
 
+  console.log(courseDetail);
   const handleDestinationClick = (day: number) => {
     setSelectedDate(day);
     setSelectedLocation(null);
