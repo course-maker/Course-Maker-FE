@@ -23,10 +23,11 @@ interface CourseRegisterLayoutProps {
 const CourseRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: CourseRegisterLayoutProps) => {
   const inputElement = isApiData ? API_INPUTS : INPUTS;
   const { handleImageUpload } = useHandleImageUpload();
-  const { control, handleSubmit, setFocus } = useForm({
+  const { control, handleSubmit, setFocus, watch } = useForm({
     defaultValues: formData,
     values: formData,
   });
+  const duration = watch("duration");
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -62,7 +63,7 @@ const CourseRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: Cou
                 label={label}
                 message={message}
                 isEssential={isEssential}
-                component={<InputComponent formFieldName={key} control={control} {...rest} />}
+                component={<InputComponent formFieldName={key} control={control} duration={duration} {...rest} />}
               />
             ),
           )}
