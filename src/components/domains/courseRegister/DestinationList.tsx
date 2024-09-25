@@ -29,6 +29,7 @@ const DestinationList = ({
 }: DestinationListProps) => {
   const days = Array.from({ length: duration }, (_, i) => i + 1);
 
+  console.log(duration);
   return (
     <div className={cx("container")}>
       <div>

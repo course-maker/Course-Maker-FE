@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { Course } from "@/api/course/type";
 import { LocationWithId } from "@/type/type";
-// import { FaMinusCircle } from "react-icons/fa";
+import { FaMinusCircle } from "react-icons/fa";
 
 import styles from "./TravelCourseOnMap.module.scss";
 import TravelMap from "@/components/domains/detail/course/CourseInfo/TravelCourseOnMap/TravelMap";
@@ -13,17 +14,22 @@ import DestinationList from "./DestinationList";
 
 import { useGetDestinationQuery } from "@/hooks/destination/queries/useGetDestinationQuery";
 import { IMAGES } from "@/constants/images";
+import { getDestinationResponseDto } from "@/api/destination/type";
+import { CourseDestination } from "@/api/course/type";
 import { tagResponseDto } from "@/api/tag/type";
 import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 interface TravelCourseOnMapProps {
   courseDetail: Course;
+  handleSelect: (selectedDestination: CourseDestination[]) => void;
+  duration: number;
 }
 
-const TravelCourseOnMap = ({ courseDetail }: TravelCourseOnMapProps) => {
+const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCourseOnMapProps) => {
   const [selectedDate, setSelectedDate] = useState<number>(1);
   const [selectedLocation, setSelectedLocation] = useState<LocationWithId | null>(null);
+  const [selectedDestination, setSelectedDestination] = useState<CourseDestination[]>();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedBadges, setSelectedBadges] = useState<tagResponseDto[]>([]);
   const page = 1;
@@ -32,15 +38,49 @@ const TravelCourseOnMap = ({ courseDetail }: TravelCourseOnMapProps) => {
   console.log(destinationData);
   console.log(courseDetail);
   console.log(selectedBadges);
+  console.log(selectedDestination);
 
   const handleDestinationClick = (day: number) => {
     setSelectedDate(day);
     setSelectedLocation(null);
   };
 
-  const selectedDestinations = courseDetail?.courseDestinations?.filter(
-    (destination) => destination.date === selectedDate,
+  const selectedDestinations = courseDetail?.filter(
+    (destination: getDestinationResponseDto) => destination.date === selectedDate,
   );
+
+  const handleDestinationToggle = (destination: getDestinationResponseDto) => {
+    // 현재 날짜에 해당하는 destination 데이터 찾기
+    const currentDestinationData = selectedDestination?.find((d) => d.date === selectedDate);
+
+    let updatedDestinations;
+    if (currentDestinationData) {
+      const isAlreadySelected = currentDestinationData.destination?.id === destination.id;
+
+      if (isAlreadySelected) {
+        // 이미 추가된 경우 제거
+        updatedDestinations = selectedDestination?.filter(
+          (d) => !(d.date === selectedDate && d.destination.id === destination.id),
+        );
+      } else {
+        // 추가되지 않은 경우, 새로운 destination 추가
+        updatedDestinations = [
+          ...selectedDestination,
+          { visitOrder: selectedDestination.length + 1, date: selectedDate, destination },
+        ];
+      }
+    } else {
+      // 해당 날짜에 선택된 destination이 없으면 새로운 항목 추가
+      updatedDestinations = [
+        ...(selectedDestination || []),
+        { visitOrder: 1, date: selectedDate, destination }, // 새로운 날짜에 대한 첫 번째 목적지
+      ];
+    }
+
+    // 상태 업데이트 후 handleSelect 호출
+    setSelectedDestination(updatedDestinations);
+    handleSelect(updatedDestinations); // 상위 컴포넌트에 선택된 destination 전달
+  };
 
   const handleChipClick = (index: number) => {
     const nextPositionIndex = index + 1;
@@ -80,11 +120,11 @@ const TravelCourseOnMap = ({ courseDetail }: TravelCourseOnMapProps) => {
 
   return (
     <>
-      {courseDetail?.length > 1 && (
+      {courseDetail && (
         <div className={cx("container")}>
           <div className={cx("destination-list")}>
             <DestinationList
-              duration={courseDetail.duration}
+              duration={duration}
               selectedDestinations={selectedDestinations}
               selectedDate={selectedDate}
               onCardClick={handleDestinationClick}
@@ -132,17 +172,12 @@ const TravelCourseOnMap = ({ courseDetail }: TravelCourseOnMapProps) => {
               <div className={cx("destination-section__cards")}>
                 {destinationData?.contents?.map((item, id) => (
                   <div className={cx("item-container")} key={id}>
-                    <button
-                      type="button"
-                      className={cx("plus-btn")}
-                      // onClick={() => handleDestinationToggle(item.name)}
-                    >
-                      {/* {step2Data.courseDestinations[activeDay]?.some((d) => d.name === item.name) ? (
-                      <FaMinusCircle className={cx("minus-btn")} />
-                    ) : (
-                      <Image imageInfo={IMAGES.plus} />
-                    )} */}
-                      <Image imageInfo={IMAGES.plus} />
+                    <button type="button" className={cx("plus-btn")} onClick={() => handleDestinationToggle(item)}>
+                      {selectedDestinations.some((d) => d.destination.id === item.id) ? (
+                        <FaMinusCircle className={cx("minus-btn")} />
+                      ) : (
+                        <Image imageInfo={IMAGES.plus} />
+                      )}
                     </button>
                     <div>
                       <img className={cx("item-image")} src={item.pictureLink} alt={`${item.name} 이미지`} />
