@@ -14,6 +14,7 @@ interface AllCardListProps {
 
 export const AllCardList = ({ destinations, useLink = false }: AllCardListProps) => {
   const listContainerRef = useRef<HTMLDivElement>(null);
+  console.log(destinations);
 
   useEffect(() => {
     if (listContainerRef.current) {
@@ -24,7 +25,7 @@ export const AllCardList = ({ destinations, useLink = false }: AllCardListProps)
   return (
     <div className={cx("list-container")} ref={listContainerRef}>
       <div className={cx("list-box")}>
-        {destinations.map((item) =>
+        {destinations?.map((item) =>
           useLink ? (
             <Link className={cx("card-link")} to={`/destination/${item.destination.id}`} key={item.destination.id}>
               <CardContent item={item} />
