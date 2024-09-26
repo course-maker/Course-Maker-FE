@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Course } from "@/api/course/type";
 import { LocationWithId } from "@/type/type";
 import { FaMinusCircle } from "react-icons/fa";
 
@@ -21,7 +20,7 @@ import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 interface TravelCourseOnMapProps {
-  courseDetail: Course;
+  courseDetail: CourseDestination[];
   handleSelect: (selectedDestination: CourseDestination[]) => void;
   duration: number;
 }
@@ -45,14 +44,14 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
   };
 
   const selectedDestinations = courseDetail?.filter(
-    (destination: getDestinationResponseDto) => destination.date === selectedDate,
+    (destination: { date: number }) => destination.date === selectedDate,
   );
 
   const handleDestinationToggle = (destination: getDestinationResponseDto) => {
     // 현재 날짜에 해당하는 destination 데이터 찾기
     const currentDestinationData = selectedDestination?.find((d) => d.date === selectedDate);
 
-    let updatedDestinations;
+    let updatedDestinations: CourseDestination[] | undefined;
     if (currentDestinationData) {
       const isAlreadySelected = currentDestinationData.destination?.id === destination.id;
 
@@ -64,8 +63,8 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
       } else {
         // 추가되지 않은 경우, 새로운 destination 추가
         updatedDestinations = [
-          ...selectedDestination,
-          { visitOrder: selectedDestination.length + 1, date: selectedDate, destination },
+          ...(selectedDestination || []), // selectedDestination이 undefined일 경우 빈 배열로 처리
+          { visitOrder: (selectedDestination?.length || 0) + 1, date: selectedDate, destination },
         ];
       }
     } else {
@@ -78,7 +77,7 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
 
     // 상태 업데이트 후 handleSelect 호출
     setSelectedDestination(updatedDestinations);
-    handleSelect(updatedDestinations); // 상위 컴포넌트에 선택된 destination 전달
+    handleSelect(updatedDestinations || []); // 상위 컴포넌트에 선택된 destination 전달
   };
 
   const handleChipClick = (index: number) => {
@@ -171,7 +170,10 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
               <div className={cx("destination-section__cards")}>
                 {destinationData?.contents?.map((item, id) => (
                   <div className={cx("item-container")} key={id}>
-                    <button type="button" className={cx("plus-btn")} onClick={() => handleDestinationToggle(item)}>
+                    <button
+                      type="button"
+                      className={cx("plus-btn")}
+                      onClick={() => handleDestinationToggle(item as getDestinationResponseDto)}>
                       {selectedDestinations.some((d) => d.destination.id === item.id) ? (
                         <FaMinusCircle className={cx("minus-btn")} />
                       ) : (
