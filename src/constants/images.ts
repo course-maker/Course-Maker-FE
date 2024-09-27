@@ -20,6 +20,7 @@ import blueStar from "@/assets/images/blue_star.svg";
 import calendarIcon from "@/assets/images/calendar.svg";
 import calendarGreyIcon from "@/assets/images/calendar_grey.svg";
 import calendarWhiteIcon from "@/assets/images/calendar_white.svg";
+import check from "@/assets/images/check.svg";
 import ChildIcon from "@/assets/images/child.svg";
 import ColumnLine from "@/assets/images/column_line.svg";
 import CoupleIcon from "@/assets/images/couple.svg";
@@ -99,6 +100,10 @@ export const IMAGES = {
   testImage: {
     src: testImage,
     alt: "썸네일 이미지",
+  },
+  check: {
+    src: check,
+    alt: "달력 아이콘",
   },
   calendarIcon: {
     src: calendarIcon,
