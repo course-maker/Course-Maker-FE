@@ -120,10 +120,16 @@
   border-radius: 1rem;
 }
 
-.plus-btn:hover {
-  scale: 1.2;
-  animation: all 1s;
-  transition: all 0.5s;
+.plus-btn {
+  .img {
+    width: 40px;
+    width: 40px;
+  }
+  &:hover {
+    scale: 1.2;
+    animation: all 1s;
+    transition: all 0.5s;
+  }
 }
 .item-image {
   width: 16.64rem;
