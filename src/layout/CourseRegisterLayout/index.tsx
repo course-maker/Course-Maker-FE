@@ -23,7 +23,13 @@ interface CourseRegisterLayoutProps {
 const CourseRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: CourseRegisterLayoutProps) => {
   const inputElement = isApiData ? API_INPUTS : INPUTS;
   const { handleImageUpload } = useHandleImageUpload();
-  const { control, handleSubmit, setFocus, watch } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting },
+    setFocus,
+    watch,
+  } = useForm({
     defaultValues: formData,
     values: formData,
   });
@@ -68,7 +74,7 @@ const CourseRegisterLayout = ({ isApiData, formData, title, onSubmitClick }: Cou
             ),
           )}
           <div className={cx("form-btn")}>
-            <Button color="blue" variant="secondary" size="large" type="submit">
+            <Button color="blue" variant="secondary" size="large" type="submit" isDisabled={isSubmitting}>
               {title}
             </Button>
           </div>
