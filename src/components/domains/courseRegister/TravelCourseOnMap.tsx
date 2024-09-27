@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { LocationWithId } from "@/type/type";
 import Skeleton from "react-loading-skeleton";
-import { FaMinusCircle } from "react-icons/fa";
 
 import styles from "./TravelCourseOnMap.module.scss";
 import TravelMap from "@/components/domains/detail/course/CourseInfo/TravelCourseOnMap/TravelMap";
@@ -48,36 +47,29 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
   );
 
   const handleDestinationToggle = (destination: getDestinationResponseDto) => {
-    // 현재 날짜에 해당하는 destination 데이터 찾기
-    const currentDestinationData = selectedDestination?.find((d) => d.date === selectedDate);
+    // 해당 날짜에 destination이 있는지 확인
+    const isAlreadySelected = selectedDestination?.some(
+      (d) => d.destination.id === destination.id && d.date === selectedDate,
+    );
 
     let updatedDestinations: CourseDestination[] | undefined;
-    if (currentDestinationData) {
-      const isAlreadySelected = currentDestinationData.destination?.id === destination.id;
 
-      if (isAlreadySelected) {
-        // 이미 추가된 경우 제거
-        updatedDestinations = selectedDestination?.filter(
-          (d) => !(d.date === selectedDate && d.destination.id === destination.id),
-        );
-      } else {
-        // 추가되지 않은 경우, 새로운 destination 추가
-        updatedDestinations = [
-          ...(selectedDestination || []), // selectedDestination이 undefined일 경우 빈 배열로 처리
-          { visitOrder: (selectedDestination?.length || 0) + 1, date: selectedDate, destination },
-        ];
-      }
+    if (isAlreadySelected) {
+      // 이미 선택된 경우, 해당 날짜에서만 destination을 제거
+      updatedDestinations = selectedDestination?.filter(
+        (d) => !(d.date === selectedDate && d.destination.id === destination.id),
+      );
     } else {
-      // 해당 날짜에 선택된 destination이 없으면 새로운 항목 추가
+      // 선택되지 않은 경우, 현재 날짜에 새로운 destination 추가
       updatedDestinations = [
         ...(selectedDestination || []),
-        { visitOrder: 1, date: selectedDate, destination }, // 새로운 날짜에 대한 첫 번째 목적지
+        { visitOrder: (selectedDestination?.length || 0) + 1, date: selectedDate, destination },
       ];
     }
 
     // 상태 업데이트 후 handleSelect 호출
     setSelectedDestination(updatedDestinations);
-    handleSelect(updatedDestinations || []); // 상위 컴포넌트에 선택된 destination 전달
+    handleSelect(updatedDestinations || []);
   };
 
   const handleChipClick = (index: number) => {
@@ -165,16 +157,16 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
               </div>
               {!isDestinationLoading ? (
                 <div className={cx("destination-section__cards")}>
-                  {destinationData?.contents?.map((item, id) => (
-                    <div className={cx("item-container")} key={id}>
+                  {destinationData?.contents?.map((item) => (
+                    <div className={cx("item-container")} key={item.id}>
                       <button
                         type="button"
                         className={cx("plus-btn")}
                         onClick={() => handleDestinationToggle(item as getDestinationResponseDto)}>
                         {selectedDestinations.some((d) => d.destination.id === item.id) ? (
-                          <FaMinusCircle className={cx("minus-btn")} />
+                          <Image className={cx("img")} imageInfo={IMAGES.check} />
                         ) : (
-                          <Image imageInfo={IMAGES.plus} />
+                          <Image className={cx("img")} imageInfo={IMAGES.plus} />
                         )}
                       </button>
                       <div>
@@ -194,7 +186,7 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
                   {Array.from({ length: 4 }).map((_, id) => (
                     <div className={cx("item-container")} key={id}>
                       <button type="button" className={cx("plus-btn")}>
-                        <Image imageInfo={IMAGES.plus} />
+                        <Image className={cx("img")} imageInfo={IMAGES.plus} />
                       </button>
                       <div>
                         <Skeleton className={cx("item-image")} height="9.5911rem" width="12.64rem" />
