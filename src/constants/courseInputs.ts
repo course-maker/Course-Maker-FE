@@ -4,7 +4,7 @@ import QuillEditorController from "@/components/commons/QuillEditorController";
 import TitleInputController from "@/components/domains/destinationRegister/TitleInputController";
 import OptionController from "@/components/domains/courseRegister/OptionController";
 import DestinationsInputController from "@/components/domains/courseRegister/DestinationsInputController";
-// fix: label, message string constants로 정리하기
+
 export const INPUTS = {
   title: {
     label: "코스 이름",

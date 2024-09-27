@@ -18,6 +18,7 @@ import BlueKaKaoIcon from "@/assets/images/blue_kakao.svg";
 import BlueLinkIcon from "@/assets/images/blue_link.svg";
 import blueStar from "@/assets/images/blue_star.svg";
 import calendarIcon from "@/assets/images/calendar.svg";
+import calendarGreyIcon from "@/assets/images/calendar_grey.svg";
 import calendarWhiteIcon from "@/assets/images/calendar_white.svg";
 import ChildIcon from "@/assets/images/child.svg";
 import ColumnLine from "@/assets/images/column_line.svg";
@@ -105,6 +106,10 @@ export const IMAGES = {
   },
   calendarWhiteIcon: {
     src: calendarWhiteIcon,
+    alt: "달력 아이콘",
+  },
+  calendarGreyIcon: {
+    src: calendarGreyIcon,
     alt: "달력 아이콘",
   },
   memberIcon: {

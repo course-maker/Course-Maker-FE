@@ -4,7 +4,6 @@ import { FaMinusCircle } from "react-icons/fa";
 
 import styles from "./TravelCourseOnMap.module.scss";
 import TravelMap from "@/components/domains/detail/course/CourseInfo/TravelCourseOnMap/TravelMap";
-// import { AllCardList } from "@/components/commons/CardList/AllCardList";
 import BadgeLists from "@/components/commons/BadgeLists/BadgeLists";
 import Button from "@/components/commons/Button";
 import Modal from "@/components/commons/Modal";
@@ -118,7 +117,7 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
 
   return (
     <>
-      {courseDetail && (
+      {duration > 0 && (
         <div className={cx("container")}>
           <div className={cx("destination-list")}>
             <DestinationList
@@ -129,18 +128,19 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
               onChipClick={handleChipClick}
               selectedLocation={selectedLocation}
               setSelectedLocation={setSelectedLocation}
+              handleOpenModal={handleOpenModal}
             />
           </div>
-          <div className={cx("map")}>
-            {selectedDestinations?.length > 0 && (
+          {selectedDestinations?.length > 0 && (
+            <div className={cx("map")}>
               <TravelMap
                 destinations={selectedDestinations}
                 selectedLocation={selectedLocation}
                 // selectedTransit={selectedTransit}
                 // onClick={handleTransitClick}
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       )}
       <div className={cx("modal-btn")}>

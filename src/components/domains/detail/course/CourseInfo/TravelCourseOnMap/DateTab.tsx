@@ -13,7 +13,11 @@ const DateTab = ({ days, selectedDate, onClick }: DateTabProps) => {
   return (
     <div className={cx("container")}>
       {days.map((day) => (
-        <button key={day} className={cx("btn", { isSelected: day === selectedDate })} onClick={() => onClick(day)}>
+        <button
+          key={day}
+          className={cx("btn", { isSelected: day === selectedDate })}
+          onClick={() => onClick(day)}
+          type="button">
           DAY {day}
         </button>
       ))}
