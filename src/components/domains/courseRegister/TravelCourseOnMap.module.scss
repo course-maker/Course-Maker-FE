@@ -166,7 +166,7 @@
 .destination-section__cards {
   width: 100%;
   @include custom-scroll-bar(1.2, 1.2);
-  @include column-flexbox();
+  @include column-flexbox(start, center);
   gap: 1rem;
   height: 40rem;
   overflow-y: scroll;
