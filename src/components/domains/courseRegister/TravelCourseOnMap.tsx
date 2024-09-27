@@ -52,6 +52,9 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
       (d) => d.destination.id === destination.id && d.date === selectedDate,
     );
 
+    // 현재 선택된 날짜에 있는 목적지들만 필터링
+    const destinationsForSelectedDate = selectedDestination?.filter((d) => d.date === selectedDate) || [];
+
     let updatedDestinations: CourseDestination[] | undefined;
 
     if (isAlreadySelected) {
@@ -61,9 +64,10 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
       );
     } else {
       // 선택되지 않은 경우, 현재 날짜에 새로운 destination 추가
+      const newVisitOrder = destinationsForSelectedDate.length + 1; // 해당 날짜의 목적지 개수 기준으로 visitOrder 설정
       updatedDestinations = [
         ...(selectedDestination || []),
-        { visitOrder: (selectedDestination?.length || 0) + 1, date: selectedDate, destination },
+        { visitOrder: newVisitOrder, date: selectedDate, destination },
       ];
     }
 
