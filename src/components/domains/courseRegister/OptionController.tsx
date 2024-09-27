@@ -13,11 +13,7 @@ const OptionController = <ControlType extends FieldValues>({
     <Controller
       name={formFieldName}
       control={control}
-      render={({ field }) => (
-        // <div>테스트</div>
-
-        <Slider type={formFieldName} value={field.value} onChange={field.onChange} />
-      )}
+      render={({ field }) => <Slider type={formFieldName} value={field.value} onChange={field.onChange} />}
     />
   );
 };
