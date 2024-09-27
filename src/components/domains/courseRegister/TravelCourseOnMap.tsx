@@ -149,7 +149,7 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
       <Modal isOpen={isModalOpen} onBackdropClick={handleCloseModal}>
         <div className={cx("modal-content")}>
           <div className={cx("txt-container")}>
-            <span className={cx("txt-title")}>DAY1 경로 설정</span>
+            <div className={cx("txt-title")}>DAY{selectedDate} 경로 설정</div>
             <span className={cx("txt-sub")}>여행지는 1일당 15개까지 추가 가능합니다.</span>
           </div>
 
