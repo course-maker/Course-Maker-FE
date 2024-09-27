@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { LocationWithId } from "@/type/type";
+import Skeleton from "react-loading-skeleton";
 import { FaMinusCircle } from "react-icons/fa";
 
 import styles from "./TravelCourseOnMap.module.scss";
@@ -110,11 +111,6 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
     setSelectedBadges(badges); // 배지 업데이트
   };
 
-  //태그 데이터 패칭 여부 확인
-  if (isDestinationLoading) {
-    return <div>...loading</div>;
-  }
-
   return (
     <>
       {duration > 0 && (
@@ -167,31 +163,51 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
                   <p className={cx("txt-sub")}>여행지를 클릭하면 여행지 상세페이지를 확인할 수 있습니다.</p>
                 </div>
               </div>
-              <div className={cx("destination-section__cards")}>
-                {destinationData?.contents?.map((item, id) => (
-                  <div className={cx("item-container")} key={id}>
-                    <button
-                      type="button"
-                      className={cx("plus-btn")}
-                      onClick={() => handleDestinationToggle(item as getDestinationResponseDto)}>
-                      {selectedDestinations.some((d) => d.destination.id === item.id) ? (
-                        <FaMinusCircle className={cx("minus-btn")} />
-                      ) : (
-                        <Image imageInfo={IMAGES.plus} />
-                      )}
-                    </button>
-                    <div>
-                      <img className={cx("item-image")} src={item.pictureLink} alt={`${item.name} 이미지`} />
-                    </div>
-                    <div className={cx("item-box")}>
-                      <div className={cx("title-group")}>
-                        <p className={cx("item-title")}>{item.name}</p>
-                        <p className={cx("item-location")}>{item.location.address}</p>
+              {!isDestinationLoading ? (
+                <div className={cx("destination-section__cards")}>
+                  {destinationData?.contents?.map((item, id) => (
+                    <div className={cx("item-container")} key={id}>
+                      <button
+                        type="button"
+                        className={cx("plus-btn")}
+                        onClick={() => handleDestinationToggle(item as getDestinationResponseDto)}>
+                        {selectedDestinations.some((d) => d.destination.id === item.id) ? (
+                          <FaMinusCircle className={cx("minus-btn")} />
+                        ) : (
+                          <Image imageInfo={IMAGES.plus} />
+                        )}
+                      </button>
+                      <div>
+                        <img className={cx("item-image")} src={item.pictureLink} alt={`${item.name} 이미지`} />
+                      </div>
+                      <div className={cx("item-box")}>
+                        <div className={cx("title-group")}>
+                          <p className={cx("item-title")}>{item.name}</p>
+                          <p className={cx("item-location")}>{item.location.address}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className={cx("destination-section__cards")}>
+                  {Array.from({ length: 4 }).map((_, id) => (
+                    <div className={cx("item-container")} key={id}>
+                      <button type="button" className={cx("plus-btn")}>
+                        <Image imageInfo={IMAGES.plus} />
+                      </button>
+                      <div>
+                        <Skeleton className={cx("item-image")} height="9.5911rem" width="12.64rem" />
+                      </div>
+                      <div className={cx("item-box")}>
+                        <div className={cx("title-group")}>
+                          <Skeleton className={cx("item-title")} count={3} height="1rem" width="70%" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <Button color="blue" variant="secondary" size="large" onClick={handleCloseModal}>
