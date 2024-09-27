@@ -110,7 +110,7 @@
 }
 
 .item-container {
-  @include flexbox();
+  @include flexbox(start, center);
   padding-left: 1.96rem;
   gap: 0.69rem;
   width: 100%;
@@ -136,6 +136,7 @@
 .item-box {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .title-group {
