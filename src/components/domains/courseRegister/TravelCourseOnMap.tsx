@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { LocationWithId } from "@/type/type";
 import Skeleton from "react-loading-skeleton";
+import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
 
 import styles from "./TravelCourseOnMap.module.scss";
 import TravelMap from "@/components/domains/detail/course/CourseInfo/TravelCourseOnMap/TravelMap";
@@ -12,7 +13,7 @@ import DestinationList from "./DestinationList";
 
 import { useGetDestinationQuery } from "@/hooks/destination/queries/useGetDestinationQuery";
 import { IMAGES } from "@/constants/images";
-import { getDestinationResponseDto } from "@/api/destination/type";
+import { getDestinationResponseDto, GetDestinationsResponseDto } from "@/api/destination/type";
 import { CourseDestination } from "@/api/course/type";
 import { tagResponseDto } from "@/api/tag/type";
 import classNames from "classnames/bind";
@@ -30,12 +31,41 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
   const [selectedDestination, setSelectedDestination] = useState<CourseDestination[]>();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedBadges, setSelectedBadges] = useState<tagResponseDto[]>([]);
-  const page = 1;
-  const { destinationData, isDestinationLoading } = useGetDestinationQuery(page, selectedBadges);
 
+  const {
+    data: destinationData,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+    isLoading: isDestinationLoading,
+  }: UseInfiniteQueryResult<InfiniteData<GetDestinationsResponseDto, unknown>, Error> = useGetDestinationQuery(
+    selectedBadges,
+  );
+
+  console.log(destinationData);
   console.log(courseDetail);
   console.log(selectedBadges);
   console.log(selectedDestination);
+
+  const observerElem = useRef<HTMLDivElement | null>(null);
+
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [target] = entries;
+      if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    },
+    [fetchNextPage, hasNextPage, isFetchingNextPage],
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, { threshold: 1.0 });
+    if (observerElem.current) observer.observe(observerElem.current);
+    return () => observer.disconnect();
+  }, [handleObserver]);
+
+  const allDestinationData = destinationData?.pages.flatMap((page) => page.contents) ?? [];
 
   const handleDestinationClick = (day: number) => {
     setSelectedDate(day);
@@ -161,7 +191,7 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
               </div>
               {!isDestinationLoading ? (
                 <div className={cx("destination-section__cards")}>
-                  {destinationData?.contents?.map((item) => (
+                  {allDestinationData.map((item) => (
                     <div className={cx("item-container")} key={item.id}>
                       <button
                         type="button"
@@ -184,6 +214,7 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
                       </div>
                     </div>
                   ))}
+                  <div ref={observerElem} style={{ height: "1px" }} />
                 </div>
               ) : (
                 <div className={cx("destination-section__cards")}>
@@ -206,6 +237,7 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
               )}
             </div>
           </div>
+
           <Button color="blue" variant="secondary" size="large" onClick={handleCloseModal}>
             확인
           </Button>
