@@ -13,6 +13,7 @@ const DestinationDetailPage = lazy(() => import("./DestinationDetailPage"));
 const CourseRegisterPage = lazy(() => import("./CourseRegisterPage"));
 const DestinationRegisterPage = lazy(() => import("./DestinationRegisterPage"));
 const DestinationEditPage = lazy(() => import("./DestinationEditPage"));
+const MyPage = lazy(() => import("./MyPage"));
 
 const {
   search,
@@ -23,6 +24,7 @@ const {
   courseRegister,
   destinationRegister,
   destinationEdit,
+  myPage,
   authKakao,
 } = PAGE_PATH;
 
@@ -39,6 +41,7 @@ function PageRouter() {
         <Route path={courseRegister} element={<CourseRegisterPage />} />
         <Route path={destinationRegister} element={<DestinationRegisterPage />} />
         <Route path={destinationEdit} element={<DestinationEditPage />} />
+        <Route path={myPage} element={<MyPage />} />
       </Route>
       <Route path={authKakao} element={<AuthListener />} />
     </Routes>
