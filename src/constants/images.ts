@@ -60,6 +60,9 @@ import Four from "@/assets/images/main/4.png";
 import memberIcon from "@/assets/images/member.svg";
 import memberWhiteIcon from "@/assets/images/member_white.svg";
 import modalClose from "@/assets/images/modal_close.svg";
+import mypageMenuHeart from "@/assets/images/mypage_menu_heart.svg";
+import mypageMenuLevel from "@/assets/images/mypage_menu_level.svg";
+import mypageMenuTravel from "@/assets/images/mypage_menu_travel.svg";
 import PartyIcon from "@/assets/images/party.svg";
 import markerInMap from "@/assets/images/pin_on_map.png";
 import plus from "@/assets/images/plus.svg";
@@ -409,5 +412,17 @@ export const IMAGES = {
   apiDataLogo: {
     src: apiDataLogo,
     alt: "한국관광공사 로고",
+  },
+  mypageMenuHeart: {
+    src: mypageMenuHeart,
+    alt: "마이페이지 찜 아이콘",
+  },
+  mypageMenuLevel: {
+    src: mypageMenuLevel,
+    alt: "마이페이지 나의 등급 아이콘",
+  },
+  mypageMenuTravel: {
+    src: mypageMenuTravel,
+    alt: "마이페이지 내가 만든 여행 아이콘",
   },
 };
