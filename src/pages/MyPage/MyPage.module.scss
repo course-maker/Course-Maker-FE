@@ -1,0 +1,94 @@
+.container {
+  @include column-flexbox();
+  gap: 11rem;
+  padding-top: calc(15rem - 4rem);
+  padding-bottom: 20rem;
+
+  @include responsive("T") {
+    gap: 8rem;
+    padding-top: calc(8rem - 4rem);
+    padding-bottom: 15rem;
+  }
+
+  @include responsive("M") {
+    gap: 5rem;
+    padding-top: calc(4rem - 4rem);
+    padding-bottom: 10rem;
+  }
+
+  .title {
+    @include text-style(3, 700, $black30);
+
+    @include responsive("T") {
+      font-size: 2.4rem;
+    }
+  }
+
+  .menus {
+    @include flexbox();
+    gap: 6rem;
+
+    @include responsive("T") {
+      gap: 4rem;
+    }
+
+    @include responsive("M") {
+      @include column-flexbox();
+    }
+
+    .menu {
+      @include column-flexbox();
+      gap: 4.5rem;
+      border: 0.1rem solid $gray20;
+      width: 25rem;
+      height: 25rem;
+      padding-top: 1rem;
+      background-color: white;
+      cursor: pointer;
+
+      @include responsive("T") {
+        gap: 1.5rem;
+        width: 14rem;
+        height: 14rem;
+      }
+
+      &-img {
+        @include flexbox();
+        width: 8rem;
+        height: 8rem;
+
+        @include responsive("T") {
+          width: 5rem;
+          height: 5rem;
+        }
+      }
+
+      &-name {
+        @include text-style(2.4, 500, $black30);
+
+        @include responsive("T") {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    li:nth-child(2) {
+      gap: 3rem;
+      padding-top: 0;
+
+      @include responsive("T") {
+        gap: 0.5rem;
+      }
+
+      .menu-img {
+        width: 11rem;
+        height: 11rem;
+
+        @include responsive("T") {
+          width: 7rem;
+          height: 7rem;
+        }
+      }
+    }
+  }
+}
