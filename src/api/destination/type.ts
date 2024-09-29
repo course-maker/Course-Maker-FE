@@ -93,7 +93,8 @@ export type GetDestinationsResponseDto = {
   currentPage: number;
   totalPage: number;
   pagingSlice: number;
-  contents: GetDestinationDto[];
+  totalContents: number;
+  contents: getDestinationResponseDto[];
 };
 
 export interface DestinationId {
