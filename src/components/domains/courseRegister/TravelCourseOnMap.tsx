@@ -26,10 +26,6 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedBadges, setSelectedBadges] = useState<tagResponseDto[]>([]);
 
-  console.log(courseDetail);
-  console.log(selectedBadges);
-  console.log(selectedDestination);
-
   const handleDestinationClick = (day: number) => {
     setSelectedDate(day);
     setSelectedLocation(null);
