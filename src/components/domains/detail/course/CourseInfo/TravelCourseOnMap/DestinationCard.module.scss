@@ -51,5 +51,20 @@
         word-break: break-all;
       }
     }
+    .btn {
+      width: 27px;
+      position: relative;
+      left: 8px;
+
+      .remove-btn {
+        cursor: pointer;
+
+        &:hover {
+          background-color: $primary20;
+          border-radius: 50px;
+          padding: 2px 4px;
+        }
+      }
+    }
   }
 }

@@ -36,6 +36,7 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
   );
 
   const handleDestinationToggle = (destination: getDestinationResponseDto) => {
+    console.log(destination);
     // 해당 날짜에 destination이 있는지 확인
     const isAlreadySelected = selectedDestination?.some(
       (d) => d.destination.id === destination.id && d.date === selectedDate,
@@ -110,6 +111,7 @@ const TravelCourseOnMap = ({ courseDetail, duration, handleSelect }: TravelCours
               selectedLocation={selectedLocation}
               setSelectedLocation={setSelectedLocation}
               handleOpenModal={handleOpenModal}
+              handleDestinationToggle={handleDestinationToggle}
             />
           </div>
           {selectedDestinations?.length > 0 && (
