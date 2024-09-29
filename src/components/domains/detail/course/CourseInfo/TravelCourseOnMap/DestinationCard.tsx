@@ -11,9 +11,10 @@ interface DestinationCardProps {
   address: string;
   isSelected: boolean;
   onClick: () => void;
+  onRemove?: () => void;
 }
 
-const DestinationCard = ({ number, title, address, isSelected, onClick }: DestinationCardProps) => {
+const DestinationCard = ({ number, title, address, isSelected, onClick, onRemove }: DestinationCardProps) => {
   return (
     <div className={cx("container")} onClick={onClick}>
       <div className={cx("content")}>
@@ -24,6 +25,11 @@ const DestinationCard = ({ number, title, address, isSelected, onClick }: Destin
         <div className={cx("text")}>
           <h3 className={cx("text-title")}>{title}</h3>
           <p className={cx("text-address")}>{address}</p>
+        </div>
+        <div className={cx("btn")} onClick={onRemove}>
+          <button className={cx("remove-btn")}>
+            <Image imageInfo={IMAGES.cancel} />
+          </button>
         </div>
       </div>
     </div>
