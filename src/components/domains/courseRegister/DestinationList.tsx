@@ -1,10 +1,12 @@
-import { CourseDestination } from "@/api/course/register";
 import { LocationWithId } from "@/type/type";
 import classNames from "classnames/bind";
 import DateTab from "@/components/domains/detail/course/CourseInfo/TravelCourseOnMap/DateTab";
 import DestinationCard from "@/components/domains/detail/course/CourseInfo/TravelCourseOnMap/DestinationCard";
 import styles from "@/components/domains/detail/course/CourseInfo/TravelCourseOnMap/DestinationList.module.scss";
+import { getDestinationResponseDto } from "@/api/destination/type";
+import { CourseDestination } from "@/api/course/type";
 import TransitTimeChip from "@/components/domains/detail/course/CourseInfo/TravelCourseOnMap/TransitTimeChip";
+
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
 
@@ -19,6 +21,7 @@ interface DestinationListProps {
   selectedLocation: LocationWithId | null;
   setSelectedLocation: React.Dispatch<React.SetStateAction<LocationWithId | null>>;
   handleOpenModal: () => void;
+  handleDestinationToggle: (destination: getDestinationResponseDto) => void;
 }
 
 const DestinationList = ({
@@ -30,6 +33,7 @@ const DestinationList = ({
   selectedLocation,
   setSelectedLocation,
   handleOpenModal,
+  handleDestinationToggle,
 }: DestinationListProps) => {
   const days = Array.from({ length: duration }, (_, i) => i + 1);
 
@@ -55,6 +59,7 @@ const DestinationList = ({
                     lng: destination.destination.location.longitude,
                   });
                 }}
+                onRemove={() => handleDestinationToggle(destination.destination)}
               />
               {selectedDestinations.length - 1 !== index && <TransitTimeChip onClick={() => onChipClick(index)} />}
             </div>

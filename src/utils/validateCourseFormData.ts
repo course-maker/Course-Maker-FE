@@ -15,12 +15,6 @@ export const validateFormData = (data: FieldValues, setFocus: UseFormSetFocus<Fi
     return false;
   }
 
-  if (tags.length === 0) {
-    alert("태그를 하나 이상 선택해 주세요.");
-    setFocus("tags");
-    return false;
-  }
-
   if (!duration) {
     alert("여행 기간을 선택해 주세요.");
     setFocus("duration");
@@ -41,6 +35,12 @@ export const validateFormData = (data: FieldValues, setFocus: UseFormSetFocus<Fi
 
   if (!pictureLink) {
     alert("대표 이미지를 첨부해주세요.");
+    setFocus("tags");
+    return false;
+  }
+
+  if (tags.length === 0) {
+    alert("태그를 하나 이상 선택해 주세요.");
     setFocus("tags");
     return false;
   }

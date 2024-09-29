@@ -17,6 +17,7 @@ import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
 import BlueKaKaoIcon from "@/assets/images/blue_kakao.svg";
 import BlueLinkIcon from "@/assets/images/blue_link.svg";
 import blueStar from "@/assets/images/blue_star.svg";
+import cancel from "@/assets/images/cancel.svg";
 import calendarIcon from "@/assets/images/calendar.svg";
 import calendarGreyIcon from "@/assets/images/calendar_grey.svg";
 import calendarWhiteIcon from "@/assets/images/calendar_white.svg";
@@ -104,6 +105,10 @@ export const IMAGES = {
   check: {
     src: check,
     alt: "달력 아이콘",
+  },
+  cancel: {
+    src: cancel,
+    alt: "취소 아이콘",
   },
   calendarIcon: {
     src: calendarIcon,
