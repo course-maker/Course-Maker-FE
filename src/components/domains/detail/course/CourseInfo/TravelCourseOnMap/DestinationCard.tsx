@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
 import classNames from "classnames/bind";
@@ -11,10 +12,10 @@ interface DestinationCardProps {
   address: string;
   isSelected: boolean;
   onClick: () => void;
-  onRemove?: () => void;
+  contents?: ReactNode;
 }
 
-const DestinationCard = ({ number, title, address, isSelected, onClick, onRemove }: DestinationCardProps) => {
+const DestinationCard = ({ number, title, address, isSelected, onClick, contents }: DestinationCardProps) => {
   return (
     <div className={cx("container")} onClick={onClick}>
       <div className={cx("content")}>
@@ -26,12 +27,21 @@ const DestinationCard = ({ number, title, address, isSelected, onClick, onRemove
           <h3 className={cx("text-title")}>{title}</h3>
           <p className={cx("text-address")}>{address}</p>
         </div>
-        <div className={cx("btn")} onClick={onRemove}>
-          <button className={cx("remove-btn")}>
-            <Image imageInfo={IMAGES.cancel} />
-          </button>
-        </div>
+        {contents}
       </div>
+    </div>
+  );
+};
+
+interface RemoveProps {
+  onRemove?: () => void;
+}
+DestinationCard.Remove = ({ onRemove }: RemoveProps) => {
+  return (
+    <div className={cx("btn")} onClick={onRemove}>
+      <button className={cx("remove-btn")}>
+        <Image imageInfo={IMAGES.cancel} />
+      </button>
     </div>
   );
 };

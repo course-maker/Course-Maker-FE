@@ -59,7 +59,7 @@ const DestinationList = ({
                     lng: destination.destination.location.longitude,
                   });
                 }}
-                onRemove={() => handleDestinationToggle(destination.destination)}
+                contents={<DestinationCard.Remove onRemove={() => handleDestinationToggle(destination.destination)} />}
               />
               {selectedDestinations.length - 1 !== index && <TransitTimeChip onClick={() => onChipClick(index)} />}
             </div>
