@@ -39,7 +39,7 @@ const Step2: React.FC = () => {
 
   const { data: destinationData, isSuccess } = useQuery({
     queryKey: ["destinationData"],
-    queryFn: () => getDestination({ pagingSlice: 20, totalPage: 1, currentPage: 1, contents: [] }),
+    queryFn: () => getDestination({ pagingSlice: 20, totalPage: 1, currentPage: 1, contents: [], totalContents: 0 }),
   });
 
   useEffect(() => {
