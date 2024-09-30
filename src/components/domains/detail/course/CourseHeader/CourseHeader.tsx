@@ -41,7 +41,7 @@ const CourseHeader = () => {
   const headerData = {
     title: courseDetail.title,
     nickname: courseDetail.member.nickname,
-    reviewCount: courseDetail.reviewCount,
+    averageRating: courseDetail.averageRating,
     isMyPost: courseDetail.isMyCourse,
     tags: courseDetail.tags,
 
