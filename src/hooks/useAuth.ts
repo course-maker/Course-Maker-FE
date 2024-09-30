@@ -30,7 +30,7 @@ const useAuth = () => {
     if (accessToken && isSignPage(location.pathname)) {
       navigate("/");
     } else if (!accessToken && isRegisterPage(location.pathname)) {
-      navigate(PAGE_PATH.signIn);
+      navigate(PAGE_PATH.signIn, { replace: true });
     }
   }, [accessToken, isSuccess, userInfo, location.pathname, navigate, setAuth]);
 
