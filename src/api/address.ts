@@ -1,5 +1,8 @@
 import { BASE_URL } from "./axios";
 
+//get
+export const basicInfoAddress = "/v1/my/basicInfo";
+
 export const memberAddress = {
   //post
   validateNickname: "/v1/auth/validate/nickname",

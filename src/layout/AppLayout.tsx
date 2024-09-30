@@ -12,7 +12,7 @@ import styles from "./AppLayout.module.scss";
 const cx = classNames.bind(styles);
 
 const AppLayout = () => {
-  const { isAuth } = useAuth();
+  const { auth } = useAuth();
   const { pathname } = useLocation();
   const { width } = useWindowSize();
   const isDesktopSize = width > 1199;
@@ -26,7 +26,7 @@ const AppLayout = () => {
       ) : (
         <>
           <nav className={cx("nav")}>
-            {isDesktopSize ? <NavigationBar isAuth={isAuth} /> : <MobileNavigationBar isAuth={isAuth} />}
+            {isDesktopSize ? <NavigationBar isAuth={!!auth} /> : <MobileNavigationBar isAuth={!!auth} />}
           </nav>
           <main className={cx("main")}>
             <div className={cx("empty")}></div>

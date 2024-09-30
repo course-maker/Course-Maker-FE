@@ -66,10 +66,10 @@ export const retryWithNewAccessToken = async (error: AxiosError) => {
       }
     } else {
       console.error("refresh token이 없습니다.");
-      handleSessionExpired();
+      return handleSessionExpired();
     }
   } catch (error) {
     console.error("access token을 재발급 받는 중 오류가 발생했습니다.", error);
-    handleSessionExpired();
+    return handleSessionExpired();
   }
 };
