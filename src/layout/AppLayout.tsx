@@ -1,4 +1,5 @@
 import MobileNavigationBar from "@/components/commons/MobileNavigationBar";
+import FullScreenMessage from "@/components/commons/FullScreenMessage";
 import MobileTabBar from "@/components/commons/MobileTabBar";
 import NavigationBar from "@/components/commons/NavigationBar";
 import useAuth from "@/hooks/useAuth";
@@ -20,7 +21,7 @@ const AppLayout = () => {
   return (
     <>
       {isSignPage(pathname) ? (
-        <Suspense>
+        <Suspense fallback={<FullScreenMessage type="loading" />}>
           <Outlet />
         </Suspense>
       ) : (
@@ -30,7 +31,7 @@ const AppLayout = () => {
           </nav>
           <main className={cx("main")}>
             <div className={cx("empty")}></div>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<FullScreenMessage type="loading" />}>
               <Outlet />
             </Suspense>
           </main>
