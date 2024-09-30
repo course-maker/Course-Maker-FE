@@ -108,12 +108,20 @@ const DetailActionButtons = ({ type, data }: DetailActionButtonsProps) => {
     setIsWished(data.isMyWish);
   }, [data.isMyWish]);
 
+  const stripHtmlTags = (htmlString: string) => {
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = htmlString;
+    return tempElement.innerText || tempElement.textContent;
+  };
+
   const handleKaKaoShare = () => {
+    const strippedDescription = stripHtmlTags(data.content);
+
     if (isKakaoInitialized) {
       shareMessage({
         id: data.id,
         title: data.title,
-        description: data.content,
+        description: strippedDescription || "",
         imageUrl: data.pictureLink,
         pageType: type,
       });
