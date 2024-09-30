@@ -35,7 +35,7 @@ const Header = ({ type, data, onEdit, onDelete }: HeaderProps) => {
                 <Image imageInfo={IMAGES.ColumnLine} />
               </div>
               <div className={cx("view-count")}>
-                <Image imageInfo={IMAGES.GrayStarIcon} /> {data.reviewCount}
+                <Image imageInfo={IMAGES.GrayStarIcon} /> {data.averageRating}
               </div>
             </div>
             <div className={cx("icons")}>

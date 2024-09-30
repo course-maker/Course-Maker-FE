@@ -41,7 +41,7 @@ const DestinationHeader = () => {
   const headerData = {
     title: destinationDetail.name,
     nickname: destinationDetail.nickname,
-    reviewCount: destinationDetail.reviewCount,
+    averageRating: destinationDetail.averageRating,
     isMyPost: destinationDetail.isMyDestination,
     tags: destinationDetail.tags,
     isApiData: destinationDetail.isApiData,
