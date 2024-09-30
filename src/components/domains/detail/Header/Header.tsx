@@ -25,7 +25,7 @@ const Header = ({ type, data, onEdit, onDelete }: HeaderProps) => {
           <div className={cx("content")}>
             <h1 className={cx("title")}>{data.title}</h1>
             {type === "course" && data.isMyPost && <EditAndDeleteButton onEdit={onEdit} onDelete={onDelete} />}
-            {type === "destination" && <EditAndDeleteButton onEdit={onEdit} onDelete={onDelete} />}
+            {type === "destination" && <EditAndDeleteButton onEdit={onEdit} onDelete={onDelete} isDestination={true} />}
           </div>
 
           <div className={cx("content")}>
