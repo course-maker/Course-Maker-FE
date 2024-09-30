@@ -38,7 +38,7 @@ export interface ReviewEditForm {
 export interface DetailHeaderDataType {
   title: string;
   nickname: string;
-  reviewCount: number;
+  averageRating: number;
   isMyPost: boolean;
   tags: tagResponseDto[];
   isApiData?: boolean;
