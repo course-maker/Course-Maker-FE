@@ -43,6 +43,10 @@ export const patchDestinationApi = (
 export const deleteDestinationDetail = (id: number) =>
   apiRequest("delete", destinationAddress.delete(id), null, null, { requireAuth: true });
 
+// 여행지 검색
+export const searchDestination = (param: string): Promise<GetDestinationsResponseDto> =>
+  apiRequest("get", `${destinationAddress.get}/search?${param}`);
+
 // 여행지 좋아요 등록
 export const addDestinationLike = (data: DestinationId) =>
   apiRequest("post", destinationLikeAddress.addLike, data, null, { requireAuth: true });
