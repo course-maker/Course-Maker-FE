@@ -55,6 +55,10 @@ const SignUpForm = () => {
         const isEmailAndCodeValid = validateEmailAndCode();
 
         if (!isEmailAndCodeValid || !isZodValid || !areTermsAccepted) {
+          if (!areTermsAccepted) {
+            alert("약관 미동의 시 가입이 제한됩니다.");
+          }
+
           return;
         }
 
