@@ -1,28 +1,40 @@
+import { getBasicInfo } from "@/api/my";
 import { PAGE_PATH } from "@/constants/pagePath";
 import { authState } from "@/recoil/authAtom";
 import { getAccessToken } from "@/utils/manageTokenInfo";
 import { isRegisterPage, isSignPage } from "@/utils/pageHelpers";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 const useAuth = () => {
-  const [isAuth, setIsAuth] = useRecoilState(authState);
+  const [auth, setAuth] = useRecoilState(authState);
   const location = useLocation();
   const navigate = useNavigate();
+  const accessToken = getAccessToken();
+
+  const { data: userInfo, isSuccess } = useQuery({
+    queryKey: ["userInfo"],
+    queryFn: getBasicInfo,
+    enabled: !!accessToken,
+  });
 
   useEffect(() => {
-    const accessToken = getAccessToken();
-    setIsAuth(!!accessToken);
+    if (!accessToken) {
+      setAuth(null);
+    } else if (isSuccess && userInfo) {
+      setAuth(userInfo);
+    }
 
     if (accessToken && isSignPage(location.pathname)) {
       navigate("/");
     } else if (!accessToken && isRegisterPage(location.pathname)) {
       navigate(PAGE_PATH.signIn);
     }
-  }, [location.pathname, setIsAuth, navigate]);
+  }, [accessToken, isSuccess, userInfo, location.pathname, navigate, setAuth]);
 
-  return { isAuth };
+  return { auth };
 };
 
 export default useAuth;
