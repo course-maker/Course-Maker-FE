@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { lazy, Suspense } from "react";
 import { useRecoilState } from "recoil";
 import Skeleton from "react-loading-skeleton";
@@ -19,10 +20,44 @@ const cx = classNames.bind(styles);
 const bannerItems = bannerItemsData;
 
 const HomePage = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { courseData: coursePopularData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
   const { courseData: courseRatingData } = useGetCourseQuery("record=4&page=2&orderBy=RATING");
   const [DestinationBadges, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
   const navigate = useNavigate();
+
+  interface ImageSizes {
+    small: string;
+    medium: string;
+    large: string;
+  }
+
+  // 화면 크기에 따른 이미지 선택 함수
+  const selectImageBySize = (image: ImageSizes) => {
+    if (windowWidth <= 520) {
+      console.log("Selected small image:", image.small);
+      return image.small;
+    } else if (windowWidth > 520 && windowWidth <= 850) {
+      return image.medium;
+    } else {
+      return image.large;
+    }
+  };
+
+  // 윈도우 리사이즈 이벤트를 감지하여 windowWidth 상태를 업데이트
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // 리사이즈 이벤트 리스너 추가
+    window.addEventListener("resize", handleResize);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleClick = (tag: tagResponseDto) => {
     setDestinationBadgesState([...DestinationBadges, tag]);
@@ -48,9 +83,7 @@ const HomePage = () => {
           {bannerItems.large.map((item) => (
             <Banner
               key={item.id}
-              image={item.image}
-              title={item.title ?? "Default Title"}
-              subtitle={item.subtitle}
+              image={selectImageBySize(item.image)}
               size="large"
               onClick={() => navigate(item.url)}
             />
