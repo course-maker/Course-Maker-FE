@@ -15,6 +15,10 @@ import {
 // 코스 목록 조회
 export const getCourse = (params: string): Promise<Courses> => apiRequest("get", `${coursesAddress.getList}?${params}`);
 
+// 코스 검색
+export const searchCourse = (params: string): Promise<Courses> =>
+  apiRequest("get", `${coursesAddress.getList}/search?${params}`);
+
 // 코스 상세정보 조회
 export const getCourseDetail = (id: number, options: RequestOptions): Promise<Course> =>
   apiRequest("get", coursesAddress.getDetail(id), null, null, options);
