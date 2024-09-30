@@ -1,0 +1,35 @@
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .logo {
+    width: 100px;
+  }
+
+  .bird {
+    position: relative;
+    top: 50px;
+    right: 0;
+    animation: fly 2s ease-in-out infinite;
+    width: 50px;
+  }
+
+  @keyframes fly {
+    0% {
+      transform: translateX(0) rotate(0deg);
+    }
+    50% {
+      transform: translateX(-100px) translateY(-50px) rotate(20deg);
+    }
+    100% {
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+}
