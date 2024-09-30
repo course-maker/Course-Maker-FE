@@ -30,14 +30,19 @@ const ImageInput = ({ control }: ImageInputProps) => {
           if (!event.target.files) return;
 
           const newFiles = Array.from(event.target.files);
-          const totalFiles = (field.value ? field.value.length : 0) + newFiles.length;
 
-          if (totalFiles > 5) {
-            return;
-          }
+          const validFiles = newFiles.filter((file) => {
+            if (file.size > 15 * 1024 * 1024) {
+              alert("파일 크기가 너무 커서 업로드할 수 없습니다. 15MB 이하의 이미지로 다시 시도해주세요.");
+              return false;
+            }
+            return true;
+          });
 
-          const updatedFiles = [...(field.value || []), ...newFiles];
+          const updatedFiles = [...(field.value || []), ...validFiles];
           field.onChange(updatedFiles);
+
+          event.target.value = "";
         };
 
         const handleRemoveImage = (index: number) => {
