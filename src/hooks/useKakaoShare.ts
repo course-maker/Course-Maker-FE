@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface ShareMessageProps {
   id: number | undefined;
@@ -41,7 +41,7 @@ export const useKakaoShare = () => {
       return;
     }
 
-    const baseUrl = "http://localhost:5173";
+    const baseUrl = import.meta.env.VITE_APP_BASE_DEPLOY_URL;
     const url = `${baseUrl}/${pageType}/${id}`;
 
     try {
