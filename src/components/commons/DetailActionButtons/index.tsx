@@ -9,7 +9,6 @@ import Image from "@/components/commons/Image";
 import { IMAGES } from "@/constants/images";
 import useAuth from "@/hooks/useAuth";
 import { useKakaoShare } from "@/hooks/useKakaoShare";
-import useToast from "@/hooks/useToast";
 import { DetailActionData } from "@/type/type";
 import { useMutation } from "@tanstack/react-query";
 import classNames from "classnames/bind";
@@ -28,7 +27,7 @@ const DetailActionButtons = ({ type, data }: DetailActionButtonsProps) => {
   const [isWished, setIsWished] = useState(data.isMyWish);
   const { isAuth } = useAuth();
   const { shareMessage, isKakaoInitialized } = useKakaoShare();
-  const showToast = useToast();
+  // const showToast = useToast();
 
   const addLikeApi = () =>
     type === "course" ? addCourseLike({ courseId: data.id }) : addDestinationLike({ destinationId: data.id });
@@ -123,22 +122,22 @@ const DetailActionButtons = ({ type, data }: DetailActionButtonsProps) => {
     }
   };
 
-  const handleLinkCopy = async () => {
-    try {
-      const currentUrl = window.location.href;
-      await navigator.clipboard.writeText(currentUrl);
-      showToast("링크가 복사되었습니다.", "success");
-    } catch (err) {
-      console.error("링크 복사에 실패했습니다:", err);
-      showToast("링크 복사에 실패했습니다. 다시 시도해주세요.", "error");
-    }
-  };
+  // const handleLinkCopy = async () => {
+  //   try {
+  //     const currentUrl = window.location.href;
+  //     await navigator.clipboard.writeText(currentUrl);
+  //     showToast("링크가 복사되었습니다.", "success");
+  //   } catch (err) {
+  //     console.error("링크 복사에 실패했습니다:", err);
+  //     showToast("링크 복사에 실패했습니다. 다시 시도해주세요.", "error");
+  //   }
+  // };
 
   const buttonData = [
     { onClick: handleLikeToggle, image: isLiked ? IMAGES.BlueFavoriteIcon : IMAGES.GrayFavoriteIcon },
     { onClick: handleWishToggle, image: isWished ? IMAGES.BlueBookmarkIcon : IMAGES.GrayBookmarkIcon },
     { onClick: handleKaKaoShare, image: IMAGES.GrayKaKaoIcon },
-    { onClick: handleLinkCopy, image: IMAGES.GrayLinkIcon },
+    // { onClick: handleLinkCopy, image: IMAGES.GrayLinkIcon },
   ];
 
   return (
