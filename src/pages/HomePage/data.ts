@@ -130,19 +130,27 @@ export const bannerItemsData = {
   large: [
     {
       id: 0,
-      image: IMAGES.Home_left_test.src,
-      subtitle: "스카이캡슐",
+      image: {
+        small: IMAGES.Home_left_small.src,
+        medium: IMAGES.Home_left_medium.src,
+        large: IMAGES.Home_left_large.src,
+      },
+      subtitle: "해운대 그린레일웨이",
       title: "바다를 따라 다니며\n육지와는 다른 풍경을 즐기세요",
       size: "large",
-      url: "destination/27",
+      url: "destination/1067",
     },
     {
       id: 1,
-      image: IMAGES.Home_right_test.src,
+      image: {
+        small: IMAGES.Home_right_small.src,
+        medium: IMAGES.Home_right_medium.src,
+        large: IMAGES.Home_right_large.src,
+      },
       subtitle: "부산 필수코스",
       title: "부산이 처음이라면\n여기부터 가보셔야죠",
       size: "large",
-      url: "course/21",
+      url: "course/18",
     },
   ],
 };

@@ -49,8 +49,12 @@ import graySign from "@/assets/images/gray_sign.svg";
 import GrayStarIcon from "@/assets/images/gray_star.svg";
 import grayTransitTriangle from "@/assets/images/gray_transit_triangle.svg";
 import grayTriangle from "@/assets/images/gray_triangle.svg";
-import Home_left_test from "@/assets/images/home_left_test.svg";
-import Home_right_test from "@/assets/images/home_right_test.svg";
+import Home_left_large from "@/assets/images/home_left_large.svg";
+import Home_left_medium from "@/assets/images/home_left_medium.svg";
+import Home_left_small from "@/assets/images/home_left_small.svg";
+import Home_right_large from "@/assets/images/home_right_large.svg";
+import Home_right_medium from "@/assets/images/home_right_medium.svg";
+import Home_right_small from "@/assets/images/home_right_small.svg";
 import kakaoOauthButton from "@/assets/images/kakao_oauth_button.svg";
 import locationIcon from "@/assets/images/location.svg";
 import One from "@/assets/images/main/1.png";
@@ -157,13 +161,29 @@ export const IMAGES = {
     src: Rectangle_45,
     alt: "멤버 아이콘",
   },
-  Home_right_test: {
-    src: Home_right_test,
+  Home_right_large: {
+    src: Home_right_large,
+    alt: "여행지 오른쪽",
+  },
+  Home_right_medium: {
+    src: Home_right_medium,
+    alt: "여행지 오른쪽",
+  },
+  Home_right_small: {
+    src: Home_right_small,
+    alt: "여행지 오른쪽",
+  },
+  Home_left_large: {
+    src: Home_left_large,
     alt: "홈 여행지 추천 이미지",
   },
-  Home_left_test: {
-    src: Home_left_test,
-    alt: "홈 여행지 추천 이미지",
+  Home_left_medium: {
+    src: Home_left_medium,
+    alt: "여행지 왼쪽",
+  },
+  Home_left_small: {
+    src: Home_left_small,
+    alt: "여행지 왼쪽",
   },
   Banner2: {
     src: Banner2,
