@@ -1,36 +1,50 @@
-import { useEffect, useState } from "react";
 import { lazy, Suspense } from "react";
 import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
+
 import Section from "@/components/commons/Section/Section";
 import ItemBox from "@/components/commons/ItemBox/ItemBox";
-import SearchBar from "@/components/commons/SearchBar";
 import Banner from "@/components/commons/Banner/Banner";
+import SearchBar from "@/components/commons/SearchBar";
 import Image from "@/components/commons/Image";
+
 import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
-import { bannerItemsData } from "./data.js";
+const cx = classNames.bind(styles);
+
+import { useGetDestinationSearchQuery } from "@/hooks/destination/queries/useGetDestinationSearchQuery";
+import { useGetCourseSearchQuery } from "@/hooks/course/queries/useGetCourseSearchQuery";
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
 import { DestinationBadgesState } from "@/recoil/serviceAtom";
 import { tagResponseDto } from "@/api/tag/type";
-
+import { bannerItemsData } from "./data.js";
 const Card = lazy(() => import("@/components/commons/Card/Card"));
-const cx = classNames.bind(styles);
 const bannerItems = bannerItemsData;
+
+interface ImageSizes {
+  small: string;
+  medium: string;
+  large: string;
+}
 
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [inputValue, setInputValue] = useState("");
+  const { destinationSearchData } = useGetDestinationSearchQuery(1, inputValue);
+  const { courseSearchData } = useGetCourseSearchQuery(1, inputValue);
   const { courseData: coursePopularData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
   const { courseData: courseRatingData } = useGetCourseQuery("record=4&page=2&orderBy=RATING");
   const [DestinationBadges, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
   const navigate = useNavigate();
 
-  interface ImageSizes {
-    small: string;
-    medium: string;
-    large: string;
-  }
+  console.log(courseSearchData);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInputValue(value);
+  };
 
   // 화면 크기에 따른 이미지 선택 함수
   const selectImageBySize = (image: ImageSizes) => {
@@ -66,7 +80,14 @@ const HomePage = () => {
   return (
     <div data-testid="home-page">
       <Section title="" className={cx("container")}>
-        <SearchBar />
+        <SearchBar
+          destination={destinationSearchData?.contents ?? []}
+          course={courseSearchData?.contents ?? []}
+          value={inputValue}
+          onChange={handleInputChange}
+          destinationTitle="여행지"
+          courseTitle="코스"
+        />
       </Section>
 
       <Section title="어떤 여행을 할까요? ">

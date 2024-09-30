@@ -1,9 +1,14 @@
+.search-bar-wrap {
+  position: relative;
+  z-index: 10;
+}
+
 .search-bar {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   width: 100%;
   &-gray {
     background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #ddd 0%, #ddd 100%);
@@ -17,7 +22,8 @@
       box-shadow 0.3s;
   }
   &-blue {
-    background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #bfdbfe 0%, #0038b0 100%);
+    background-image: linear-gradient(#fff, #fff),
+      linear-gradient(to right, #0049ff 0%, #23fdc6 28%, #58ced7 57%, #3aa1ff 80%);
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 50px;
@@ -51,8 +57,12 @@
 }
 
 .search-bar:focus-within {
-  border-color: #0056d2;
-  box-shadow: 0 0 8px rgba(0, 86, 210, 0.5);
+  // border-color: #0056d2;
+  border: none;
+  box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
+  // rgba(0, 86, 210, 0.5);
+  border-bottom: 1px solid #ddd !important;
+  border-radius: 20px 20px 0 0 !important;
 }
 
 .search-bar::before {
@@ -74,3 +84,72 @@
 //     display: block;
 //   }
 // }
+
+.list-container {
+  visibility: hidden;
+  background-color: $white;
+  padding: 12px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+
+  transform: translateY(0); /* 원래 위치로 슬라이드 */
+  pointer-events: auto;
+
+  .search-bar-wrap:focus-within & {
+    visibility: visible;
+    transform: translateY(-2px); /* 리스트를 위로 약간 올려서 시작 */
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .list-type {
+    font-size: 15px;
+    font-weight: 600;
+    color: $gray30;
+  }
+
+  .list-item {
+    padding: 15px 0px;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+
+    &:hover {
+      background-color: $primary10;
+    }
+
+    .list-txt-top {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20.8px;
+      letter-spacing: -0.8px;
+      text-align: left;
+    }
+
+    .list-txt-bottom {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 18.2px;
+      letter-spacing: -0.8px;
+      text-align: left;
+      color: #86869a;
+    }
+  }
+  .no-result {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20.8px;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: #86869a;
+    padding: 50px 12px;
+  }
+}
