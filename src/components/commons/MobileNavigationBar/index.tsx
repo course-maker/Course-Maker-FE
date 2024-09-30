@@ -17,7 +17,8 @@ const MobileNavigationBar = ({ isAuth }: { isAuth: boolean | null }) => {
         <Image imageInfo={IMAGES.courseMakerLogoMobile} />
       </Link>
       <div className={cx("nav-btn")}>
-        {isAuth ? <button>마이페이지</button> : <button onClick={() => navigate(signIn)}>로그인</button>}
+        {/* {isAuth ? <button>마이페이지</button> : <button onClick={() => navigate(signIn)}>로그인</button>} */}
+        {!isAuth && <button onClick={() => navigate(signIn)}>로그인</button>}
       </div>
     </div>
   );
