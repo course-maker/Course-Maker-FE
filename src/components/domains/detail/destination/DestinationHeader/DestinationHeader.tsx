@@ -1,17 +1,24 @@
 import { deleteDestinationDetail, getDestinationApi } from "@/api/destination";
 import { defaultDestinationDetail } from "@/constants/defaultValues";
+import { authState } from "@/recoil/authAtom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import Header from "../../Header/Header";
 
 const DestinationHeader = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [isAuth] = useRecoilState(authState);
+
+  const fetchDestinationDetail = () => {
+    const options = { requireAuth: !!isAuth };
+    return getDestinationApi(Number(id), options);
+  };
 
   const { data: destinationDetailData } = useQuery({
     queryKey: ["destinationDetailData", id],
-    queryFn: () => getDestinationApi(Number(id)),
-    retry: 0,
+    queryFn: fetchDestinationDetail,
   });
 
   const destinationDetail = destinationDetailData ?? defaultDestinationDetail;
@@ -29,7 +36,11 @@ const DestinationHeader = () => {
   });
 
   const handleEdit = () => {
-    navigate(`/destination/${destinationDetailData?.id}/edit`);
+    if (isAuth) {
+      navigate(`/destination/${destinationDetailData?.id}/edit`);
+    } else {
+      alert("로그인 후 이용 가능합니다.");
+    }
   };
 
   const handleDelete = () => {

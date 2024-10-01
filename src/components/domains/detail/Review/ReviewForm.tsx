@@ -24,7 +24,7 @@ interface ReviewFormProps {
 }
 
 const ReviewForm = ({ type, initialData, setEditingReview }: ReviewFormProps) => {
-  const { isAuth } = useAuth();
+  const { auth } = useAuth();
   const { id } = useParams();
   const postId = Number(id);
   const { handleImageUpload } = useHandleImageUpload();
@@ -110,10 +110,10 @@ const ReviewForm = ({ type, initialData, setEditingReview }: ReviewFormProps) =>
   return (
     <form className={cx("form")} onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <StarRating control={control} isDisabled={!isAuth} />
+        <StarRating control={control} isDisabled={!auth} />
       </div>
       <div className={cx("text-input")}>
-        <TextInput control={control} isDisabled={!isAuth} />
+        <TextInput control={control} isDisabled={!auth} />
       </div>
       <div className={cx("images-submit")}>
         <ImageInput control={control} />
@@ -124,7 +124,7 @@ const ReviewForm = ({ type, initialData, setEditingReview }: ReviewFormProps) =>
             color="blue"
             variant="primary"
             isSquare={true}
-            isDisabled={!isAuth || postReviewMutation.isPending}>
+            isDisabled={!auth || postReviewMutation.isPending}>
             {postReviewMutation.isPending ? "등록중" : initialData ? "리뷰 수정하기" : "리뷰 등록하기"}
           </Button>
         </div>
