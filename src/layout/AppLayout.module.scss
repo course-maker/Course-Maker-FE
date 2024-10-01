@@ -19,7 +19,7 @@
   margin: 0 auto;
   max-width: 90rem;
   z-index: $main;
-  background-color: $gray10;
+  // background-color: $gray10;
 
   @include responsive("T") {
     max-width: calc(100% - 16.8rem);
