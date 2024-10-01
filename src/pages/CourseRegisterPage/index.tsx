@@ -25,7 +25,7 @@ const CourseRegisterPage = () => {
   console.log(isAuth);
 
   useEffect(() => {
-    if (isAuth?.role !== "초보 여행가") {
+    if (isAuth?.role == "초보 여행가") {
       alert(`${isAuth?.nickname}님, 아쉽게도 작성 권한이 없습니다.😢 '중급 여행가' 등급 이상만 작성 가능합니다.`);
       navigate("/");
       return;
