@@ -11,7 +11,7 @@ export const validateFormData = (data: FieldValues, setFocus: UseFormSetFocus<Fi
 
   if (!title) {
     alert("코스 이름을 입력해 주세요.");
-    setFocus("name");
+    setFocus("title");
     return false;
   }
 
@@ -35,7 +35,7 @@ export const validateFormData = (data: FieldValues, setFocus: UseFormSetFocus<Fi
 
   if (!pictureLink) {
     alert("대표 이미지를 첨부해주세요.");
-    setFocus("tags");
+    setFocus("pictureLink");
     return false;
   }
 
