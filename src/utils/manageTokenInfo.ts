@@ -1,5 +1,4 @@
 // import { postLogout } from "@/api/member";
-import { PAGE_PATH } from "@/constants/pagePath";
 import axios, { AxiosError } from "axios";
 
 const ACCESS_TOKEN_KEY = "accessToken";
@@ -48,12 +47,6 @@ export const refreshAccessToken = async () => {
   return null;
 };
 
-export const handleSessionExpired = () => {
-  removeTokens();
-  alert("세션이 만료되어 다시 로그인 해주세요.");
-  window.location.href = PAGE_PATH.signIn;
-};
-
 export const retryWithNewAccessToken = async (error: AxiosError) => {
   try {
     const newAccessToken = await refreshAccessToken();
@@ -66,10 +59,10 @@ export const retryWithNewAccessToken = async (error: AxiosError) => {
       }
     } else {
       console.error("refresh token이 없습니다.");
-      return handleSessionExpired();
+      return removeTokens();
     }
   } catch (error) {
     console.error("access token을 재발급 받는 중 오류가 발생했습니다.", error);
-    return handleSessionExpired();
+    return removeTokens();
   }
 };

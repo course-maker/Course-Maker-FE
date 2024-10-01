@@ -2,20 +2,27 @@ import { getCourseDetail } from "@/api/course";
 import { AllCardList } from "@/components/commons/CardList/AllCardList";
 import Image from "@/components/commons/Image";
 import { defaultCourseDetail } from "@/constants/defaultValues";
+import { authState } from "@/recoil/authAtom";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styles from "./CourseMain.module.scss";
 
 const cx = classNames.bind(styles);
 
 const CourseMain = () => {
   const { id } = useParams<{ id: string }>();
+  const [isAuth] = useRecoilState(authState);
+
+  const fetchCourseDetail = () => {
+    const options = { requireAuth: !!isAuth };
+    return getCourseDetail(Number(id), options);
+  };
 
   const { data: courseDetailData } = useQuery({
     queryKey: ["courseDetailData", id],
-    queryFn: () => getCourseDetail(Number(id)),
-    retry: 0,
+    queryFn: fetchCourseDetail,
   });
 
   const courseDetail = courseDetailData ?? defaultCourseDetail;

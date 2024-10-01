@@ -77,3 +77,7 @@ export interface RefinedReview {
   reviewedAt: string;
   isMyLikeReview: boolean;
 }
+
+export interface RequestOptions {
+  requireAuth: boolean;
+}

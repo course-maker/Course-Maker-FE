@@ -27,7 +27,7 @@ interface ReviewCardProps {
 
 const ReviewCard = ({ type, review, onEditClick, onDeleteClick }: ReviewCardProps) => {
   const { width } = useWindowSize();
-  const { isAuth } = useAuth();
+  const { auth } = useAuth();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [showToggleButton, setShowToggleButton] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -101,7 +101,7 @@ const ReviewCard = ({ type, review, onEditClick, onDeleteClick }: ReviewCardProp
   });
 
   const handleRecommendToggle = () => {
-    if (!isAuth) {
+    if (!auth) {
       alert("로그인 후 이용가능 합니다.");
       return;
     }

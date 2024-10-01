@@ -23,6 +23,9 @@ export const useDestinationMutation = () => {
     onError: (error: AxiosError) => {
       const statusCode = error?.response?.status;
       switch (statusCode) {
+        case 401:
+          alert("세션이 만료되어 다시 로그인 해주세요.");
+          break;
         case 409:
           alert("이미 존재하는 여행지 이름입니다. 다른 이름으로 변경해 주세요.");
           break;

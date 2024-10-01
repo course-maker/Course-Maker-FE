@@ -2,20 +2,28 @@ import { getDestinationApi } from "@/api/destination";
 import Image from "@/components/commons/Image";
 import { defaultDestinationDetail } from "@/constants/defaultValues";
 import { IMAGES } from "@/constants/images";
+import { authState } from "@/recoil/authAtom";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
 import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styles from "./DestinationMain.module.scss";
 
 const cx = classNames.bind(styles);
 
 const DestinationMain = () => {
   const { id } = useParams<{ id: string }>();
+  const [isAuth] = useRecoilState(authState);
+
+  const fetchDestinationDetail = () => {
+    const options = { requireAuth: !!isAuth };
+    return getDestinationApi(Number(id), options);
+  };
 
   const { data: destinationDetailData } = useQuery({
     queryKey: ["destinationDetailData", id],
-    queryFn: () => getDestinationApi(Number(id)),
+    queryFn: fetchDestinationDetail,
     retry: 0,
   });
 

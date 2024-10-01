@@ -25,7 +25,7 @@ interface DetailActionButtonsProps {
 const DetailActionButtons = ({ type, data }: DetailActionButtonsProps) => {
   const [isLiked, setIsLiked] = useState(data.isMyLike);
   const [isWished, setIsWished] = useState(data.isMyWish);
-  const { isAuth } = useAuth();
+  const { auth } = useAuth();
   const { shareMessage, isKakaoInitialized } = useKakaoShare();
   // const showToast = useToast();
 
@@ -71,7 +71,7 @@ const DetailActionButtons = ({ type, data }: DetailActionButtonsProps) => {
   });
 
   const handleLikeToggle = () => {
-    if (!isAuth) {
+    if (!auth) {
       alert("로그인 후 이용가능 합니다.");
       return;
     }
@@ -86,7 +86,7 @@ const DetailActionButtons = ({ type, data }: DetailActionButtonsProps) => {
   };
 
   const handleWishToggle = () => {
-    if (!isAuth) {
+    if (!auth) {
       alert("로그인 후 이용가능 합니다.");
       return;
     }
