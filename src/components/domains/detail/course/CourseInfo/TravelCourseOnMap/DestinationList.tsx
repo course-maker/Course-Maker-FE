@@ -29,6 +29,33 @@ const DestinationList = ({
 }: DestinationListProps) => {
   const days = Array.from({ length: duration }, (_, i) => i + 1);
 
+  const handleCardClick = (destination: CourseDestination) => {
+    const { id, location } = destination.destination;
+
+    if (location.latitude && location.longitude) {
+      setSelectedLocation({
+        id: id,
+        lat: location.latitude,
+        lng: location.longitude,
+      });
+    } else {
+      const geocoder = new kakao.maps.services.Geocoder();
+      geocoder.addressSearch(location.address, function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          const lat = parseFloat(result[0].y);
+          const lng = parseFloat(result[0].x);
+          setSelectedLocation({
+            id: id,
+            lat: lat,
+            lng: lng,
+          });
+        } else {
+          console.error("Geocoding failed:", status);
+        }
+      });
+    }
+  };
+
   return (
     <div className={cx("container")}>
       <div>
@@ -43,13 +70,7 @@ const DestinationList = ({
               title={destination.destination.name}
               address={destination.destination.location.address}
               isSelected={selectedLocation?.id === destination.destination.id}
-              onClick={() => {
-                setSelectedLocation({
-                  id: destination.destination.id,
-                  lat: destination.destination.location.latitude,
-                  lng: destination.destination.location.longitude,
-                });
-              }}
+              onClick={() => handleCardClick(destination)}
             />
             {selectedDestinations.length - 1 !== index && <TransitTimeChip onClick={() => onChipClick(index)} />}
           </div>
@@ -58,4 +79,5 @@ const DestinationList = ({
     </div>
   );
 };
+
 export default DestinationList;
