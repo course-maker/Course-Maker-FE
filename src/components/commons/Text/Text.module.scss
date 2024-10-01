@@ -1,0 +1,10 @@
+.container {
+  // @include column-flexbox();
+
+  p {
+    text-align: center;
+  }
+  .highlight {
+    color: $primary40;
+  }
+}
