@@ -1,14 +1,16 @@
-import ItemBox from "@/components/commons/ItemBox/ItemBox";
-import { IMAGES } from "@/constants/images";
-import classNames from "classnames/bind";
-// import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
-import styles from "./Card.module.scss";
-const cx = classNames.bind(styles);
 
-import { Course } from "@/api/course/type";
+import ItemBox2 from "@/components/commons/ItemBox/ItemBox2";
+
 import { getDestinationResponseDto } from "@/api/destination/type";
+import { formatNumberWithCommas } from "@/utils/formatters";
+import { IMAGES } from "@/constants/images";
+import { Course } from "@/api/course/type";
+
+import classNames from "classnames/bind";
+import styles from "./Card2.module.scss";
+const cx = classNames.bind(styles);
 
 const isCourse = (item: any): item is Course => {
   return (item as Course)?.courseDestinations !== undefined;
@@ -28,17 +30,6 @@ interface CardProps {
 
 const Card2: React.FC<CardProps> = ({ item, name, loading, isCourseTab, children }) => {
   const navigate = useNavigate();
-  // const [isLoading, setIsLoading] = useState(loading);
-
-  // useEffect(() => {
-  //   setIsLoading(loading);
-  //   if (loading) {
-  //     const timer = setTimeout(() => {
-  //       setIsLoading(false);
-  //     }, 1000);
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, []);
 
   if (loading) {
     return (
@@ -67,17 +58,22 @@ const Card2: React.FC<CardProps> = ({ item, name, loading, isCourseTab, children
       <div className={cx("card-content")}>
         {isCourseTab
           ? isCourse(item) && (
-              <ItemBox
+              <ItemBox2
                 name={name}
-                location={item.courseDestinations[0].destination.location}
                 title={item.title}
-                tags={item.tags || []}
                 travelerCount={item.travelerCount}
-                views={item.views}
+                views={formatNumberWithCommas(item.views)}
                 duration={item.duration}
               />
             )
-          : isList(item) && <ItemBox location={item.location} title={item.name} tags={item.tags} />}
+          : isList(item) && (
+              <ItemBox2
+                location={item.location}
+                title={item.name}
+                views={formatNumberWithCommas(item.views)}
+                averageRating={item.averageRating}
+              />
+            )}
       </div>
     </div>
   );
