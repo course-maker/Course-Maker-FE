@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
+
 import Image from "@/components/commons/Image";
 import Text from "@/components/commons/Text";
 import { IMAGES } from "@/constants/images";
@@ -30,48 +31,78 @@ const SearchBar = ({
   destinationTitle,
   onChange,
 }: SearchBarProps) => {
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+
+  const handleInputClick = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div className={cx("search-bar-wrap")}>
-      <div className={cx(`search-bar-${color}`, "search-bar")}>
+      <div className={cx(`search-bar-${color}`, "search-bar")} onClick={handleInputClick}>
         <Image className={cx("search_img")} imageInfo={IMAGES.GraySerchbarIcon} />
         <input type="text" placeholder="어디로 떠나시나요?" value={value} onChange={onChange} />
       </div>
 
       {/* 여행지 리스트 */}
-      <div className={cx("list-container")}>
-        {(destination && destination?.length > 0) || (course && course?.length > 0) ? (
-          <>
-            {course && course?.length > 0 && courseTitle && <p className={cx("list-type")}> {courseTitle} </p>}
-            {course &&
-              course?.map((item) => (
-                <div className={cx("list-item")} key={item.id} onClick={() => navigate(`course/${item.id}`)}>
-                  <Text className={cx("list-txt-top")} text={item.title} highlight={value} />
-                  {item.tags.map((tag) => (
-                    <p key={tag.id} className={cx("list-txt-bottom")}>
-                      {tag.description}
-                    </p>
+      {isOpen && (
+        <>
+          <div className={cx("list-container")}>
+            {(destination && destination?.length > 0) || (course && course?.length > 0) ? (
+              <>
+                {course && course?.length > 0 && courseTitle && <p className={cx("list-type")}> {courseTitle} </p>}
+                {course &&
+                  course?.map((item) => (
+                    <div
+                      className={cx("list-item")}
+                      key={item.id}
+                      onClick={() => {
+                        // handleCloseModal();
+                        navigate(`course/${item.id}`);
+                        setIsOpen(!isOpen);
+                      }}>
+                      <Text className={cx("list-txt-top")} text={item.title} highlight={value} />
+                      {item.tags.map((tag) => (
+                        <p key={tag.id} className={cx("list-txt-bottom")}>
+                          {tag.description}
+                        </p>
+                      ))}
+                    </div>
                   ))}
-                </div>
-              ))}
-            {destination && destination?.length > 0 && destinationTitle && (
-              <p className={cx("list-type")}> {destinationTitle} </p>
+                {destination && destination?.length > 0 && destinationTitle && (
+                  <p className={cx("list-type")}> {destinationTitle} </p>
+                )}
+                {destination &&
+                  destination?.map((item) => (
+                    <div
+                      className={cx("list-item")}
+                      key={item.id}
+                      onClick={() => {
+                        // handleCloseModal();
+                        navigate(`destination/${item.id}`);
+                        setIsOpen(!isOpen);
+                      }}>
+                      <Text className={cx("list-txt-top")} text={item.name} highlight={value} />
+                      <p className={cx("list-txt-bottom")}> {item.location.address} </p>
+                    </div>
+                  ))}
+              </>
+            ) : (
+              <div className={cx("no-result")}>
+                <p> 찾으시는 정보가 없습니다. </p>
+              </div>
             )}
-            {destination &&
-              destination?.map((item) => (
-                <div className={cx("list-item")} key={item.id} onClick={() => navigate(`destination/${item.id}`)}>
-                  <Text className={cx("list-txt-top")} text={item.name} highlight={value} />
-                  <p className={cx("list-txt-bottom")}> {item.location.address} </p>
-                </div>
-              ))}
-          </>
-        ) : (
-          <div className={cx("no-result")}>
-            <p> 찾으시는 정보가 없습니다. </p>
           </div>
-        )}
-      </div>
+
+          {/* 백드롭 */}
+          <div className={cx("back-drop")} onClick={handleCloseModal} />
+        </>
+      )}
     </div>
   );
 };
