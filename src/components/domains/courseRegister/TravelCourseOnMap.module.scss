@@ -99,6 +99,7 @@
   display: grid;
   gap: 1rem; /* gap-4 */
   overflow-y: scroll;
+  padding: 1rem;
 
   @media (min-width: 640px) {
     grid-template-columns: repeat(1, 1fr);

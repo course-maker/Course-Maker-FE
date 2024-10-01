@@ -1,17 +1,17 @@
-import Skeleton from "react-loading-skeleton";
-import { useCallback, useEffect, useRef } from "react";
 import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
+import { useCallback, useEffect, useRef } from "react";
+import Skeleton from "react-loading-skeleton";
 
-import Modal from "@/components/commons/Modal";
+import BadgeLists from "@/components/commons/BadgeLists/BadgeLists";
 import Button from "@/components/commons/Button";
 import Image from "@/components/commons/Image";
-import BadgeLists from "@/components/commons/BadgeLists/BadgeLists";
+import Modal from "@/components/commons/Modal";
 
+import { CourseDestination } from "@/api/course/type";
+import { getDestinationResponseDto, GetDestinationsResponseDto } from "@/api/destination/type";
+import { tagResponseDto } from "@/api/tag/type";
 import { IMAGES } from "@/constants/images";
 import { useGetDestinationQuery } from "@/hooks/destination/queries/useGetDestinationQuery";
-import { getDestinationResponseDto, GetDestinationsResponseDto } from "@/api/destination/type";
-import { CourseDestination } from "@/api/course/type";
-import { tagResponseDto } from "@/api/tag/type";
 
 import classNames from "classnames/bind";
 import styles from "./TravelCourseOnMap.module.scss";
@@ -81,7 +81,7 @@ const TravelCourseModal = ({
           <div>
             <div className={cx("destination-section")}>
               <div className={cx("destination-section__header")}>
-                <p className={cx("txt-sub")}>여행지를 클릭하면 여행지 상세페이지를 확인할 수 있습니다.</p>
+                <p className={cx("txt-sub")}>추가한 순서대로 경로가 설정됩니다.</p>
               </div>
             </div>
             {!isDestinationLoading ? (
