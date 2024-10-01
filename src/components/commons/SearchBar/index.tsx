@@ -53,7 +53,11 @@ const SearchBar = ({
                     navigate(`course/${item.id}`);
                   }}>
                   <p className={cx("list-txt-top")}> {item.title} </p>
-                  {/* <p className={cx("list-txt-bottom")}> {item.location.address} </p> */}
+                  {item.tags.map((tag) => (
+                    <p key={tag.id} className={cx("list-txt-bottom")}>
+                      {tag.description}
+                    </p>
+                  ))}
                 </div>
               ))}
             {destination && destination?.length > 0 && destinationTitle && (
