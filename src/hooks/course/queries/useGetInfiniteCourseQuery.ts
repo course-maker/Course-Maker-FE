@@ -2,12 +2,15 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getCourse } from "@/api/course";
 import { tagResponseDto } from "@/api/tag/type";
 
-export function useGetInfiniteCourseQuery(tags: tagResponseDto[], enabled: boolean = true) {
-  const sortOrder = "POPULAR";
+export function useGetInfiniteCourseQuery(
+  tags: tagResponseDto[],
+  sortOrder: string = "VIEWS",
+  enabled: boolean = true,
+) {
   const tagIds = tags.map((tag) => `&tagIds=${tag.id}`).join("");
 
   const courseInfiniteQuery = useInfiniteQuery({
-    queryKey: ["courses", tags],
+    queryKey: ["courses", tags, sortOrder],
     queryFn: ({ pageParam = 1 }) => {
       const param = `record=8&page=${pageParam}&orderBy=${sortOrder}${tagIds}`;
       return getCourse(param);

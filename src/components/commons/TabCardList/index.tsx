@@ -1,5 +1,5 @@
 import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
-
+import { useState } from "react";
 import Card2 from "@/components/commons/Card/Card2";
 
 import { useGetInfiniteCourseQuery } from "@/hooks/course/queries/useGetInfiniteCourseQuery";
@@ -19,6 +19,18 @@ interface props {
   selectedBadges: tagResponseDto[];
 }
 const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
+  const [sortOrder, setSortOrder] = useState({
+    course: "VIEWS",
+    destination: "VIEWS",
+  });
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newSortOrder = e.target.value;
+    setSortOrder((prev) => ({
+      ...prev,
+      [activeTab === "코스 찾기" ? "course" : "destination"]: newSortOrder,
+    }));
+  };
   // 목적지 쿼리
   const {
     data: destinationData,
@@ -28,6 +40,7 @@ const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
     isLoading: isDestinationLoading,
   }: UseInfiniteQueryResult<InfiniteData<GetDestinationsResponseDto, unknown>, Error> = useGetDestinationQuery(
     selectedBadges,
+    sortOrder.destination,
     !isCourseTab,
   );
 
@@ -40,6 +53,7 @@ const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
     isLoading: isCourseLoading,
   }: UseInfiniteQueryResult<InfiniteData<Courses, unknown>, Error> = useGetInfiniteCourseQuery(
     selectedBadges,
+    sortOrder.course,
     isCourseTab,
   );
 
@@ -62,13 +76,33 @@ const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
 
   return (
     <>
-      <div className={cx("card_container")}>
-        {isCourseLoading || isDestinationLoading ? (
-          Array.from({ length: 12 }).map((_, index) => (
+      {isCourseLoading || isDestinationLoading ? (
+        <div className={cx("card_container")}>
+          {Array.from({ length: 12 }).map((_, index) => (
             <Card2 key={index} name={activeTab} loading={true} item={null} isCourseTab={isCourseTab} />
-          ))
-        ) : (
-          <>
+          ))}
+        </div>
+      ) : (
+        <>
+          <div className={cx("option-container")}>
+            <span>
+              전체 {isCourseTab ? courseData?.pages[0]?.totalContents : destinationData?.pages[0]?.totalContents}개
+            </span>
+            <div>
+              <select
+                name="HeadlineAct"
+                id="HeadlineAct"
+                className={cx("select-box")}
+                onChange={handleSortChange}
+                value={sortOrder[activeTab === "코스 찾기" ? "course" : "destination"]}>
+                <option value="NEWEST">최신순</option>
+                <option value="POPULAR">인기순</option>
+                <option value="VIEWS">조회수순</option>
+                <option value="RATING">별점순</option>
+              </select>
+            </div>
+          </div>
+          <div className={cx("card_container")}>
             {(isCourseTab ? allCourseData : allDestinationData).map((item) => (
               <Card2
                 key={item.id}
@@ -79,9 +113,9 @@ const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
               />
             ))}
             <div ref={isCourseTab ? coursesElem : destinationsElem} style={{ height: "1px" }} />
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

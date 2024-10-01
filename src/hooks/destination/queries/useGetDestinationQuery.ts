@@ -2,15 +2,14 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getDestinations } from "@/api/destination";
 import { tagResponseDto } from "@/api/tag/type";
 
-export function useGetDestinationQuery(tags: tagResponseDto[], enabled: boolean = true) {
-  const sortOrder = "POPULAR";
+export function useGetDestinationQuery(tags: tagResponseDto[], sortOrder: string = "VIEWS", enabled: boolean = true) {
   const tagIds = tags.map((tag) => `&tagIds=${tag.id}`).join("");
 
   const destinationInfiniteQuery = useInfiniteQuery({
-    queryKey: ["destinations", tags],
+    queryKey: ["destinations", tags, sortOrder],
     queryFn: ({ pageParam = 1 }) => {
       const param = `record=8&page=${pageParam}&orderBy=${sortOrder}${tagIds}`;
-      return getDestinations(param); // 반드시 return 추가
+      return getDestinations(param);
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
