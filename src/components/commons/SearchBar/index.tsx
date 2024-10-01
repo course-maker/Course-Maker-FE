@@ -17,8 +17,8 @@ export interface SearchBarProps {
   destinationTitle?: string;
   course?: Course[];
   destination?: getDestinationResponseDto[];
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const SearchBar = ({
