@@ -1,7 +1,7 @@
 import ItemBox from "@/components/commons/ItemBox/ItemBox";
 import { IMAGES } from "@/constants/images";
 import classNames from "classnames/bind";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
 import styles from "./Card.module.scss";
@@ -23,22 +23,24 @@ interface CardProps {
   name: string;
   loading: boolean;
   children?: any;
+  isCourseTab?: boolean;
 }
 
-const Card2: React.FC<CardProps> = ({ item, name, loading, children }) => {
+const Card2: React.FC<CardProps> = ({ item, name, loading, isCourseTab, children }) => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(loading);
+  // const [isLoading, setIsLoading] = useState(loading);
 
-  useEffect(() => {
-    setIsLoading(loading);
-    if (loading) {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-  if (isLoading) {
+  // useEffect(() => {
+  //   setIsLoading(loading);
+  //   if (loading) {
+  //     const timer = setTimeout(() => {
+  //       setIsLoading(false);
+  //     }, 1000);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, []);
+
+  if (loading) {
     return (
       <div className={cx("card-container")}>
         <Skeleton height={200} width={300} className={cx("card-image")} />
@@ -52,7 +54,7 @@ const Card2: React.FC<CardProps> = ({ item, name, loading, children }) => {
   return (
     <div
       className={cx("card-container")}
-      onClick={() => navigate(`/${name === "코스 찾기" ? "course" : "destination"}/${item.id}`)}>
+      onClick={() => navigate(`/${isCourseTab ? "course" : "destination"}/${item.id}`)}>
       {children}
       <div className={cx("card-image-container")}>
         <img
@@ -63,20 +65,19 @@ const Card2: React.FC<CardProps> = ({ item, name, loading, children }) => {
         />
       </div>
       <div className={cx("card-content")}>
-        {isCourse(item) && name === "코스 찾기" && (
-          <ItemBox
-            name={name}
-            location={item.courseDestinations[0].destination.location}
-            title={item.title}
-            tags={item.tags || []}
-            travelerCount={item.travelerCount}
-            views={item.views}
-            duration={item.duration}
-          />
-        )}
-        {isList(item) && name === "여행지 찾기" && (
-          <ItemBox location={item.location} title={item.name} tags={item.tags} />
-        )}
+        {isCourseTab
+          ? isCourse(item) && (
+              <ItemBox
+                name={name}
+                location={item.courseDestinations[0].destination.location}
+                title={item.title}
+                tags={item.tags || []}
+                travelerCount={item.travelerCount}
+                views={item.views}
+                duration={item.duration}
+              />
+            )
+          : isList(item) && <ItemBox location={item.location} title={item.name} tags={item.tags} />}
       </div>
     </div>
   );
