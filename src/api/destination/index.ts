@@ -1,4 +1,4 @@
-import { GetReviewsResponseDto, RequestOptions } from "@/type/type";
+import { GetReviewsResponseDto } from "@/type/type";
 import { FieldValues } from "react-hook-form";
 import {
   destinationAddress,
@@ -29,8 +29,8 @@ export const postDestinationApi = (data: postDestinationRequestDto): Promise<pos
   apiRequest("post", destinationAddress.postDestination, data, null, { requireAuth: true });
 
 /**여행지 상세정보 조회하기*/
-export const getDestinationApi = (postId: number, options: RequestOptions): Promise<getDestinationResponseDto> =>
-  apiRequest("get", destinationAddress.getDestination(postId), null, null, options);
+export const getDestinationApi = (postId: number): Promise<getDestinationResponseDto> =>
+  apiRequest("get", destinationAddress.getDestination(postId), null, null, { requireAuth: true });
 
 /**여행지 수정하기*/
 export const patchDestinationApi = (

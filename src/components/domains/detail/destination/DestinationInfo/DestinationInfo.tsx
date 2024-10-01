@@ -1,10 +1,8 @@
 import { getDestinationApi } from "@/api/destination";
 import { defaultDestinationDetail } from "@/constants/defaultValues";
-import { authState } from "@/recoil/authAtom";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import Description from "../../Description/Description";
 import styles from "./DestinationInfo.module.scss";
 
@@ -12,16 +10,10 @@ const cx = classNames.bind(styles);
 
 const DestinationInfo = () => {
   const { id } = useParams<{ id: string }>();
-  const [isAuth] = useRecoilState(authState);
-
-  const fetchDestinationDetail = () => {
-    const options = { requireAuth: !!isAuth };
-    return getDestinationApi(Number(id), options);
-  };
 
   const { data: destinationDetailData } = useQuery({
     queryKey: ["destinationDetailData", id],
-    queryFn: fetchDestinationDetail,
+    queryFn: () => getDestinationApi(Number(id)),
     retry: 0,
   });
 

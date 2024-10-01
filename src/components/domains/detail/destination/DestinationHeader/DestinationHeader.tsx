@@ -11,14 +11,9 @@ const DestinationHeader = () => {
   const navigate = useNavigate();
   const [isAuth] = useRecoilState(authState);
 
-  const fetchDestinationDetail = () => {
-    const options = { requireAuth: true };
-    return getDestinationApi(Number(id), options);
-  };
-
   const { data: destinationDetailData } = useQuery({
     queryKey: ["destinationDetailData", id],
-    queryFn: fetchDestinationDetail,
+    queryFn: () => getDestinationApi(Number(id)),
   });
 
   const destinationDetail = destinationDetailData ?? defaultDestinationDetail;
