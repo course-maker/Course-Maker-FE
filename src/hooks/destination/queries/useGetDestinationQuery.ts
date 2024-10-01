@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getDestinations } from "@/api/destination";
 import { tagResponseDto } from "@/api/tag/type";
 
-export function useGetDestinationQuery(tags: tagResponseDto[]) {
+export function useGetDestinationQuery(tags: tagResponseDto[], enabled: boolean = true) {
   const sortOrder = "POPULAR";
   const tagIds = tags.map((tag) => `&tagIds=${tag.id}`).join("");
 
@@ -21,6 +21,7 @@ export function useGetDestinationQuery(tags: tagResponseDto[]) {
       }
     },
     retry: 0,
+    enabled,
   });
 
   return destinationInfiniteQuery;

@@ -28,6 +28,7 @@ const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
     isLoading: isDestinationLoading,
   }: UseInfiniteQueryResult<InfiniteData<GetDestinationsResponseDto, unknown>, Error> = useGetDestinationQuery(
     selectedBadges,
+    !isCourseTab,
   );
 
   // 코스 쿼리
@@ -37,7 +38,10 @@ const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
     isFetchingNextPage: isFetchingNextCoursePage,
     fetchNextPage: fetchNextCoursePage,
     isLoading: isCourseLoading,
-  }: UseInfiniteQueryResult<InfiniteData<Courses, unknown>, Error> = useGetInfiniteCourseQuery(selectedBadges);
+  }: UseInfiniteQueryResult<InfiniteData<Courses, unknown>, Error> = useGetInfiniteCourseQuery(
+    selectedBadges,
+    isCourseTab,
+  );
 
   const { data: destinations, observerElem: destinationsElem } = useInfiniteScroll({
     data: destinationData,
@@ -61,12 +65,18 @@ const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
       <div className={cx("card_container")}>
         {isCourseLoading || isDestinationLoading ? (
           Array.from({ length: 12 }).map((_, index) => (
-            <Card2 key={index} name={activeTab} loading={true} item={null} />
+            <Card2 key={index} name={activeTab} loading={true} item={null} isCourseTab={isCourseTab} />
           ))
         ) : (
           <>
             {(isCourseTab ? allCourseData : allDestinationData).map((item) => (
-              <Card2 key={item.id} name={activeTab} item={item} loading={false} />
+              <Card2
+                key={item.id}
+                name={activeTab}
+                item={item}
+                loading={isCourseTab ? isCourseLoading : isDestinationLoading}
+                isCourseTab={isCourseTab}
+              />
             ))}
             <div ref={isCourseTab ? coursesElem : destinationsElem} style={{ height: "1px" }} />
           </>
