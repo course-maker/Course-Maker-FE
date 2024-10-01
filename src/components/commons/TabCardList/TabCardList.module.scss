@@ -1,0 +1,33 @@
+.option-container {
+  @include flexbox(between, center);
+  padding: 2rem 0;
+  font-size: 1.4rem;
+  line-height: 1.25rem;
+}
+
+.select-box {
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+
+  appearance: none; /* 기본 드롭다운 화살표 숨기기 */
+  background: url("/src/assets/images/down_arrow.svg") no-repeat right 10px center; /* 화살표 이미지 위치 설정 */
+  background-size: 20px; /* 이미지 크기 조정 */
+  padding-right: 30px; /* 화살표 이미지 공간 확보 */
+}
+
+.card_container {
+  margin-top: 2rem; /* mt-8 */
+  display: grid;
+  gap: 1rem; /* gap-4 */
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
