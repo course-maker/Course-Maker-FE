@@ -8,7 +8,7 @@ import BadgeList from "@/components/commons/BadgeList/BadgeList";
 import Section from "@/components/commons/Section/Section";
 import Card2 from "@/components/commons/Card/Card2";
 import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
-import SearchBar from "@/components/commons/SearchBar";
+// import SearchBar from "@/components/commons/SearchBar";
 
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
 import { useBadgeListViewModel } from "@/hooks/business/useBadgeListViewModel";
@@ -202,7 +202,7 @@ const SearchPage = () => {
   return (
     <div className={cx("search-page")}>
       <Section title="" className={cx("container")}>
-        <SearchBar color="gray" />
+        {/* <SearchBar color="gray" /> */}
       </Section>
       <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
       <Section className={cx("tab-container")}>
