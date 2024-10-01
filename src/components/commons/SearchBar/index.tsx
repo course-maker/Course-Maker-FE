@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import Image from "@/components/commons/Image";
+import Text from "@/components/commons/Text";
 import { IMAGES } from "@/constants/images";
 
 import { Course } from "@/api/course/type";
@@ -45,14 +46,8 @@ const SearchBar = ({
             {course && course?.length > 0 && courseTitle && <p className={cx("list-type")}> {courseTitle} </p>}
             {course &&
               course?.map((item) => (
-                <div
-                  className={cx("list-item")}
-                  key={item.id}
-                  onClick={() => {
-                    console.log(`Navigating to destination/${item.id}`);
-                    navigate(`course/${item.id}`);
-                  }}>
-                  <p className={cx("list-txt-top")}> {item.title} </p>
+                <div className={cx("list-item")} key={item.id} onClick={() => navigate(`course/${item.id}`)}>
+                  <Text className={cx("list-txt-top")} text={item.title} highlight={value} />
                   {item.tags.map((tag) => (
                     <p key={tag.id} className={cx("list-txt-bottom")}>
                       {tag.description}
@@ -66,7 +61,7 @@ const SearchBar = ({
             {destination &&
               destination?.map((item) => (
                 <div className={cx("list-item")} key={item.id} onClick={() => navigate(`destination/${item.id}`)}>
-                  <p className={cx("list-txt-top")}> {item.name} </p>
+                  <Text className={cx("list-txt-top")} text={item.name} highlight={value} />
                   <p className={cx("list-txt-bottom")}> {item.location.address} </p>
                 </div>
               ))}
