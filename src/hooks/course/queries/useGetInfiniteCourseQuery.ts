@@ -1,16 +1,16 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getDestinations } from "@/api/destination";
+import { getCourse } from "@/api/course";
 import { tagResponseDto } from "@/api/tag/type";
 
-export function useGetDestinationQuery(tags: tagResponseDto[]) {
+export function useGetInfiniteCourseQuery(tags: tagResponseDto[]) {
   const sortOrder = "POPULAR";
   const tagIds = tags.map((tag) => `&tagIds=${tag.id}`).join("");
 
-  const destinationInfiniteQuery = useInfiniteQuery({
-    queryKey: ["destinations", tags],
+  const courseInfiniteQuery = useInfiniteQuery({
+    queryKey: ["courses", tags],
     queryFn: ({ pageParam = 1 }) => {
       const param = `record=8&page=${pageParam}&orderBy=${sortOrder}${tagIds}`;
-      return getDestinations(param); // 반드시 return 추가
+      return getCourse(param);
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -23,5 +23,5 @@ export function useGetDestinationQuery(tags: tagResponseDto[]) {
     retry: 0,
   });
 
-  return destinationInfiniteQuery;
+  return courseInfiniteQuery;
 }

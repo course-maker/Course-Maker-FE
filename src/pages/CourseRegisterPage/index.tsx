@@ -22,7 +22,6 @@ const CourseRegisterPage = () => {
   });
 
   const [isAuth] = useRecoilState(authState);
-  console.log(isAuth);
 
   useEffect(() => {
     if (isAuth?.role == "초보 여행가") {
