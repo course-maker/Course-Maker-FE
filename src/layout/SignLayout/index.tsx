@@ -11,10 +11,10 @@ const cx = classNames.bind(styles);
 
 type SignLayoutProps = {
   form: ReactNode;
-  oauth?: ReactNode;
+  // oauth?: ReactNode;
 };
 
-const SignLayout = ({ form, oauth }: SignLayoutProps) => {
+const SignLayout = ({ form }: SignLayoutProps) => {
   return (
     <div className={cx("container")}>
       <div className={cx("items")}>
@@ -24,7 +24,7 @@ const SignLayout = ({ form, oauth }: SignLayoutProps) => {
           </Button>
         </Link>
         {form}
-        {oauth}
+        {/* {oauth} */}
       </div>
     </div>
   );
