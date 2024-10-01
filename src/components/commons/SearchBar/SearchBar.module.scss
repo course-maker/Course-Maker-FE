@@ -47,7 +47,7 @@
     font-size: 16px;
     padding: 19px;
 
-    @media (max-width: 375px) {
+    @media (max-width: 520px) {
       padding: 14px;
     }
   }
@@ -83,15 +83,16 @@
   border-radius: 0 0 20px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  z-index: 100;
 
   .search-bar-wrap:focus-within & {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 100;
   }
 
   .list-type {
@@ -134,6 +135,6 @@
     letter-spacing: -0.8px;
     text-align: center;
     color: #86869a;
-    padding: 50px 12px;
+    padding: 18px 12px;
   }
 }
