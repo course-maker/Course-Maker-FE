@@ -160,7 +160,7 @@ const LoadingSkeleton = () => (
   <>
     {Array.from({ length: 4 }).map((_, index) => (
       <div key={index} className={cx("card-container")}>
-        <Skeleton height={330} width={250} className={cx("card-image")} />
+        <Skeleton className={cx("card-image")} />
         <div className={cx("card-content")}>
           <Skeleton count={3} />
         </div>
