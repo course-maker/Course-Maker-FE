@@ -39,8 +39,6 @@ const HomePage = () => {
   const [DestinationBadges, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
   const navigate = useNavigate();
 
-  console.log(courseSearchData);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
@@ -49,7 +47,6 @@ const HomePage = () => {
   // 화면 크기에 따른 이미지 선택 함수
   const selectImageBySize = (image: ImageSizes) => {
     if (windowWidth <= 520) {
-      console.log("Selected small image:", image.small);
       return image.small;
     } else if (windowWidth > 520 && windowWidth <= 850) {
       return image.medium;
