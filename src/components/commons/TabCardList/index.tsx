@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useRef } from "react";
 import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
 
 import Card2 from "@/components/commons/Card/Card2";
@@ -6,6 +5,7 @@ import Card2 from "@/components/commons/Card/Card2";
 import { useGetInfiniteCourseQuery } from "@/hooks/course/queries/useGetInfiniteCourseQuery";
 import { useGetDestinationQuery } from "@/hooks/destination/queries/useGetDestinationQuery";
 import { getDestinationResponseDto, GetDestinationsResponseDto } from "@/api/destination/type";
+import { useInfiniteScroll } from "@/utils/useInfiniteScroll";
 import { Course, Courses } from "@/api/course/type";
 import { tagResponseDto } from "@/api/tag/type";
 
@@ -15,11 +15,10 @@ const cx = classNames.bind(styles);
 
 interface props {
   activeTab: string;
+  isCourseTab?: boolean;
   selectedBadges: tagResponseDto[];
 }
-const TabCardList = ({ activeTab, selectedBadges }: props) => {
-  const isCourseTab = activeTab === "코스 찾기";
-
+const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
   // 목적지 쿼리
   const {
     data: destinationData,
@@ -40,39 +39,23 @@ const TabCardList = ({ activeTab, selectedBadges }: props) => {
     isLoading: isCourseLoading,
   }: UseInfiniteQueryResult<InfiniteData<Courses, unknown>, Error> = useGetInfiniteCourseQuery(selectedBadges);
 
-  const observerElem = useRef<HTMLDivElement | null>(null);
+  const { data: destinations, observerElem: destinationsElem } = useInfiniteScroll({
+    data: destinationData,
+    hasNextPage: hasNextDestinationPage,
+    isFetchingNextPage: isFetchingNextDestinationPage,
+    fetchNextPage: fetchNextDestinationPage,
+  });
 
-  const handleObserver = useCallback(
-    (entries: IntersectionObserverEntry[]) => {
-      const [target] = entries;
-      if (target.isIntersecting) {
-        if (isCourseTab && hasNextCoursePage && !isFetchingNextCoursePage) {
-          fetchNextCoursePage();
-        } else if (!isCourseTab && hasNextDestinationPage && !isFetchingNextDestinationPage) {
-          fetchNextDestinationPage();
-        }
-      }
-    },
-    [
-      fetchNextCoursePage,
-      hasNextCoursePage,
-      isFetchingNextCoursePage,
-      fetchNextDestinationPage,
-      hasNextDestinationPage,
-      isFetchingNextDestinationPage,
-      isCourseTab,
-    ],
-  );
+  const { data: courses, observerElem: coursesElem } = useInfiniteScroll({
+    data: courseData,
+    hasNextPage: hasNextCoursePage,
+    isFetchingNextPage: isFetchingNextCoursePage,
+    fetchNextPage: fetchNextCoursePage,
+  });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, { threshold: 1.0 });
-    if (observerElem.current) observer.observe(observerElem.current);
-    return () => observer.disconnect();
-  }, [handleObserver]);
+  const allDestinationData: getDestinationResponseDto[] = destinations?.pages.flatMap((page) => page.contents) ?? [];
+  const allCourseData: Course[] = courses?.pages.flatMap((page) => page.contents) ?? [];
 
-  const allDestinationData: getDestinationResponseDto[] = destinationData?.pages.flatMap((page) => page.contents) ?? [];
-  const allCourseData: Course[] = courseData?.pages.flatMap((page) => page.contents) ?? [];
-  console.log(observerElem);
   return (
     <>
       <div className={cx("card_container")}>
@@ -85,7 +68,7 @@ const TabCardList = ({ activeTab, selectedBadges }: props) => {
             {(isCourseTab ? allCourseData : allDestinationData).map((item) => (
               <Card2 key={item.id} name={activeTab} item={item} loading={false} />
             ))}
-            <div ref={observerElem} style={{ height: "1px" }} />
+            <div ref={isCourseTab ? coursesElem : destinationsElem} style={{ height: "1px" }} />
           </>
         )}
       </div>
