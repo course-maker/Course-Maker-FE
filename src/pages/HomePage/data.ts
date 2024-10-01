@@ -138,7 +138,7 @@ export const bannerItemsData = {
       subtitle: "해운대 그린레일웨이",
       title: "바다를 따라 다니며\n육지와는 다른 풍경을 즐기세요",
       size: "large",
-      url: "destination/1067",
+      url: "destination/1091",
     },
     {
       id: 1,
