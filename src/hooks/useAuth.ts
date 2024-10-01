@@ -18,10 +18,12 @@ const useAuth = () => {
     data: userInfo,
     isSuccess,
     isError,
+    isLoading,
   } = useQuery({
     queryKey: ["userInfo"],
     queryFn: getBasicInfo,
-    // enabled: !!accessToken,
+    enabled: !!accessToken,
+    retry: 0,
   });
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const useAuth = () => {
     }
   }, [accessToken, isSuccess, userInfo, location.pathname, navigate, setAuth]);
 
-  return { auth };
+  return { auth, isLoading };
 };
 
 export default useAuth;
