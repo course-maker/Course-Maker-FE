@@ -26,9 +26,14 @@ const DestinationEditPage = () => {
   const { id } = useParams();
   const postId = Number(id);
 
+  const fetchDestinationDetail = () => {
+    const options = { requireAuth: !!isAuth };
+    return getDestinationApi(Number(id), options);
+  };
+
   const { data: destinationDetailData } = useQuery({
     queryKey: ["destinationEdit", postId],
-    queryFn: () => getDestinationApi(postId),
+    queryFn: fetchDestinationDetail,
   });
 
   const handleSubmit = (data: FieldValues) => {

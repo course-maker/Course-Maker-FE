@@ -14,14 +14,18 @@ const useAuth = () => {
   const navigate = useNavigate();
   const accessToken = getAccessToken();
 
-  const { data: userInfo, isSuccess } = useQuery({
+  const {
+    data: userInfo,
+    isSuccess,
+    isError,
+  } = useQuery({
     queryKey: ["userInfo"],
     queryFn: getBasicInfo,
-    enabled: !!accessToken,
+    // enabled: !!accessToken,
   });
 
   useEffect(() => {
-    if (!accessToken) {
+    if (!accessToken || isError) {
       setAuth(null);
     } else if (isSuccess && userInfo) {
       setAuth(userInfo);
