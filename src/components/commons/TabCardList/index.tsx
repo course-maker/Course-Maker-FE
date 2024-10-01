@@ -6,6 +6,7 @@ import { useGetInfiniteCourseQuery } from "@/hooks/course/queries/useGetInfinite
 import { useGetDestinationQuery } from "@/hooks/destination/queries/useGetDestinationQuery";
 import { getDestinationResponseDto, GetDestinationsResponseDto } from "@/api/destination/type";
 import { useInfiniteScroll } from "@/utils/useInfiniteScroll";
+import { formatNumberWithCommas } from "@/utils/formatters";
 import { Course, Courses } from "@/api/course/type";
 import { tagResponseDto } from "@/api/tag/type";
 
@@ -86,7 +87,11 @@ const TabCardList = ({ activeTab, isCourseTab, selectedBadges }: props) => {
         <>
           <div className={cx("option-container")}>
             <span>
-              전체 {isCourseTab ? courseData?.pages[0]?.totalContents : destinationData?.pages[0]?.totalContents}개
+              전체{" "}
+              {isCourseTab
+                ? formatNumberWithCommas(courseData?.pages[0]?.totalContents ?? 0)
+                : formatNumberWithCommas(destinationData?.pages[0]?.totalContents ?? 0)}
+              개
             </span>
             <div>
               <select
