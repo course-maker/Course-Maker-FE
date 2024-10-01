@@ -1,4 +1,4 @@
-import { GetReviewsResponseDto, RequestOptions } from "@/type/type";
+import { GetReviewsResponseDto } from "@/type/type";
 import { FieldValues } from "react-hook-form";
 import { courseLikeAddress, courseReviewAddress, coursesAddress, courseWishAddress } from "../address";
 import { apiRequest } from "../axios";
@@ -20,8 +20,8 @@ export const searchCourse = (params: string): Promise<Courses> =>
   apiRequest("get", `${coursesAddress.getList}/search?${params}`);
 
 // 코스 상세정보 조회
-export const getCourseDetail = (id: number, options: RequestOptions): Promise<Course> =>
-  apiRequest("get", coursesAddress.getDetail(id), null, null, options);
+export const getCourseDetail = (id: number): Promise<Course> =>
+  apiRequest("get", coursesAddress.getDetail(id), null, null, { requireAuth: true });
 
 // 코스 삭제
 export const deleteCourseDetail = (id: number): Promise<Course> =>

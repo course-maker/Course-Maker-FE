@@ -1,24 +1,16 @@
 import { deleteCourseDetail, getCourseDetail } from "@/api/course";
 import { defaultCourseDetail } from "@/constants/defaultValues";
-import { authState } from "@/recoil/authAtom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import Header from "../../Header/Header";
 
 const CourseHeader = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [isAuth] = useRecoilState(authState);
-
-  const fetchCourseDetail = () => {
-    const options = { requireAuth: !!isAuth };
-    return getCourseDetail(Number(id), options);
-  };
 
   const { data: courseDetailData } = useQuery({
     queryKey: ["courseDetailData", id],
-    queryFn: fetchCourseDetail,
+    queryFn: () => getCourseDetail(Number(id)),
   });
 
   const courseDetail = courseDetailData ?? defaultCourseDetail;
