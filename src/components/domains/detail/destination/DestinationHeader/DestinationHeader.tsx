@@ -12,7 +12,7 @@ const DestinationHeader = () => {
   const [isAuth] = useRecoilState(authState);
 
   const fetchDestinationDetail = () => {
-    const options = { requireAuth: !!isAuth };
+    const options = { requireAuth: true };
     return getDestinationApi(Number(id), options);
   };
 
