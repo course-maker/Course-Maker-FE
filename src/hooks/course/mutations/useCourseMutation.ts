@@ -12,7 +12,9 @@ export const useCourseMutation = () => {
     mutationFn: (data: postCourse) => createCourse(data),
     onSuccess: (data) => {
       alert("코스가 등록되었습니다.");
-      navigate(`/course/${data.id}`);
+      navigate(`/search`);
+      console.log(data);
+      // navigate(`/course/${data.id}`);
     },
     onError: (error: AxiosError) => {
       const statusCode = error?.response?.status;
