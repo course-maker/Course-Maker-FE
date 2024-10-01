@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getCourse } from "@/api/course";
 import { tagResponseDto } from "@/api/tag/type";
 
-export function useGetInfiniteCourseQuery(tags: tagResponseDto[]) {
+export function useGetInfiniteCourseQuery(tags: tagResponseDto[], enabled: boolean = true) {
   const sortOrder = "POPULAR";
   const tagIds = tags.map((tag) => `&tagIds=${tag.id}`).join("");
 
@@ -21,6 +21,7 @@ export function useGetInfiniteCourseQuery(tags: tagResponseDto[]) {
       }
     },
     retry: 0,
+    enabled,
   });
 
   return courseInfiniteQuery;

@@ -13,9 +13,6 @@ export const useBadgeListViewModel = () => {
     console.log("Loading tags data...");
     return { isTagLoading, tagData: null };
   }
-  console.log(tagData);
-  console.log(CourseBadges);
-  console.log(DestinationBadges); //성공
 
   return { isTagLoading, tagData, DestinationBadges, CourseBadges, setCourseBadges, setDestinationBadges };
 };

@@ -32,8 +32,6 @@ export function useInfiniteScroll<T>({
     return () => observer.disconnect();
   }, [handleObserver]);
 
-  //   const allData = data?.pages.flatMap((page) => page.contents) ?? [];
-
   return {
     data,
     observerElem,
