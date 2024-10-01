@@ -5,6 +5,7 @@ import { IMAGES } from "@/constants/images";
 import { authState } from "@/recoil/authAtom";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
+import { useEffect, useState } from "react"; // useState, useEffect 추가
 import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -15,6 +16,8 @@ const cx = classNames.bind(styles);
 const DestinationMain = () => {
   const { id } = useParams<{ id: string }>();
   const [isAuth] = useRecoilState(authState);
+  const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null);
+  const [isLoadingPosition, setIsLoadingPosition] = useState(false);
 
   const fetchDestinationDetail = () => {
     const options = { requireAuth: !!isAuth };
@@ -28,7 +31,31 @@ const DestinationMain = () => {
   });
 
   const destinationDetail = destinationDetailData ?? defaultDestinationDetail;
-  const position = { lat: destinationDetail.location.latitude, lng: destinationDetail.location.longitude };
+
+  useEffect(() => {
+    const geocoder = new kakao.maps.services.Geocoder();
+
+    if (destinationDetail.location.latitude && destinationDetail.location.longitude) {
+      setPosition({
+        lat: destinationDetail.location.latitude,
+        lng: destinationDetail.location.longitude,
+      });
+    } else {
+      setIsLoadingPosition(true);
+      geocoder.addressSearch(destinationDetail.location.address, function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          setPosition({
+            lat: parseFloat(result[0].y),
+            lng: parseFloat(result[0].x),
+          });
+        } else {
+          console.error("Geocoding failed:", status);
+        }
+        setIsLoadingPosition(false);
+      });
+    }
+  }, [destinationDetail]);
+
   return (
     <div className={cx("container")}>
       <div className={cx("main-image")}>
@@ -42,18 +69,26 @@ const DestinationMain = () => {
           </div>
         )}
       </div>
+
       <div className={cx("map-location")}>
         <div className={cx("map")}>
-          <Map center={position} className={cx("kakao-map")} style={{ width: "100%", height: "100%" }} level={3}>
-            <CustomOverlayMap position={position} xAnchor={0.5} yAnchor={1.1}>
-              <div className={cx("marker")}>
-                <div className={cx("icon")}>
-                  <Image imageInfo={IMAGES.locationIcon} />
+          {isLoadingPosition ? (
+            <div>Loading map...</div>
+          ) : position ? (
+            <Map center={position} className={cx("kakao-map")} style={{ width: "100%", height: "100%" }} level={3}>
+              <CustomOverlayMap position={position} xAnchor={0.5} yAnchor={1.1}>
+                <div className={cx("marker")}>
+                  <div className={cx("icon")}>
+                    <Image imageInfo={IMAGES.locationIcon} />
+                  </div>
                 </div>
-              </div>
-            </CustomOverlayMap>
-          </Map>
+              </CustomOverlayMap>
+            </Map>
+          ) : (
+            <div>위치를 찾을 수 없습니다.</div>
+          )}
         </div>
+
         <div className={cx("location")}>
           <div className={cx("img")}>
             <Image imageInfo={IMAGES.grayLocation} />
@@ -64,4 +99,5 @@ const DestinationMain = () => {
     </div>
   );
 };
+
 export default DestinationMain;
