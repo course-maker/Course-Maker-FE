@@ -20,7 +20,7 @@ const AppLayout = () => {
   return (
     <>
       {isSignPage(pathname) ? (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense>
           <Outlet />
         </Suspense>
       ) : (
