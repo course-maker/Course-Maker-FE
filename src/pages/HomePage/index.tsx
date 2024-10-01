@@ -35,7 +35,7 @@ const HomePage = () => {
   const { destinationSearchData } = useGetDestinationSearchQuery(1, inputValue);
   const { courseSearchData } = useGetCourseSearchQuery(1, inputValue);
   const { courseData: coursePopularData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
-  const { courseData: courseRatingData } = useGetCourseQuery("record=4&page=2&orderBy=RATING");
+  const { courseData: courseLikeData } = useGetCourseQuery("record=4&page=2&orderBy=LIKE");
   const [DestinationBadges, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
   const navigate = useNavigate();
 
@@ -112,7 +112,7 @@ const HomePage = () => {
       <Section title="코스메이커 추천">
         <div className={cx("card_container")}>
           <Suspense fallback={<LoadingSkeleton />}>
-            {courseRatingData?.contents.map((item) => (
+            {courseLikeData?.contents.map((item) => (
               <Card key={item.id} name={"코스 찾기"} id={item.id}>
                 <div className={cx("card-image-container")}>
                   <img loading="lazy" alt={item.title} src={item.pictureLink} className={cx("card-image")} />
