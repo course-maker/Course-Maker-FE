@@ -33,7 +33,7 @@ const Card2: React.FC<CardProps> = ({ item, name, loading, isCourseTab, children
 
   if (loading) {
     return (
-      <div className={cx("card-container")}>
+      <div className={cx("card-container", "skeleton")}>
         <Skeleton height={200} width={300} className={cx("card-image")} />
         <div className={cx("card-content")}>
           <Skeleton count={3} />
