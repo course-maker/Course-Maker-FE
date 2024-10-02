@@ -30,6 +30,7 @@ export interface Course {
   likeCount: number;
   isMyWishCourse: boolean;
   isMyLikeCourse: boolean;
+  isApiData?: boolean;
 }
 
 export interface Courses {

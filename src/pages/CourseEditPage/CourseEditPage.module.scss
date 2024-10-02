@@ -1,0 +1,5 @@
+.section {
+  @include column-flexbox();
+  justify-content: center;
+  align-items: center;
+}
