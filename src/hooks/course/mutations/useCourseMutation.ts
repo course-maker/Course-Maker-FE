@@ -12,9 +12,11 @@ export const useCourseMutation = () => {
     mutationFn: (data: postCourse) => createCourse(data),
     onSuccess: (data) => {
       alert("코스가 등록되었습니다.");
-      navigate(`/search`);
-      console.log(data);
-      // navigate(`/course/${data.id}`);
+      if (data.id) {
+        navigate(`/course/${data.id}`);
+      } else {
+        navigate(`/search`);
+      }
     },
     onError: (error: AxiosError) => {
       const statusCode = error?.response?.status;
@@ -37,8 +39,11 @@ export const useCourseMutation = () => {
     mutationFn: ({ postId, data }: { postId: number; data: postCourse }) => patchCourseApi(postId, data),
     onSuccess: (data) => {
       alert("코스가 수정되었습니다.");
-      navigate(`/destination/${data.id}`);
-      // invalidateCardList, // 쿼리 키 업데이트하기
+      if (data.id) {
+        navigate(`/course/${data.id}`);
+      } else {
+        navigate(`/search`);
+      }
     },
     onError: (error: AxiosError) => {
       const statusCode = error?.response?.status;
