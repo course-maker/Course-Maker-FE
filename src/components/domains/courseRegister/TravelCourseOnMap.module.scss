@@ -134,7 +134,7 @@
     }
 
     -ms-overflow-style: auto;
-    scrollbar-width: auto;
+    // scrollbar-width: auto;
   }
 
   @include responsive("M") {
