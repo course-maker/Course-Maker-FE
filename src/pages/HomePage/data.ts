@@ -21,7 +21,7 @@ export const bannerData = [
 
 export const busanData = [
   {
-    id: 0,
+    id: 3,
     name: "마음이 평화로워지는 역사 탐방",
     location: "박물관 여행",
     image: IMAGES.One.src,
@@ -36,7 +36,7 @@ export const busanData = [
     ],
   },
   {
-    id: 1,
+    id: 27,
     name: "부산의 숨은 명소 한국의 산토리니",
     location: "영도",
     image: IMAGES.Two.src,
@@ -51,7 +51,7 @@ export const busanData = [
     ],
   },
   {
-    id: 2,
+    id: 13,
     name: "마음의 양식을 채우는 시간",
     location: "문화공간투어",
     image: IMAGES.Three.src,
@@ -66,7 +66,7 @@ export const busanData = [
     ],
   },
   {
-    id: 3,
+    id: 2,
     name: "가슴이 뻥뚫리는 바다 위를 건너가는",
     location: "송도  케이블카",
     image: IMAGES.Four.src,
