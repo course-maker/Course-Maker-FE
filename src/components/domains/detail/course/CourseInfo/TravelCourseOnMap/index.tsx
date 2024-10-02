@@ -79,6 +79,7 @@ const TravelCourseOnMap = ({ courseDetail }: TravelCourseOnMapProps) => {
         window.open(kakaoMapLink, "_blank");
       } catch (error) {
         console.error("도로명 주소 변환 실패:", error);
+        alert("지번 주소만 포함된 위치는 도로명 주소 검색이 불가능합니다.");
       }
     } else {
       alert("마지막 목적지입니다. 다음 목적지가 없습니다.");
