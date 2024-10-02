@@ -63,7 +63,7 @@ const SearchBar = ({
                       key={item.id}
                       onClick={() => {
                         // handleCloseModal();
-                        navigate(`course/${item.id}`);
+                        navigate(`/course/${item.id}`);
                         setIsOpen(!isOpen);
                       }}>
                       <Text className={cx("list-txt-top")} text={item.title} highlight={value} />
@@ -84,10 +84,10 @@ const SearchBar = ({
                       key={item.id}
                       onClick={() => {
                         // handleCloseModal();
-                        navigate(`destination/${item.id}`);
+                        navigate(`/destination/${item.id}`);
                         setIsOpen(!isOpen);
                       }}>
-                      <Text className={cx("list-txt-top")} text={item.name} highlight={value} />
+                      <Text className={cx("list-txt-top")} text={item.name.replace(/\?/g, "")} highlight={value} />
                       <p className={cx("list-txt-bottom")}> {item.location.address} </p>
                     </div>
                   ))}
