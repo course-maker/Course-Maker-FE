@@ -11,6 +11,7 @@ const SignUpPage = lazy(() => import("./SignUpPage"));
 const CourseDetailPage = lazy(() => import("./CourseDetailPage"));
 const DestinationDetailPage = lazy(() => import("./DestinationDetailPage"));
 const CourseRegisterPage = lazy(() => import("./CourseRegisterPage"));
+const CourseEditPage = lazy(() => import("./CourseEditPage"));
 const DestinationRegisterPage = lazy(() => import("./DestinationRegisterPage"));
 const DestinationEditPage = lazy(() => import("./DestinationEditPage"));
 const MyPage = lazy(() => import("./MyPage"));
@@ -23,6 +24,7 @@ const {
   signIn,
   signUp,
   courseDetail,
+  courseEdit,
   destinationDetail,
   courseRegister,
   destinationRegister,
@@ -45,6 +47,7 @@ function PageRouter() {
         <Route path={courseDetail} element={<CourseDetailPage />} />
         <Route path={destinationDetail} element={<DestinationDetailPage />} />
         <Route path={courseRegister} element={<CourseRegisterPage />} />
+        <Route path={courseEdit} element={<CourseEditPage />} />
         <Route path={destinationRegister} element={<DestinationRegisterPage />} />
         <Route path={destinationEdit} element={<DestinationEditPage />} />
         <Route path={myPage} element={<MyPage />} />
