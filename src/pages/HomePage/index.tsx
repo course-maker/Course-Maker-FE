@@ -19,7 +19,7 @@ import { useGetCourseSearchQuery } from "@/hooks/course/queries/useGetCourseSear
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
 import { DestinationBadgesState } from "@/recoil/serviceAtom";
 import { tagResponseDto } from "@/api/tag/type";
-import { bannerItemsData } from "./data.js";
+import { bannerItemsData, busanData } from "./data.js";
 const Card = lazy(() => import("@/components/commons/Card/Card"));
 const bannerItems = bannerItemsData;
 
@@ -34,7 +34,7 @@ const HomePage = () => {
   const [inputValue, setInputValue] = useState("");
   const { destinationSearchData } = useGetDestinationSearchQuery(1, inputValue);
   const { courseSearchData } = useGetCourseSearchQuery(1, inputValue);
-  const { courseData: coursePopularData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
+  // const { courseData: coursePopularData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
   const { courseData: courseLikeData } = useGetCourseQuery("record=4&page=2&orderBy=LIKE");
   const [DestinationBadges, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
   const navigate = useNavigate();
@@ -110,13 +110,13 @@ const HomePage = () => {
       <Section title="코스메이커 추천">
         <div className={cx("card_container")}>
           <Suspense fallback={<LoadingSkeleton />}>
-            {courseLikeData?.contents.map((item) => (
+            {busanData.map((item) => (
               <Card key={item.id} name={"코스 찾기"} id={item.id}>
                 <div className={cx("card-image-container")}>
-                  <img loading="lazy" alt={item.title} src={item.pictureLink} className={cx("card-image")} />
+                  <img loading="lazy" alt={item.location} src={item.image} className={cx("card-image")} />
                   <div className={cx("card-content")}>
-                    <span className={cx("card-title")}>{item.content}</span>
-                    <span className={cx("card-subtitle")}>{item.title}</span>
+                    {/* <span className={cx("card-title")}>{item.name}</span>
+                    <span className={cx("card-subtitle")}>{item.location}</span> */}
                   </div>
                 </div>
               </Card>
@@ -128,7 +128,7 @@ const HomePage = () => {
       <Section title="요즘 인기있는 코스">
         <div className={cx("card_container")}>
           <Suspense fallback={<LoadingSkeleton />}>
-            {coursePopularData?.contents.map((item) => (
+            {courseLikeData?.contents.map((item) => (
               <Card key={item.id} name={"코스 찾기"} id={item.id}>
                 <div className={cx("card-image-container")}>
                   <img loading="lazy" alt={item.title} src={item.pictureLink} className={cx("card-image")} />
