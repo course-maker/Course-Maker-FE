@@ -10,11 +10,11 @@ import { useRecoilState } from "recoil";
 
 const CourseRegisterPage = () => {
   const navigate = useNavigate();
-  const [formData] = useState({
+  const [formData] = useState<postCourse>({
     title: "",
     content: "",
-    duration: "",
-    travelerCount: "",
+    duration: 0,
+    travelerCount: 0,
     travelType: 0,
     pictureLink: "",
     courseDestinations: [],
