@@ -62,6 +62,7 @@ const Card2: React.FC<CardProps> = ({ item, name, loading, isCourseTab, children
                 name={name}
                 title={item.title}
                 travelerCount={item.travelerCount}
+                averageRating={item.averageRating}
                 views={formatNumberWithCommas(item.views)}
                 duration={item.duration}
               />
