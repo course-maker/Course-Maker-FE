@@ -21,7 +21,7 @@ export const bannerData = [
 
 export const busanData = [
   {
-    id: 3,
+    id: 23,
     name: "마음이 평화로워지는 역사 탐방",
     location: "박물관 여행",
     image: IMAGES.One.src,
@@ -36,9 +36,9 @@ export const busanData = [
     ],
   },
   {
-    id: 27,
+    id: 37,
     name: "부산의 숨은 명소 한국의 산토리니",
-    location: "영도",
+    location: "바다보며 멍때리기",
     image: IMAGES.Two.src,
     icons: {
       calendar: 102,
@@ -51,7 +51,7 @@ export const busanData = [
     ],
   },
   {
-    id: 13,
+    id: 33,
     name: "마음의 양식을 채우는 시간",
     location: "문화공간투어",
     image: IMAGES.Three.src,
@@ -66,9 +66,9 @@ export const busanData = [
     ],
   },
   {
-    id: 2,
+    id: 34,
     name: "가슴이 뻥뚫리는 바다 위를 건너가는",
-    location: "송도  케이블카",
+    location: "바다사진 촬영스팟",
     image: IMAGES.Four.src,
     icons: {
       calendar: 72,
@@ -138,7 +138,7 @@ export const bannerItemsData = {
       subtitle: "해운대 그린레일웨이",
       title: "바다를 따라 다니며\n육지와는 다른 풍경을 즐기세요",
       size: "large",
-      url: "destination/1091",
+      url: "destination/1092",
     },
     {
       id: 1,
@@ -150,7 +150,7 @@ export const bannerItemsData = {
       subtitle: "부산 필수코스",
       title: "부산이 처음이라면\n여기부터 가보셔야죠",
       size: "large",
-      url: "course/18",
+      url: "course/38",
     },
   ],
 };
