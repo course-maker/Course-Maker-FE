@@ -16,7 +16,7 @@ const TitleInputController = <ControlType extends FieldValues>({
     <Controller
       name={formFieldName}
       control={control}
-      render={({ field }) => <TitleInput placeholder="여행지 이름을 입력하세요." disabled={disabled} {...field} />}
+      render={({ field }) => <TitleInput placeholder="코스 이름을 입력하세요." disabled={disabled} {...field} />}
     />
   );
 };
