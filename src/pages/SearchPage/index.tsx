@@ -18,11 +18,10 @@ const cx = classNames.bind(styles);
 const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("여행지 찾기");
   const [inputValue, setInputValue] = useState("");
-  const { isTagLoading, DestinationBadges, CourseBadges } = useBadgeListViewModel();
+  const { DestinationBadges, CourseBadges } = useBadgeListViewModel();
   const { destinationSearchData } = useGetDestinationSearchQuery(1, inputValue);
   const { courseSearchData } = useGetCourseSearchQuery(1, inputValue);
   const isCourseTab = activeTab === "코스 찾기";
-  console.log(isTagLoading);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

@@ -17,11 +17,13 @@ interface BadgeListProps {
 
 const BadgeList: React.FC<BadgeListProps> = ({ title, tags, selectedBadges = [], setSelectedBadges, onToggle }) => {
   const toggleBadge = (badge: tagResponseDto) => {
-    if (!setSelectedBadges) return;
+    if (!setSelectedBadges) {
+      return;
+    }
 
     setSelectedBadges((prevSelected) => {
       if (prevSelected.some((prev) => prev.id === badge.id)) {
-        return prevSelected.filter((item) => item !== badge);
+        return prevSelected.filter((item) => item.id !== badge.id);
       } else {
         return [...prevSelected, badge];
       }
