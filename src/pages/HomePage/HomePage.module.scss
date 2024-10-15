@@ -23,6 +23,15 @@
     position: relative;
   }
 
+  .card-content-number {
+    position: absolute;
+    top: 16px;
+    color: white;
+    left: 16px;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
   .card-image {
     height: 28rem;
     width: 100%;
@@ -47,6 +56,18 @@
     span {
       color: white;
       font-weight: bold;
+    }
+
+    .txt-title {
+      p {
+        font-size: 16px;
+        font-weight: 700;
+        text-align: left;
+
+        @media (max-width: 375px) {
+          font-size: 10px;
+        }
+      }
     }
 
     .card-title {
