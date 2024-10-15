@@ -25,10 +25,25 @@ interface ItemBoxProps {
 }
 
 const ItemBox: React.FC<ItemBoxProps> = ({ location, title, tags, name, travelerCount, views, duration, color }) => {
+  const splitTitle = (title: string) => {
+    const parts = [];
+    for (let i = 0; i < title.length; i += 10) {
+      parts.push(title.slice(i, i + 10));
+    }
+    return parts;
+  };
+
+  const titleParts = typeof title === "string" ? splitTitle(title) : [];
+
   return (
     <div className={cx("item-box")}>
       <div className={cx("title-group")}>
-        <p className={cx("item-title")}>{title}</p>
+        {titleParts.map((part, index) => (
+          <span key={index} className={cx("item-title")}>
+            {part}
+          </span>
+        ))}
+        {/* <p className={cx("item-title")}>{title}</p> */}
         {name === "코스 찾기" ? (
           <p className={cx("item-location")}>조회수 {views} 회</p>
         ) : (

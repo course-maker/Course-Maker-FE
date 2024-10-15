@@ -20,7 +20,7 @@ import { useGetCourseSearchQuery } from "@/hooks/course/queries/useGetCourseSear
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
 import { DestinationBadgesState } from "@/recoil/serviceAtom";
 import { tagResponseDto } from "@/api/tag/type";
-import { bannerItemsData, busanData } from "./data.js";
+import { bannerItemsData, busanData, LikeMockData } from "./data.js";
 const Card = lazy(() => import("@/components/commons/Card/Card"));
 const bannerItems = bannerItemsData;
 
@@ -130,10 +130,11 @@ const HomePage = () => {
       <Section title="요즘 인기있는 코스">
         <div className={cx("card_container")}>
           <Suspense fallback={<LoadingSkeleton />}>
-            {courseLikeData?.contents.map((item) => (
+            {courseLikeData?.contents.map((item, index) => (
               <Card key={item.id} name={"코스 찾기"} id={item.id}>
                 <div className={cx("card-image-container")}>
-                  <img loading="lazy" alt={item.title} src={item.pictureLink} className={cx("card-image")} />
+                  <img src={LikeMockData[index].url} className={cx("card-image")} />
+                  <Text className={cx("card-content-number")} text={index + 1} />
                   <div className={cx("card-content")}>
                     <ItemBox
                       color="white"
