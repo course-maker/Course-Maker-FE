@@ -9,6 +9,7 @@ import ItemBox from "@/components/commons/ItemBox/ItemBox";
 import Banner from "@/components/commons/Banner/Banner";
 import SearchBar from "@/components/commons/SearchBar";
 import Image from "@/components/commons/Image";
+import Text from "@/components/commons/Text";
 
 import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
@@ -36,7 +37,7 @@ const HomePage = () => {
   const { courseSearchData } = useGetCourseSearchQuery(1, inputValue);
   // const { courseData: coursePopularData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
   const { courseData: courseLikeData } = useGetCourseQuery("record=4&page=2&orderBy=LIKE");
-  const [DestinationBadges, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
+  const [, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,8 +70,8 @@ const HomePage = () => {
   }, []);
 
   const handleClick = (tag: tagResponseDto) => {
-    setDestinationBadgesState([...DestinationBadges, tag]);
-    navigate(`search`, { state: { propsTagName: tag.name } });
+    setDestinationBadgesState([tag]);
+    navigate(`search`);
   };
   return (
     <div data-testid="home-page">
@@ -115,8 +116,9 @@ const HomePage = () => {
                 <div className={cx("card-image-container")}>
                   <img loading="lazy" alt={item.location} src={item.image} className={cx("card-image")} />
                   <div className={cx("card-content")}>
-                    {/* <span className={cx("card-title")}>{item.name}</span>
-                    <span className={cx("card-subtitle")}>{item.location}</span> */}
+                    <Text className={cx("txt-title")} text={item.name} />
+                    {/* <span className={cx("card-title")}>{item.name}</span> */}
+                    <span className={cx("card-subtitle")}>{item.location}</span>
                   </div>
                 </div>
               </Card>
