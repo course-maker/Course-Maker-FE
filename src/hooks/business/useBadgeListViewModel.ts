@@ -10,7 +10,6 @@ export const useBadgeListViewModel = () => {
 
   //태그 데이터 패칭 여부 확인
   if (isTagLoading) {
-    console.log("Loading tags data...");
     return { isTagLoading, tagData: null };
   }
 
