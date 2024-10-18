@@ -35,6 +35,8 @@
 
 <img width="80%" alt="스크린샷 2024-10-18 오후 7 32 19" src="https://github.com/user-attachments/assets/e17ca912-f2f6-4c58-8360-d51fc90d5930">
 <img width="80%" alt="스크린샷 2024-10-18 오후 7 34 36" src="https://github.com/user-attachments/assets/70f19575-efcc-4ac3-9acb-0dcd8e2772cb">
+<br/><br/>
+<img width="80%" alt="스크린샷 2024-10-18 오후 8 12 24" src="https://github.com/user-attachments/assets/5165e962-136c-4599-8c56-df81cf6cea25">
 
 
 ## 🛠 기술 스택
