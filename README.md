@@ -1,7 +1,7 @@
 # 부산 여행코스 추천 서비스
 
 <div align="center">  
-<img src="https://github.com/course-maker/Course-Maker-BE/assets/105052888/51b4f13d-3664-443a-8338-d6b4df0cf039" width="90%"/>
+<img src="https://github.com/user-attachments/assets/da016855-ec9a-4972-8587-b16e5fd11599" width="90%"/>
 </div>
 
 ## 서비스 소개
