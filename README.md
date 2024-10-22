@@ -86,7 +86,7 @@
 |:-----:|:---------:|:----------:|
 | <img src="https://avatars.githubusercontent.com/u/154443810?v=4" width=130px alt="이윤희"> | <img src="https://avatars.githubusercontent.com/u/117327533?v=4" width=130px alt="김하은"> |<img src="https://avatars.githubusercontent.com/u/88364280?v=4" width=130px alt="이지홍"> | 
 |  [이윤희](https://github.com/yunicode914) |    [김하은](https://github.com/hankim0904)  |  [이지홍](https://github.com/lee-ji-hong) |
-|  기획 담당 |  FE  |   FE   |
+|  기획 담당 |  FE  |   FE 팀장   |
 
 |  Backend  |    Backend    |   Backend   |   Backend   |
 |:---------:|:-------------:|:-----------:|:-----------:|
