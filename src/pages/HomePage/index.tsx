@@ -9,6 +9,7 @@ import ItemBox from "@/components/commons/ItemBox/ItemBox";
 import Banner from "@/components/commons/Banner/Banner";
 import SearchBar from "@/components/commons/SearchBar";
 import Image from "@/components/commons/Image";
+import Text from "@/components/commons/Text";
 
 import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
@@ -19,7 +20,7 @@ import { useGetCourseSearchQuery } from "@/hooks/course/queries/useGetCourseSear
 import { useGetCourseQuery } from "@/hooks/course/queries/useGetCourseQuery";
 import { DestinationBadgesState } from "@/recoil/serviceAtom";
 import { tagResponseDto } from "@/api/tag/type";
-import { bannerItemsData, busanData } from "./data.js";
+import { bannerItemsData, busanData, LikeMockData } from "./data.js";
 const Card = lazy(() => import("@/components/commons/Card/Card"));
 const bannerItems = bannerItemsData;
 
@@ -36,7 +37,7 @@ const HomePage = () => {
   const { courseSearchData } = useGetCourseSearchQuery(1, inputValue);
   // const { courseData: coursePopularData } = useGetCourseQuery("record=4&page=1&orderBy=POPULAR");
   const { courseData: courseLikeData } = useGetCourseQuery("record=4&page=2&orderBy=LIKE");
-  const [DestinationBadges, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
+  const [, setDestinationBadgesState] = useRecoilState(DestinationBadgesState);
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,8 +70,8 @@ const HomePage = () => {
   }, []);
 
   const handleClick = (tag: tagResponseDto) => {
-    setDestinationBadgesState([...DestinationBadges, tag]);
-    navigate(`search`, { state: { propsTagName: tag.name } });
+    setDestinationBadgesState([tag]);
+    navigate(`search`);
   };
   return (
     <div data-testid="home-page">
@@ -115,8 +116,9 @@ const HomePage = () => {
                 <div className={cx("card-image-container")}>
                   <img loading="lazy" alt={item.location} src={item.image} className={cx("card-image")} />
                   <div className={cx("card-content")}>
-                    {/* <span className={cx("card-title")}>{item.name}</span>
-                    <span className={cx("card-subtitle")}>{item.location}</span> */}
+                    <Text className={cx("txt-title")} text={item.name} />
+                    {/* <span className={cx("card-title")}>{item.name}</span> */}
+                    <span className={cx("card-subtitle")}>{item.location}</span>
                   </div>
                 </div>
               </Card>
@@ -128,10 +130,11 @@ const HomePage = () => {
       <Section title="요즘 인기있는 코스">
         <div className={cx("card_container")}>
           <Suspense fallback={<LoadingSkeleton />}>
-            {courseLikeData?.contents.map((item) => (
+            {courseLikeData?.contents.map((item, index) => (
               <Card key={item.id} name={"코스 찾기"} id={item.id}>
                 <div className={cx("card-image-container")}>
-                  <img loading="lazy" alt={item.title} src={item.pictureLink} className={cx("card-image")} />
+                  <img src={LikeMockData[index].url} className={cx("card-image")} />
+                  <Text className={cx("card-content-number")} text={index + 1} />
                   <div className={cx("card-content")}>
                     <ItemBox
                       color="white"

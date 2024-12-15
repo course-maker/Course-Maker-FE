@@ -63,7 +63,7 @@ const ItemBox: React.FC<ItemBoxProps> = ({
             </div>
             <div className={cx("score-item-course")}>
               <Image imageInfo={color === "white" ? IMAGES.WhiteStarIcon : IMAGES.BlackStarIcon} />
-              <span className={cx("score-text")}>{travelerCount}점</span>
+              <span className={cx("score-text")}>{averageRating}점</span>
             </div>
           </div>
         ) : (

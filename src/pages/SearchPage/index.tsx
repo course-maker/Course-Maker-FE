@@ -1,7 +1,5 @@
 import { useState } from "react";
-// import { useLocation } from "react-router-dom";
-import styles from "./SearchPage.module.scss";
-import classNames from "classnames/bind";
+import { useRecoilState } from "recoil";
 
 import SearchBadgeLists from "@/components/commons/BadgeLists/SearchBadgeLists";
 import TabNavigation from "@/components/commons/TabNavigation/TabNavigation";
@@ -12,17 +10,19 @@ import SearchBar from "@/components/commons/SearchBar";
 import { useGetDestinationSearchQuery } from "@/hooks/destination/queries/useGetDestinationSearchQuery";
 import { useGetCourseSearchQuery } from "@/hooks/course/queries/useGetCourseSearchQuery";
 import { useBadgeListViewModel } from "@/hooks/business/useBadgeListViewModel";
+import { activeTabState } from "@/recoil/serviceAtom";
 
+import styles from "./SearchPage.module.scss";
+import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 const SearchPage = () => {
-  const [activeTab, setActiveTab] = useState("여행지 찾기");
+  const [activeTab, setActiveTab] = useRecoilState(activeTabState);
   const [inputValue, setInputValue] = useState("");
-  const { isTagLoading, DestinationBadges, CourseBadges } = useBadgeListViewModel();
+  const { DestinationBadges, CourseBadges } = useBadgeListViewModel();
   const { destinationSearchData } = useGetDestinationSearchQuery(1, inputValue);
   const { courseSearchData } = useGetCourseSearchQuery(1, inputValue);
   const isCourseTab = activeTab === "코스 찾기";
-  console.log(isTagLoading);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
