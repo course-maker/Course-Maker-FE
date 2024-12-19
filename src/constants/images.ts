@@ -17,10 +17,10 @@ import BlueFavoriteIcon from "@/assets/images/blue_favorite.svg";
 import BlueKaKaoIcon from "@/assets/images/blue_kakao.svg";
 import BlueLinkIcon from "@/assets/images/blue_link.svg";
 import blueStar from "@/assets/images/blue_star.svg";
-import cancel from "@/assets/images/cancel.svg";
 import calendarIcon from "@/assets/images/calendar.svg";
 import calendarGreyIcon from "@/assets/images/calendar_grey.svg";
 import calendarWhiteIcon from "@/assets/images/calendar_white.svg";
+import cancel from "@/assets/images/cancel.svg";
 import check from "@/assets/images/check.svg";
 import ChildIcon from "@/assets/images/child.svg";
 import ColumnLine from "@/assets/images/column_line.svg";
@@ -64,9 +64,12 @@ import Four from "@/assets/images/main/4.svg";
 import memberIcon from "@/assets/images/member.svg";
 import memberWhiteIcon from "@/assets/images/member_white.svg";
 import modalClose from "@/assets/images/modal_close.svg";
+import mypageMenuDelete from "@/assets/images/mypage_menu_delete.svg";
 import mypageMenuHeart from "@/assets/images/mypage_menu_heart.svg";
 import mypageMenuLevel from "@/assets/images/mypage_menu_level.svg";
+import mypageMenuReview from "@/assets/images/mypage_menu_review.svg";
 import mypageMenuTravel from "@/assets/images/mypage_menu_travel.svg";
+import mypageMenuUserInfo from "@/assets/images/mypage_menu_userInfo.svg";
 import PartyIcon from "@/assets/images/party.svg";
 import markerInMap from "@/assets/images/pin_on_map.png";
 import plus from "@/assets/images/plus.svg";
@@ -433,16 +436,28 @@ export const IMAGES = {
     src: apiDataLogo,
     alt: "한국관광공사 로고",
   },
-  mypageMenuHeart: {
-    src: mypageMenuHeart,
-    alt: "마이페이지 찜 아이콘",
+  mypageMenuUserInfo: {
+    src: mypageMenuUserInfo,
+    alt: "마이페이지 회원 정보 변경 아이콘",
   },
   mypageMenuLevel: {
     src: mypageMenuLevel,
-    alt: "마이페이지 나의 등급 아이콘",
+    alt: "마이페이지 내 등급/뱃지 아이콘",
   },
   mypageMenuTravel: {
     src: mypageMenuTravel,
     alt: "마이페이지 내가 만든 여행 아이콘",
+  },
+  mypageMenuHeart: {
+    src: mypageMenuHeart,
+    alt: "마이페이지 찜 아이콘",
+  },
+  mypageMenuReview: {
+    src: mypageMenuReview,
+    alt: "마이페이지 내가 쓴 리뷰 아이콘",
+  },
+  mypageMenuDelete: {
+    src: mypageMenuDelete,
+    alt: "마이페이지 회원 탈퇴 아이콘",
   },
 };
