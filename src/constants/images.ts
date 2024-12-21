@@ -69,7 +69,7 @@ import mypageMenuHeart from "@/assets/images/mypage_menu_heart.svg";
 import mypageMenuLevel from "@/assets/images/mypage_menu_level.svg";
 import mypageMenuReview from "@/assets/images/mypage_menu_review.svg";
 import mypageMenuTravel from "@/assets/images/mypage_menu_travel.svg";
-import mypageMenuUserInfo from "@/assets/images/mypage_menu_userInfo.svg";
+import mypageMenuUpdateUserInfo from "@/assets/images/mypage_menu_userInfo.svg";
 import PartyIcon from "@/assets/images/party.svg";
 import markerInMap from "@/assets/images/pin_on_map.png";
 import plus from "@/assets/images/plus.svg";
@@ -436,8 +436,8 @@ export const IMAGES = {
     src: apiDataLogo,
     alt: "한국관광공사 로고",
   },
-  mypageMenuUserInfo: {
-    src: mypageMenuUserInfo,
+  mypageMenuUpdateUserInfo: {
+    src: mypageMenuUpdateUserInfo,
     alt: "마이페이지 회원 정보 변경 아이콘",
   },
   mypageMenuLevel: {
