@@ -10,7 +10,7 @@ import { useRecoilState } from "recoil";
 
 const useAuth = () => {
   const [auth, setAuth] = useRecoilState(authState);
-  const location = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const accessToken = getAccessToken();
 
@@ -33,12 +33,12 @@ const useAuth = () => {
       setAuth(userInfo);
     }
 
-    if (accessToken && isSignPage(location.pathname)) {
+    if (accessToken && isSignPage(pathname)) {
       navigate("/");
-    } else if (!accessToken && (isRegisterPage(location.pathname) || isMyPage(location.pathname))) {
+    } else if (!accessToken && (isRegisterPage(pathname) || isMyPage(pathname))) {
       navigate(PAGE_PATH.signIn, { replace: true });
     }
-  }, [accessToken, isSuccess, userInfo, location.pathname, navigate, setAuth]);
+  }, [accessToken, isSuccess, userInfo, pathname, navigate, setAuth]);
 
   return { auth, isLoading };
 };
