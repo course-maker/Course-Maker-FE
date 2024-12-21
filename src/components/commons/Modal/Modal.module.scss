@@ -1,4 +1,5 @@
 .container {
+  @include flexbox();
   position: fixed;
   left: 0;
   top: 0;
@@ -8,9 +9,13 @@
   outline: none;
   z-index: $modal;
   animation: fadeIn 0.2s;
-  @include flexbox();
+
   &.backdrop {
     background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  &.sidebar {
+    @include flexbox(end, start);
   }
 }
 

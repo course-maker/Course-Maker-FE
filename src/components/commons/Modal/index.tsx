@@ -10,6 +10,7 @@ type ModalProps = {
   isOpen?: boolean;
   disableScrollLock?: boolean;
   hideBackdrop?: boolean;
+  isSidebar?: boolean;
   onBackdropClick?: MouseEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
   onConfirmClick?: MouseEventHandler<HTMLButtonElement>;
@@ -19,6 +20,7 @@ const Modal = ({
   children,
   isOpen = false,
   hideBackdrop = false,
+  isSidebar = false,
   onBackdropClick,
   onKeyDown,
   onConfirmClick,
@@ -76,7 +78,7 @@ const Modal = ({
   return (
     <Portal>
       <div
-        className={cx("container", { backdrop: !hideBackdrop })}
+        className={cx("container", { backdrop: !hideBackdrop }, { sidebar: isSidebar })}
         onClick={handleBackdropClick}
         onKeyDown={handleKeyDown}
         tabIndex={0}>
