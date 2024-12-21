@@ -1,0 +1,76 @@
+.user-info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "nickname nickname"
+    "profileImg role"
+    "point point";
+  gap: 1rem 0.7rem;
+  border: solid 0.1rem $gray20;
+  border-radius: 1rem;
+  padding: 2.6rem 2.2rem;
+
+  @include responsive("T") {
+    gap: 1rem 0.5rem;
+    padding: 1.9rem 1.6rem;
+  }
+
+  &__nickname {
+    @include text-style(2.5, 700, $black30);
+    grid-area: nickname;
+
+    @include responsive("T") {
+      font-size: 1.8rem;
+    }
+
+    &-suffix {
+      @include text-style(2, 500, $black30);
+
+      @include responsive("T") {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &__profileImg {
+    grid-area: profileImg;
+    background-color: $gray20;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    padding: 0.5rem;
+
+    @include responsive("T") {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &__role {
+    @include text-style(1.4, 500, $black30);
+    align-self: center;
+
+    @include responsive("T") {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__point {
+    @include text-style(1.8, 700, $black30);
+    grid-area: point;
+    padding-top: 2.9rem;
+
+    @include responsive("T") {
+      font-size: 1.6rem;
+      padding-top: 1.5rem;
+    }
+
+    &-suffix {
+      @include text-style(1.6, 500, $black30);
+
+      @include responsive("T") {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
