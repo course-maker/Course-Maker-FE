@@ -36,10 +36,12 @@ import destinationPin from "@/assets/images/destinationPin.svg";
 import destinationPinStress from "@/assets/images/destinationPin_stress.svg";
 import PetIcon from "@/assets/images/dog.svg";
 import Down_arrow from "@/assets/images/down_arrow.svg";
+import grayBackIcon from "@/assets/images/gray_back.svg";
 import GrayBookmarkIcon from "@/assets/images/gray_bookmark.svg";
 import grayBus from "@/assets/images/gray_bus.svg";
 import grayCar from "@/assets/images/gray_car.svg";
 import GrayFavoriteIcon from "@/assets/images/gray_favorite.svg";
+import grayHamburgerIcon from "@/assets/images/gray_hamburger.svg";
 import GrayKaKaoIcon from "@/assets/images/gray_kakao.svg";
 import GrayLinkIcon from "@/assets/images/gray_link.svg";
 import grayLocation from "@/assets/images/gray_location.svg";
@@ -459,5 +461,13 @@ export const IMAGES = {
   mypageMenuDelete: {
     src: mypageMenuDelete,
     alt: "마이페이지 회원 탈퇴 아이콘",
+  },
+  grayHamburgerIcon: {
+    src: grayHamburgerIcon,
+    alt: "햄버거 메뉴 아이콘",
+  },
+  grayBackIcon: {
+    src: grayBackIcon,
+    alt: "뒤로가기 아이콘",
   },
 };
