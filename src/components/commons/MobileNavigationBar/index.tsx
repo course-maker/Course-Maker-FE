@@ -1,8 +1,10 @@
 import { IMAGES } from "@/constants/images";
 import { PAGE_PATH } from "@/constants/pagePath";
+import { sidebarState } from "@/recoil/sidebarAtom";
 import { isMyPage } from "@/utils/pageHelpers";
 import classNames from "classnames/bind";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import Image from "../Image";
 import styles from "./MobileNavigationBar.module.scss";
 
@@ -12,6 +14,7 @@ const MobileNavigationBar = ({ isAuth }: { isAuth: boolean | null }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { signIn, myPage } = PAGE_PATH;
+  const setSidebarState = useSetRecoilState(sidebarState);
 
   return (
     <div className={cx("nav")}>
@@ -21,7 +24,7 @@ const MobileNavigationBar = ({ isAuth }: { isAuth: boolean | null }) => {
       <div className={cx("nav__btn")}>
         {isAuth ? (
           isMyPage(pathname) ? (
-            <button>
+            <button onClick={() => setSidebarState((prev) => !prev)}>
               <Image imageInfo={IMAGES.grayHamburgerIcon} />
             </button>
           ) : (
