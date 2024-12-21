@@ -2,7 +2,7 @@ import { getBasicInfo } from "@/api/my";
 import { PAGE_PATH } from "@/constants/pagePath";
 import { authState } from "@/recoil/authAtom";
 import { getAccessToken } from "@/utils/manageTokenInfo";
-import { isRegisterPage, isSignPage } from "@/utils/pageHelpers";
+import { isMyPage, isRegisterPage, isSignPage } from "@/utils/pageHelpers";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const useAuth = () => {
 
     if (accessToken && isSignPage(location.pathname)) {
       navigate("/");
-    } else if (!accessToken && isRegisterPage(location.pathname)) {
+    } else if (!accessToken && (isRegisterPage(location.pathname) || isMyPage(location.pathname))) {
       navigate(PAGE_PATH.signIn, { replace: true });
     }
   }, [accessToken, isSuccess, userInfo, location.pathname, navigate, setAuth]);
