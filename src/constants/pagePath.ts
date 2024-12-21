@@ -10,7 +10,7 @@ export const PAGE_PATH = {
   courseEdit: "/course/:id/edit", // 코스 수정하기
   destinationEdit: "/destination/:id/edit", // 여행지 수정하기
   myPage: "/mypage", // 마이페이지
-  myPageUserInfo: "/mypage/userInfo", // 마이페이지 회원 정보 변경
+  myPageUpdateUserInfo: "/mypage/userInfo", // 마이페이지 회원 정보 변경
   myPageRank: "/mypage/rank", // 마이페이지 나의 등급/뱃지
   myPageTrips: "/mypage/trips", // 마이페이지 내가 만든 여행
   myPageLikes: "/mypage/likes", // 마이페이지 찜
@@ -24,3 +24,4 @@ const { signIn, signUp, courseRegister, destinationRegister } = PAGE_PATH;
 export const authPages = [signIn, signUp];
 export const registerPages = [courseRegister, destinationRegister];
 export const dynamicPages = [/\/course\/[^/]+\/edit/, /\/destination\/[^/]+\/edit/];
+export const myPages = /^\/mypage/;
