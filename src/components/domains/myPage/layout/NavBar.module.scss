@@ -1,0 +1,30 @@
+.nav {
+  padding: 3.6rem 2.3rem 4rem;
+  border: solid 0.1rem $gray20;
+  border-radius: 1rem;
+
+  @include responsive("T") {
+    padding: 2.6rem 1.7rem 2.8rem;
+  }
+
+  &__list {
+    @include column-flexbox(center, start);
+    gap: 2.4rem;
+
+    @include responsive("T") {
+      gap: 1.7rem;
+    }
+
+    &-item {
+      @include text-style(2, 400, $black30);
+
+      @include responsive("T") {
+        font-size: 1.5rem;
+      }
+
+      & &--active {
+        font-weight: 700;
+      }
+    }
+  }
+}
