@@ -1,0 +1,47 @@
+.my-page-layout {
+  display: grid;
+  grid-template-columns: 21.5rem auto;
+  grid-template-areas:
+    "heading heading"
+    "sidebar main";
+  gap: 2.5rem 12.5rem;
+
+  @include responsive("T") {
+    grid-template-columns: 15.5rem auto;
+    gap: 1.8rem 5.7rem;
+  }
+
+  &__heading {
+    @include text-style(3, 600, $black30);
+    grid-area: heading;
+    padding-left: 1.5rem;
+
+    @include responsive("T") {
+      font-size: 2.2rem;
+      padding-left: 1rem;
+    }
+
+    &-selectedMenu {
+      @include text-style(2.5, 500, $black30);
+
+      @include responsive("T") {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  &__sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+
+    @include responsive("T") {
+      gap: 1rem;
+    }
+  }
+
+  &__main {
+    grid-area: main;
+  }
+}

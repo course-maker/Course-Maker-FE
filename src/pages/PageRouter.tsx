@@ -1,4 +1,5 @@
 import AuthListener from "@/components/commons/AuthListener";
+import { MYPAGE_MENU_LIST } from "@/constants/mypageMenuList";
 import { PAGE_PATH } from "@/constants/pagePath";
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -15,9 +16,7 @@ const CourseEditPage = lazy(() => import("./CourseEditPage"));
 const DestinationRegisterPage = lazy(() => import("./DestinationRegisterPage"));
 const DestinationEditPage = lazy(() => import("./DestinationEditPage"));
 const MyPage = lazy(() => import("./MyPage"));
-const MyPageLikes = lazy(() => import("./MyPage/MyPageLikes"));
-const MyPageRank = lazy(() => import("./MyPage/MyPageRank"));
-const MyPageTrips = lazy(() => import("./MyPage/MyPageTrips"));
+const MyPageSub = lazy(() => import("./MyPage/MyPageSub"));
 
 const {
   search,
@@ -30,9 +29,6 @@ const {
   destinationRegister,
   destinationEdit,
   myPage,
-  myPageLikes,
-  myPageRank,
-  myPageTrips,
   authKakao,
 } = PAGE_PATH;
 
@@ -51,9 +47,9 @@ function PageRouter() {
         <Route path={destinationRegister} element={<DestinationRegisterPage />} />
         <Route path={destinationEdit} element={<DestinationEditPage />} />
         <Route path={myPage} element={<MyPage />} />
-        <Route path={myPageLikes} element={<MyPageLikes />} />
-        <Route path={myPageRank} element={<MyPageRank />} />
-        <Route path={myPageTrips} element={<MyPageTrips />} />
+        {MYPAGE_MENU_LIST.map(({ id, name, navigate, content: ContentComponent }) => (
+          <Route key={id} path={navigate} element={<MyPageSub selectedMenu={name} content={<ContentComponent />} />} />
+        ))}
       </Route>
       <Route path={authKakao} element={<AuthListener />} />
     </Routes>
