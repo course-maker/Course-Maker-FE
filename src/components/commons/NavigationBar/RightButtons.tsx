@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 const RightButtons = ({ isAuth }: { isAuth: boolean | null }) => {
   const navigate = useNavigate();
   const { logout, isModalOpen, setIsModalOpen } = useLogoutMutation();
-  const { signIn, signUp } = PAGE_PATH;
+  const { signIn, signUp, myPage } = PAGE_PATH;
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Escape") {
@@ -28,9 +28,9 @@ const RightButtons = ({ isAuth }: { isAuth: boolean | null }) => {
     <>
       {isAuth ? (
         <div className={cx("container")}>
-          {/* <Button color="blue" variant="primary" size="small" onClick={() => navigate(myPage)}>
+          <Button color="blue" variant="primary" size="small" onClick={() => navigate(myPage)}>
             마이페이지
-          </Button> */}
+          </Button>
           <Button color="blue" variant="secondary" size="small" onClick={() => logout()}>
             로그아웃
           </Button>

@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 const MobileNavigationBar = ({ isAuth }: { isAuth: boolean | null }) => {
   const navigate = useNavigate();
-  const { signIn } = PAGE_PATH;
+  const { signIn, myPage } = PAGE_PATH;
 
   return (
     <div className={cx("nav")}>
@@ -17,8 +17,11 @@ const MobileNavigationBar = ({ isAuth }: { isAuth: boolean | null }) => {
         <Image imageInfo={IMAGES.courseMakerLogoMobile} />
       </Link>
       <div className={cx("nav-btn")}>
-        {/* {isAuth ? <button>마이페이지</button> : <button onClick={() => navigate(signIn)}>로그인</button>} */}
-        {!isAuth && <button onClick={() => navigate(signIn)}>로그인</button>}
+        {isAuth ? (
+          <button onClick={() => navigate(myPage)}>마이페이지</button>
+        ) : (
+          <button onClick={() => navigate(signIn)}>로그인</button>
+        )}
       </div>
     </div>
   );
