@@ -1,0 +1,40 @@
+.sidebar {
+  @include responsive("T") {
+    width: 21rem;
+    height: 100%;
+    background-color: white;
+  }
+
+  @include responsive("M") {
+    width: 16rem;
+  }
+
+  &__top-bar {
+    display: none;
+
+    @include responsive("T") {
+      @include flexbox(end, center);
+      height: 8rem;
+      padding-right: 3rem;
+    }
+
+    @include responsive("M") {
+      height: 6rem;
+      padding-right: 2rem;
+    }
+
+    &--close-btn {
+      @include responsive("T") {
+        width: 2.4rem;
+        height: 2.4rem;
+        display: block;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__menu {
+    @include column-flexbox(center, stretch);
+    gap: 1.4rem;
+  }
+}

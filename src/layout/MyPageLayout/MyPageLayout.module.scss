@@ -8,8 +8,6 @@
 
   @include responsive("T") {
     display: block;
-    // grid-template-columns: 15.5rem auto;
-    // gap: 1.8rem 5.7rem;
   }
 
   &__heading {
@@ -19,8 +17,6 @@
 
     @include responsive("T") {
       display: none;
-      // font-size: 2.2rem;
-      // padding-left: 1rem;
     }
 
     &-selectedMenu {
@@ -40,11 +36,10 @@
 
     @include responsive("T") {
       display: none;
-      // gap: 1rem;
     }
 
-    &.mobile-view {
-      display: flex;
+    &--mobile {
+      height: 100%;
     }
   }
 
