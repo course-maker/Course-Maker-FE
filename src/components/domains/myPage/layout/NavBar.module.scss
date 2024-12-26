@@ -6,6 +6,7 @@
 
   @include responsive("T") {
     padding: 2.6rem 1.7rem 2.8rem;
+    border: none;
   }
 
   &__list {

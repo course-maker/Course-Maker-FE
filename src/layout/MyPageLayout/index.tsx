@@ -1,11 +1,12 @@
 import { PropsWithChildren } from "react";
 
 import Modal from "@/components/commons/Modal";
-import NavBar from "@/components/domains/myPage/layout/NavBar";
-import UserInfo from "@/components/domains/myPage/layout/UserInfo";
+import Sidebar from "@/components/domains/myPage/layout/Sidebar";
 import { sidebarState } from "@/recoil/sidebarAtom";
-import classNames from "classnames/bind";
 import { useRecoilState } from "recoil";
+
+import classNames from "classnames/bind";
+import { useWindowSize } from "usehooks-ts";
 import styles from "./MyPageLayout.module.scss";
 
 const cx = classNames.bind(styles);
@@ -16,6 +17,8 @@ interface MyPageLayoutProps {
 
 const MyPageLayout = ({ selectedMenu, children }: PropsWithChildren<MyPageLayoutProps>) => {
   const [sidebar, setSidebar] = useRecoilState(sidebarState);
+  const { width: windowWidth } = useWindowSize();
+  const isMobile = windowWidth < 1200;
 
   return (
     <div className={cx("my-page-layout")}>
@@ -23,17 +26,17 @@ const MyPageLayout = ({ selectedMenu, children }: PropsWithChildren<MyPageLayout
         MYPAGE <span className={cx("my-page-layout__heading-selectedMenu")}>/ {selectedMenu}</span>
       </h1>
       <aside className={cx("my-page-layout__sidebar")}>
-        <UserInfo />
-        <NavBar />
+        <Sidebar />
       </aside>
       <main className={cx("my-page-layout__main")}>{children}</main>
 
-      <Modal isOpen={sidebar} onBackdropClick={() => setSidebar((prev) => !prev)} isSidebar={true}>
-        <aside className={cx("my-page-layout__sidebar", "mobile-view")}>
-          <UserInfo />
-          <NavBar />
-        </aside>
-      </Modal>
+      {isMobile && (
+        <Modal isOpen={sidebar} onBackdropClick={() => setSidebar((prev) => !prev)} isSidebar={true}>
+          <aside className={cx("my-page-layout__sidebar--mobile")}>
+            <Sidebar />
+          </aside>
+        </Modal>
+      )}
     </div>
   );
 };
