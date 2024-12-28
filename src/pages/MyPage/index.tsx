@@ -15,16 +15,16 @@ const MyPage = () => {
       <h1 className={cx("title")}>마이페이지</h1>
       <ul className={cx("menus")}>
         {MYPAGE_MENU_LIST.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} className={cx("menu")}>
             <button
-              className={cx("menu")}
+              className={cx("menu-btn")}
               onClick={() => {
                 navigate(item.navigate);
               }}>
-              <div className={cx("menu-img")}>
+              <div className={cx("menu-btn-img")}>
                 <Image imageInfo={item.icon} />
               </div>
-              <span className={cx("menu-name")}>{item.name}</span>
+              <span className={cx("menu-btn-name")}>{item.name}</span>
             </button>
           </li>
         ))}

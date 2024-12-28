@@ -11,7 +11,7 @@
   }
 
   @include responsive("M") {
-    gap: 5rem;
+    gap: 3rem;
     padding-top: calc(4rem - 4rem);
     padding-bottom: 10rem;
   }
@@ -35,69 +35,105 @@
 
     @include responsive("M") {
       @include column-flexbox();
+      gap: 3rem;
     }
 
     .menu {
-      @include column-flexbox();
-      gap: 4.5rem;
-      border: 0.1rem solid $gray20;
       width: 25rem;
       height: 25rem;
-      padding-top: 1rem;
-      background-color: white;
-      cursor: pointer;
-      transition: all 0.2s linear;
-
-      &:hover {
-        background-color: $gray10;
-
-        .menu-img {
-          transform: scale(1.4);
-        }
-      }
 
       @include responsive("T") {
-        gap: 1.5rem;
         width: 14rem;
         height: 14rem;
       }
 
-      &-img {
-        @include flexbox();
-        width: 8rem;
-        height: 8rem;
+      @include responsive("M") {
+        width: 100%;
+        height: 3rem;
+      }
+
+      &-btn {
+        @include column-flexbox();
+        gap: 4.5rem;
+        width: 100%;
+        height: 100%;
+        border: 0.1rem solid $gray20;
+        padding-top: 1rem;
+        background-color: white;
+        cursor: pointer;
         transition: all 0.2s linear;
 
+        &:hover {
+          @media (hover: hover) and (pointer: fine) {
+            background-color: $gray10;
+
+            .menu-btn-img {
+              transform: scale(1.4);
+            }
+          }
+        }
+
         @include responsive("T") {
-          width: 5rem;
-          height: 5rem;
+          gap: 1.5rem;
+        }
+
+        @include responsive("M") {
+          flex-direction: row;
+          justify-content: flex-start;
+          padding-top: 0;
+          border: none;
+          &:hover {
+            background-color: transparent;
+          }
+        }
+
+        &-img {
+          @include flexbox();
+          width: 8rem;
+          height: 8rem;
+          transition: all 0.2s linear;
+
+          @include responsive("T") {
+            width: 5rem;
+            height: 5rem;
+          }
+
+          @include responsive("M") {
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+
+        &-name {
+          @include text-style(2.4, 500, $black30);
+
+          @include responsive("T") {
+            font-size: 1.6rem;
+          }
         }
       }
 
-      &-name {
-        @include text-style(2.4, 500, $black30);
+      li:nth-child(2) {
+        gap: 3rem;
+        padding-top: 0;
 
         @include responsive("T") {
-          font-size: 1.6rem;
+          gap: 0.5rem;
         }
-      }
-    }
 
-    li:nth-child(2) {
-      gap: 3rem;
-      padding-top: 0;
+        .menu-img {
+          width: 11rem;
+          height: 11rem;
 
-      @include responsive("T") {
-        gap: 0.5rem;
-      }
+          @include responsive("T") {
+            width: 7rem;
+            height: 7rem;
+          }
 
-      .menu-img {
-        width: 11rem;
-        height: 11rem;
-
-        @include responsive("T") {
-          width: 7rem;
-          height: 7rem;
+          @include responsive("M") {
+            width: 3rem;
+            height: 3rem;
+          }
         }
       }
     }
