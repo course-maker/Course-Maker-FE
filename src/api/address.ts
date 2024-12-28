@@ -16,6 +16,8 @@ export const memberAddress = {
   logout: "/v1/auth/logout",
   //post
   signUp: "/v1/auth/join",
+  //delete
+  delete: "/v1/auth/withdrawal",
 };
 
 export const destinationAddress = {
