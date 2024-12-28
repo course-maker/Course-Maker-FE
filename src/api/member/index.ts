@@ -1,6 +1,8 @@
 import { memberAddress } from "../address";
 import { apiRequest } from "../axios";
 import {
+  deleteRequestDto,
+  deleteResponseDto,
   loginRequestDto,
   loginResponseDto,
   logoutRequestDto,
@@ -33,3 +35,7 @@ export const postRegister = (data: signUpRequestDto): Promise<signUpResponseDto>
 /** 로그아웃 요청 */
 export const postLogout = (data: logoutRequestDto): Promise<logoutResponseDto> =>
   apiRequest("post", memberAddress.logout, data);
+
+/** 회원탈퇴 요청 */
+export const postDelete = (data: deleteRequestDto): Promise<deleteResponseDto> =>
+  apiRequest("delete", memberAddress.delete, data);

@@ -14,4 +14,9 @@ export const MODALS = {
     message: "성공적으로 로그아웃 되었습니다.",
     hasCloseBtn: true,
   },
+  successWithDrawal: {
+    id: "successWithDrawal",
+    message: "성공적으로 회원탈퇴 되었습니다.",
+    hasCloseBtn: true,
+  },
 };

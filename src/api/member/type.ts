@@ -40,3 +40,12 @@ export type logoutRequestDto = {
 export type logoutResponseDto = {
   success: boolean;
 };
+
+/** 회원탈퇴 요청 */
+export type deleteRequestDto = {
+  refreshToken: string;
+};
+
+export type deleteResponseDto = {
+  success: boolean;
+};
