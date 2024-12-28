@@ -37,10 +37,6 @@
     @include responsive("T") {
       display: none;
     }
-
-    &--mobile {
-      height: 100%;
-    }
   }
 
   &__main {

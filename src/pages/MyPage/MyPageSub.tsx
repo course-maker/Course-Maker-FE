@@ -1,4 +1,4 @@
-import MyPageLayout from "@/layout/MyPageLayout";
+import MyPageLayout from "@/layout/MyPageSubLayout";
 import { ReactNode } from "react";
 
 interface MyPageSubProps {
