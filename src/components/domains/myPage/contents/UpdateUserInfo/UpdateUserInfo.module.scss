@@ -7,7 +7,7 @@
 .items {
   @include column-flexbox();
   gap: 4rem;
-  max-width: 35rem;
+  max-width: 40rem;
   width: 100%;
 
   @include responsive("M") {
@@ -38,5 +38,50 @@
       gap: 0.6rem;
       width: 100%;
     }
+  }
+}
+
+.auth-form {
+  @include column-flexbox(center, center);
+  min-height: 100vh;
+  padding-top: 15vh;
+  padding-bottom: 8.6rem;
+  gap: 1rem;
+
+  @include responsive("T") {
+    padding-top: 10vh;
+  }
+
+  .auth-form-txt {
+    font-size: 20px;
+  }
+
+  form {
+    @include column-flexbox(center, center);
+    width: 100%;
+    max-width: 35rem;
+    gap: 0.5rem;
+  }
+}
+
+.input-field {
+  @extend %input-base;
+  margin: 2rem 0;
+}
+.disabled {
+  color: $gray30;
+}
+
+.helper-text {
+  @include text-style(1.2, 400, $gray30);
+  @include column-flexbox(start, end);
+  min-height: 1.6rem;
+
+  .verified {
+    color: $primary40;
+  }
+
+  .error {
+    color: $red;
   }
 }
