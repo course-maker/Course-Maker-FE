@@ -1,4 +1,5 @@
 import Image from "@/components/commons/Image";
+import SidebarModal from "@/components/domains/myPage/layout/SidebarModal";
 import { MYPAGE_MENU_LIST } from "@/constants/mypageMenuList";
 import classNames from "classnames/bind";
 import { useNavigate } from "react-router-dom";
@@ -28,6 +29,8 @@ const MyPage = () => {
           </li>
         ))}
       </ul>
+
+      <SidebarModal />
     </div>
   );
 };
