@@ -42,7 +42,7 @@
 }
 
 .auth-form {
-  @include column-flexbox(center, center);
+  @include column-flexbox(start, center);
   min-height: 100vh;
   padding-top: 15vh;
   padding-bottom: 8.6rem;
