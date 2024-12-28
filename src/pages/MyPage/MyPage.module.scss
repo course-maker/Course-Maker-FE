@@ -1,11 +1,11 @@
 .container {
   @include column-flexbox();
-  gap: 11rem;
+  gap: 8rem;
   padding-top: calc(15rem - 4rem);
   padding-bottom: 20rem;
 
   @include responsive("T") {
-    gap: 8rem;
+    gap: 4.4rem;
     padding-top: calc(8rem - 4rem);
     padding-bottom: 15rem;
   }
@@ -25,7 +25,8 @@
   }
 
   .menus {
-    @include flexbox();
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 6rem;
 
     @include responsive("T") {
