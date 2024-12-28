@@ -1,12 +1,44 @@
+import Text from "@/components/commons/Text";
+
 import classNames from "classnames/bind";
 import styles from "./UpdateUserInfo.module.scss";
 const cx = classNames.bind(styles);
 
 const UpdateUserInfo = () => {
+  const [auth, setAuth] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (password) {
+      setAuth(true);
+    }
+  };
+
   return (
     <div className={cx("container")}>
       <div className={cx("items")}>
-        <UserForm />
+        {auth ? (
+          <UserForm />
+        ) : (
+          <div className={cx("auth-form")}>
+            <Text className={cx("auth-form-txt")} text="회원정보변경을 위해 사용자 인증이 필요합니다." />
+            <Text className={cx("auth-form-txt")} text="비밀번호를 입력해주세요." />
+            <form onSubmit={handlePasswordSubmit}>
+              <input
+                className={cx("input-field")}
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="비밀번호를 입력해주세요"
+              />
+              <Button type="submit" color="blue" variant="primary" size="large" isSquare={true}>
+                비밀번호 확인
+              </Button>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );
