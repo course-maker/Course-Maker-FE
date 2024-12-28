@@ -8,9 +8,15 @@ interface SignInputControllerProps<T extends FieldValues> {
   control: Control<T>;
   condition: SignField;
   setError?: UseFormSetError<T> | undefined;
+  disabled?: boolean;
 }
 
-const SignInputController = <T extends FieldValues>({ name, control, condition }: SignInputControllerProps<T>) => {
+const SignInputController = <T extends FieldValues>({
+  name,
+  control,
+  condition,
+  disabled = false,
+}: SignInputControllerProps<T>) => {
   const { defaultMessage, type, ...inputProps } = condition;
 
   return (
@@ -22,6 +28,7 @@ const SignInputController = <T extends FieldValues>({ name, control, condition }
           id={name}
           type={type}
           isError={!!fieldState.error}
+          disabled={disabled}
           helperText={fieldState.error?.message || defaultMessage}
           {...inputProps}
           {...field}
