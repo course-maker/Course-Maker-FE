@@ -1,0 +1,42 @@
+.container {
+  @include flexbox(center, start);
+  min-height: 100vh;
+  padding-bottom: 8.6rem;
+}
+
+.items {
+  @include column-flexbox();
+  gap: 4rem;
+  max-width: 35rem;
+  width: 100%;
+
+  @include responsive("M") {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.header {
+  @include text-style(3, 700);
+}
+
+.user-container {
+  @include column-flexbox();
+  width: 100%;
+}
+
+.form {
+  @include column-flexbox(center, start);
+  gap: 3rem;
+
+  &-input {
+    @include column-flexbox(center, start);
+    gap: 0.6rem;
+
+    &-except-email {
+      @include column-flexbox();
+      gap: 0.6rem;
+      width: 100%;
+    }
+  }
+}

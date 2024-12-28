@@ -6,6 +6,9 @@
   .input-field {
     @extend %input-base;
   }
+  .disabled {
+    color: $gray30;
+  }
 
   .helper-text {
     @include text-style(1.2, 400, $gray30);
