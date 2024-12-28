@@ -10,6 +10,7 @@ const UpdateUserInfo = () => {
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     if (password) {
       setAuth(true);
     }
