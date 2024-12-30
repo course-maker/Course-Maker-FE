@@ -1,9 +1,9 @@
-import MyLevelInfo from "./MyLevelInfo";
+import MyLevel from "./MyLevel";
 
 const Level = () => {
   return (
     <>
-      <MyLevelInfo />
+      <MyLevel />
     </>
   );
 };
