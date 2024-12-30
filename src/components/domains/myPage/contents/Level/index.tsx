@@ -1,7 +1,9 @@
+import MyLevelInfo from "./MyLevelInfo";
+
 const Level = () => {
   return (
     <>
-      <h1>Level Component</h1>
+      <MyLevelInfo />
     </>
   );
 };
