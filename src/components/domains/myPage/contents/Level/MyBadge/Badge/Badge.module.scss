@@ -1,0 +1,27 @@
+.badge {
+  @include column-flexbox();
+  gap: 1rem;
+
+  &__img {
+    border-radius: 2rem;
+    height: 8rem;
+    background-color: $gray20; // fix: temp
+
+    @include responsive("M") {
+    }
+  }
+
+  &__description {
+    @include column-flexbox();
+
+    &-title {
+      @include text-style(1.8, 700, $black30);
+    }
+
+    &-criteria {
+      @include text-style(1.4, 500, $black30);
+      word-break: keep-all;
+      text-align: center;
+    }
+  }
+}

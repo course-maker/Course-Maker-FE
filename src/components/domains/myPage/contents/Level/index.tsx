@@ -1,4 +1,5 @@
 import LevelProgressBar from "./LevelProgressBar";
+import MyBadge from "./MyBadge";
 import MyLevel from "./MyLevel";
 
 const Level = () => {
@@ -6,6 +7,7 @@ const Level = () => {
     <>
       <MyLevel />
       <LevelProgressBar />
+      <MyBadge />
     </>
   );
 };
