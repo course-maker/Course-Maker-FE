@@ -4,6 +4,11 @@
     @include text-style(2.4, 700, $black30);
     gap: 0.5rem;
 
+    @include responsive("M") {
+      font-size: 2rem;
+      gap: 0.3rem;
+    }
+
     &-question-mark {
       @include flexbox();
       @include text-style(1.6, 600, $gray30);
@@ -12,12 +17,23 @@
       width: 2.4rem;
       height: 2.4rem;
       cursor: pointer;
+
+      @include responsive("M") {
+        font-size: 1.2rem;
+        width: 2rem;
+        height: 2rem;
+      }
     }
   }
 
   &__my-info {
     @include text-style(3.2, 500, $black30);
     padding-top: 2rem;
+
+    @include responsive("M") {
+      font-size: 2.4rem;
+      padding-top: 1.6rem;
+    }
 
     &--highlight {
       font-weight: 700;

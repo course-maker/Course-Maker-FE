@@ -19,7 +19,7 @@ const mockData = [
 
 const MyBadge = () => {
   return (
-    <article className={cx("my-badge")}>
+    <div className={cx("my-badge")}>
       <h2 className={cx("my-badge__title")}>내 뱃지</h2>
       <ul className={cx("my-badge__list")}>
         {mockData.map(({ id, img, title, criteria }) => (
@@ -28,7 +28,7 @@ const MyBadge = () => {
           </li>
         ))}
       </ul>
-    </article>
+    </div>
   );
 };
 export default MyBadge;

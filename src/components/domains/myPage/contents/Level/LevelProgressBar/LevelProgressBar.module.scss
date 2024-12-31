@@ -5,6 +5,10 @@
     background-color: $gray20;
     border-radius: 0.5rem;
 
+    @include responsive("M") {
+      height: 0.8rem;
+    }
+
     &-fill {
       background: linear-gradient(90deg, $primary30, $primary50);
       border-radius: 0.5rem;
@@ -29,8 +33,16 @@
     @include flexbox(between, center);
     padding-top: 1rem;
 
+    @include responsive("M") {
+      padding-top: 0.5rem;
+    }
+
     &-el {
       @include text-style(1.6, 500, $black30);
+
+      @include responsive("M") {
+        font-size: 1.4rem;
+      }
     }
   }
 }

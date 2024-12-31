@@ -1,0 +1,15 @@
+.level {
+  padding-bottom: 10rem;
+
+  @include responsive("T") {
+    padding-bottom: 8rem;
+  }
+
+  &__level {
+    padding-bottom: 4.8rem;
+
+    &-info {
+      padding-bottom: 2.4rem;
+    }
+  }
+}
