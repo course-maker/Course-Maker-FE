@@ -1,0 +1,27 @@
+.my-level {
+  &__all-info {
+    @include flexbox(stretch, center);
+    @include text-style(2.4, 700, $black30);
+    gap: 0.5rem;
+
+    &-question-mark {
+      @include flexbox();
+      @include text-style(1.6, 600, $gray30);
+      border: 0.1rem solid $gray30;
+      border-radius: 50%;
+      width: 2.4rem;
+      height: 2.4rem;
+      cursor: pointer;
+    }
+  }
+
+  &__my-info {
+    @include text-style(3.2, 500, $black30);
+    padding-top: 2rem;
+
+    &--highlight {
+      font-weight: 700;
+      color: $primary40;
+    }
+  }
+}

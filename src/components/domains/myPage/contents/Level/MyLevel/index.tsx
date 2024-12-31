@@ -28,15 +28,17 @@ const MyLevel = () => {
 
   return (
     <>
-      <div className={cx("my-level-info")}>
-        <div className={cx("my-level-info__")}>
+      <div className={cx("my-level")}>
+        <div className={cx("my-level__all-info")}>
           내 등급
-          <button onClick={() => setIsModalOpen(true)}>?</button>
+          <button className={cx("my-level__all-info-question-mark")} onClick={() => setIsModalOpen(true)}>
+            ?
+          </button>
         </div>
-        <h1>
-          {nickname}
-          <span> 님은</span> {role}
-          <span> 입니다.</span>
+        <h1 className={cx("my-level__my-info")}>
+          <span className={cx("my-level__my-info--highlight")}>{nickname}</span>
+          {" 님은"} <span className={cx("my-level__my-info--highlight")}>{role}</span>
+          {" 입니다."}
         </h1>
       </div>
 
