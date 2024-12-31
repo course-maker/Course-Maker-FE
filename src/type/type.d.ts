@@ -2,6 +2,11 @@ import { CourseReview } from "@/api/course/type";
 import { DestinationReview } from "@/api/destination/type";
 import { tagResponseDto } from "@/api/tag/type";
 
+export type ImageInfo = {
+  src: string;
+  alt: string;
+};
+
 export interface TabBarIconProps {
   title: string;
   color: string;
@@ -80,4 +85,15 @@ export interface RefinedReview {
 
 export interface RequestOptions {
   requireAuth: boolean;
+}
+
+export interface UserLevelInfo {
+  id: number;
+  level: string;
+  imgInfo: ImageInfo;
+  requirement: { description: string; additionalInfo?: string };
+  benefits: {
+    description: string;
+    additionalInfo?: string;
+  };
 }

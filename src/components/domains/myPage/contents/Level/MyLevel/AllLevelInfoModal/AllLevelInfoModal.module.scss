@@ -1,0 +1,52 @@
+.all-level-info-modal {
+  @include column-flexbox();
+  gap: 0.32rem;
+  background-color: white;
+  border-radius: 1rem;
+  width: 64rem;
+  padding: 2.4rem;
+
+  @include responsive("M") {
+    width: calc(100% - 4rem);
+    padding: 2rem;
+  }
+
+  &__close-btn {
+    align-self: flex-end;
+    width: 2.4rem;
+    height: 2.4rem;
+    cursor: pointer;
+
+    @include responsive("M") {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  &__header {
+    @include flexbox();
+
+    &-logo {
+      width: 8.4rem;
+
+      @include responsive("M") {
+        width: 6rem;
+      }
+    }
+
+    &-title {
+      @include text-style(1.6, 700, $black30);
+      text-align: center;
+
+      @include responsive("M") {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &__level-info-list {
+    &-element:not(:last-child) {
+      border-bottom: 0.1rem solid $gray20;
+    }
+  }
+}
