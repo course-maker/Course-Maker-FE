@@ -1,0 +1,45 @@
+.progress-bar {
+  &__track {
+    width: 100%;
+    height: 1rem;
+    background-color: $gray20;
+    border-radius: 0.5rem;
+
+    &-fill {
+      background: linear-gradient(90deg, $primary30, $primary50);
+      border-radius: 0.5rem;
+      height: 100%;
+      animation: fill-up 0.8s linear forwards;
+    }
+
+    .beginner {
+      --target-width: 20%;
+    }
+
+    .intermediate {
+      --target-width: 60%;
+    }
+
+    .expert {
+      --target-width: 100%;
+    }
+  }
+
+  &__labels {
+    @include flexbox(between, center);
+    padding-top: 1rem;
+
+    &-el {
+      @include text-style(1.6, 500, $black30);
+    }
+  }
+}
+
+@keyframes fill-up {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--target-width, 100%);
+  }
+}
