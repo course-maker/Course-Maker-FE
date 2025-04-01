@@ -28,7 +28,7 @@ export const bannerData = [
 
 export const busanData = [
   {
-    id: 36,
+    id: 16,
     name: "잊지 못할 부산/n즐거움이 가득한",
     location: "체험학습 추천 코스",
     image: "http://tong.visitkorea.or.kr/cms/resource/37/2781837_image2_1.jpg",
@@ -43,7 +43,7 @@ export const busanData = [
     ],
   },
   {
-    id: 37,
+    id: 17,
     name: "부산의 숨은 명소/n쉬면서 즐기는",
     location: "피크닉 투어",
     image: "http://tong.visitkorea.or.kr/cms/resource/52/2961452_image2_1.jpeg",
@@ -58,7 +58,7 @@ export const busanData = [
     ],
   },
   {
-    id: 23,
+    id: 3,
     name: "마음이 평화로워지는/n역사 탐방",
     location: "박물관 여행",
     image: "https://myawsbucket0154.s3.ap-northeast-2.amazonaws.com/28a8d5d2-98a1-4b2d-adc3-a45d302f1259.jfif",
@@ -73,7 +73,7 @@ export const busanData = [
     ],
   },
   {
-    id: 34,
+    id: 9,
     name: "가슴이 뻥뚫리는/n바다 위를 건너가는",
     location: "바다사진 촬영스팟",
     image: "	http://tong.visitkorea.or.kr/cms/resource/48/2832648_image2_1.jpg",
@@ -145,7 +145,7 @@ export const bannerItemsData = {
       subtitle: "해운대 그린레일웨이",
       title: "바다를 따라 다니며\n육지와는 다른 풍경을 즐기세요",
       size: "large",
-      url: "destination/1092",
+      url: "destination/5",
     },
     {
       id: 1,
@@ -157,7 +157,7 @@ export const bannerItemsData = {
       subtitle: "부산 필수코스",
       title: "부산이 처음이라면\n여기부터 가보셔야죠",
       size: "large",
-      url: "course/38",
+      url: "course/18",
     },
   ],
 };
